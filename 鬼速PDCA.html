@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図解でわかる！鬼速PDCA - 圧倒的なスピードで成長する最強フレームワーク</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        plan: '#3B82F6',   /* Blue */
+                        do: '#10B981',     /* Green */
+                        check: '#F59E0B',  /* Yellow/Orange */
+                        adjust: '#EF4444', /* Red */
+                        oni: '#1E1B4B'     /* Dark Indigo */
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* カスタムスタイリング */
+        body {
+            background-color: #F8FAFC;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #1E40AF, #3B82F6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pdca-circle {
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ロジックツリー用の接続線 */
+        .tree-line-v {
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            width: 2px;
+            height: 24px;
+            background-color: #CBD5E1;
+            transform: translateX(-50%);
+        }
+
+        .tree-line-h {
+            position: absolute;
+            top: -24px;
+            left: 25%;
+            right: 25%;
+            height: 2px;
+            background-color: #CBD5E1;
+        }
+
+        .tree-line-v-down {
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            width: 2px;
+            height: 24px;
+            background-color: #CBD5E1;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+
+<body class="text-gray-800 antialiased overflow-x-hidden">
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <header class="bg-oni text-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10"
+            style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
+        <div
+            class="max-w-6xl mx-auto px-4 py-20 lg:py-32 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <span class="inline-block bg-yellow-400 text-yellow-900 font-bold px-3 py-1 rounded-full text-sm mb-4">
+                    <i class="fas fa-bolt mr-1"></i> 冨田和成氏 提唱のビジネスメソッド
+                </span>
+                <h1 class="text-4xl lg:text-6xl font-black leading-tight mb-6">
+                    圧倒的スピードで<br>結果を出す！<br>
+                    <span class="text-yellow-400">「鬼速PDCA」</span>図解
+                </h1>
+                <p class="text-lg lg:text-xl text-indigo-100 mb-8 leading-relaxed">
+                    激動の時代を生き残るための最強のフレームワーク。<br>
+                    精神論ではなく、<b>「仕組み」</b>で成長を自動化し、あなたの仕事と人生のスピードを劇的に加速させます。
+                </p>
+                <a href="#about"
+                    class="bg-white text-oni font-bold py-4 px-8 rounded-full shadow-lg hover:bg-yellow-400 transition duration-300 inline-flex items-center">
+                    図解で学ぶ <i class="fas fa-arrow-down ml-2"></i>
+                </a>
+            </div>
+
+            <!-- PDCA Circular Animation -->
+            <div class="relative flex justify-center items-center h-80" data-aos="fade-left">
+                <div class="absolute w-64 h-64 border-4 border-indigo-400/30 rounded-full border-dashed"></div>
+                <div class="relative w-64 h-64 pdca-circle">
+                    <!-- PLAN -->
+                    <div
+                        class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-plan text-white w-20 h-20 rounded-full flex flex-col justify-center items-center shadow-lg shadow-blue-500/50">
+                        <i class="fas fa-map-marked-alt text-xl mb-1"></i>
+                        <span class="font-bold text-sm">PLAN</span>
+                    </div>
+                    <!-- DO -->
+                    <div class="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 bg-do text-white w-20 h-20 rounded-full flex flex-col justify-center items-center shadow-lg shadow-green-500/50"
+                        style="transform: translate(50%, -50%) rotate(-90deg);">
+                        <div style="transform: rotate(90deg);" class="flex flex-col items-center">
+                            <i class="fas fa-running text-xl mb-1"></i>
+                            <span class="font-bold text-sm">DO</span>
+                        </div>
+                    </div>
+                    <!-- CHECK -->
+                    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-check text-white w-20 h-20 rounded-full flex flex-col justify-center items-center shadow-lg shadow-yellow-500/50"
+                        style="transform: translate(-50%, 50%) rotate(-180deg);">
+                        <div style="transform: rotate(180deg);" class="flex flex-col items-center">
+                            <i class="fas fa-search-chart text-xl mb-1"></i>
+                            <span class="font-bold text-sm">CHECK</span>
+                        </div>
+                    </div>
+                    <!-- ADJUST -->
+                    <div class="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 bg-adjust text-white w-20 h-20 rounded-full flex flex-col justify-center items-center shadow-lg shadow-red-500/50"
+                        style="transform: translate(-50%, -50%) rotate(-270deg);">
+                        <div style="transform: rotate(270deg);" class="flex flex-col items-center">
+                            <i class="fas fa-tools text-xl mb-1"></i>
+                            <span class="font-bold text-sm">ADJUST</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Center Text -->
+                <div
+                    class="absolute bg-white text-oni font-black text-2xl w-28 h-28 rounded-full flex justify-center items-center shadow-2xl z-20 border-4 border-indigo-100">
+                    鬼速
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section id="about" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">従来のPDCAと何が違うの？</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-600 text-lg">多くの人が「PDCAを回しているつもり」で終わっています。<br>鬼速PDCAは、根性論を排除し、徹底的な<span
+                        class="text-blue-600 font-bold">「数値化」</span>と<span
+                        class="text-red-500 font-bold">「行動管理」</span>にこだわります。</p>
+            </div>
+
+            <!-- 比較テーブル図解 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" data-aos="fade-up" data-aos-delay="100">
+                <!-- 従来 -->
+                <div class="bg-white rounded-2xl shadow-md border-t-4 border-gray-400 p-8 relative opacity-80">
+                    <div class="absolute top-0 right-0 bg-gray-400 text-white px-4 py-1 rounded-bl-xl font-bold">従来のPDCA
+                    </div>
+                    <ul class="space-y-6 mt-4 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-400 mt-1 mr-3 text-xl"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">回転スピードが遅い</h4>
+                                <p class="text-sm">月に1回や四半期に1回など、検証のサイクルが長すぎる。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-400 mt-1 mr-3 text-xl"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">目標と行動が曖昧</h4>
+                                <p class="text-sm">「頑張る」「意識する」など、数値化できない精神論が多い。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-400 mt-1 mr-3 text-xl"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">A = Action（改善）の誤解</h4>
+                                <p class="text-sm">失敗した時の「修正」しか考えず、成功を伸ばす視点がない。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 鬼速 -->
+                <div
+                    class="bg-white rounded-2xl shadow-xl border-t-4 border-blue-600 p-8 relative transform md:-translate-y-4">
+                    <div class="absolute top-0 right-0 bg-blue-600 text-white px-4 py-1 rounded-bl-xl font-bold"><i
+                            class="fas fa-bolt text-yellow-300"></i> 鬼速PDCA</div>
+                    <ul class="space-y-6 mt-4 text-gray-800">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3 text-xl"></i>
+                            <div>
+                                <h4 class="font-bold text-lg">週4回〜毎日の圧倒的スピード</h4>
+                                <p class="text-sm text-gray-600">短いサイクルで回すことで、1年後の経験値に数十倍の差がつく。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3 text-xl"></i>
+                            <div>
+                                <h4 class="font-bold text-lg">「行動」を絶対的に数値化 (KDI)</h4>
+                                <p class="text-sm text-gray-600">結果はコントロールできないが、自分の「行動量」は100%管理できる。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3 text-xl"></i>
+                            <div>
+                                <h4 class="font-bold text-lg">A = Adjust（調整）</h4>
+                                <p class="text-sm text-gray-600">軌道修正だけでなく、良い部分を「伸長」させたり、時には「やめる」決断も含む。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== KGI / KPI / KDI SECTION ==================== -->
+    <section class="py-20 bg-blue-50 px-4 relative overflow-hidden">
+        <!-- 背景装飾 -->
+        <div class="absolute -right-20 -top-20 w-64 h-64 bg-blue-200 rounded-full blur-3xl opacity-50"></div>
+        <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-green-200 rounded-full blur-3xl opacity-50"></div>
+
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">鬼速を支える「3つの指標」</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-600 text-lg">鬼速PDCAの最大の肝は、目標を3つの階層に分けて数値化することです。<br>特に一番下の<span
+                        class="font-bold text-do bg-green-100 px-2 rounded">KDI（行動指標）</span>が最も重要です。</p>
+            </div>
+
+            <!-- ピラミッド型図解 -->
+            <div class="flex flex-col items-center space-y-4" data-aos="fade-up" data-aos-delay="100">
+
+                <!-- KGI -->
+                <div
+                    class="w-full max-w-sm bg-gradient-to-r from-blue-600 to-blue-400 rounded-xl p-6 text-white text-center shadow-lg relative z-30 transform hover:scale-105 transition">
+                    <div class="text-xs font-bold text-blue-100 mb-1">最終ゴール</div>
+                    <h3 class="text-3xl font-black tracking-widest mb-2">KGI</h3>
+                    <p class="text-sm font-medium">Key Goal Indicator</p>
+                    <div class="mt-4 bg-white/20 rounded p-3 text-left">
+                        <span class="block text-xs text-blue-100"><i class="fas fa-lightbulb"></i> 例：ダイエット</span>
+                        <p class="font-bold">「3ヶ月後に体脂肪率20%未満」</p>
+                    </div>
+                </div>
+
+                <!-- 矢印 -->
+                <div class="text-blue-300 text-2xl -my-2 z-20"><i class="fas fa-chevron-down"></i></div>
+
+                <!-- KPI -->
+                <div
+                    class="w-full max-w-md bg-gradient-to-r from-yellow-500 to-yellow-400 rounded-xl p-6 text-white text-center shadow-lg relative z-20 transform hover:scale-105 transition">
+                    <div class="text-xs font-bold text-yellow-100 mb-1">中間目標（結果指標）</div>
+                    <h3 class="text-3xl font-black tracking-widest mb-2">KPI</h3>
+                    <p class="text-sm font-medium">Key Performance Indicator</p>
+                    <div class="mt-4 bg-white/20 rounded p-3 text-left">
+                        <span class="block text-xs text-yellow-100"><i class="fas fa-lightbulb"></i>
+                            例：KGIを達成するための要素</span>
+                        <p class="font-bold">「基礎代謝量〇〇kcalアップ」</p>
+                        <p class="font-bold">「1日の摂取カロリー1500kcal以内」</p>
+                    </div>
+                </div>
+
+                <!-- 矢印 -->
+                <div class="text-yellow-400 text-2xl -my-2 z-10"><i class="fas fa-chevron-down"></i></div>
+
+                <!-- KDI (Most Important) -->
+                <div
+                    class="w-full max-w-lg bg-gradient-to-r from-green-500 to-green-400 rounded-xl p-6 text-white text-center shadow-xl border-4 border-green-200 relative z-10 transform hover:scale-105 transition">
+                    <div
+                        class="absolute -top-4 -right-4 bg-red-500 text-white font-bold text-xs px-3 py-1 rounded-full shadow-lg transform rotate-12">
+                        ココが最重要！
+                    </div>
+                    <div class="text-xs font-bold text-green-100 mb-1">行動目標（絶対コントロール可能）</div>
+                    <h3 class="text-4xl font-black tracking-widest mb-2">KDI</h3>
+                    <p class="text-sm font-medium">Key Do Indicator <span class="text-xs opacity-75">※著者造語</span></p>
+                    <div class="mt-4 bg-white/20 rounded p-4 text-left">
+                        <span class="block text-xs text-green-100 mb-2"><i class="fas fa-lightbulb"></i>
+                            例：KPIを達成するための具体的な「行動量」</span>
+                        <ul class="space-y-2">
+                            <li class="flex items-center"><i class="fas fa-check-square mr-2"></i> 毎日、朝6時にスクワット30回</li>
+                            <li class="flex items-center"><i class="fas fa-check-square mr-2"></i> 毎日、食べたものをアプリに記録する
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 max-w-2xl mx-auto bg-white p-6 rounded-xl shadow-md border-l-4 border-green-500"
+                data-aos="fade-up">
+                <h4 class="font-bold text-lg mb-2 text-gray-800"><i
+                        class="fas fa-exclamation-circle text-green-500 mr-1"></i> KDIが重要な理由</h4>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    結果（KPI）は市場や他人に左右されるため、100%達成できるとは限りません。しかし、<b>「毎日スクワットを30回やる」という行動（KDI）は、自分の意志だけで100%コントロール可能です。</b>
+                    KDIを100%達成したのにKPIが上がらないなら、「行動不足」ではなく「仮説（計画）が間違っていた」と科学的に検証できます。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 4 STEPS DETAILED ==================== -->
+    <section class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">鬼速PDCA 4つのステップ徹底解剖</h2>
+                <div class="w-20 h-1 bg-gray-800 mx-auto rounded-full"></div>
+            </div>
+
+            <!-- === 1. PLAN === -->
+            <div class="mb-24 relative" data-aos="fade-up">
+                <div class="flex items-center mb-8">
+                    <div
+                        class="w-16 h-16 bg-plan text-white rounded-2xl flex justify-center items-center text-3xl font-black shadow-lg z-10">
+                        P</div>
+                    <div class="ml-6">
+                        <h3 class="text-2xl font-bold text-gray-800">PLAN（計画）</h3>
+                        <p class="text-plan font-bold">PDCAの5割はここで決まる！「仮説」の精度を上げる</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 lg:p-10 ml-8 lg:ml-24 relative">
+                    <!-- 縦線（タイムライン風） -->
+                    <div
+                        class="absolute left-0 top-0 bottom-0 w-1 bg-plan -ml-8 lg:-ml-24 rounded-full hidden md:block">
+                    </div>
+
+                    <p class="text-gray-600 mb-6">ゴールを明確にし、現状とのギャップを洗い出します。ここで活躍するのが<b>「因数分解」</b>という技術です。</p>
+
+                    <!-- 図解：因数分解ロジックツリー -->
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 overflow-x-auto">
+                        <h4 class="text-center font-bold text-gray-700 mb-8"><i
+                                class="fas fa-project-diagram mr-2 text-plan"></i> 因数分解（ロジックツリー）の例</h4>
+
+                        <!-- ツリー構造 (Flexbox) -->
+                        <div class="flex flex-col items-center min-w-[600px]">
+                            <!-- 第一階層 -->
+                            <div class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow font-bold relative z-10">
+                                売上を上げる（KGI）
+                            </div>
+                            <!-- 縦線 -->
+                            <div class="w-0.5 h-6 bg-gray-400"></div>
+
+                            <!-- 横線コンテナ -->
+                            <div class="relative w-2/3 h-0.5 bg-gray-400"></div>
+
+                            <!-- 第二階層 -->
+                            <div class="flex justify-between w-2/3 mt-6 relative">
+                                <!-- 縦線 -->
+                                <div class="absolute left-0 top-[-24px] w-0.5 h-6 bg-gray-400"></div>
+                                <div class="absolute right-0 top-[-24px] w-0.5 h-6 bg-gray-400"></div>
+
+                                <div class="flex flex-col items-center w-1/2 px-2">
+                                    <div
+                                        class="bg-blue-100 border-2 border-blue-400 text-blue-800 px-4 py-2 rounded-lg font-bold text-center w-full shadow-sm mb-4">
+                                        量：アプローチ数
+                                    </div>
+                                    <div class="w-0.5 h-4 bg-gray-300"></div>
+                                    <div
+                                        class="bg-white border border-gray-300 px-3 py-2 rounded text-sm text-center w-full shadow-sm mb-2">
+                                        新規開拓件数</div>
+                                    <div
+                                        class="bg-white border border-gray-300 px-3 py-2 rounded text-sm text-center w-full shadow-sm">
+                                        既存フォロー件数</div>
+                                </div>
+
+                                <div class="flex flex-col items-center w-1/2 px-2">
+                                    <div
+                                        class="bg-blue-100 border-2 border-blue-400 text-blue-800 px-4 py-2 rounded-lg font-bold text-center w-full shadow-sm mb-4">
+                                        質：成約率
+                                    </div>
+                                    <div class="w-0.5 h-4 bg-gray-300"></div>
+                                    <div
+                                        class="bg-white border border-gray-300 px-3 py-2 rounded text-sm text-center w-full shadow-sm mb-2">
+                                        提案スキルの向上</div>
+                                    <div
+                                        class="bg-white border border-gray-300 px-3 py-2 rounded text-sm text-center w-full shadow-sm">
+                                        商品力の強化</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-6 text-center">
+                            ※「質×量」や「プロセス（手順）」で切り分けると、どこがボトルネック（課題）かが見えやすくなります。</p>
+                    </div>
+
+                    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <span class="text-blue-600 font-bold text-sm block mb-1">Step 1</span>
+                            <h5 class="font-bold mb-2">優先順位づけ</h5>
+                            <p class="text-xs text-gray-600">洗い出した課題を「インパクト」「時間」「気軽さ」の3つで評価し、3つに絞り込む。</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <span class="text-blue-600 font-bold text-sm block mb-1">Step 2</span>
+                            <h5 class="font-bold mb-2">KPI化</h5>
+                            <p class="text-xs text-gray-600">絞り込んだ課題を数値化（サブゴール）する。</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <span class="text-blue-600 font-bold text-sm block mb-1">Step 3</span>
+                            <h5 class="font-bold mb-2">解決案の作成</h5>
+                            <p class="text-xs text-gray-600">KPIを達成するための大まかな方向性（解決案）を考える。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- === 2. DO === -->
+            <div class="mb-24 relative" data-aos="fade-up">
+                <div class="flex items-center mb-8">
+                    <div
+                        class="w-16 h-16 bg-do text-white rounded-2xl flex justify-center items-center text-3xl font-black shadow-lg z-10">
+                        D</div>
+                    <div class="ml-6">
+                        <h3 class="text-2xl font-bold text-gray-800">DO（実行）</h3>
+                        <p class="text-do font-bold">完璧を目指さず、まずは動く！「TODO」まで落とし込む</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 lg:p-10 ml-8 lg:ml-24 relative">
+                    <!-- 縦線 -->
+                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-do -ml-8 lg:-ml-24 rounded-full hidden md:block">
+                    </div>
+
+                    <p class="text-gray-600 mb-6">解決案を、具体的な行動（DO）に変換し、さらにスケジュール帳に書き込めるレベルの「TODO」まで分解します。</p>
+
+                    <!-- 図解：解決案→DO→TODO -->
+                    <div
+                        class="flex flex-col md:flex-row items-center justify-between gap-4 bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <!-- 解決案 -->
+                        <div class="flex-1 bg-white p-4 rounded-lg shadow border-l-4 border-gray-400 w-full">
+                            <div class="text-xs text-gray-500 font-bold mb-1">PLANの最後</div>
+                            <h5 class="font-bold text-gray-800">解決案</h5>
+                            <p class="text-sm text-gray-600 mt-2">例：英語力を高めるために、単語力を強化する</p>
+                        </div>
+
+                        <div class="text-gray-400 text-2xl transform rotate-90 md:rotate-0"><i
+                                class="fas fa-arrow-right"></i></div>
+
+                        <!-- DO -->
+                        <div class="flex-1 bg-white p-4 rounded-lg shadow border-l-4 border-green-400 w-full relative">
+                            <div class="text-xs text-green-600 font-bold mb-1">方向性・行動</div>
+                            <h5 class="font-bold text-gray-800">DO <span
+                                    class="text-xs font-normal text-gray-500 ml-2">(+ KDI設定)</span></h5>
+                            <p class="text-sm text-gray-600 mt-2">例：単語帳を毎日やる<br><span
+                                    class="text-xs font-bold text-green-600 bg-green-50 px-1 mt-1 inline-block">KDI:
+                                    毎日10ページ進める</span></p>
+                        </div>
+
+                        <div class="text-gray-400 text-2xl transform rotate-90 md:rotate-0"><i
+                                class="fas fa-arrow-right"></i></div>
+
+                        <!-- TODO -->
+                        <div class="flex-1 bg-white p-4 rounded-lg shadow border-l-4 border-red-400 w-full">
+                            <div class="text-xs text-red-500 font-bold mb-1">今すぐできるタスク</div>
+                            <h5 class="font-bold text-gray-800">TODO</h5>
+                            <p class="text-sm text-gray-600 mt-2">例：今日の20時に、近所のカフェで単語帳のP10〜P20をやる</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 text-center">
+                        <span class="inline-block bg-red-100 text-red-700 font-bold px-4 py-2 rounded-full text-sm">
+                            <i class="fas fa-hand-point-right mr-1"></i> 「DO」のまま放置すると行動に移せません！必ず「TODO」に分解してカレンダーに入れましょう。
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- === 3. CHECK === -->
+            <div class="mb-24 relative" data-aos="fade-up">
+                <div class="flex items-center mb-8">
+                    <div
+                        class="w-16 h-16 bg-check text-white rounded-2xl flex justify-center items-center text-3xl font-black shadow-lg z-10">
+                        C</div>
+                    <div class="ml-6">
+                        <h3 class="text-2xl font-bold text-gray-800">CHECK（検証）</h3>
+                        <p class="text-check font-bold">結果だけでなく「行動の因果」を分析する</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 lg:p-10 ml-8 lg:ml-24 relative">
+                    <!-- 縦線 -->
+                    <div
+                        class="absolute left-0 top-0 bottom-0 w-1 bg-check -ml-8 lg:-ml-24 rounded-full hidden md:block">
+                    </div>
+
+                    <p class="text-gray-600 mb-6">検証は<b>KGI → KPI →
+                            KDI</b>の順番で確認します。特に「なぜできなかったのか？」「なぜできたのか？」を深掘りすることが重要です。</p>
+
+                    <!-- 図解：検証のフローチャート -->
+                    <div class="bg-yellow-50 rounded-xl p-6 border border-yellow-200">
+                        <h4 class="font-bold text-gray-800 mb-4 text-center"><i
+                                class="fas fa-search mr-2 text-check"></i> 要因分析「なぜ？」の深掘りフロー</h4>
+
+                        <div class="flex flex-col items-center gap-4">
+                            <!-- スタート -->
+                            <div class="bg-white border-2 border-gray-800 px-6 py-3 rounded-full font-bold shadow-sm">
+                                計画した行動(KDI)はできたか？
+                            </div>
+
+                            <div class="flex w-full max-w-lg justify-between relative mt-2">
+                                <!-- 線 -->
+                                <div class="absolute top-0 left-1/4 right-1/4 h-0.5 bg-gray-300"></div>
+                                <div class="absolute top-0 left-1/4 w-0.5 h-6 bg-gray-300"></div>
+                                <div class="absolute top-0 right-1/4 w-0.5 h-6 bg-gray-300"></div>
+
+                                <!-- Yes ルート -->
+                                <div class="flex flex-col items-center w-1/2 pt-6 pr-2">
+                                    <div class="bg-green-500 text-white font-bold px-4 py-1 rounded-full mb-2 text-sm">
+                                        YES (できた)</div>
+                                    <div class="text-xs text-center text-gray-600 mb-2">しかし結果(KPI)が出ない場合</div>
+                                    <div class="text-2xl text-gray-400 mb-2"><i class="fas fa-arrow-down"></i></div>
+                                    <div
+                                        class="bg-white border-l-4 border-yellow-500 p-3 rounded shadow text-sm w-full">
+                                        <b class="text-red-500 block mb-1">【仮説の間違い】</b>
+                                        「課題の選定」や「解決策」が間違っていた可能性が高い。前提を疑う。
+                                    </div>
+                                </div>
+
+                                <!-- No ルート -->
+                                <div class="flex flex-col items-center w-1/2 pt-6 pl-2">
+                                    <div class="bg-red-500 text-white font-bold px-4 py-1 rounded-full mb-2 text-sm">NO
+                                        (できない)</div>
+                                    <div class="text-xs text-center text-gray-600 mb-2">行動自体が不足している場合</div>
+                                    <div class="text-2xl text-gray-400 mb-2"><i class="fas fa-arrow-down"></i></div>
+                                    <div
+                                        class="bg-white border-l-4 border-yellow-500 p-3 rounded shadow text-sm w-full">
+                                        <b class="text-blue-500 block mb-1">【実行体制の問題】</b>
+                                        「時間をかけたか？」「計画に無理はなかったか？」と深掘りする。
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- できた要因も分析 -->
+                            <div
+                                class="mt-6 w-full max-w-lg bg-green-50 border border-green-200 p-4 rounded-lg text-center">
+                                <span class="font-bold text-green-700"><i class="fas fa-star text-yellow-400 mr-1"></i>
+                                    「できた要因」も必ず分析する！</span>
+                                <p class="text-xs text-green-800 mt-1">成功を偶然で終わらせず、「なぜうまくいったのか」を解明し、再現性を持たせます。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- === 4. ADJUST === -->
+            <div class="mb-12 relative" data-aos="fade-up">
+                <div class="flex items-center mb-8">
+                    <div
+                        class="w-16 h-16 bg-adjust text-white rounded-2xl flex justify-center items-center text-3xl font-black shadow-lg z-10">
+                        A</div>
+                    <div class="ml-6">
+                        <h3 class="text-2xl font-bold text-gray-800">ADJUST（調整）</h3>
+                        <p class="text-adjust font-bold">改善ではなく「調整」。やめる決断も重要！</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 lg:p-10 ml-8 lg:ml-24 relative">
+                    <!-- 縦線 -->
+                    <div
+                        class="absolute left-0 top-0 bottom-0 w-1 bg-adjust -ml-8 lg:-ml-24 rounded-full hidden md:block">
+                    </div>
+
+                    <p class="text-gray-600 mb-6">
+                        Action（改善）ではなくAdjust（調整）と呼ぶのは、不具合の修正だけでなく「成功を伸ばす」意味も含むからです。検証結果をもとに、次の4つのパターンのいずれかを決定します。</p>
+
+                    <!-- 図解：4つの調整パターン マトリクス -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-red-50 border border-red-200 p-5 rounded-xl hover:shadow-md transition">
+                            <div class="flex items-center mb-2">
+                                <span class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded mr-2">ケース1</span>
+                                <h5 class="font-bold text-gray-800">ゴールレベルの調整</h5>
+                            </div>
+                            <p class="text-sm text-gray-600">前提が崩れた場合など。ゴールの「中止」「変更」「追加」を行う。新しいPDCAが始まることも。</p>
+                        </div>
+
+                        <div class="bg-orange-50 border border-orange-200 p-5 rounded-xl hover:shadow-md transition">
+                            <div class="flex items-center mb-2">
+                                <span
+                                    class="bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded mr-2">ケース2</span>
+                                <h5 class="font-bold text-gray-800">計画レベルの調整</h5>
+                            </div>
+                            <p class="text-sm text-gray-600">ゴールは同じだが、課題（ボトルネック）の特定が間違っていた場合、課題を入れ替え・追加する。</p>
+                        </div>
+
+                        <div class="bg-blue-50 border border-blue-200 p-5 rounded-xl hover:shadow-md transition">
+                            <div class="flex items-center mb-2">
+                                <span
+                                    class="bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded mr-2">ケース3</span>
+                                <h5 class="font-bold text-gray-800">解決案・DOレベルの調整</h5>
+                            </div>
+                            <p class="text-sm text-gray-600">戦略（課題）は合っているが、やり方（DOやTODO）が悪かった場合。実行計画を微修正する。</p>
+                        </div>
+
+                        <div class="bg-green-50 border border-green-200 p-5 rounded-xl hover:shadow-md transition">
+                            <div class="flex items-center mb-2">
+                                <span
+                                    class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded mr-2">ケース4</span>
+                                <h5 class="font-bold text-gray-800">調整不要（継続・伸長）</h5>
+                            </div>
+                            <p class="text-sm text-gray-600">全て順調な場合。そのままの行動（KDI）を継続し、さらに伸ばす（伸長案）方法を考える。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== TIPS SECTION ==================== -->
+    <section class="py-20 bg-oni text-white px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold mb-4">鬼速で回すための「仕組み」と「コツ」</h2>
+                <div class="w-20 h-1 bg-yellow-400 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- タイムマネジメント -->
+                <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20" data-aos="fade-up">
+                    <div
+                        class="w-12 h-12 bg-yellow-400 text-oni rounded-full flex justify-center items-center text-xl mb-4">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">タイムマネジメントの3原則</h3>
+                    <p class="text-indigo-100 mb-6 text-sm">実行（DO）の時間を確保するためには、既存のタスクを整理する必要があります。</p>
+
+                    <ul class="space-y-4">
+                        <li class="flex">
+                            <span class="font-bold text-yellow-400 w-6">1.</span>
+                            <div>
+                                <h4 class="font-bold">捨てる</h4>
+                                <p class="text-xs text-indigo-200">非重要・非緊急なタスクを思い切って捨てる。</p>
+                            </div>
+                        </li>
+                        <li class="flex">
+                            <span class="font-bold text-yellow-400 w-6">2.</span>
+                            <div>
+                                <h4 class="font-bold">入れ替える</h4>
+                                <p class="text-xs text-indigo-200">他人に任せられるもの（委譲）はないか検討する。</p>
+                            </div>
+                        </li>
+                        <li class="flex">
+                            <span class="font-bold text-yellow-400 w-6">3.</span>
+                            <div>
+                                <h4 class="font-bold">圧縮する</h4>
+                                <p class="text-xs text-indigo-200">ルーチン業務を効率化・仕組み化して時間を短縮する。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 優先順位のつけかた -->
+                <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20" data-aos="fade-up"
+                    data-aos-delay="100">
+                    <div
+                        class="w-12 h-12 bg-pink-400 text-white rounded-full flex justify-center items-center text-xl mb-4">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">迷わない！優先順位の基準</h3>
+                    <p class="text-indigo-100 mb-6 text-sm">課題や解決案を絞り込む際は、必ず以下の「3つの基準」で評価（A・B・Cなど）します。</p>
+
+                    <div class="space-y-3">
+                        <div class="bg-white/5 p-3 rounded border border-white/10 flex items-center justify-between">
+                            <span class="font-bold text-lg">インパクト</span>
+                            <span class="text-xs bg-indigo-900/50 px-2 py-1 rounded">効果の大きさ</span>
+                        </div>
+                        <div class="flex justify-center text-white/50"><i class="fas fa-times"></i></div>
+                        <div class="bg-white/5 p-3 rounded border border-white/10 flex items-center justify-between">
+                            <span class="font-bold text-lg">時間</span>
+                            <span class="text-xs bg-indigo-900/50 px-2 py-1 rounded">完了までの工数・期間</span>
+                        </div>
+                        <div class="flex justify-center text-white/50"><i class="fas fa-times"></i></div>
+                        <div class="bg-white/5 p-3 rounded border border-white/10 flex items-center justify-between">
+                            <span class="font-bold text-lg text-pink-300">気軽さ</span>
+                            <span
+                                class="text-xs bg-indigo-900/50 px-2 py-1 rounded text-pink-200">着手のしやすさ（迷った時の決め手！）</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="mb-2">※本ページは冨田和成氏の著書『鬼速PDCA』および関連資料の概念を図解・要約したものです。</p>
+            <p>&copy; 2026 鬼速PDCA図解サイト. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- AOS Animation Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+        });
+    </script>
+</body>
+
+</html>
