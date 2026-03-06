@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>なかやまきんに君式：究極のゼロパワー筋トレと食事術</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;900&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"M PLUS Rounded 1c"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            orange: '#ff6600',
+                            yellow: '#ffcc00',
+                            red: '#e60012',
+                            light: '#fff5eb',
+                            dark: '#333333'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #fffaf0;
+            color: #333;
+        }
+
+        /* スクロールアニメーション用のクラス */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 集中線背景 (ヒーローセクション用) */
+        .hero-bg {
+            background: radial-gradient(circle, #ffcc00 0%, #ff6600 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-conic-gradient(from 0deg, transparent 0deg 15deg, rgba(255, 255, 255, 0.1) 15deg 30deg);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* カスタム図解の矢印 */
+        .arrow-down::after {
+            content: '\f0dd';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #ff6600;
+            font-size: 2rem;
+            display: block;
+            text-align: center;
+            margin: 0.5rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .arrow-right-md::after {
+                content: '\f0da';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                color: #ff6600;
+                font-size: 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 1rem;
+            }
+
+            .arrow-down-md::after {
+                content: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- ヒーローセクション -->
+    <header class="hero-bg text-white text-center py-20 px-4 shadow-lg">
+        <div class="hero-content max-w-4xl mx-auto">
+            <div
+                class="inline-block bg-white text-brand-red font-bold px-4 py-1 rounded-full mb-4 shadow text-sm md:text-base">
+                気力ゼロ・体力ゼロでも絶対に失敗しない！
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight drop-shadow-md">
+                なかやまきんに君式<br>
+                <span class="text-brand-yellow drop-shadow-lg">ゼロパワーダイエット</span><br>
+                ＆ 究極の食事術
+            </h1>
+            <p class="text-lg md:text-xl font-bold mb-8 drop-shadow">
+                「ダイエットの成功で、これ以上の近道はありません」<br>
+                27年間のメソッドを、直感的な図解でお届けします。
+            </p>
+            <div class="text-3xl md:text-5xl font-black text-brand-yellow tracking-widest drop-shadow-lg">
+                ヤー！パワー！
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="max-w-5xl mx-auto px-4 py-12 space-y-24">
+
+        <!-- 1. ゼロパワーとは？ (図解) -->
+        <section class="fade-in-up">
+            <div class="text-center mb-10">
+                <h2
+                    class="text-3xl md:text-4xl font-black text-brand-orange border-b-4 border-brand-yellow inline-block pb-2">
+                    <i class="fas fa-battery-empty mr-2"></i>ゼロパワーとは？
+                </h2>
+                <p class="mt-4 text-gray-600 font-bold">運動のハードルを「極限まで下げる」革命的メソッド</p>
+            </div>
+
+            <!-- 比較図解 -->
+            <div class="flex flex-col md:flex-row gap-6 items-stretch justify-center max-w-4xl mx-auto">
+                <!-- 従来 -->
+                <div
+                    class="flex-1 bg-gray-100 p-6 rounded-2xl text-center border-2 border-gray-300 relative opacity-70">
+                    <div
+                        class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gray-500 text-white px-4 py-1 rounded-full text-sm font-bold">
+                        従来のダイエット
+                    </div>
+                    <div class="flex flex-col items-center justify-center h-full pt-4 space-y-4">
+                        <div class="text-gray-500"><i class="fas fa-tshirt text-3xl"></i><br>着替える</div>
+                        <div class="arrow-down text-gray-400"></div>
+                        <div class="text-gray-500"><i class="fas fa-running text-3xl"></i><br>ジムに行く</div>
+                        <div class="arrow-down text-gray-400"></div>
+                        <div class="text-gray-500"><i class="fas fa-dumbbell text-3xl"></i><br>キツい筋トレ</div>
+                        <div class="mt-4 bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded-lg w-full">
+                            ハードルが高くて挫折... 😭
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VS -->
+                <div class="flex items-center justify-center text-4xl font-black text-gray-300 italic">
+                    VS
+                </div>
+
+                <!-- ゼロパワー -->
+                <div
+                    class="flex-1 bg-white p-6 rounded-2xl text-center shadow-xl border-4 border-brand-orange relative transform scale-105">
+                    <div
+                        class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-brand-orange text-white px-6 py-2 rounded-full text-base font-bold shadow-md whitespace-nowrap">
+                        ゼロパワーダイエット
+                    </div>
+                    <div class="flex flex-col items-center justify-center h-full pt-4 space-y-4">
+                        <div class="text-brand-orange font-bold"><i class="fas fa-bed text-4xl mb-1"></i><br>パジャマのままでOK
+                        </div>
+                        <div class="arrow-down"></div>
+                        <div class="text-brand-orange font-bold"><i class="fas fa-stopwatch text-4xl mb-1"></i><br>1回
+                            30秒以内</div>
+                        <div class="arrow-down"></div>
+                        <div class="text-brand-orange font-bold"><i
+                                class="fas fa-smile-beam text-4xl mb-1"></i><br>超ラクで楽しい！</div>
+                        <div
+                            class="mt-4 bg-brand-yellow text-brand-dark font-black py-3 px-4 rounded-lg w-full text-lg shadow">
+                            ハードルゼロで続く！ 😆
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 継続のための3つの約束 (ステップ図解) -->
+        <section class="fade-in-up">
+            <div class="bg-brand-light p-8 md:p-12 rounded-3xl shadow-inner border border-orange-200">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-black text-brand-dark">
+                        <i class="fas fa-route text-brand-orange mr-2"></i>継続のための「3つの約束」
+                    </h2>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <!-- Step 1 -->
+                    <div
+                        class="flex-1 bg-white p-6 rounded-2xl shadow-md text-center border-t-4 border-brand-orange w-full arrow-down-md arrow-right-md relative">
+                        <div
+                            class="w-12 h-12 bg-brand-orange text-white rounded-full flex items-center justify-center text-xl font-black absolute -top-6 left-1/2 transform -translate-x-1/2 border-4 border-brand-light">
+                            1</div>
+                        <h3 class="text-xl font-bold mt-4 mb-2">1つだけやる</h3>
+                        <p class="text-sm text-gray-600">気力ゼロでもできそうな種目を1つ選び、30秒だけ行う。最初はこれだけで100点満点！</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div
+                        class="flex-1 bg-white p-6 rounded-2xl shadow-md text-center border-t-4 border-brand-yellow w-full arrow-down-md arrow-right-md relative">
+                        <div
+                            class="w-12 h-12 bg-brand-yellow text-brand-dark rounded-full flex items-center justify-center text-xl font-black absolute -top-6 left-1/2 transform -translate-x-1/2 border-4 border-brand-light">
+                            2</div>
+                        <h3 class="text-xl font-bold mt-4 mb-2">変化を見つける</h3>
+                        <p class="text-sm text-gray-600">1週間続けたら「息が上がらなくなった」など小さな変化を探し、自分を褒める。</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div
+                        class="flex-1 bg-white p-6 rounded-2xl shadow-md text-center border-t-4 border-brand-red w-full relative">
+                        <div
+                            class="w-12 h-12 bg-brand-red text-white rounded-full flex items-center justify-center text-xl font-black absolute -top-6 left-1/2 transform -translate-x-1/2 border-4 border-brand-light">
+                            3</div>
+                        <h3 class="text-xl font-bold mt-4 mb-2">筋肉の扉が開く</h3>
+                        <p class="text-sm text-gray-600">「私にもできるかも！」と自信がつき、習慣化のデフォルト状態へ突入！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. ゼロパワー筋トレ実践編 (カード図解) -->
+        <section class="fade-in-up">
+            <div class="text-center mb-10">
+                <h2
+                    class="text-3xl md:text-4xl font-black text-brand-orange border-b-4 border-brand-yellow inline-block pb-2">
+                    <i class="fas fa-fire-alt mr-2"></i>世界一ラクな筋トレ実践編
+                </h2>
+                <p class="mt-4 text-gray-600 font-bold">まずはペラペラ見て、1種目やってみよう！</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- トレーニング1 -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <div class="bg-brand-orange text-white p-4 flex justify-between items-center">
+                        <h3 class="text-xl font-black"><i class="fas fa-child mr-2"></i>世界一浅いスクワット</h3>
+                        <span class="bg-white text-brand-orange text-xs font-bold px-3 py-1 rounded-full">目安：3回〜</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-4 mb-4">
+                            <div
+                                class="flex-shrink-0 w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center text-brand-orange text-2xl">
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">やり方</h4>
+                                <ol class="list-decimal list-inside text-sm text-gray-600 space-y-1">
+                                    <li>足を肩幅より少し広く開く</li>
+                                    <li>背筋を伸ばし、両手は腰へ</li>
+                                    <li>お尻を<strong class="text-brand-red">少しだけ</strong>下げる</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-xl border border-yellow-200">
+                            <p class="text-sm font-bold text-brand-dark"><i
+                                    class="fas fa-lightbulb text-brand-yellow mr-1"></i> Point</p>
+                            <p class="text-sm text-gray-600 mt-1">顔を上げ、胸を張り、お尻を突き出す。膝がつま先より前に出ないように！浅くても効果絶大です。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- トレーニング2 -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <div class="bg-blue-500 text-white p-4 flex justify-between items-center">
+                        <h3 class="text-xl font-black"><i class="fas fa-chair mr-2"></i>足踏み腹筋 (よっこらせ)</h3>
+                        <span class="bg-white text-blue-500 text-xs font-bold px-3 py-1 rounded-full">目安：左右5回</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-4 mb-4">
+                            <div
+                                class="flex-shrink-0 w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 text-2xl">
+                                <i class="fas fa-shoe-prints"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">やり方</h4>
+                                <ol class="list-decimal list-inside text-sm text-gray-600 space-y-1">
+                                    <li>座った状態で両手を床(座面)に置く</li>
+                                    <li>腹筋に力を入れる</li>
+                                    <li>片膝を胸に近づけるように引き上げる</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-xl border border-yellow-200">
+                            <p class="text-sm font-bold text-brand-dark"><i
+                                    class="fas fa-lightbulb text-brand-yellow mr-1"></i> Point</p>
+                            <p class="text-sm text-gray-600 mt-1">できる範囲でOK！膝を引き寄せるときに、お腹にしっかり力が入っていることを意識しましょう。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- トレーニング3 -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <div class="bg-green-500 text-white p-4 flex justify-between items-center">
+                        <h3 class="text-xl font-black"><i class="fas fa-running mr-2"></i>腕ダッシュ</h3>
+                        <span class="bg-white text-green-500 text-xs font-bold px-3 py-1 rounded-full">目安：30回</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-4 mb-4">
+                            <div
+                                class="flex-shrink-0 w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-500 text-2xl">
+                                <i class="fas fa-wind"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">やり方</h4>
+                                <ol class="list-decimal list-inside text-sm text-gray-600 space-y-1">
+                                    <li>足を揃えて立ち、肘を90度に曲げる</li>
+                                    <li>走る時のように腕を前後に構える</li>
+                                    <li>できるだけ速く・大きく腕を振る！</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-xl border border-yellow-200">
+                            <p class="text-sm font-bold text-brand-dark"><i
+                                    class="fas fa-lightbulb text-brand-yellow mr-1"></i> Point</p>
+                            <p class="text-sm text-gray-600 mt-1">振る方向は真っ直ぐ！体幹を安定させ、肘が床と水平になる高さまで上げると褐色脂肪細胞が燃えます。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- トレーニング4 -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <div class="bg-purple-500 text-white p-4 flex justify-between items-center">
+                        <h3 class="text-xl font-black"><i class="fas fa-hands-up mr-2"></i>バンザイ背中痩せ</h3>
+                        <span class="bg-white text-purple-500 text-xs font-bold px-3 py-1 rounded-full">目安：10回</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-4 mb-4">
+                            <div
+                                class="flex-shrink-0 w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center text-purple-500 text-2xl">
+                                <i class="fas fa-child-reaching"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">効果</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                    <li>日常で縮んだ小胸筋をストレッチ</li>
+                                    <li>背部の筋肉を収縮させる</li>
+                                    <li>猫背改善＆基礎代謝の向上</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-xl border border-yellow-200">
+                            <p class="text-sm font-bold text-brand-dark"><i
+                                    class="fas fa-comment-dots text-brand-yellow mr-1"></i> Advice</p>
+                            <p class="text-sm text-gray-600 mt-1">上級者は動作の最後に「パワー！」「ヤー！」と声を出してみましょう。腹圧が高まり体幹が安定します！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 究極の食事術5つのルール (リスト図解) -->
+        <section class="fade-in-up">
+            <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl border-t-8 border-brand-orange">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-black text-brand-dark">
+                        <i class="fas fa-utensils text-brand-orange mr-2"></i>究極の「筋肉食事術」5ヶ条
+                    </h2>
+                    <p class="mt-4 text-gray-600 font-bold">食べるのを我慢するのではなく、賢く食べて燃やす！</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Rule 1 -->
+                    <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-orange-50 transition-colors">
+                        <div
+                            class="w-12 h-12 flex-shrink-0 bg-brand-orange text-white rounded-full flex items-center justify-center font-black text-xl shadow">
+                            1</div>
+                        <div>
+                            <h3
+                                class="text-xl font-bold text-gray-800 border-b-2 border-orange-200 inline-block mb-2 pb-1">
+                                朝はしっかり食べる（セカンドミール効果）</h3>
+                            <p class="text-gray-600 text-sm md:text-base">
+                                朝食を食べることで、昼や夜に食べた時の「血糖値の急上昇」を抑えられます。和食（ご飯、味噌汁、納豆など）がベスト！菓子パンや砂糖たっぷりのシリアルは避けましょう。</p>
+                        </div>
+                    </div>
+                    <!-- Rule 2 -->
+                    <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-orange-50 transition-colors">
+                        <div
+                            class="w-12 h-12 flex-shrink-0 bg-brand-orange text-white rounded-full flex items-center justify-center font-black text-xl shadow">
+                            2</div>
+                        <div>
+                            <h3
+                                class="text-xl font-bold text-gray-800 border-b-2 border-orange-200 inline-block mb-2 pb-1">
+                                夜の糖質は「控えめ」にする</h3>
+                            <p class="text-gray-600 text-sm md:text-base">
+                                夜は活動量が減るため、糖質（お米など）は少し控えめに。完全に抜くのはNG！お腹が空いたらキノコや海藻、野菜でカサ増しして消化を良くし、睡眠の質を上げます。</p>
+                        </div>
+                    </div>
+                    <!-- Rule 3 -->
+                    <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-orange-50 transition-colors">
+                        <div
+                            class="w-12 h-12 flex-shrink-0 bg-brand-orange text-white rounded-full flex items-center justify-center font-black text-xl shadow">
+                            3</div>
+                        <div>
+                            <h3
+                                class="text-xl font-bold text-gray-800 border-b-2 border-orange-200 inline-block mb-2 pb-1">
+                                タンパク質は「こまめに」摂る</h3>
+                            <p class="text-gray-600 text-sm md:text-base">
+                                筋肉の分解を防ぐため、1日分をドカ食いするのではなく、1日3〜5回に分けて摂取（体重×0.7g〜1g目安）。不足分はプロテインで補うのも有効です。</p>
+                        </div>
+                    </div>
+                    <!-- Rule 4 -->
+                    <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-orange-50 transition-colors">
+                        <div
+                            class="w-12 h-12 flex-shrink-0 bg-brand-orange text-white rounded-full flex items-center justify-center font-black text-xl shadow">
+                            4</div>
+                        <div>
+                            <h3
+                                class="text-xl font-bold text-gray-800 border-b-2 border-orange-200 inline-block mb-2 pb-1">
+                                スイーツは食べてもOK！（条件付き）</h3>
+                            <p class="text-gray-600 text-sm md:text-base">
+                                心の栄養も大切！ただし「食べ過ぎない」「運動の前後などエネルギーになるタイミングで」「脂質が少ない和菓子（羊羹、大福など）を選ぶ」の3つを意識しましょう。</p>
+                        </div>
+                    </div>
+                    <!-- Rule 5 -->
+                    <div
+                        class="flex items-start gap-4 p-4 rounded-xl hover:bg-orange-50 transition-colors bg-orange-100">
+                        <div
+                            class="w-12 h-12 flex-shrink-0 bg-brand-red text-white rounded-full flex items-center justify-center font-black text-xl shadow">
+                            5</div>
+                        <div class="w-full">
+                            <h3
+                                class="text-xl font-bold text-gray-800 border-b-2 border-red-300 inline-block mb-2 pb-1">
+                                調理法を変えてカロリーカット！</h3>
+                            <p class="text-gray-600 text-sm md:text-base mb-3">
+                                同じ食材でも、調理法を変えるだけで勝手にカロリーが減ります。ダイエット中は右に行くほど正解！</p>
+
+                            <!-- 調理法ピラミッド図解 -->
+                            <div
+                                class="flex flex-col md:flex-row items-center justify-between bg-white p-4 rounded-lg shadow-sm font-bold text-sm md:text-base gap-2">
+                                <div class="bg-red-500 text-white px-4 py-2 rounded-lg text-center w-full md:w-auto">
+                                    揚げる<br><span class="text-xs font-normal">カロリー高</span></div>
+                                <i class="fas fa-chevron-right text-gray-400 hidden md:block"></i>
+                                <i class="fas fa-chevron-down text-gray-400 md:hidden"></i>
+                                <div class="bg-orange-400 text-white px-4 py-2 rounded-lg text-center w-full md:w-auto">
+                                    炒める</div>
+                                <i class="fas fa-chevron-right text-gray-400 hidden md:block"></i>
+                                <i class="fas fa-chevron-down text-gray-400 md:hidden"></i>
+                                <div
+                                    class="bg-yellow-400 text-gray-800 px-4 py-2 rounded-lg text-center w-full md:w-auto">
+                                    焼く</div>
+                                <i class="fas fa-chevron-right text-gray-400 hidden md:block"></i>
+                                <i class="fas fa-chevron-down text-gray-400 md:hidden"></i>
+                                <div
+                                    class="bg-green-500 text-white px-4 py-2 rounded-lg text-center w-full md:w-auto shadow-md transform scale-105 border-2 border-green-600">
+                                    茹でる・蒸す・生<br><span class="text-xs font-normal">カロリー低（おすすめ！）</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. きんに君のスタメン食材 (グリッド図解) -->
+        <section class="fade-in-up">
+            <div class="text-center mb-10">
+                <h2
+                    class="text-3xl md:text-4xl font-black text-brand-orange border-b-4 border-brand-yellow inline-block pb-2">
+                    <i class="fas fa-shopping-basket mr-2"></i>毎日の最強「スタメン食材」
+                </h2>
+                <p class="mt-4 text-gray-600 font-bold">きんに君が毎日食べている、ボディメイクの必須アイテム</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <!-- 食材1 -->
+                <div
+                    class="bg-white p-4 rounded-2xl text-center shadow hover:-translate-y-2 transition-transform duration-300 border-t-4 border-red-400">
+                    <div class="text-5xl mb-3">🍗</div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-1">鶏胸肉</h3>
+                    <p class="text-xs text-gray-600 bg-gray-100 p-2 rounded">低脂質・高タンパクの王様。毎日約300g摂取！</p>
+                </div>
+                <!-- 食材2 -->
+                <div
+                    class="bg-white p-4 rounded-2xl text-center shadow hover:-translate-y-2 transition-transform duration-300 border-t-4 border-green-500">
+                    <div class="text-5xl mb-3">🥦</div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-1">ブロッコリー</h3>
+                    <p class="text-xs text-gray-600 bg-gray-100 p-2 rounded">マッチョの定番野菜。食物繊維とタンパク質が豊富。</p>
+                </div>
+                <!-- 食材3 -->
+                <div
+                    class="bg-white p-4 rounded-2xl text-center shadow hover:-translate-y-2 transition-transform duration-300 border-t-4 border-green-400 relative">
+                    <div
+                        class="absolute -top-3 -right-3 bg-brand-red text-white text-xs font-bold px-2 py-1 rounded-full transform rotate-12 shadow">
+                        超重要!</div>
+                    <div class="text-5xl mb-3">🌿</div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-1">オクラ</h3>
+                    <p class="text-xs text-gray-600 bg-brand-light p-2 rounded font-bold text-brand-orange">
+                        ネバネバ成分が、パサつく鶏胸肉を飲み込みやすくする神食材！</p>
+                </div>
+                <!-- 食材4 -->
+                <div
+                    class="bg-white p-4 rounded-2xl text-center shadow hover:-translate-y-2 transition-transform duration-300 border-t-4 border-yellow-400">
+                    <div class="text-5xl mb-3">🥚</div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-1">卵（全卵）</h3>
+                    <p class="text-xs text-gray-600 bg-gray-100 p-2 rounded">完全栄養食。黄身も捨てずに食べるのが正解（1日5個）。</p>
+                </div>
+            </div>
+
+            <div class="mt-6 bg-blue-50 p-4 rounded-xl border border-blue-200 text-center max-w-2xl mx-auto">
+                <p class="text-sm text-gray-700">
+                    <i class="fas fa-info-circle text-blue-500 mr-1"></i>
+                    他にも <strong>アスパラガス、ゴーヤ、ニンジン、トマト</strong> など、彩り豊かな野菜を茹でたり生で食べたりして、ビタミン・ミネラルを補給しています。
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-brand-dark text-white text-center py-12 mt-12 border-t-8 border-brand-orange">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-black mb-6">
+                筋肉は財産！使えば使うほど増える！
+            </h2>
+            <p class="text-gray-300 mb-8 leading-relaxed text-sm md:text-base">
+                お腹が空いて食べるのを我慢するのではなく、<br>
+                <strong>「適度に運動して、賢く食べる」</strong><br>
+                これがダイエットの唯一の近道です。<br>
+                まずは1日30秒、今日から始めてみましょう！
+            </p>
+            <div
+                class="inline-block bg-brand-orange text-white font-black text-2xl md:text-4xl px-10 py-4 rounded-full shadow-lg transform hover:scale-110 transition-transform duration-300 cursor-default">
+                ヤー！パワー！💪
+            </div>
+            <p class="text-xs text-gray-500 mt-12">
+                ※本ページは「なかやまきんに君式 世界一ラクなゼロパワーダイエット(KADOKAWA)」等の情報を基に作成した図解まとめです。
+            </p>
+        </div>
+    </footer>
+
+    <!-- スクロールアニメーション用JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const elements = document.querySelectorAll('.fade-in-up');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // 一度表示されたら監視を解除する場合
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // 要素が15%見えたら発火
+            });
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+
+</html>
