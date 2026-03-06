@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図解：定年後の超・働き方改革</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#f0fdfa',
+                            DEFAULT: '#0f766e', // teal-700
+                            dark: '#115e59', // teal-800
+                        },
+                        accent: {
+                            light: '#fff7ed',
+                            DEFAULT: '#f97316', // orange-500
+                            dark: '#ea580c', // orange-600
+                        }
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* カスタムスタイル */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 24px;
+            width: 4px;
+            background: #e5e7eb;
+            z-index: 0;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-line::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        /* 登場アニメーション用のクラス */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased overflow-x-hidden">
+
+    <!-- Hero Section -->
+    <header
+        class="relative bg-gradient-to-br from-brand-dark via-brand to-teal-500 text-white overflow-hidden py-20 lg:py-32">
+        <!-- 背景装飾 -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 left-10 w-64 h-64 bg-accent opacity-20 rounded-full blur-2xl"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div
+                class="inline-block bg-white text-brand-dark font-bold px-4 py-2 rounded-full text-sm mb-6 shadow-lg animate-fade-in-up">
+                <i class="fa-solid fa-book-open mr-2"></i>精神科医・和田秀樹氏のメソッドを図解
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight tracking-tight animate-fade-in-up"
+                style="animation-delay: 0.2s;">
+                定年後の<br class="md:hidden"><span class="text-accent-light border-b-4 border-accent">超・働き方改革</span>
+            </h1>
+            <p class="text-lg md:text-2xl mb-10 text-teal-50 max-w-3xl mx-auto font-medium leading-relaxed animate-fade-in-up"
+                style="animation-delay: 0.4s;">
+                「生涯現役」が最高のアンチエイジング！<br>
+                心と体を若々しく保ち、感謝されながら生きる新戦略。
+            </p>
+            <a href="#problem"
+                class="inline-flex items-center justify-center bg-accent hover:bg-accent-dark text-white font-bold py-4 px-8 rounded-full shadow-lg transition-transform hover:scale-105 duration-300 animate-fade-in-up"
+                style="animation-delay: 0.6s;">
+                図解を見る <i class="fa-solid fa-arrow-down ml-2 animate-bounce"></i>
+            </a>
+        </div>
+
+        <!-- アイコン装飾 -->
+        <div class="hidden md:block absolute right-10 bottom-10 text-8xl text-white opacity-20 animate-float">
+            <i class="fa-solid fa-person-walking-with-cane"></i>
+            <i class="fa-solid fa-arrow-right mx-4 text-4xl align-middle"></i>
+            <i class="fa-solid fa-person-running"></i>
+        </div>
+    </header>
+
+    <!-- Section 1: 問題提起 (なぜ働くのか？) -->
+    <section id="problem" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+                    <i class="fa-solid fa-triangle-exclamation text-yellow-500 mr-2"></i>
+                    定年後の「罠」に要注意！
+                </h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                    「定年後はのんびりしよう…」<br>
+                    実はその考えが、<span class="font-bold text-red-500">心身を急速に老け込ませる原因</span>かもしれません。
+                </p>
+            </div>
+
+            <!-- 図解：2つのルート -->
+            <div class="max-w-4xl mx-auto reveal">
+                <div class="bg-slate-100 rounded-2xl p-6 md:p-10 shadow-inner relative">
+                    <div class="text-center mb-8">
+                        <div
+                            class="inline-block bg-slate-800 text-white font-bold px-6 py-3 rounded-xl text-xl shadow-md">
+                            定年退職 (60〜65歳)
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-8 relative">
+                        <!-- 分岐の線 (PCのみ) -->
+                        <div class="hidden md:block absolute top-0 left-1/2 w-0.5 h-full bg-slate-300 -ml-px"></div>
+
+                        <!-- ルートA: 危険な道 -->
+                        <div
+                            class="flex-1 bg-white p-6 rounded-xl border-t-4 border-red-400 shadow-md relative z-10 hover:shadow-lg transition-shadow">
+                            <div
+                                class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-red-400 text-white text-sm font-bold py-1 px-4 rounded-full">
+                                NGルート
+                            </div>
+                            <h3 class="text-xl font-bold text-center text-red-600 mb-4 mt-2">何もしない・隠居する</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-arrow-trend-down text-red-400 mt-1 mr-3 text-lg"></i>
+                                    <span>社会との繋がりが消滅し、<b>孤独感</b>が増す</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-brain text-red-400 mt-1 mr-3 text-lg"></i>
+                                    <span>前頭葉が刺激されず、<b>認知機能が低下</b>しやすい</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-face-frown text-red-400 mt-1 mr-3 text-lg"></i>
+                                    <span>結果として、<b>メンタルがヨボヨボ</b>に…</span>
+                                </li>
+                            </ul>
+                            <div class="mt-6 text-center">
+                                <i class="fa-solid fa-bed text-5xl text-slate-300"></i>
+                            </div>
+                        </div>
+
+                        <!-- ルートB: 生涯現役ルート -->
+                        <div
+                            class="flex-1 bg-brand-light p-6 rounded-xl border-t-4 border-brand shadow-md relative z-10 hover:shadow-lg transition-shadow scale-100 md:scale-105">
+                            <div
+                                class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-brand text-white text-sm font-bold py-1 px-4 rounded-full">
+                                理想のルート
+                            </div>
+                            <h3 class="text-xl font-bold text-center text-brand-dark mb-4 mt-2">マイペースに働き続ける</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-handshake-angle text-brand mt-1 mr-3 text-lg"></i>
+                                    <span>「ありがとう」と言われ、<b>自己肯定感</b>が保たれる</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-sun text-brand mt-1 mr-3 text-lg"></i>
+                                    <span>外出や人との会話で、<b>脳も体も活性化</b>する</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-face-smile-beam text-brand mt-1 mr-3 text-lg"></i>
+                                    <span>結果として、<b>若々しく元気</b>に長生き！</span>
+                                </li>
+                            </ul>
+                            <div class="mt-6 text-center">
+                                <i class="fa-solid fa-person-walking-luggage text-5xl text-accent animate-float"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: 新しい働き方のコンセプト (3つの柱) -->
+    <section class="py-20 bg-slate-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand font-bold tracking-wider text-sm uppercase">Core Strategy</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mt-2 mb-4">
+                    定年後の「働き方」3つの新常識
+                </h2>
+                <p class="text-lg text-slate-600">現役時代と同じ働き方をする必要はありません。<br
+                        class="hidden md:block">目的をシフトチェンジすることが成功の鍵です。</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Point 1 -->
+                <div
+                    class="glass-card rounded-2xl p-8 text-center reveal transition-transform hover:-translate-y-2 duration-300">
+                    <div
+                        class="w-20 h-20 bg-accent-light rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+                        <i class="fa-solid fa-yen-sign text-3xl text-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">目標は月10〜20万円</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        年金にプラスして、少しのゆとりを生む金額を目指すのがベスト。ガツガツ稼いでストレスを抱えるのではなく、<b>「無理のない範囲」</b>が心身の健康を保ちます。
+                    </p>
+                </div>
+
+                <!-- Point 2 -->
+                <div class="glass-card rounded-2xl p-8 text-center reveal transition-transform hover:-translate-y-2 duration-300"
+                    style="transition-delay: 100ms;">
+                    <div
+                        class="w-20 h-20 bg-pink-50 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+                        <i class="fa-solid fa-heart text-3xl text-pink-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">「感謝される」仕事を選ぶ</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        地位や名誉ではなく、人から直接「ありがとう」と言われる仕事（接客、サポート業務、地域貢献など）が、<b>高齢者の自己肯定感を最も高めます</b>。
+                    </p>
+                </div>
+
+                <!-- Point 3 -->
+                <div class="glass-card rounded-2xl p-8 text-center reveal transition-transform hover:-translate-y-2 duration-300"
+                    style="transition-delay: 200ms;">
+                    <div
+                        class="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+                        <i class="fa-solid fa-user-minus text-3xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">「過去のプライド」を捨てる</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        「元・部長」「元・役員」といった肩書きは通用しません。<b>謙虚に新しいことを学ぶ姿勢</b>を持つ人が、新しい職場で歓迎され、長く楽しく働けます。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: ベン図で見る「最高の老後」 -->
+    <section class="py-20 bg-white overflow-hidden">
+        <div class="container mx-auto px-6 relative">
+            <div class="flex flex-col lg:flex-row items-center justify-center gap-12 max-w-5xl mx-auto">
+
+                <!-- テキスト部分 -->
+                <div class="flex-1 text-center lg:text-left reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
+                        3つの円が重なる場所が<br>
+                        <span class="text-brand">「最高の老後」</span>
+                    </h2>
+                    <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                        働くことは、単にお金を稼ぐ手段ではありません。<br>
+                        適度な<b>「収入」</b>を得ることで生活に安心感が生まれ、社会と関わることで<b>「感謝」</b>され心が満たされ、外出や活動によって<b>「心身の健康」</b>が維持されます。
+                    </p>
+                    <div class="bg-brand-light border-l-4 border-brand p-4 rounded-r-lg inline-block text-left">
+                        <i class="fa-solid fa-quote-left text-brand opacity-50 text-xl mb-2"></i>
+                        <p class="text-brand-dark font-medium">
+                            「働くことが、高齢者にとって一番のクスリになる」
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CSS ベン図 -->
+                <div class="flex-1 w-full max-w-md reveal flex justify-center mt-10 lg:mt-0">
+                    <div class="relative w-72 h-72 sm:w-80 sm:h-80">
+                        <!-- 上の円: 社会貢献・感謝 -->
+                        <div
+                            class="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 sm:w-56 sm:h-56 bg-pink-400 rounded-full mix-blend-multiply opacity-80 flex items-start justify-center pt-8 sm:pt-10 shadow-lg transform transition-transform hover:scale-105">
+                            <div class="text-white text-center">
+                                <i class="fa-solid fa-hand-holding-heart text-2xl mb-1 drop-shadow-md"></i>
+                                <p class="font-bold text-sm sm:text-base drop-shadow-md">社会貢献<br>(感謝・やりがい)</p>
+                            </div>
+                        </div>
+                        <!-- 左下の円: 収入 -->
+                        <div
+                            class="absolute bottom-4 left-0 w-48 h-48 sm:w-56 sm:h-56 bg-blue-400 rounded-full mix-blend-multiply opacity-80 flex items-end justify-start pb-10 pl-6 sm:pl-10 shadow-lg transform transition-transform hover:scale-105">
+                            <div class="text-white text-center">
+                                <p class="font-bold text-sm sm:text-base drop-shadow-md">適度な<br>収入・安心</p>
+                                <i class="fa-solid fa-coins text-2xl mt-1 drop-shadow-md"></i>
+                            </div>
+                        </div>
+                        <!-- 右下の円: 健康 -->
+                        <div
+                            class="absolute bottom-4 right-0 w-48 h-48 sm:w-56 sm:h-56 bg-yellow-400 rounded-full mix-blend-multiply opacity-80 flex items-end justify-end pb-10 pr-6 sm:pr-10 shadow-lg transform transition-transform hover:scale-105">
+                            <div class="text-white text-center">
+                                <p class="font-bold text-sm sm:text-base drop-shadow-md">心身の<br>健康・老化防止</p>
+                                <i class="fa-solid fa-heart-pulse text-2xl mt-1 drop-shadow-md"></i>
+                            </div>
+                        </div>
+                        <!-- 重なり部分 (中央テキスト) -->
+                        <div
+                            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center justify-center pointer-events-none mt-2">
+                            <i class="fa-solid fa-crown text-yellow-200 text-xl sm:text-2xl drop-shadow-md mb-1"></i>
+                            <span
+                                class="text-slate-900 font-black text-lg sm:text-xl text-center leading-tight drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">
+                                幸せな<br>生涯現役
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: 実践ステップ (タイムライン) -->
+    <section class="py-20 bg-slate-800 text-white relative">
+        <!-- SVG 背景波 -->
+        <div class="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180">
+            <svg class="relative block w-full h-[50px] md:h-[100px]" data-name="Layer 1"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    fill="#ffffff"></path>
+            </svg>
+        </div>
+
+        <div class="container mx-auto px-6 pt-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    さあ、今日から始める3ステップ
+                </h2>
+                <p class="text-slate-300">シニア活躍のためのロードマップ</p>
+            </div>
+
+            <div class="relative max-w-3xl mx-auto timeline-line">
+
+                <!-- Step 1 -->
+                <div class="relative z-10 flex flex-col md:flex-row items-center mb-16 reveal">
+                    <div
+                        class="flex-none w-12 h-12 rounded-full bg-accent flex items-center justify-center text-xl font-bold shadow-lg shadow-accent/50 absolute left-[12px] md:left-1/2 transform md:-translate-x-1/2">
+                        1
+                    </div>
+                    <div class="ml-16 md:ml-0 md:w-1/2 md:pr-12 md:text-right w-full">
+                        <div
+                            class="bg-slate-700 p-6 rounded-xl shadow-lg border-l-4 border-accent md:border-l-0 md:border-r-4 hover:bg-slate-600 transition-colors">
+                            <h3 class="text-xl font-bold mb-2 text-white"><i
+                                    class="fa-solid fa-trash-can mr-2 text-slate-400 md:hidden"></i>マインドリセット</h3>
+                            <p class="text-slate-300 text-sm">
+                                現役時代の肩書きや「こうあるべき」という固定観念を捨てましょう。謙虚な「新人」の気持ちを持つことが、次の職場で人間関係を築く最大の武器になります。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative z-10 flex flex-col md:flex-row items-center mb-16 reveal">
+                    <div
+                        class="flex-none w-12 h-12 rounded-full bg-brand flex items-center justify-center text-xl font-bold shadow-lg shadow-brand/50 absolute left-[12px] md:left-1/2 transform md:-translate-x-1/2">
+                        2
+                    </div>
+                    <div class="ml-16 md:ml-0 md:w-1/2 md:pl-12 md:ml-auto w-full">
+                        <div
+                            class="bg-slate-700 p-6 rounded-xl shadow-lg border-l-4 border-brand hover:bg-slate-600 transition-colors">
+                            <h3 class="text-xl font-bold mb-2 text-white"><i
+                                    class="fa-solid fa-magnifying-glass mr-2 text-slate-400 md:hidden"></i>「できること」の棚卸し
+                            </h3>
+                            <p class="text-slate-300 text-sm">
+                                特別なスキルがなくても大丈夫です。「人が嫌がる作業を丁寧にできる」「人の話を優しく聞ける」といった、人生経験から得たヒューマンスキルこそが求められています。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative z-10 flex flex-col md:flex-row items-center reveal">
+                    <div
+                        class="flex-none w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center text-xl font-bold shadow-lg shadow-yellow-500/50 absolute left-[12px] md:left-1/2 transform md:-translate-x-1/2">
+                        3
+                    </div>
+                    <div class="ml-16 md:ml-0 md:w-1/2 md:pr-12 md:text-right w-full">
+                        <div
+                            class="bg-slate-700 p-6 rounded-xl shadow-lg border-l-4 border-yellow-500 md:border-l-0 md:border-r-4 hover:bg-slate-600 transition-colors">
+                            <h3 class="text-xl font-bold mb-2 text-white"><i
+                                    class="fa-solid fa-seedling mr-2 text-slate-400 md:hidden"></i>小さくスタート</h3>
+                            <p class="text-slate-300 text-sm">
+                                まずは週2〜3日、短時間のアルバイトやボランティア、シルバー人材センターへの登録から始めましょう。無理なく体を慣らし、「働く楽しさ」を再発見してください。</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white py-12 text-center">
+        <div class="container mx-auto px-6">
+            <i class="fa-solid fa-seedling text-4xl mb-6 text-brand-light opacity-50"></i>
+            <h2 class="text-2xl font-bold mb-4">今日が、残りの人生で一番若い日。</h2>
+            <p class="text-brand-light opacity-80 mb-8 max-w-xl mx-auto">
+                働くことで得られる「やりがい」と「健康」は、何物にも代えがたい財産です。<br>
+                あなたに合ったペースで、新しいキャリアを楽しんでみませんか？
+            </p>
+            <p class="text-sm opacity-50">
+                本ページは和田秀樹氏の著書『定年後の超・働き方改革』等の内容を参考に図解化したものです。
+            </p>
+        </div>
+    </footer>
+
+    <!-- スクロールアニメーション用スクリプト -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const reveals = document.querySelectorAll(".reveal");
+
+            function reveal() {
+                var windowHeight = window.innerHeight;
+                var elementVisible = 150;
+
+                reveals.forEach((element) => {
+                    var elementTop = element.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - elementVisible) {
+                        element.classList.add("active");
+                    }
+                });
+            }
+
+            window.addEventListener("scroll", reveal);
+            reveal(); // ロード時にも一度チェック
+        });
+    </script>
+</body>
+
+</html>
