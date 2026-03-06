@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【図解】ホワイトスペース - 戦略的な空白時間術</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            900: '#134e4a',
+                        },
+                        accent: '#f59e0b'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* スクロールアニメーション用クラス */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+        /* グラデーション背景 */
+        .bg-gradient-hero {
+            background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%);
+        }
+
+        /* カスタムカードシャドウ */
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-shadow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* 波線の区切り */
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 50px;
+        }
+
+        .wave-divider .shape-fill {
+            fill: #f8fafc;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Header / Hero Section -->
+    <header class="relative bg-gradient-hero pt-24 pb-32 px-6 lg:px-8 overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10 fade-up">
+            <span
+                class="inline-block py-1 px-3 rounded-full bg-brand-100 text-brand-600 text-sm font-semibold mb-4 tracking-wider">
+                ジュリエット・ファント著 読書図解
+            </span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                仕事も人生もうまくいく<br>
+                <span class="text-brand-500">空白時間術</span><br>
+                <span class="text-2xl md:text-3xl text-gray-500 font-medium mt-4 block">〜「ホワイトスペース」を取り戻す〜</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mt-8">
+                「毎日忙しいのに、なぜか成果が出ない」「常に何かに追われている」<br>
+                現代の「過負荷の時代」を生き抜くための、戦略的な休止（空白）の作り方を図解で解説します。
+            </p>
+        </div>
+
+        <!-- 背景の装飾サークル -->
+        <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl overflow-hidden -z-10 pointer-events-none">
+            <div
+                class="absolute -top-[20%] -right-[10%] w-[500px] h-[500px] rounded-full bg-brand-50 opacity-50 blur-3xl">
+            </div>
+            <div class="absolute top-[30%] -left-[10%] w-[400px] h-[400px] rounded-full bg-blue-50 opacity-50 blur-3xl">
+            </div>
+        </div>
+
+        <div class="wave-divider">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,121.32,190,111.41C234.33,103.88,278.41,83.9,321.39,56.44Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Section 1: 問題提起 -->
+    <section class="py-20 px-6 lg:px-8 max-w-5xl mx-auto">
+        <div class="text-center mb-16 fade-up">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">なぜ今、「空白」が必要なのか？</h2>
+            <p class="text-gray-600">私たちは「活動＝生産性」と勘違いしている「過負荷の時代」に生きています。</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- 悪い例（過負荷） -->
+            <div class="bg-white p-8 rounded-2xl border-t-4 border-red-400 card-shadow fade-up delay-100">
+                <div class="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-6 mx-auto">
+                    <i class="fa-solid fa-battery-quarter text-2xl text-red-500"></i>
+                </div>
+                <h3 class="text-xl font-bold text-center mb-4">スケジュールの詰め込みすぎ</h3>
+                <ul class="space-y-3 text-gray-600">
+                    <li class="flex items-start"><i class="fa-solid fa-xmark text-red-400 mt-1 mr-3"></i>
+                        常にメールやチャットを即レスする（常時接続）</li>
+                    <li class="flex items-start"><i class="fa-solid fa-xmark text-red-400 mt-1 mr-3"></i> 予定と予定の間に隙間がない
+                    </li>
+                    <li class="flex items-start"><i class="fa-solid fa-xmark text-red-400 mt-1 mr-3"></i>
+                        「マルチタスク」が美徳だと思っている</li>
+                </ul>
+                <div class="mt-6 p-4 bg-gray-50 rounded-lg text-center text-sm font-medium text-gray-500">
+                    結果：創造性が枯渇し、燃え尽き症候群に…
+                </div>
+            </div>
+
+            <!-- 良い例（ホワイトスペース） -->
+            <div class="bg-white p-8 rounded-2xl border-t-4 border-brand-500 card-shadow fade-up delay-200">
+                <div class="flex items-center justify-center w-16 h-16 bg-brand-100 rounded-full mb-6 mx-auto">
+                    <i class="fa-solid fa-seedling text-2xl text-brand-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-center mb-4">戦略的なホワイトスペース</h3>
+                <ul class="space-y-3 text-gray-600">
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
+                        予定が一切ない「戦略的な空白」がある</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
+                        立ち止まり、本当に重要なことを見極める</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
+                        脳を休ませ、新しい発想を迎える準備をする</li>
+                </ul>
+                <div class="mt-6 p-4 bg-brand-50 rounded-lg text-center text-sm font-medium text-brand-700">
+                    結果：生産性が上がり、最適な決断ができる！
+                </div>
+            </div>
+        </div>
+
+        <!-- 火のメタファー -->
+        <div
+            class="mt-16 bg-white p-8 md:p-10 rounded-3xl card-shadow flex flex-col md:flex-row items-center gap-8 fade-up">
+            <div class="w-full md:w-1/3 text-center">
+                <i class="fa-solid fa-fire-flame-curved text-6xl text-accent mb-4 drop-shadow-md"></i>
+            </div>
+            <div class="w-full md:w-2/3">
+                <h3 class="text-2xl font-bold mb-3">🔥 焚き火のメタファー</h3>
+                <p class="text-gray-600 mb-4">
+                    焚き火を大きく燃やすには、薪（仕事）を隙間なく詰め込んではいけません。<br>
+                    薪と薪の間に<strong>「空気の通り道（隙間）」</strong>があって初めて、炎は大きく燃え上がります。<br>
+                    私たちの脳も同じ。創造性を燃やすためには「ホワイトスペース（酸素）」が必要なのです。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: 4つの時間泥棒 -->
+    <section class="py-20 bg-gray-900 text-white relative">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">時間を奪う「4つの泥棒」と解毒剤</h2>
+                <p class="text-gray-300">もともとは素晴らしい資質が、暴走すると私たちの時間を奪う泥棒に変わります。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 泥棒1: 意欲 -->
+                <div
+                    class="bg-gray-800 rounded-2xl p-6 border border-gray-700 hover:border-brand-500 transition-colors fade-up">
+                    <div class="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-rocket text-blue-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">① 達成欲 <span
+                            class="text-sm font-normal text-gray-400">(Drive)</span></h3>
+                    <p class="text-red-400 text-sm mb-4"><i class="fa-solid fa-arrow-right"></i> 暴走：働きすぎ・過労</p>
+                    <p class="text-gray-400 text-sm mb-6">もっとやりたいという意欲が、終わりなき仕事の追求に変わってしまう状態。</p>
+
+                    <div class="bg-gray-900 p-4 rounded-xl mt-auto">
+                        <span class="text-brand-400 text-xs font-bold block mb-1">解毒剤の問い（手放す）</span>
+                        <p class="font-medium text-sm">「私が手放せるものは何か？」</p>
+                    </div>
+                </div>
+
+                <!-- 泥棒2: 優秀さ -->
+                <div
+                    class="bg-gray-800 rounded-2xl p-6 border border-gray-700 hover:border-brand-500 transition-colors fade-up delay-100">
+                    <div class="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-gem text-purple-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">② 優秀さ <span
+                            class="text-sm font-normal text-gray-400">(Excellence)</span></h3>
+                    <p class="text-red-400 text-sm mb-4"><i class="fa-solid fa-arrow-right"></i> 暴走：完璧主義</p>
+                    <p class="text-gray-400 text-sm mb-6">社内資料のフォント調整に何時間もかけるなど、過剰な労力を費やす状態。</p>
+
+                    <div class="bg-gray-900 p-4 rounded-xl mt-auto">
+                        <span class="text-brand-400 text-xs font-bold block mb-1">解毒剤の問い（これで十分）</span>
+                        <p class="font-medium text-sm">「これで『十分』なのはどこか？」</p>
+                    </div>
+                </div>
+
+                <!-- 泥棒3: 情報 -->
+                <div
+                    class="bg-gray-800 rounded-2xl p-6 border border-gray-700 hover:border-brand-500 transition-colors fade-up delay-200">
+                    <div class="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-database text-green-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">③ 情報 <span
+                            class="text-sm font-normal text-gray-400">(Information)</span></h3>
+                    <p class="text-red-400 text-sm mb-4"><i class="fa-solid fa-arrow-right"></i> 暴走：情報過多</p>
+                    <p class="text-gray-400 text-sm mb-6">不要なCCメールや、延々と続くデータ収集により、決断ができなくなる状態。</p>
+
+                    <div class="bg-gray-900 p-4 rounded-xl mt-auto">
+                        <span class="text-brand-400 text-xs font-bold block mb-1">解毒剤の問い（本質を知る）</span>
+                        <p class="font-medium text-sm">「本当に知るべきことは何か？」</p>
+                    </div>
+                </div>
+
+                <!-- 泥棒4: 活動 -->
+                <div
+                    class="bg-gray-800 rounded-2xl p-6 border border-gray-700 hover:border-brand-500 transition-colors fade-up delay-300">
+                    <div class="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-person-running text-accent text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">④ 活動 <span
+                            class="text-sm font-normal text-gray-400">(Activity)</span></h3>
+                    <p class="text-red-400 text-sm mb-4"><i class="fa-solid fa-arrow-right"></i> 暴走：狂乱（忙殺）</p>
+                    <p class="text-gray-400 text-sm mb-6">常に手を動かし、マルチタスクをこなすことで「仕事をしている気」になる状態。</p>
+
+                    <div class="bg-gray-900 p-4 rounded-xl mt-auto">
+                        <span class="text-brand-400 text-xs font-bold block mb-1">解毒剤の問い（立ち止まる）</span>
+                        <p class="font-medium text-sm">「今、注意を向けるべきは何か？」</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: 実践！ホワイトスペースの作り方 -->
+    <section class="py-20 px-6 lg:px-8 max-w-5xl mx-auto">
+        <div class="text-center mb-16 fade-up">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">明日からできる！3つの実践アクション</h2>
+            <p class="text-gray-600">いきなり長期休暇を取る必要はありません。日常の「小さな空白」から始めましょう。</p>
+        </div>
+
+        <div class="space-y-12">
+            <!-- Action 1: Wedge -->
+            <div class="bg-white rounded-3xl p-8 md:p-10 card-shadow border border-gray-100 fade-up">
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-full md:w-1/2">
+                        <h3 class="text-2xl font-bold mb-2"><span class="text-brand-500 mr-2">Action
+                                1</span>「ウェッジ（くさび）」を打ち込む</h3>
+                        <p class="text-gray-600 mb-6">
+                            行動と行動の間に、意識的に「小さな空白時間」を挟み込みます。数秒〜数分で構いません。これにより、無意識のオートパイロット状態から抜け出せます。
+                        </p>
+                        <div class="bg-brand-50 p-5 rounded-xl border border-brand-100">
+                            <h4 class="font-bold text-brand-800 mb-2">ウェッジの活用例：</h4>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li><i class="fa-regular fa-circle-check text-brand-500 mr-2"></i>
+                                    オンライン会議が始まる前の「1分間」目を閉じる</li>
+                                <li><i class="fa-regular fa-circle-check text-brand-500 mr-2"></i>
+                                    車から降りて家に入る前の「30秒間」深呼吸する</li>
+                                <li><i class="fa-regular fa-circle-check text-brand-500 mr-2"></i>
+                                    メールの「送信」ボタンを押す前に「3秒」見直す</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 flex justify-center">
+                        <!-- 図解：ウェッジ -->
+                        <div class="relative w-full max-w-sm">
+                            <div class="flex flex-col gap-2">
+                                <div
+                                    class="bg-gray-200 h-12 rounded-md flex items-center justify-center text-gray-500 font-medium">
+                                    前の会議</div>
+
+                                <!-- くさびのアニメーション -->
+                                <div class="flex items-center justify-center py-2 relative">
+                                    <div
+                                        class="absolute w-0 h-0 border-l-[15px] border-r-[15px] border-t-[20px] border-l-transparent border-r-transparent border-t-accent translate-y-[-10px]">
+                                    </div>
+                                    <div
+                                        class="bg-accent/20 text-accent font-bold px-4 py-1 rounded-full text-sm border border-accent/50 z-10 bg-white">
+                                        ウェッジ (小休止)
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-gray-200 h-12 rounded-md flex items-center justify-center text-gray-500 font-medium">
+                                    次のタスク</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action 2: Yellow List -->
+            <div class="bg-white rounded-3xl p-8 md:p-10 card-shadow border border-gray-100 fade-up">
+                <div class="flex flex-col md:flex-row-reverse gap-8 items-center">
+                    <div class="w-full md:w-1/2">
+                        <h3 class="text-2xl font-bold mb-2"><span class="text-brand-500 mr-2">Action
+                                2</span>「偽りの緊急性」を見破る</h3>
+                        <p class="text-gray-600 mb-6">
+                            現代は「速ければ速いほど良い」という思い込み（偽りの緊急性）に支配されています。「今すぐやらなきゃ！」と思ったら、一度立ち止まって考えましょう。
+                        </p>
+                        <div class="bg-yellow-50 p-5 rounded-xl border border-yellow-200">
+                            <h4 class="font-bold text-yellow-800 mb-2">📒 イエローリストの活用</h4>
+                            <p class="text-sm text-gray-700 mb-2">
+                                チームメンバーや上司に「ちょっと聞きたいこと」を、その都度チャットで送るのではなく、メモ（イエローリスト）に書き留めます。
+                            </p>
+                            <p class="text-sm text-gray-700">
+                                後で定例会議の時などに<strong>「まとめて質問する」</strong>ことで、相手の集中力（ホワイトスペース）を奪わずに済みます。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 flex justify-center">
+                        <div
+                            class="bg-white border-2 border-yellow-300 rounded-lg shadow-md w-full max-w-xs overflow-hidden">
+                            <div
+                                class="bg-yellow-300 px-4 py-2 font-bold text-yellow-900 flex justify-between items-center">
+                                <span>Aさんへの質問リスト</span>
+                                <i class="fa-solid fa-thumbtack"></i>
+                            </div>
+                            <ul class="p-4 space-y-3 text-sm text-gray-600">
+                                <li class="flex items-start"><i class="fa-regular fa-square mr-2 mt-1"></i> 昨日の議事録の確認
+                                </li>
+                                <li class="flex items-start"><i class="fa-regular fa-square mr-2 mt-1"></i> 来月のシフトの件
+                                </li>
+                                <li class="flex items-start"><i class="fa-regular fa-square mr-2 mt-1"></i>
+                                    B案件の進捗（急ぎではない）</li>
+                            </ul>
+                            <div class="bg-gray-100 text-center py-2 text-xs text-gray-500 font-medium">
+                                ※明日のMTGでまとめて聞く！
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action 3: 2D vs 3D -->
+            <div class="bg-white rounded-3xl p-8 md:p-10 card-shadow border border-gray-100 fade-up">
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-full md:w-1/2">
+                        <h3 class="text-2xl font-bold mb-2"><span class="text-brand-500 mr-2">Action
+                                3</span>2Dと3Dの会話を使い分ける</h3>
+                        <p class="text-gray-600 mb-6">
+                            メールやチャットで複雑な問題を解決しようとすると、誤解が生じ、往復回数が増えてかえって時間を奪われます。
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="bg-blue-100 text-blue-600 rounded p-2 mr-3 mt-1"><i
+                                        class="fa-regular fa-envelope"></i></div>
+                                <div>
+                                    <strong class="block text-gray-900">2Dコミュニケーション（文字）</strong>
+                                    <span class="text-sm text-gray-600">メール、チャット。単純な情報共有、YES/NOで済む確認に最適。</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-orange-100 text-orange-600 rounded p-2 mr-3 mt-1"><i
+                                        class="fa-solid fa-phone-volume"></i></div>
+                                <div>
+                                    <strong class="block text-gray-900">3Dコミュニケーション（声・対面）</strong>
+                                    <span
+                                        class="text-sm text-gray-600">電話、ビデオ会議、対面。複雑な問題、感情のニュアンス、込み入った説明が必要な時に選ぶ。</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="w-full md:w-1/2 flex justify-center">
+                        <div class="grid grid-cols-2 gap-4 w-full max-w-sm text-center">
+                            <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                                <i class="fa-regular fa-comments text-3xl text-gray-400 mb-2"></i>
+                                <div class="text-xs text-red-500 font-bold mb-1">NGな使い方</div>
+                                <p class="text-xs text-gray-600">文字だけで感情的な対立を解決しようと、長文メールを送り合う。</p>
+                            </div>
+                            <div class="bg-brand-50 p-4 rounded-xl border border-brand-200">
+                                <i class="fa-solid fa-mug-hot text-3xl text-brand-500 mb-2"></i>
+                                <div class="text-xs text-brand-600 font-bold mb-1">OKな使い方</div>
+                                <p class="text-xs text-gray-600">「複雑なので、5分だけ電話（3D）で話しませんか？」と切り替える。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section class="py-20 bg-brand-900 text-center px-6 lg:px-8 relative overflow-hidden">
+        <div class="relative z-10 max-w-3xl mx-auto fade-up">
+            <i class="fa-solid fa-quote-left text-4xl text-brand-700 mb-6"></i>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
+                「空白」は無駄ではない。<br>
+                最高の結果を出すための「源」である。
+            </h2>
+            <p class="text-brand-100 text-lg mb-10 leading-relaxed">
+                スケジュールをびっしり埋めることに自己満足を見出すのはやめましょう。<br>
+                1日の中に意図的に「何もしない時間（ホワイトスペース）」を作ることで、<br>
+                私たちは心に余裕を取り戻し、本来の創造性を発揮できるのです。
+            </p>
+            <div class="inline-block bg-white text-brand-900 font-bold py-3 px-8 rounded-full shadow-lg">
+                今日から、1分の「立ち止まる時間」を作ってみませんか？
+            </div>
+        </div>
+
+        <!-- 背景装飾 -->
+        <div class="absolute inset-0 opacity-10">
+            <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 py-8 text-center text-gray-500 text-sm">
+        <p>※本ページは書籍『WHITE SPACE ホワイトスペース: 仕事も人生もうまくいく空白時間術』（ジュリエット・ファント著）の概念を図解・要約したものです。</p>
+    </footer>
+
+    <!-- スクロールアニメーション用スクリプト -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // 一度表示されたら監視を解除
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-up');
+            fadeElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
