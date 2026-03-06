@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図解でわかる！スモールデータ解析と機械学習</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#1e40af', // blue-800
+                        secondary: '#0f766e', // teal-700
+                        accent: '#f59e0b', // amber-500
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* カスタムアニメーション */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 散布図のアニメーション線 */
+        .pca-line {
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pca-container.visible .pca-line {
+            width: 110%;
+        }
+
+        /* パルスアニメーション */
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.8);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+            }
+
+            100% {
+                transform: scale(0.8);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+            }
+        }
+
+        .anomaly-dot {
+            animation: pulse-ring 2s infinite;
+        }
+
+        /* 背景の幾何学模様 */
+        .bg-pattern {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* スティックヘッダーのぼかし */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden">
+
+    <!-- Hero Section -->
+    <header class="relative bg-gradient-to-br from-slate-900 via-primary to-indigo-900 text-white overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <!-- 背景の装飾的な円 -->
+            <div
+                class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob">
+            </div>
+            <div
+                class="absolute top-[20%] right-[-5%] w-72 h-72 bg-teal-500 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000">
+            </div>
+            <div
+                class="absolute bottom-[-10%] left-[20%] w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-4000">
+            </div>
+        </div>
+
+        <div class="container mx-auto px-4 py-24 relative z-10">
+            <div class="max-w-4xl mx-auto text-center space-y-8">
+                <span
+                    class="inline-block py-1 px-3 rounded-full bg-blue-800/50 border border-blue-400/30 text-blue-200 text-sm font-semibold tracking-wider mb-4">
+                    データサイエンスの「ブルーオーシャン」へ
+                </span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+                    図解でわかる！<br>
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-teal-300">スモールデータ解析</span>
+                    と 機械学習
+                </h1>
+                <p class="text-lg md:text-xl text-blue-100 font-light leading-relaxed max-w-2xl mx-auto">
+                    ビッグデータ時代にあえて「小さなデータ」で勝負する。<br>
+                    製造業や医療現場など、データが集まりにくい現場で高精度な意思決定を実現するための理論と実践的アプローチ。
+                </p>
+                <p class="text-sm text-slate-400 mt-4">
+                    ※ 本ページは書籍『スモールデータ解析と機械学習』（藤原幸一 著 / オーム社）の概念を初心者向けに図解・解説したものです。
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="glass-nav sticky top-0 z-50 border-b border-slate-200 shadow-sm hidden md:block">
+        <div class="container mx-auto px-4">
+            <ul class="flex justify-center space-x-8 py-4 text-sm font-bold text-slate-600">
+                <li><a href="#about" class="hover:text-primary transition-colors">1. スモールデータとは</a></li>
+                <li><a href="#mindset" class="hover:text-primary transition-colors">2. 解析の心構え</a></li>
+                <li><a href="#pca" class="hover:text-primary transition-colors">3. 主成分分析(PCA)</a></li>
+                <li><a href="#regression" class="hover:text-primary transition-colors">4. 回帰と変数選択</a></li>
+                <li><a href="#imbalance" class="hover:text-primary transition-colors">5. 不均衡データと異常検知</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-16 space-y-32">
+
+        <!-- 1. スモールデータとは？ -->
+        <section id="about" class="scroll-mt-24">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-black text-slate-800 mb-4">1. スモールデータとは？</h2>
+                <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+                <p class="mt-6 text-slate-600 max-w-2xl mx-auto">
+                    データ量が少ないことは、単なる「不足」ではありません。<br>
+                    現場の制約が生み出す、独自の課題と向き合うアプローチです。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- ビッグデータ -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 border-t-4 border-slate-400 fade-in-up">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-2xl font-bold text-slate-700">ビッグデータ</h3>
+                        <i class="fas fa-server text-4xl text-slate-300"></i>
+                    </div>
+                    <ul class="space-y-4 text-slate-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-400 mt-1 mr-3"></i>
+                            <div><strong>資本力勝負 (レッドオーシャン)</strong><br>大量のデータ、巨大なサーバー、AIエンジニアが必要。</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <div><strong>誤差が打ち消される</strong><br>データが膨大なため、多少のノイズや外れ値は平均化される。</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <div><strong>精度至上主義</strong><br>「なぜ当たったか」より「いかに正確か」が重視されがち。</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- スモールデータ -->
+                <div
+                    class="bg-white rounded-2xl shadow-lg p-8 border-t-4 border-primary fade-in-up transform md:-translate-y-4">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-2xl font-bold text-primary">スモールデータ</h3>
+                        <i class="fas fa-microscope text-4xl text-blue-200"></i>
+                    </div>
+                    <ul class="space-y-4 text-slate-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-accent mt-1 mr-3"></i>
+                            <div><strong>現場の知恵勝負 (ブルーオーシャン)</strong><br>医療や工場の故障データなど、集めたくても集まらない貴重なデータ。</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-exclamation-triangle text-amber-500 mt-1 mr-3"></i>
+                            <div><strong>1つの誤差が致命的</strong><br>データが少ないため、1つの外れ値がAIの予測を大きく歪める。</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-accent mt-1 mr-3"></i>
+                            <div><strong>「説明責任」と「解釈性」</strong><br>なぜその予測になったのか、理論的裏付け（ドメイン知識）が必須。</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- クロスバリデーションの限界図解 -->
+            <div class="mt-16 bg-blue-50 rounded-2xl p-8 max-w-4xl mx-auto fade-in-up border border-blue-100">
+                <h4 class="text-xl font-bold text-center text-primary mb-6"><i
+                        class="fas fa-lightbulb text-accent mr-2"></i>なぜ普通のAI手法（交差検証など）だけではダメなの？</h4>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                    <div class="flex-1 text-center">
+                        <div
+                            class="w-32 h-32 mx-auto bg-white rounded-full shadow-md flex items-center justify-center relative">
+                            <div class="grid grid-cols-2 gap-1 w-16 h-16">
+                                <div class="bg-blue-400 rounded-sm"></div>
+                                <div class="bg-blue-200 rounded-sm"></div>
+                                <div class="bg-blue-200 rounded-sm"></div>
+                                <div class="bg-red-400 rounded-sm"></div>
+                            </div>
+                            <!-- 矢印 -->
+                            <i
+                                class="fas fa-sync-alt absolute -right-6 text-2xl text-slate-400 hidden md:block animate-spin-slow"></i>
+                        </div>
+                        <p class="mt-4 font-bold text-slate-700">一般的な交差検証</p>
+                        <p class="text-sm text-slate-500 mt-2">データを分割してテストする手法。ビッグデータなら有効。</p>
+                    </div>
+
+                    <div class="hidden md:block text-2xl text-slate-300"><i class="fas fa-chevron-right"></i></div>
+                    <div class="md:hidden text-2xl text-slate-300"><i class="fas fa-chevron-down"></i></div>
+
+                    <div class="flex-1 text-center">
+                        <div
+                            class="w-32 h-32 mx-auto bg-white rounded-full shadow-md flex items-center justify-center border-4 border-red-400">
+                            <i class="fas fa-dice text-4xl text-red-500"></i>
+                        </div>
+                        <p class="mt-4 font-bold text-red-500">スモールデータでの限界</p>
+                        <p class="text-sm text-slate-500 mt-2">データが少なすぎるため、分割の仕方によって結果が偶然ブレてしまう（過学習）。</p>
+                    </div>
+                </div>
+                <p class="text-center mt-8 font-medium text-slate-700">
+                    だからこそ、<span class="bg-yellow-200 px-2 py-1 rounded">データの背景にある物理的・臨床的な理由（理論）</span>を組み込む必要があります。
+                </p>
+            </div>
+        </section>
+
+        <!-- 2. 解析の心構え（三現主義） -->
+        <section id="mindset" class="scroll-mt-24">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-black text-slate-800 mb-4">2. 解析者の心構え「三現主義」</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto rounded-full"></div>
+                <p class="mt-6 text-slate-600 max-w-2xl mx-auto">
+                    与えられたCSVファイルをPCの画面で眺めるだけでは、真の解析はできません。<br>
+                    スモールデータ解析において最も重要なのは、データが生まれた背景を知ることです。
+                </p>
+            </div>
+
+            <!-- 三現主義の図解 -->
+            <div class="flex flex-col md:flex-row justify-center items-stretch gap-6 max-w-5xl mx-auto fade-in-up">
+                <!-- 現場 -->
+                <div
+                    class="flex-1 bg-white rounded-2xl shadow-md p-6 border-b-4 border-teal-500 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                    <div
+                        class="absolute -right-4 -top-4 w-24 h-24 bg-teal-50 rounded-full z-0 group-hover:scale-150 transition-transform duration-500">
+                    </div>
+                    <div class="relative z-10 text-center">
+                        <div
+                            class="w-16 h-16 mx-auto bg-teal-100 rounded-full flex items-center justify-center text-teal-600 text-2xl mb-4">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">1. 現 場 <span
+                                class="text-sm font-normal text-slate-500">(Genba)</span></h3>
+                        <p class="text-sm text-slate-600 text-left">
+                            データが発生している場所（工場や病院）に直接足を運び、環境や作業員の動きを観察する。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 現物 -->
+                <div
+                    class="flex-1 bg-white rounded-2xl shadow-md p-6 border-b-4 border-teal-500 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                    <div
+                        class="absolute -right-4 -top-4 w-24 h-24 bg-teal-50 rounded-full z-0 group-hover:scale-150 transition-transform duration-500">
+                    </div>
+                    <div class="relative z-10 text-center">
+                        <div
+                            class="w-16 h-16 mx-auto bg-teal-100 rounded-full flex items-center justify-center text-teal-600 text-2xl mb-4">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">2. 現 物 <span
+                                class="text-sm font-normal text-slate-500">(Genbutsu)</span></h3>
+                        <p class="text-sm text-slate-600 text-left">
+                            計測対象となる製品や患者そのものに触れ、数値化されていない特性や異常を肌で感じる。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 現実 -->
+                <div
+                    class="flex-1 bg-white rounded-2xl shadow-md p-6 border-b-4 border-teal-500 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                    <div
+                        class="absolute -right-4 -top-4 w-24 h-24 bg-teal-50 rounded-full z-0 group-hover:scale-150 transition-transform duration-500">
+                    </div>
+                    <div class="relative z-10 text-center">
+                        <div
+                            class="w-16 h-16 mx-auto bg-teal-100 rounded-full flex items-center justify-center text-teal-600 text-2xl mb-4">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">3. 現 実 <span
+                                class="text-sm font-normal text-slate-500">(Genjitsu)</span></h3>
+                        <p class="text-sm text-slate-600 text-left">
+                            理想化された理論や仮説ではなく、「ある時間帯にデータが欠損しているのは清掃時間だから」というようなリアルな事実を直視する。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 主成分分析(PCA)と相関 -->
+        <section id="pca" class="scroll-mt-24 bg-white rounded-3xl shadow-xl p-8 md:p-12 max-w-6xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-12 items-center">
+                <div class="flex-1 space-y-6 fade-in-up">
+                    <span class="text-primary font-bold tracking-wider text-sm">コア技術 1</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-slate-800">次元削減と「主成分分析 (PCA)」</h2>
+                    <p class="text-slate-600 leading-relaxed">
+                        データにたくさんの変数（列）があるとき、それらを2次元や3次元に圧縮して本質を見抜く技術が「主成分分析」です。<br><br>
+                        単なるツールの利用にとどまらず、<b>「データが最も散らばっている方向（分散が最大になる方向）」</b>を数学的（固有値問題）に見つけ出すプロセスを理解することが、スモールデータ解析の第一歩です。
+                    </p>
+
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <h4 class="font-bold text-slate-700 mb-2"><i
+                                class="fas fa-exclamation-circle text-amber-500 mr-2"></i>注意：相関関係 ≠ 因果関係</h4>
+                        <p class="text-sm text-slate-600">
+                            「アイスが売れるとプールで溺れる人が増える」。これは相関関係（どちらも夏の暑さが原因）であり、因果関係ではありません。スモールデータでは、このような「擬似相関」に騙されない理論的裏付けが必須です。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- PCAの図解CSSアート -->
+                <div class="flex-1 w-full max-w-md fade-in-up pca-container">
+                    <div
+                        class="relative w-full aspect-square bg-slate-50 border-l-2 border-b-2 border-slate-400 rounded-tr-lg p-4">
+                        <span class="absolute -bottom-6 right-0 text-sm text-slate-500 font-bold">変数 X</span>
+                        <span class="absolute -left-8 top-0 text-sm text-slate-500 font-bold -rotate-90 origin-right">変数
+                            Y</span>
+
+                        <!-- 散布図のドット -->
+                        <div class="absolute inset-0 p-8">
+                            <!-- 楕円状に広がるように配置 -->
+                            <div class="absolute w-3 h-3 bg-blue-400 rounded-full top-[70%] left-[20%] opacity-80">
+                            </div>
+                            <div class="absolute w-3 h-3 bg-blue-400 rounded-full top-[65%] left-[30%] opacity-80">
+                            </div>
+                            <div class="absolute w-3 h-3 bg-blue-400 rounded-full top-[80%] left-[25%] opacity-80">
+                            </div>
+
+                            <div class="absolute w-3 h-3 bg-blue-500 rounded-full top-[50%] left-[45%] opacity-80">
+                            </div>
+                            <div class="absolute w-3 h-3 bg-blue-500 rounded-full top-[55%] left-[50%] opacity-80">
+                            </div>
+                            <div class="absolute w-3 h-3 bg-blue-500 rounded-full top-[45%] left-[40%] opacity-80">
+                            </div>
+                            <div class="absolute w-3 h-3 bg-blue-500 rounded-full top-[60%] left-[35%] opacity-80">
+                            </div>
+
+                            <div class="absolute w-3 h-3 bg-blue-600 rounded-full top-[30%] left-[70%] opacity-80">
+                            </div>
+                            <div class="absolute w-3 h-3 bg-blue-600 rounded-full top-[25%] left-[80%] opacity-80">
+                            </div>
+                            <div class="absolute w-3 h-3 bg-blue-600 rounded-full top-[35%] left-[75%] opacity-80">
+                            </div>
+                            <div class="absolute w-3 h-3 bg-blue-600 rounded-full top-[20%] left-[85%] opacity-80">
+                            </div>
+                            <div class="absolute w-3 h-3 bg-blue-600 rounded-full top-[40%] left-[60%] opacity-80">
+                            </div>
+
+                            <!-- 第一主成分の線 (アニメーション) -->
+                            <div
+                                class="absolute top-[85%] left-[15%] h-1 bg-red-500 origin-left transform -rotate-[40deg] pca-line z-10 flex items-center shadow-md">
+                                <div
+                                    class="absolute -right-1 -top-1.5 w-0 h-0 border-t-4 border-t-transparent border-l-8 border-l-red-500 border-b-4 border-b-transparent">
+                                </div>
+                                <span
+                                    class="absolute -top-6 right-0 text-red-500 font-bold text-sm bg-white px-1 rounded">第1主成分（最もデータが散らばる方向）</span>
+                            </div>
+
+                            <!-- 第二主成分の線 (点線) -->
+                            <div
+                                class="absolute top-[50%] left-[50%] w-[40%] h-0.5 border-t-2 border-dashed border-teal-500 origin-center transform -rotate-[-50deg] -translate-x-1/2 -translate-y-1/2 z-0 opacity-50">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 回帰分析と多重共線性 -->
+        <section id="regression" class="scroll-mt-24">
+            <div class="text-center mb-16 fade-in-up">
+                <span class="text-primary font-bold tracking-wider text-sm">コア技術 2</span>
+                <h2 class="text-3xl md:text-4xl font-black text-slate-800 mb-4">回帰分析と「多重共線性」の罠</h2>
+                <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- 最小二乗法 -->
+                <div class="bg-white p-8 rounded-2xl shadow-md fade-in-up">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4 border-b-2 border-blue-100 pb-2">最小二乗法 (OLS)</h3>
+                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">
+                        予測したい値（目的変数）に対して、最も誤差（残差）の二乗和が小さくなるように直線を引く手法です。<br>
+                        しかし、説明変数（手がかりとなるデータ）同士が強く関連し合っていると、この直線がグラグラと不安定になってしまいます。
+                    </p>
+                    <!-- 図解 -->
+                    <div
+                        class="relative w-full h-40 bg-slate-50 rounded border border-slate-200 overflow-hidden mt-auto">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <!-- 点と残差（誤差）の線 -->
+                            <div class="absolute top-[20%] left-[30%] w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <div
+                                class="absolute top-[20%] left-[30%] w-px h-[25%] bg-red-300 border-l border-dashed border-red-400">
+                            </div>
+
+                            <div class="absolute top-[70%] left-[50%] w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <div
+                                class="absolute top-[55%] left-[50%] w-px h-[15%] bg-red-300 border-l border-dashed border-red-400">
+                            </div>
+
+                            <div class="absolute top-[30%] left-[70%] w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <div
+                                class="absolute top-[30%] left-[70%] w-px h-[10%] bg-red-300 border-l border-dashed border-red-400">
+                            </div>
+
+                            <!-- 回帰直線 -->
+                            <div
+                                class="absolute top-[60%] left-[10%] w-[80%] h-1 bg-blue-800 origin-left transform -rotate-12 shadow">
+                            </div>
+                            <span class="absolute bottom-2 right-2 text-xs font-bold text-red-500">点線(誤差)の合計を最小に</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 多重共線性と対処法 -->
+                <div class="bg-white p-8 rounded-2xl shadow-md fade-in-up">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4 border-b-2 border-blue-100 pb-2">多重共線性 (マルチコ) と対処法
+                    </h3>
+                    <p class="text-slate-600 mb-6 text-sm leading-relaxed">
+                        例えば「身長」と「座高」という似た意味を持つ変数を同時にモデルに入れると、計算が破綻し予測精度が著しく低下します。スモールデータでは致命的です。
+                    </p>
+
+                    <div class="space-y-3">
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold shrink-0">
+                                1</div>
+                            <div>
+                                <h4 class="font-bold text-slate-700 text-sm">リッジ回帰</h4>
+                                <p class="text-xs text-slate-500">係数が大きくなりすぎるのを「ペナルティ」で抑え込み、計算を安定させる。</p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-teal-50 rounded-lg border border-teal-200 flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 font-bold shrink-0">
+                                2</div>
+                            <div>
+                                <h4 class="font-bold text-slate-700 text-sm">部分的最小二乗法 (PLS)</h4>
+                                <p class="text-xs text-slate-500">目的変数との関係性を保ちながら、変数をスッキリとした「潜在変数」に圧縮して回帰する。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 変数選択（Lassoなど） -->
+        <section id="selection" class="scroll-mt-24">
+            <div
+                class="bg-slate-800 text-white rounded-3xl shadow-2xl p-8 md:p-12 max-w-6xl mx-auto overflow-hidden relative">
+                <!-- 背景パターン -->
+                <div class="absolute inset-0 opacity-10"
+                    style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 20px 20px;">
+                </div>
+
+                <div class="relative z-10 flex flex-col md:flex-row gap-12 items-center">
+                    <!-- 図解部分 -->
+                    <div class="flex-1 w-full fade-in-up">
+                        <h3 class="text-center font-bold text-xl mb-6 text-blue-300">Lasso回帰による「変数選択」のイメージ</h3>
+                        <div
+                            class="flex items-center justify-between bg-slate-700/50 p-6 rounded-2xl border border-slate-600">
+                            <!-- 入力側 (たくさんの変数) -->
+                            <div class="flex flex-col gap-2">
+                                <div class="w-16 h-3 bg-slate-400 rounded-full relative"><span
+                                        class="absolute -left-5 -top-1 text-xs">x₁</span></div>
+                                <div class="w-16 h-3 bg-slate-400 rounded-full relative"><span
+                                        class="absolute -left-5 -top-1 text-xs">x₂</span></div>
+                                <div class="w-16 h-3 bg-slate-400 rounded-full relative"><span
+                                        class="absolute -left-5 -top-1 text-xs">x₃</span></div>
+                                <div class="w-16 h-3 bg-slate-400 rounded-full relative"><span
+                                        class="absolute -left-5 -top-1 text-xs">x₄</span></div>
+                                <div class="w-16 h-3 bg-slate-400 rounded-full relative"><span
+                                        class="absolute -left-5 -top-1 text-xs">x₅</span></div>
+                            </div>
+
+                            <!-- Lassoフィルター -->
+                            <div
+                                class="px-4 py-8 bg-gradient-to-b from-blue-500 to-teal-500 rounded-lg shadow-[0_0_15px_rgba(59,130,246,0.5)] z-10 font-bold text-sm transform -skew-x-6 border border-blue-300">
+                                Lasso<br>(L1正則化)
+                            </div>
+
+                            <!-- 出力側 (絞られた変数) -->
+                            <div class="flex flex-col gap-2">
+                                <div class="w-16 h-3 bg-blue-400 rounded-full shadow-[0_0_8px_rgba(96,165,250,0.8)]">
+                                </div>
+                                <div class="w-16 h-3 bg-slate-600 rounded-full opacity-30 relative"><span
+                                        class="absolute right-2 -top-1 text-xs text-red-300">0</span></div>
+                                <div class="w-16 h-3 bg-slate-600 rounded-full opacity-30 relative"><span
+                                        class="absolute right-2 -top-1 text-xs text-red-300">0</span></div>
+                                <div class="w-16 h-3 bg-teal-400 rounded-full shadow-[0_0_8px_rgba(45,212,191,0.8)]">
+                                </div>
+                                <div class="w-16 h-3 bg-slate-600 rounded-full opacity-30 relative"><span
+                                        class="absolute right-2 -top-1 text-xs text-red-300">0</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- テキスト部分 -->
+                    <div class="flex-1 space-y-6 fade-in-up">
+                        <span
+                            class="text-accent font-bold tracking-wider text-sm bg-slate-700 px-3 py-1 rounded-full">コア技術
+                            3</span>
+                        <h2 class="text-3xl font-black">シンプルなモデルこそ美しい<br>「変数選択」</h2>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            「オッカムの剃刀」という言葉があるように、モデルは無駄な要素を削ぎ落としたシンプルなものほど、未知のデータに対して強く（汎化性能が高く）なります。
+                        </p>
+                        <ul class="space-y-4 text-sm text-slate-300">
+                            <li class="flex items-start bg-slate-700/50 p-3 rounded-lg">
+                                <i class="fas fa-filter text-blue-400 mt-1 mr-3"></i>
+                                <div><strong class="text-white">Lasso回帰
+                                        (スパースモデリング)</strong><br>重要でない変数の係数を「完全にゼロ」にしてしまう強力な手法。モデル構築と変数選択を同時に行います。</div>
+                            </li>
+                            <li class="flex items-start bg-slate-700/50 p-3 rounded-lg">
+                                <i class="fas fa-object-group text-teal-400 mt-1 mr-3"></i>
+                                <div><strong
+                                        class="text-white">変数クラスタリング</strong><br>似たような動きをする変数をグループ化し、代表者だけをモデルに組み込むことで、多重共線性を根本から回避します。
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. 不均衡データと異常検知 -->
+        <section id="imbalance" class="scroll-mt-24">
+            <div class="text-center mb-16 fade-in-up">
+                <span class="text-primary font-bold tracking-wider text-sm">コア技術 4</span>
+                <h2 class="text-3xl md:text-4xl font-black text-slate-800 mb-4">「不均衡データ」と「異常検知」</h2>
+                <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+                <p class="mt-6 text-slate-600 max-w-2xl mx-auto">
+                    現実の課題（工場の故障、レアな病気の診断など）では、「正常データ」が圧倒的に多く、「異常データ」はごくわずかです。これを「不均衡データ」と呼びます。
+                </p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
+                <!-- サンプリングの図解 -->
+                <div class="flex-1 bg-white p-8 rounded-2xl shadow-md border-t-4 border-blue-500 fade-in-up">
+                    <h3 class="text-xl font-bold text-slate-800 mb-6 text-center">データの偏りを直すサンプリング</h3>
+
+                    <div class="space-y-8">
+                        <!-- 現実（不均衡） -->
+                        <div>
+                            <p class="text-xs font-bold text-slate-500 mb-2">現実のデータ (異常が少なすぎる)</p>
+                            <div class="flex flex-wrap gap-2 p-4 bg-slate-50 rounded-lg">
+                                <!-- 多数派(青)15個、少数派(赤)2個 -->
+                                <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                                <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                                <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                                <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                                <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                                <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                                <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                                <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                                <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                                <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                                <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                                <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                                <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                                <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                                <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                                <div class="w-4 h-4 bg-red-500 rounded-full anomaly-dot"></div>
+                                <div class="w-4 h-4 bg-red-500 rounded-full anomaly-dot"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center text-slate-300"><i class="fas fa-arrow-down text-2xl"></i></div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <!-- アンダーサンプリング -->
+                            <div class="bg-blue-50 p-4 rounded-lg text-center">
+                                <p class="text-xs font-bold text-slate-700 mb-2">アンダーサンプリング</p>
+                                <p class="text-[10px] text-slate-500 mb-3">多数派を間引いて数を合わせる</p>
+                                <div class="flex justify-center gap-2">
+                                    <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                                    <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                                    <div class="w-4 h-4 bg-red-500 rounded-full"></div>
+                                    <div class="w-4 h-4 bg-red-500 rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- オーバーサンプリング -->
+                            <div class="bg-red-50 p-4 rounded-lg text-center">
+                                <p class="text-xs font-bold text-slate-700 mb-2">オーバーサンプリング (SMOTE等)</p>
+                                <p class="text-[10px] text-slate-500 mb-3">少数派を人工的に生成して増やす</p>
+                                <div class="flex flex-wrap justify-center gap-2 px-4">
+                                    <div class="w-3 h-3 bg-blue-300 rounded-full"></div>
+                                    <div class="w-3 h-3 bg-blue-300 rounded-full"></div>
+                                    <div class="w-3 h-3 bg-blue-300 rounded-full"></div>
+                                    <div class="w-3 h-3 bg-blue-300 rounded-full"></div>
+                                    <div class="w-3 h-3 bg-blue-300 rounded-full"></div>
+                                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                    <div class="w-3 h-3 bg-red-400 rounded-full border border-red-500"></div>
+                                    <div class="w-3 h-3 bg-red-400 rounded-full border border-red-500"></div>
+                                    <div class="w-3 h-3 bg-red-400 rounded-full border border-red-500"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 異常検知アルゴリズム -->
+                <div class="flex-1 bg-white p-8 rounded-2xl shadow-md border-t-4 border-accent fade-in-up">
+                    <h3 class="text-xl font-bold text-slate-800 mb-6 text-center">主な異常検知アルゴリズム</h3>
+                    <p class="text-sm text-slate-600 mb-6">正常データの特徴を学習し、「そこから外れているもの」を異常とみなすアプローチです。</p>
+
+                    <ul class="space-y-6">
+                        <li class="relative pl-10">
+                            <i class="fas fa-chart-area absolute left-0 top-1 text-2xl text-slate-300"></i>
+                            <h4 class="font-bold text-slate-700">多変量統計的プロセス管理 (MSPC)</h4>
+                            <p class="text-sm text-slate-500 mt-1">
+                                古くから製造業で使われる手法。PCAをベースに、T²統計量（中心からの距離）とQ統計量（モデルからのズレ）を用いて異常を監視します。
+                            </p>
+                        </li>
+                        <li class="relative pl-10">
+                            <i class="fas fa-bullseye absolute left-0 top-1 text-2xl text-slate-300"></i>
+                            <h4 class="font-bold text-slate-700">局所外れ値因子法 (LOF)</h4>
+                            <p class="text-sm text-slate-500 mt-1">
+                                周囲のデータの「密度」に注目します。密度の高い集団からポツンと離れているデータを異常（外れ値）として検知します。
+                            </p>
+                        </li>
+                        <li class="relative pl-10">
+                            <i class="fas fa-network-wired absolute left-0 top-1 text-2xl text-slate-300"></i>
+                            <h4 class="font-bold text-slate-700">オートエンコーダ (AE)</h4>
+                            <p class="text-sm text-slate-500 mt-1">
+                                ニューラルネットワークを使い、入力を一旦圧縮して元に戻す（復元する）学習をします。異常データはうまく復元できず「誤差」が大きくなるため、それを利用して検知します。
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 mt-24 border-t-4 border-primary">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold text-white mb-4">スモールデータは、ブルーオーシャン。</h2>
+            <p class="max-w-2xl mx-auto text-sm leading-relaxed mb-8">
+                ビッグデータの世界は、もはやデータ量と資本力が支配するレッドオーシャンとなっています。<br>
+                しかし、スモールデータの世界は、現場の創意工夫やドメイン知識の介在余地が大きく、まだまだデータから新たな価値を引き出すことのできる未知の世界です。
+            </p>
+            <div class="flex justify-center space-x-4 mb-8">
+                <span class="px-3 py-1 bg-slate-800 rounded-full text-xs">参考文献：『スモールデータ解析と機械学習』（藤原幸一 著 / オーム社）</span>
+            </div>
+            <p class="text-xs">&copy; 2026 スモールデータ解析 解説用図解ページ.</p>
+        </div>
+    </footer>
+
+    <!-- スクロールアニメーションのJS -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // 一度発火したら監視をやめる
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-in-up');
+            fadeElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            const pcaContainer = document.querySelectorAll('.pca-container');
+            pcaContainer.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
