@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図解：成果を最大化する「準備」と「習慣」の法則</title>
+
+    <!-- Google Fonts: Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        // カスタムカラーパレット
+                        brand: {
+                            light: '#e0e7ff',
+                            DEFAULT: '#4f46e5', // インディゴ
+                            dark: '#312e81',
+                        },
+                        accent: {
+                            light: '#d1fae5',
+                            DEFAULT: '#10b981', // エメラルド
+                            dark: '#065f46',
+                        },
+                        highlight: '#f59e0b', // アンバー
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Chart.js for グラフ描画 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- カスタムCSS（アニメーション等） -->
+    <style>
+        body {
+            background-color: #f8fafc;
+            /* Tailwind slate-50 */
+            scroll-behavior: smooth;
+        }
+
+        /* スクロールアニメーション用のクラス */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* アニメーションの遅延設定 */
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+        .delay-400 {
+            transition-delay: 400ms;
+        }
+
+        /* グラデーションテキスト */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #4f46e5, #0ea5e9);
+        }
+
+        /* ステップ図の接続線 */
+        .step-connector::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -20px;
+            width: 20px;
+            height: 2px;
+            background-color: #cbd5e1;
+            z-index: 0;
+        }
+
+        @media (max-width: 768px) {
+            .step-connector::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 antialiased overflow-x-hidden">
+
+    <!-- ナビゲーションバー -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i class="fa-solid fa-book-open-reader text-brand text-2xl"></i>
+                    <span class="font-bold text-lg tracking-wider text-slate-700">メソッド図解</span>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
+                    <a href="#intro" class="hover:text-brand transition">はじめに</a>
+                    <a href="#preparation" class="hover:text-brand transition">第1部：準備力</a>
+                    <a href="#habit" class="hover:text-brand transition">第2部：習慣化</a>
+                    <a href="#ifthen" class="hover:text-brand transition">実践：If-Then</a>
+                    <a href="#graph" class="hover:text-brand transition">成長の法則</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ヒーローセクション（ヘッダー） -->
+    <header class="pt-32 pb-20 bg-gradient-to-br from-indigo-50 via-white to-emerald-50 relative overflow-hidden">
+        <!-- 背景の装飾図形 -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-brand-light opacity-50 blur-3xl">
+        </div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-accent-light opacity-50 blur-3xl">
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10 reveal active">
+            <span
+                class="inline-block py-1 px-3 rounded-full bg-indigo-100 text-indigo-800 text-sm font-bold tracking-widest mb-4">
+                WORK & LIFE HACK
+            </span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6 text-slate-800">
+                成果を最大化する<br>
+                <span class="text-gradient">「準備」と「習慣」の法則</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl mx-auto">
+                「新年の抱負達成率は20%未満」<br>
+                意志の弱さを責めるのは終わりにしましょう。<br>
+                正しい知識と仕組み化が、あなたを確実なゴールへと導きます。
+            </p>
+            <a href="#intro"
+                class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-brand rounded-full shadow-lg hover:bg-brand-dark transition-transform transform hover:-translate-y-1">
+                図解を見る <i class="fa-solid fa-arrow-down ml-2"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- セクション：はじめに -->
+    <section id="intro" class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <div class="text-6xl text-slate-200 mb-4"><i class="fa-solid fa-quote-left"></i></div>
+                    <h2 class="text-3xl font-bold mb-6">なぜ私たちは<br>目標を達成できないのか？</h2>
+                    <p class="text-slate-600 mb-4 leading-relaxed">
+                        「今年こそは！」と意気込んでも、多くの人が途中で挫折してしまいます。実は、ZaPASS JAPANの調査によると、<b>目標を完全に達成できた人は全体の20%未満</b>しかいません。
+                    </p>
+                    <p class="text-slate-600 leading-relaxed">
+                        原因は「気合が足りない」からではありません。単に、<b>人間の脳の性質を理解せず、意志の力だけに頼っているから</b>です。成果を出すためには、「周到な準備」と「意志に頼らない習慣化」の2つが必要不可欠です。
+                    </p>
+                </div>
+                <div class="reveal delay-200">
+                    <div class="bg-slate-50 p-8 rounded-2xl shadow-inner border border-slate-100 relative">
+                        <div
+                            class="absolute -top-5 -right-5 bg-red-500 text-white font-bold w-20 h-20 rounded-full flex items-center justify-center shadow-lg transform rotate-12">
+                            <span class="text-center leading-tight">意志力<br>依存<br>NG!</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-4 text-slate-800 text-center border-b pb-2">目標達成を阻む2大要因</h3>
+                        <ul class="space-y-4 mt-6">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-triangle-exclamation text-highlight mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <strong class="block text-slate-800">やることが明確に決まっていない</strong>
+                                    <span class="text-sm text-slate-500">曖昧な状態を脳は嫌い、行動を先送りさせます。</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-triangle-exclamation text-highlight mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <strong class="block text-slate-800">トラブル時の準備をしていない</strong>
+                                    <span class="text-sm text-slate-500">想定外の事態や誘惑が起きた瞬間に挫折します。</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- セクション：第1部 準備力 -->
+    <section id="preparation" class="py-24 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand font-bold tracking-widest text-sm uppercase">Part 1. Preparation</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4">成果の9割を決める「一流の準備」</h2>
+                <p class="text-slate-600">準備は「モノを揃える」ことではありません。「成果を確約する戦略立案」です。</p>
+            </div>
+
+            <!-- 準備の誤解 vs 真実 -->
+            <div class="grid md:grid-cols-2 gap-8 mb-20 reveal delay-100">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-red-100 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-red-400"></div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-slate-800">
+                        <i class="fa-solid fa-xmark text-red-500 text-2xl mr-2"></i> 準備に対するよくある誤解
+                    </h3>
+                    <ul class="space-y-3 text-slate-600">
+                        <li class="flex items-center"><i class="fa-solid fa-minus text-slate-300 mr-2"></i>
+                            モノやツールさえ揃えればOK</li>
+                        <li class="flex items-center"><i class="fa-solid fa-minus text-slate-300 mr-2"></i>
+                            「なんとかなる」と現場のアドリブに頼る</li>
+                        <li class="flex items-center"><i class="fa-solid fa-minus text-slate-300 mr-2"></i>
+                            不安を消すために不要な情報を集めすぎる</li>
+                        <li class="flex items-center"><i class="fa-solid fa-minus text-slate-300 mr-2"></i>
+                            起き得ない極端なケースまで対策しようとする</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-md border border-accent-light relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-accent"></div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-slate-800">
+                        <i class="fa-solid fa-check text-accent text-2xl mr-2"></i> 成果を出す「真の準備」3要素
+                    </h3>
+                    <ul class="space-y-4 text-slate-600">
+                        <li class="flex items-start">
+                            <span
+                                class="bg-accent-light text-accent-dark font-bold w-6 h-6 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5 shrink-0">1</span>
+                            <span><b>ゴールとプロセスの明確化</b><br><span class="text-sm">到達点とそこへの道筋が映像化できている。</span></span>
+                        </li>
+                        <li class="flex items-start">
+                            <span
+                                class="bg-accent-light text-accent-dark font-bold w-6 h-6 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5 shrink-0">2</span>
+                            <span><b>情報・モノに漏れがない</b><br><span class="text-sm">実行中に立ち止まる要素が排除されている。</span></span>
+                        </li>
+                        <li class="flex items-start">
+                            <span
+                                class="bg-accent-light text-accent-dark font-bold w-6 h-6 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5 shrink-0">3</span>
+                            <span><b>「必ず成果が出る」という確信</b><br><span class="text-sm">論理的な不備を潰し、強い自己信頼が持てる状態。</span></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 4つの思考スキル -->
+            <h3 class="text-2xl font-bold text-center mb-10 reveal">準備力を構成する「4つの思考スキル」</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 reveal delay-200">
+
+                <!-- 構想力 -->
+                <div
+                    class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition duration-300 border-t-4 border-blue-500">
+                    <div
+                        class="w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">1. 構想力 <span
+                            class="text-xs font-normal text-slate-500">Vision</span></h4>
+                    <p class="text-sm text-slate-600 mb-3">仕事の目的（ゴール）を定義し、最終的な理想の状態を映像化する力。</p>
+                    <div class="text-xs bg-slate-100 p-2 rounded text-slate-600">
+                        <i class="fa-solid fa-caret-right text-blue-500"></i> 何のための仕事か価値を問う
+                    </div>
+                </div>
+
+                <!-- 計画力 -->
+                <div
+                    class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition duration-300 border-t-4 border-teal-500">
+                    <div
+                        class="w-14 h-14 bg-teal-100 text-teal-600 rounded-xl flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-map"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">2. 計画力 <span
+                            class="text-xs font-normal text-slate-500">Planning</span></h4>
+                    <p class="text-sm text-slate-600 mb-3">ゴールから逆算して最短ルートを設計し、無駄な準備を削ぎ落とす力。</p>
+                    <div class="text-xs bg-slate-100 p-2 rounded text-slate-600">
+                        <i class="fa-solid fa-caret-right text-teal-500"></i> 「やめるべき準備」を見極める
+                    </div>
+                </div>
+
+                <!-- 対応力 -->
+                <div
+                    class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition duration-300 border-t-4 border-orange-500">
+                    <div
+                        class="w-14 h-14 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">3. 対応力 <span
+                            class="text-xs font-normal text-slate-500">Adaptability</span></h4>
+                    <p class="text-sm text-slate-600 mb-3">実行段階での不測の事態やトラブルを想定し、事前に対策を用意する力。</p>
+                    <div class="text-xs bg-slate-100 p-2 rounded text-slate-600">
+                        <i class="fa-solid fa-caret-right text-orange-500"></i> 想定外を「想定内」に取り込む
+                    </div>
+                </div>
+
+                <!-- 検証力 -->
+                <div
+                    class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition duration-300 border-t-4 border-purple-500">
+                    <div
+                        class="w-14 h-14 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">4. 検証力 <span
+                            class="text-xs font-normal text-slate-500">Verification</span></h4>
+                    <p class="text-sm text-slate-600 mb-3">結果とプロセスを照らし合わせ、次の準備のための改善点（知見）を抽出する力。</p>
+                    <div class="text-xs bg-slate-100 p-2 rounded text-slate-600">
+                        <i class="fa-solid fa-caret-right text-purple-500"></i> 経験を次の「構想」へ回す
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- セクション：第2部 習慣化 -->
+    <section id="habit" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <span class="text-accent font-bold tracking-widest text-sm uppercase">Part 2. Habituation</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4">自動で行動してしまう「習慣化」</h2>
+                <p class="text-slate-600">脳の性質を理解すれば、気合や根性に頼らなくても行動は続きます。</p>
+            </div>
+
+            <!-- 脳の2大原則 -->
+            <div class="max-w-3xl mx-auto bg-brand-light/30 rounded-3xl p-8 md:p-12 mb-20 text-center reveal delay-100">
+                <h3 class="text-2xl font-bold mb-6 text-brand-dark">習慣化における「脳」の2大原則</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-brand-light">
+                        <div class="text-red-400 line-through mb-1 text-sm">正しいから続ける</div>
+                        <div class="text-xl font-black text-brand mb-2">楽しいから続く！</div>
+                        <p class="text-sm text-slate-600 text-left">
+                            脳の扁桃核は「快楽」を感じるものを求めます。理屈で「正しい行動」だと分かっていても、そこに「楽しさ（ご褒美）」がなければ絶対に続きません。
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-brand-light">
+                        <div class="text-red-400 line-through mb-1 text-sm">強い意志で頑張る</div>
+                        <div class="text-xl font-black text-accent mb-2">仕組みがあるから続く！</div>
+                        <p class="text-sm text-slate-600 text-left">
+                            意志や熱意は必ず枯渇します。習慣化が上手い人は「意志が強い人」ではなく「意志を使わずに済む仕組みづくりが上手い人」です。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 習慣化の4ステップ -->
+            <h3 class="text-2xl font-bold text-center mb-12 reveal">確実に身につく習慣化の4ステップ</h3>
+
+            <div class="flex flex-col md:flex-row justify-center items-stretch gap-6 md:gap-4 reveal delay-200">
+                <!-- Step 1 -->
+                <div class="flex-1 relative step-connector">
+                    <div
+                        class="bg-white rounded-xl shadow-lg border border-slate-100 p-6 h-full relative z-10 flex flex-col items-center text-center transform transition hover:-translate-y-2">
+                        <div
+                            class="w-12 h-12 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center font-black text-xl mb-4 border-4 border-white shadow-sm">
+                            1</div>
+                        <h4 class="font-bold text-lg mb-2">欲望を言語化する</h4>
+                        <p class="text-sm text-slate-600">
+                            それを続けることで、どんな「生々しい欲望（モテたい、ドヤ顔したい等）」が満たされるか明確にする。短期的なご褒美も設定。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flex-1 relative step-connector">
+                    <div
+                        class="bg-white rounded-xl shadow-lg border border-slate-100 p-6 h-full relative z-10 flex flex-col items-center text-center transform transition hover:-translate-y-2">
+                        <div
+                            class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center font-black text-xl mb-4 border-4 border-white shadow-sm">
+                            2</div>
+                        <h4 class="font-bold text-lg mb-2">一番小さく始める</h4>
+                        <p class="text-sm text-slate-600">
+                            「1日1行の日記」「本を開くだけ」など、絶対に失敗しない低いハードルを設定する。達成感による快楽を脳に味わわせる。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flex-1 relative step-connector">
+                    <div
+                        class="bg-white rounded-xl shadow-lg border border-slate-100 p-6 h-full relative z-10 flex flex-col items-center text-center transform transition hover:-translate-y-2">
+                        <div
+                            class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center font-black text-xl mb-4 border-4 border-white shadow-sm">
+                            3</div>
+                        <h4 class="font-bold text-lg mb-2">時間と場所を固定する</h4>
+                        <p class="text-sm text-slate-600">
+                            「いつ・どこでやるか」を考えるエネルギーをゼロにする。「風呂上がりに机に座る」など既存の習慣に紐づけるのがベスト。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flex-1 relative">
+                    <div
+                        class="bg-white rounded-xl shadow-lg border border-slate-100 p-6 h-full relative z-10 flex flex-col items-center text-center transform transition hover:-translate-y-2">
+                        <div
+                            class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-black text-xl mb-4 border-4 border-white shadow-sm">
+                            4</div>
+                        <h4 class="font-bold text-lg mb-2">人を巻き込む</h4>
+                        <p class="text-sm text-slate-600">
+                            仲間と進捗を共有し、「サボっていると思われたくない」という社会的心理を利用する。または「家族のため」と意味づけする。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- セクション：If-Then プランニング -->
+    <section id="ifthen" class="py-24 bg-slate-800 text-white relative">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12 reveal">
+                <div
+                    class="inline-block bg-highlight text-white px-4 py-1 rounded-full text-sm font-bold mb-4 shadow-[0_0_15px_rgba(245,158,11,0.5)]">
+                    準備 × 習慣化 の最強ツール
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black mb-6">If-Then プランニング</h2>
+                <p class="text-slate-300 text-lg max-w-2xl mx-auto">
+                    「対応力」と「仕組み化」を同時に実現する、科学的に実証された目標達成技術。あらかじめ行動を脳にプログラミングします。
+                </p>
+            </div>
+
+            <!-- 図解ブロック -->
+            <div
+                class="bg-slate-700/50 border border-slate-600 p-8 md:p-12 rounded-3xl backdrop-blur-sm reveal delay-100 shadow-2xl">
+
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+
+                    <!-- IF Box -->
+                    <div class="w-full md:w-5/12 bg-slate-800 border-2 border-highlight rounded-2xl p-6 relative">
+                        <div
+                            class="absolute -top-4 -left-4 w-12 h-12 bg-highlight text-white rounded-full flex items-center justify-center font-black text-2xl shadow-lg">
+                            IF</div>
+                        <div class="text-center mt-2">
+                            <span class="text-slate-400 text-sm block mb-1">もし（条件・トリガー・トラブル）</span>
+                            <div class="text-2xl font-bold">「<span class="text-highlight">A</span>」という状況になったら</div>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="text-highlight text-4xl transform rotate-90 md:rotate-0">
+                        <i class="fa-solid fa-angles-right"></i>
+                    </div>
+
+                    <!-- THEN Box -->
+                    <div class="w-full md:w-5/12 bg-slate-800 border-2 border-accent rounded-2xl p-6 relative">
+                        <div
+                            class="absolute -top-4 -left-4 w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center font-black text-xl shadow-lg">
+                            THEN</div>
+                        <div class="text-center mt-2">
+                            <span class="text-slate-400 text-sm block mb-1">（具体的なアクション）</span>
+                            <div class="text-2xl font-bold">「<span class="text-accent">B</span>」をする</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 具体例リスト -->
+                <div class="mt-12 bg-slate-800/80 rounded-xl p-6 border border-slate-600">
+                    <h4 class="text-center font-bold text-slate-300 mb-4 tracking-widest text-sm"><i
+                            class="fa-solid fa-list-check mr-2"></i>実用例</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-slate-700 p-4 rounded-lg flex items-center text-sm">
+                            <span class="text-highlight font-bold mr-2 w-20 text-right">雨が降ったら</span> <i
+                                class="fa-solid fa-arrow-right text-slate-400 mx-2"></i>
+                            <span>室内でYouTubeエクササイズをする</span>
+                        </div>
+                        <div class="bg-slate-700 p-4 rounded-lg flex items-center text-sm">
+                            <span class="text-highlight font-bold mr-2 w-20 text-right">朝PCを開いたら</span> <i
+                                class="fa-solid fa-arrow-right text-slate-400 mx-2"></i> <span>今日の最高の結果を1つ決める</span>
+                        </div>
+                        <div class="bg-slate-700 p-4 rounded-lg flex items-center text-sm">
+                            <span class="text-highlight font-bold mr-2 w-20 text-right">会議依頼が来たら</span> <i
+                                class="fa-solid fa-arrow-right text-slate-400 mx-2"></i> <span>その場で会議の「ゴール」を返信する</span>
+                        </div>
+                        <div class="bg-slate-700 p-4 rounded-lg flex items-center text-sm">
+                            <span class="text-highlight font-bold mr-2 w-20 text-right">スマホを見たく<br>なったら</span> <i
+                                class="fa-solid fa-arrow-right text-slate-400 mx-2"></i> <span>電源を切って別の部屋に置く</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- セクション：成長曲線（Chart.js） -->
+    <section id="graph" class="py-24 bg-white">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">習慣化の成果は「指数関数」で伸びる</h2>
+                <p class="text-slate-600">
+                    最初は成果が全く見えず「地を這う期間」が続きますが、<br class="hidden md:block">ブレイクスルー・ポイントを超えると、とんでもない勢いで急成長します。焦らず継続しましょう。
+                </p>
+            </div>
+
+            <div
+                class="relative max-w-3xl mx-auto bg-white p-4 md:p-8 rounded-2xl shadow-xl border border-slate-100 reveal delay-100">
+                <!-- グラフのキャンバス -->
+                <canvas id="growthChart" height="200"></canvas>
+
+                <!-- HTMLによるアノテーション（注釈） -->
+                <div class="absolute bottom-[20%] left-[20%] text-slate-500 text-sm md:text-base font-bold text-center">
+                    <i class="fa-solid fa-person-walking text-2xl mb-1"></i><br>
+                    地を這う期間<br>
+                    <span class="text-xs font-normal">（成果が見えづらい）</span>
+                </div>
+
+                <div class="absolute top-[40%] right-[30%] text-brand font-bold text-center transform rotate-[-15deg]">
+                    <i class="fa-solid fa-rocket text-3xl mb-1 text-highlight"></i><br>
+                    ブレイクスルー！<br>
+                    <span class="text-xs font-normal">成果が爆発的に伸びる</span>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center reveal delay-200 bg-brand-light/30 p-8 rounded-2xl max-w-3xl mx-auto">
+                <p class="text-xl font-bold text-slate-800 mb-2">覚悟を決めることが、最高の準備になる。</p>
+                <p class="text-slate-600">
+                    不確実な時代において、唯一コントロールできるのは「準備」と「毎日の習慣」だけです。<br>今日から、小さな一歩を始めてみましょう。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm border-t border-slate-800">
+        <p>© 2026 成果を最大化する「準備」と「習慣」の図解</p>
+        <p class="mt-2 text-xs opacity-50">Reference: 『仕事は準備が10割』(山本直人 著), 『やり抜く人の９つの習慣』, 『習慣が10割』(吉井雅之 著)</p>
+    </footer>
+
+    <!-- JavaScript (アニメーションとグラフ描画) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            /* --- スクロールアニメーション (Intersection Observer) --- */
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // 一度表示されたら監視を解除（繰り返しアニメーションさせない場合）
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => observer.observe(el));
+
+            /* --- Chart.js 指数関数グラフ描画 --- */
+            const ctx = document.getElementById('growthChart').getContext('2d');
+
+            // データ生成 (y = x^3 のようなカーブをシミュレート)
+            const labels = [];
+            const dataPoints = [];
+            for (let i = 0; i <= 20; i++) {
+                labels.push(`Day ${i * 5}`);
+                // 指数関数的なカーブを作る (数値を調整して見た目をよくする)
+                let val = Math.pow(i / 5, 3.5);
+                dataPoints.push(val);
+            }
+
+            // グラデーションの作成（線の色）
+            const gradientStroke = ctx.createLinearGradient(0, 0, 800, 0);
+            gradientStroke.addColorStop(0, '#94a3b8'); // 開始：グレー
+            gradientStroke.addColorStop(0.6, '#4f46e5'); // 途中：インディゴ
+            gradientStroke.addColorStop(1, '#10b981'); // 終了：エメラルド
+
+            // グラデーションの作成（塗りつぶし）
+            const gradientFill = ctx.createLinearGradient(0, 0, 0, 400);
+            gradientFill.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
+            gradientFill.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '成果・スキルレベル',
+                        data: dataPoints,
+                        borderColor: gradientStroke,
+                        borderWidth: 5,
+                        pointRadius: 0, // 点を隠す
+                        pointHoverRadius: 8,
+                        backgroundColor: gradientFill,
+                        fill: true,
+                        tension: 0.4 // 線を滑らかに
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutQuart'
+                    },
+                    plugins: {
+                        legend: {
+                            display: false // 凡例を隠す
+                        },
+                        tooltip: {
+                            enabled: false // ツールチップを隠す
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                display: false // X軸のラベルを隠す
+                            },
+                            title: {
+                                display: true,
+                                text: '時間（継続期間）',
+                                color: '#64748b',
+                                font: { size: 14, weight: 'bold', family: "'Noto Sans JP', sans-serif" }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                color: '#f1f5f9',
+                                borderDash: [5, 5]
+                            },
+                            ticks: {
+                                display: false // Y軸の数値を隠す
+                            },
+                            title: {
+                                display: true,
+                                text: '成 果',
+                                color: '#64748b',
+                                font: { size: 14, weight: 'bold', family: "'Noto Sans JP', sans-serif" }
+                            },
+                            beginAtZero: true
+                        }
+                    },
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
