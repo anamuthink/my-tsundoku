@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図解：小さなビジネスモデル100</title>
+    <!-- Tailwind CSSの読み込み -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Iconsの読み込み -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fontsの読み込み -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- カスタム設定 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#FEF3C7', // Amber-100
+                            DEFAULT: '#F59E0B', // Amber-500
+                            dark: '#D97706', // Amber-600
+                        },
+                        accent: {
+                            light: '#DBEAFE', // Blue-100
+                            DEFAULT: '#3B82F6', // Blue-500
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* カスタムアニメーションと装飾 */
+        body {
+            background-color: #F9FAFB;
+            background-image: radial-gradient(#E5E7EB 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #F59E0B, #EF4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .scale-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .scale-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* 矢印の描画用 */
+        .arrow-down {
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 20px solid #D1D5DB;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800 antialiased leading-relaxed">
+
+    <!-- ヘッダーセクション -->
+    <header class="bg-white border-b-4 border-brand pt-16 pb-12 text-center relative overflow-hidden">
+        <!-- 背景の装飾 -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 opacity-20">
+            <i data-lucide="lightbulb" class="absolute top-10 left-10 w-32 h-32 text-brand transform -rotate-12"></i>
+            <i data-lucide="trending-up"
+                class="absolute bottom-10 right-10 w-48 h-48 text-accent transform rotate-12"></i>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            <span
+                class="inline-block py-1 px-3 rounded-full bg-brand-light text-brand-dark font-bold text-sm mb-4 tracking-wider">
+                図解でわかる！ビジネスモデル入門
+            </span>
+            <h1 class="text-3xl md:text-5xl font-black mb-6 leading-tight">
+                読むだけで<span class="gradient-text">「儲かるアイデア」</span>を<br class="hidden md:block">思いつく
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 font-medium mb-8">
+                〜 大きなビジネスよりも、<strong
+                    class="text-gray-800 bg-yellow-200 px-2 py-1 rounded">「小さなビジネス」</strong>に儲けの仕組みは隠れている 〜
+            </p>
+            <p class="text-sm text-gray-500">
+                原作：酒井 威津善 著 『小さなビジネスモデル100』（ソシム）より解説
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-12">
+
+        <!-- セクション1：なぜ「小さなビジネス」なのか？ -->
+        <section class="mb-20">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-3xl font-bold inline-block relative">
+                    なぜ「小さなビジネス」が良いの？
+                    <div class="absolute -bottom-2 left-0 w-full h-1 bg-accent rounded"></div>
+                </h2>
+                <p class="mt-4 text-gray-600">巨額の資金や特別な才能がなくても勝てる「3つの理由」</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- メリット1 -->
+                <div class="glass-card p-6 rounded-2xl text-center scale-hover">
+                    <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="zap" class="w-8 h-8 text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">1. 低リスク＆高機動力</h3>
+                    <p class="text-gray-600 text-sm">
+                        多額の資金や人手が不要。アイデアを思いついたらすぐにテストでき、失敗してもダメージが少ない。
+                    </p>
+                </div>
+                <!-- メリット2 -->
+                <div class="glass-card p-6 rounded-2xl text-center scale-hover">
+                    <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="target" class="w-8 h-8 text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">2. ニッチだから高く売れる</h3>
+                    <p class="text-gray-600 text-sm">
+                        ターゲットを極端に絞ることで「他では代わりが効かない専門性」が生まれ、価格競争に巻き込まれない。
+                    </p>
+                </div>
+                <!-- メリット3 -->
+                <div class="glass-card p-6 rounded-2xl text-center scale-hover">
+                    <div class="w-16 h-16 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="heart-handshake" class="w-8 h-8 text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">3. 心理的な「負」の解消</h3>
+                    <p class="text-gray-600 text-sm">
+                        大企業が見過ごす日常の「不満・不便・不安」を解決することで、顧客から深く感謝されファンになる。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="arrow-down mb-10"></div>
+
+        <!-- セクション2：アイデアを生み出す6つの視点 -->
+        <section class="mb-20">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-3xl font-bold inline-block relative">
+                    アイデアを生み出す「6つの視点」
+                    <div class="absolute -bottom-2 left-0 w-full h-1 bg-brand rounded"></div>
+                </h2>
+                <p class="mt-4 text-gray-600">日常のサービスを、以下のフィルターを通して観察してみましょう</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 視点1 -->
+                <div
+                    class="bg-white border-2 border-gray-100 p-6 rounded-xl shadow-sm hover:border-brand transition-colors">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="coins" class="w-6 h-6 text-brand mr-3"></i>
+                        <h3 class="text-lg font-bold">1. お金 の視点</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">収益構造をどう変えるか？</p>
+                    <ul class="text-xs text-gray-500 list-disc pl-5 space-y-1">
+                        <li>売り切りから継続課金（サブスク）へ</li>
+                        <li>基本無料で後から課金（フリーミアム）</li>
+                    </ul>
+                </div>
+
+                <!-- 視点2 -->
+                <div
+                    class="bg-white border-2 border-gray-100 p-6 rounded-xl shadow-sm hover:border-brand transition-colors">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="users" class="w-6 h-6 text-brand mr-3"></i>
+                        <h3 class="text-lg font-bold">2. 顧客 の視点</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">「誰に」売るかをずらす</p>
+                    <ul class="text-xs text-gray-500 list-disc pl-5 space-y-1">
+                        <li>大手が無視しているニッチな悩みを持つ人</li>
+                        <li>本来ターゲットではない層を狙う</li>
+                    </ul>
+                </div>
+
+                <!-- 視点3 -->
+                <div
+                    class="bg-white border-2 border-gray-100 p-6 rounded-xl shadow-sm hover:border-brand transition-colors">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="package-open" class="w-6 h-6 text-brand mr-3"></i>
+                        <h3 class="text-lg font-bold">3. 用途 の視点</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">本来の目的と違う使い方</p>
+                    <ul class="text-xs text-gray-500 list-disc pl-5 space-y-1">
+                        <li>アウトドア用品を室内・オフィスで使う</li>
+                        <li>作業着を普段着として売る</li>
+                    </ul>
+                </div>
+
+                <!-- 視点4 -->
+                <div
+                    class="bg-white border-2 border-gray-100 p-6 rounded-xl shadow-sm hover:border-brand transition-colors">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="truck" class="w-6 h-6 text-brand mr-3"></i>
+                        <h3 class="text-lg font-bold">4. 形態 の視点</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">サービスの「形」や「届け方」</p>
+                    <ul class="text-xs text-gray-500 list-disc pl-5 space-y-1">
+                        <li>無人化・自動化でコストを下げる</li>
+                        <li>シェアリング（共有）にする</li>
+                    </ul>
+                </div>
+
+                <!-- 視点5 -->
+                <div
+                    class="bg-white border-2 border-gray-100 p-6 rounded-xl shadow-sm hover:border-brand transition-colors">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="map-pin" class="w-6 h-6 text-brand mr-3"></i>
+                        <h3 class="text-lg font-bold">5. 場所 の視点</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">空間の価値を最大化する</p>
+                    <ul class="text-xs text-gray-500 list-disc pl-5 space-y-1">
+                        <li>使われていないデッドスペースの収益化</li>
+                        <li>場所の制約をなくす（オンライン化）</li>
+                    </ul>
+                </div>
+
+                <!-- 視点6 -->
+                <div
+                    class="bg-white border-2 border-gray-100 p-6 rounded-xl shadow-sm hover:border-brand transition-colors">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="heart" class="w-6 h-6 text-brand mr-3"></i>
+                        <h3 class="text-lg font-bold">6. 価値 の視点</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">目に見えない深層心理を満たす</p>
+                    <ul class="text-xs text-gray-500 list-disc pl-5 space-y-1">
+                        <li>「安心」や「承認欲求」を売る</li>
+                        <li>社会的な信頼をパッケージ化する</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション3：魔法の公式（掛け合わせ） -->
+        <section class="mb-20 bg-gray-900 text-white rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+            <!-- 背景エフェクト -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-brand rounded-full filter blur-[100px] opacity-20"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-accent rounded-full filter blur-[100px] opacity-20"></div>
+
+            <div class="relative z-10">
+                <div class="text-center mb-10">
+                    <span class="text-brand font-bold tracking-widest text-sm mb-2 block">FRAMEWORK</span>
+                    <h2 class="text-2xl md:text-4xl font-black">儲かるアイデアを生み出す「公式」</h2>
+                    <p class="mt-4 text-gray-300">ゼロから考える必要はありません。既存のものを掛け合わせるだけです。</p>
+                </div>
+
+                <!-- 数式風の図解 -->
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mb-12">
+                    <div
+                        class="bg-white text-gray-900 px-6 py-4 rounded-xl font-bold text-xl md:text-2xl shadow-lg w-full md:w-auto text-center">
+                        既存のサービス
+                    </div>
+
+                    <div class="text-brand text-4xl font-black">×</div>
+
+                    <div
+                        class="bg-brand text-white px-6 py-4 rounded-xl font-bold text-xl md:text-2xl shadow-lg w-full md:w-auto text-center border-2 border-brand-light">
+                        6つの視点（ずらす）
+                    </div>
+
+                    <div class="text-white text-4xl font-black">＝</div>
+
+                    <div
+                        class="bg-gradient-to-r from-yellow-400 to-amber-600 text-white px-8 py-5 rounded-xl font-black text-2xl md:text-3xl shadow-[0_0_30px_rgba(245,158,11,0.5)] w-full md:w-auto text-center animate-pulse">
+                        新しいビジネス！
+                    </div>
+                </div>
+
+                <!-- 具体的な公式の例 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- 例1 -->
+                    <div class="bg-gray-800 bg-opacity-50 p-6 rounded-xl border border-gray-700">
+                        <div class="text-brand text-sm font-bold mb-2">公式例 1：安心の収益化</div>
+                        <div class="text-xl font-bold mb-4 flex items-center">
+                            既存サービス <i data-lucide="x" class="w-4 h-4 mx-2"></i> 「保険」
+                        </div>
+                        <div class="bg-gray-700 rounded-lg p-4 mb-3">
+                            <span
+                                class="text-xs bg-gray-600 px-2 py-1 rounded text-gray-300 mb-2 inline-block">実例</span>
+                            <div class="font-bold text-lg text-white mb-1">🐶 ペット保険</div>
+                            <p class="text-sm text-gray-400">「ペットの高額な医療費が不安…」というニッチな悩みを保険化し、長期的なストック収益（継続課金）を実現。</p>
+                        </div>
+                    </div>
+
+                    <!-- 例2 -->
+                    <div class="bg-gray-800 bg-opacity-50 p-6 rounded-xl border border-gray-700">
+                        <div class="text-accent text-sm font-bold mb-2">公式例 2：権威の創出</div>
+                        <div class="text-xl font-bold mb-4 flex items-center">
+                            既存サービス <i data-lucide="x" class="w-4 h-4 mx-2"></i> 「資格」
+                        </div>
+                        <div class="bg-gray-700 rounded-lg p-4 mb-3">
+                            <span
+                                class="text-xs bg-gray-600 px-2 py-1 rounded text-gray-300 mb-2 inline-block">実例</span>
+                            <div class="font-bold text-lg text-white mb-1">🧀 チーズプロフェッショナル</div>
+                            <p class="text-sm text-gray-400">
+                                ただチーズを売るのではなく、知識を「資格」として認定。受験料・更新料の収益に加え、有資格者が勝手に宣伝してくれる仕組み。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション4：100の事例からピックアップ -->
+        <section class="mb-20">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-3xl font-bold inline-block relative">
+                    掛け合わせで生まれた「実際のビジネス例」
+                    <div class="absolute -bottom-2 left-0 w-full h-1 bg-green-500 rounded"></div>
+                </h2>
+                <p class="mt-4 text-gray-600">要素を「分解」し、不要なものを「排除」し、特化させた成功例</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- 事例1 -->
+                <div class="glass-card p-6 rounded-xl border-l-4 border-l-brand flex flex-col h-full">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold flex items-center">
+                            <span class="text-2xl mr-2">✂️</span> 1000円カット
+                        </h3>
+                        <div class="flex gap-2">
+                            <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded font-bold">お金</span>
+                            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded font-bold">形態</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4 flex-grow">
+                        美容室から「シャンプー」「予約」「丁寧な接客」などの要素を削ぎ落とし、純粋な「髪を切る」機能だけに特化。時間あたりの回転率と収益性を極限まで高めたモデル。
+                    </p>
+                </div>
+
+                <!-- 事例2 -->
+                <div class="glass-card p-6 rounded-xl border-l-4 border-l-accent flex flex-col h-full">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold flex items-center">
+                            <span class="text-2xl mr-2">🏋️</span> コンビニジム
+                        </h3>
+                        <div class="flex gap-2">
+                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded font-bold">場所</span>
+                            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded font-bold">形態</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4 flex-grow">
+                        シャワーやプールといった高コストな設備をあえて排除。「スーツのまま」「5分だけ」という利便性を追求し、従来のジムの心理的・物理的ハードルをなくして多店舗展開。
+                    </p>
+                </div>
+
+                <!-- 事例3 -->
+                <div class="glass-card p-6 rounded-xl border-l-4 border-l-green-500 flex flex-col h-full">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold flex items-center">
+                            <span class="text-2xl mr-2">⛺</span> ボッチテント
+                        </h3>
+                        <div class="flex gap-2">
+                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded font-bold">場所</span>
+                            <span class="text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded font-bold">用途</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4 flex-grow">
+                        野外で使うのが当たり前だったテントを、「室内用の自分だけの集中空間」として再定義。在宅勤務層が抱える「家で集中できない」という悩みを、用途の転換で見事に解決。
+                    </p>
+                </div>
+
+                <!-- 事例4 -->
+                <div class="glass-card p-6 rounded-xl border-l-4 border-l-red-500 flex flex-col h-full">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold flex items-center">
+                            <span class="text-2xl mr-2">⚖️</span> ワンコイン法律相談
+                        </h3>
+                        <div class="flex gap-2">
+                            <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded font-bold">顧客</span>
+                            <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded font-bold">お金</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4 flex-grow">
+                        心理的・金銭的ハードルの高い専門家への相談に「500円」という極端に低い入り口（フロントエンド）を設置。悩みを抱える優良顧客を安価に集め、将来の大きな依頼へ繋げる。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション5：アクションプラン -->
+        <section class="bg-brand-light p-8 md:p-12 rounded-3xl text-center shadow-inner">
+            <i data-lucide="brain-circuit" class="w-16 h-16 text-brand mx-auto mb-6"></i>
+            <h2 class="text-2xl md:text-3xl font-black text-gray-800 mb-4">
+                トレーニング方法：<span class="text-brand-dark">1日5分</span>、眺めるだけ。
+            </h2>
+            <p class="text-gray-700 mb-8 max-w-2xl mx-auto text-lg">
+                新しいアイデアをゼロから絞り出す必要はありません。<br>
+                スキマ時間にこの「6つの視点」を通して日常のサービスを観察し、脳に<b>「ビジネスのフック（引っかかり）」</b>を作るだけで、日常の不満がビジネスチャンスに見えてきます。
+            </p>
+            <div
+                class="inline-flex items-center justify-center bg-white px-6 py-4 rounded-full shadow-md font-bold text-gray-800 text-lg">
+                <i data-lucide="check-circle" class="text-green-500 w-6 h-6 mr-2"></i>
+                不満・不便・不安（負の感情）を見つけたら、視点を掛け合わせてみよう！
+            </div>
+        </section>
+
+    </main>
+
+    <!-- フッター（書籍情報） -->
+    <footer class="bg-gray-800 text-gray-400 py-12 text-center mt-20">
+        <div class="max-w-3xl mx-auto px-4">
+            <i data-lucide="book" class="w-8 h-8 mx-auto mb-4 text-gray-500"></i>
+            <h3 class="text-white font-bold text-lg mb-2">出典・おすすめ書籍</h3>
+            <p class="text-xl text-white font-black mb-2">『読むだけで「儲かるアイデア」を思いつく 小さなビジネスモデル100』</p>
+            <p class="mb-6 text-sm">著者：酒井 威津善 / 出版社：ソシム (2025年発行)</p>
+            <div class="border-t border-gray-700 pt-6 text-xs">
+                <p>※本ページは提供された情報（書籍紹介、要約、書評など）を基に、学習用に図解化したものです。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- アイコンの初期化スクリプト -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
