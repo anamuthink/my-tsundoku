@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【図解】ゆるストイック完全ガイド ── 不確実な時代を生き抜く新・生存戦略</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind 設定 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        stoic: '#1e293b', // ダークネイビー（ストイックさ）
+                        yuru: '#f8fafc',  // ライトグレー（ゆるさ）
+                        accent: '#3b82f6', // ブルー（アクセント）
+                        success: '#10b981', // グリーン
+                        warning: '#f59e0b', // イエロー
+                        danger: '#ef4444', // レッド
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #f1f5f9; color: #334155; }
+        
+        /* スクロールアニメーション用クラス */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ベン図のブレンドモード用 */
+        .mix-multiply { mix-blend-mode: multiply; }
+        
+        /* カスタム背景パターン */
+        .bg-pattern {
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="antialiased bg-pattern">
+
+    <!-- Hero Section -->
+    <header class="relative bg-stoic text-white overflow-hidden shadow-2xl">
+        <div class="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+        <div class="max-w-5xl mx-auto px-6 py-20 lg:py-32 relative z-10 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-accent/20 text-accent-light border border-accent text-sm font-bold tracking-wider mb-6">
+                佐藤航陽 著『ゆるストイック』図解要約
+            </span>
+            <h1 class="text-4xl lg:text-6xl font-black mb-6 leading-tight">
+                <span class="text-gray-300">自分には</span>厳しく<br class="md:hidden">
+                <span class="text-accent">他人には</span>寛容に
+            </h1>
+            <p class="text-xl lg:text-2xl font-medium text-gray-300 mb-10">
+                ノイズに邪魔されず、<br class="md:hidden">1日を淡々と積み上げる「新・生存戦略」
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="#concept" class="bg-accent hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 shadow-lg shadow-blue-500/30">
+                    図解を見る <i class="fa-solid fa-arrow-down ml-2"></i>
+                </a>
+            </div>
+        </div>
+        <!-- 装飾的な波 -->
+        <div class="absolute bottom-0 w-full overflow-hidden leading-none">
+            <svg class="relative block w-full h-[50px] md:h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118,130.9,132.8,200.5,123.6,242.4,118,284.1,102.5,321.39,56.44Z" fill="#f1f5f9"></path>
+            </svg>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-24">
+
+        <!-- 1. なぜ今「ゆるストイック」なのか？ -->
+        <section id="concept" class="fade-in-up">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black text-stoic mb-4"><i class="fa-solid fa-globe text-accent mr-3"></i>なぜ今「ゆるストイック」なのか？</h2>
+                <p class="text-gray-500 font-medium">コロナ禍以降の社会変化と、見えない格差の拡大</p>
+            </div>
+            
+            <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100 relative overflow-hidden">
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4 border-b-2 border-accent pb-2 inline-block">「二極化」する現代社会</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            コロナ禍で社会全体が「休む」ことを覚えました。「がんばらなくてもいい」という言葉に救われた人も多いでしょう。しかし、日常が戻った今、残酷な現実が突きつけられています。
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-triangle-exclamation text-warning mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <strong class="text-gray-800 block">見えない格差の拡大</strong>
+                                    <span class="text-sm text-gray-600">休んでいた人と、見えない所で自己投資（スキル、副業など）を積み上げていた人との差が修復不可能なレベルに。</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-triangle-exclamation text-warning mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <strong class="text-gray-800 block">「自己管理」が必須の時代</strong>
+                                    <span class="text-sm text-gray-600">ハラスメント回避やリモートワークにより、他者から厳しく指導される機会が激減。「本人次第」で成長が止まる。</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- マトリクス図解 -->
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
+                        <h4 class="text-center font-bold text-gray-700 mb-6">時代の変遷と「第3の道」</h4>
+                        <div class="relative w-full aspect-square max-w-[320px] mx-auto">
+                            <!-- 軸 -->
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-full h-1 bg-gray-300"></div>
+                                <div class="h-full w-1 bg-gray-300 absolute"></div>
+                            </div>
+                            <!-- 軸ラベル -->
+                            <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-gray-500">自分に厳しい</span>
+                            <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-bold text-gray-500">自分に甘い</span>
+                            <span class="absolute top-1/2 -left-12 -translate-y-1/2 text-xs font-bold text-gray-500 text-center">他人に<br>甘い</span>
+                            <span class="absolute top-1/2 -right-12 -translate-y-1/2 text-xs font-bold text-gray-500 text-center">他人に<br>厳しい</span>
+                            
+                            <!-- 象限カード -->
+                            <!-- 左上: ゆるストイック -->
+                            <div class="absolute top-2 left-2 w-[calc(50%-12px)] h-[calc(50%-12px)] bg-blue-100 border-2 border-blue-400 rounded-xl flex flex-col items-center justify-center p-2 shadow-md z-10 transform hover:scale-105 transition">
+                                <span class="text-xs text-blue-600 font-bold mb-1">★これからの正解</span>
+                                <span class="font-black text-blue-800 text-center leading-tight">ゆる<br>ストイック</span>
+                                <span class="text-[10px] text-blue-600 mt-1 text-center">持続可能・柔軟</span>
+                            </div>
+                            <!-- 右上: 従来のストイック -->
+                            <div class="absolute top-2 right-2 w-[calc(50%-12px)] h-[calc(50%-12px)] bg-gray-100 border border-gray-300 rounded-xl flex flex-col items-center justify-center p-2 opacity-80">
+                                <span class="font-bold text-gray-600 text-center text-sm">従来の<br>ストイック</span>
+                                <span class="text-[10px] text-gray-500 mt-1 text-center">意識高い系<br>燃え尽き・摩擦</span>
+                            </div>
+                            <!-- 左下: ただのゆるさ -->
+                            <div class="absolute bottom-2 left-2 w-[calc(50%-12px)] h-[calc(50%-12px)] bg-gray-100 border border-gray-300 rounded-xl flex flex-col items-center justify-center p-2 opacity-80">
+                                <span class="font-bold text-gray-600 text-center text-sm">ただの<br>ゆるさ</span>
+                                <span class="text-[10px] text-gray-500 mt-1 text-center">怠惰・停滞<br>格差の底辺へ</span>
+                            </div>
+                            <!-- 右下: 他責 -->
+                            <div class="absolute bottom-2 right-2 w-[calc(50%-12px)] h-[calc(50%-12px)] bg-gray-100 border border-gray-300 rounded-xl flex flex-col items-center justify-center p-2 opacity-80">
+                                <span class="font-bold text-gray-600 text-center text-sm">冷笑主義<br>他責</span>
+                                <span class="text-[10px] text-gray-500 mt-1 text-center">不満・クレーマー</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 bg-stoic text-white p-6 rounded-2xl text-center">
+                    <p class="font-bold text-lg md:text-xl">
+                        結論：他人に価値観を押し付けず、<span class="text-accent-light text-blue-300">「淡々と」「黙々と」自分を律する</span>スタイルが最強。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 2. 捨てるべき「6つの古い価値観」 -->
+        <section class="fade-in-up">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black text-stoic mb-4"><i class="fa-solid fa-trash-can text-red-500 mr-3"></i>捨てるべき「6つの古い価値観」</h2>
+                <p class="text-gray-500 font-medium">時代遅れの「思い込み」をアンインストールし、心を軽くする</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                
+                <!-- Card 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-gray-300 flex flex-col relative">
+                    <div class="absolute -top-4 left-6 bg-gray-200 text-gray-600 text-xs font-bold px-3 py-1 rounded-full">過去の常識</div>
+                    <div class="text-red-500 font-bold mb-2 mt-2"><i class="fa-solid fa-xmark mr-2"></i>公正世界仮説</div>
+                    <h3 class="font-black text-lg mb-2">「努力は必ず報われる」</h3>
+                    <p class="text-sm text-gray-600 mb-4 flex-grow">報われないと「自分の努力不足」か「世界が不公平だ」と精神を病む原因に。</p>
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                        <div class="text-blue-600 font-bold mb-1 text-sm"><i class="fa-solid fa-arrow-right mr-2"></i>新しい価値観</div>
+                        <p class="text-sm font-bold text-gray-800">頑張りや正しさと、報われるかは【無関係】と受け入れる。</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-gray-300 flex flex-col relative">
+                    <div class="absolute -top-4 left-6 bg-gray-200 text-gray-600 text-xs font-bold px-3 py-1 rounded-full">過去の常識</div>
+                    <div class="text-red-500 font-bold mb-2 mt-2"><i class="fa-solid fa-xmark mr-2"></i>自己責任論</div>
+                    <h3 class="font-black text-lg mb-2">「結果が出ないのは自分のせい」</h3>
+                    <p class="text-sm text-gray-600 mb-4 flex-grow">もとは権力者が労働者を管理・洗脳するための都合の良いツール。</p>
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                        <div class="text-blue-600 font-bold mb-1 text-sm"><i class="fa-solid fa-arrow-right mr-2"></i>新しい価値観</div>
+                        <p class="text-sm font-bold text-gray-800">成功も失敗も「運」や「環境（インフラ）」の影響が極めて大きい。</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-gray-300 flex flex-col relative">
+                    <div class="absolute -top-4 left-6 bg-gray-200 text-gray-600 text-xs font-bold px-3 py-1 rounded-full">過去の常識</div>
+                    <div class="text-red-500 font-bold mb-2 mt-2"><i class="fa-solid fa-xmark mr-2"></i>被害者意識（悪者探し）</div>
+                    <h3 class="font-black text-lg mb-2">「誰の責任か？何が悪かったのか？」</h3>
+                    <p class="text-sm text-gray-600 mb-4 flex-grow">困難な時に外部や他人に責任を求めても、状況は1ミリも改善しない。</p>
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                        <div class="text-blue-600 font-bold mb-1 text-sm"><i class="fa-solid fa-arrow-right mr-2"></i>新しい価値観</div>
+                        <p class="text-sm font-bold text-gray-800">自分がコントロールできる「手の届く範囲（行動）」にのみ集中する。</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-gray-300 flex flex-col relative">
+                    <div class="absolute -top-4 left-6 bg-gray-200 text-gray-600 text-xs font-bold px-3 py-1 rounded-full">過去の常識</div>
+                    <div class="text-red-500 font-bold mb-2 mt-2"><i class="fa-solid fa-xmark mr-2"></i>ゼロリスク・ゼロ失敗思考</div>
+                    <h3 class="font-black text-lg mb-2">「絶対に失敗しない道を選ぶ」</h3>
+                    <p class="text-sm text-gray-600 mb-4 flex-grow">リスクがゼロ＝リターンもゼロ。百発百中を狙うと行動が硬直する。</p>
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                        <div class="text-blue-600 font-bold mb-1 text-sm"><i class="fa-solid fa-arrow-right mr-2"></i>新しい価値観</div>
+                        <p class="text-sm font-bold text-gray-800">小さく分散して挑戦し、「失敗のプロ（試行回数の多い人）」になる。</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- 3. 成功の力学（方程式） -->
+        <section class="fade-in-up">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black text-stoic mb-4"><i class="fa-solid fa-rocket text-yellow-500 mr-3"></i>成功の力学「最強の方程式」</h2>
+                <p class="text-gray-500 font-medium">成功は「個人の努力」ではなく、「自然現象」のようなもの</p>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 md:p-12 shadow-xl border border-gray-100">
+                <!-- 方程式 -->
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-12">
+                    <!-- 独自性 -->
+                    <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 w-full md:w-1/3 text-center shadow-sm relative">
+                        <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-xs font-bold px-4 py-1 rounded-full">自力（才能×努力）</span>
+                        <h3 class="text-2xl font-black text-orange-700 mt-2 mb-2">独自性</h3>
+                        <p class="text-sm text-orange-600">自分だけのニッチな領域</p>
+                    </div>
+                    
+                    <div class="text-4xl text-gray-400 font-black">×</div>
+                    
+                    <!-- タダ乗り -->
+                    <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-6 w-full md:w-1/3 text-center shadow-sm relative">
+                        <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white text-xs font-bold px-4 py-1 rounded-full">他力（運×環境）</span>
+                        <h3 class="text-2xl font-black text-blue-700 mt-2 mb-2">タダ乗り</h3>
+                        <p class="text-sm text-blue-600">巨大なプラットフォーム・波</p>
+                    </div>
+
+                    <div class="text-4xl text-gray-400 font-black">＝</div>
+
+                    <!-- 成功 -->
+                    <div class="bg-gradient-to-br from-yellow-100 to-yellow-300 border-2 border-yellow-400 rounded-2xl p-6 w-full md:w-1/3 text-center shadow-lg transform scale-105">
+                        <h3 class="text-2xl font-black text-yellow-800 mt-2 mb-1">圧倒的成功</h3>
+                        <p class="text-xs text-yellow-700 font-bold">（雷のような自然現象）</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- ベン図（独自性の作り方） -->
+                    <div>
+                        <h4 class="text-center font-bold text-gray-800 mb-4 border-b pb-2">【STEP 1】 独自性の作り方（順番が命）</h4>
+                        <div class="relative w-56 h-56 mx-auto mt-6">
+                            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-pink-400 rounded-full mix-multiply opacity-60 flex items-start justify-center pt-4 text-white font-bold text-lg shadow-inner">1. 好き</div>
+                            <div class="absolute bottom-4 left-4 w-32 h-32 bg-blue-400 rounded-full mix-multiply opacity-60 flex items-end justify-start pb-6 pl-6 text-white font-bold text-lg shadow-inner">2. 得意</div>
+                            <div class="absolute bottom-4 right-4 w-32 h-32 bg-yellow-400 rounded-full mix-multiply opacity-60 flex items-end justify-end pb-6 pr-6 text-white font-bold text-lg shadow-inner">3. 需要</div>
+                            <!-- 交わり -->
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-4 text-center z-10">
+                                <span class="block text-xs font-bold text-gray-800 bg-white/80 px-2 py-1 rounded">ニッチな<br>独自性</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-4 text-center">
+                            需要（お金）から飛びつかない。<br><strong>「好き」→「得意」→「需要」</strong>の順で領域を絞り込む。
+                        </p>
+                    </div>
+
+                    <!-- タダ乗りの解説 -->
+                    <div>
+                        <h4 class="text-center font-bold text-gray-800 mb-4 border-b pb-2">【STEP 2】 タダ乗り（フリーライド）戦略</h4>
+                        <div class="space-y-4 mt-6">
+                            <div class="flex items-start bg-gray-50 p-4 rounded-xl">
+                                <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center font-black shrink-0 mr-4">1</div>
+                                <div>
+                                    <strong class="text-gray-800 text-sm">既存のインフラに「乗る」</strong>
+                                    <p class="text-xs text-gray-600 mt-1">YouTube、SNS、新しい技術トレンドなど、既に人が集まる場所や波を最大限利用して自分を拡散させる。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start bg-gray-50 p-4 rounded-xl">
+                                <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center font-black shrink-0 mr-4">2</div>
+                                <div>
+                                    <strong class="text-gray-800 text-sm">他人に「タダ乗りされる側」になる</strong>
+                                    <p class="text-xs text-gray-600 mt-1">影響力を持ったら、他人が利用できるプラットフォームや企画（例：Breaking Down）を作り、さらに盤石な地位を築く。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 4. 年齢別ライフサイクル戦略 -->
+        <section class="fade-in-up">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black text-stoic mb-4"><i class="fa-solid fa-hourglass-half text-teal-500 mr-3"></i>人間の「生物学的制約」を知る</h2>
+                <p class="text-gray-500 font-medium">遺伝子に逆らわず、年齢に応じた戦い方へシフトする</p>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 md:p-12 shadow-xl border border-gray-100 relative">
+                <!-- タイムライン図解 -->
+                <div class="relative max-w-3xl mx-auto py-10">
+                    <!-- 中央の線 -->
+                    <div class="absolute top-1/2 left-0 w-full h-2 bg-gray-200 -translate-y-1/2 rounded-full hidden md:block"></div>
+                    <!-- モバイル用の縦線 -->
+                    <div class="absolute top-0 left-8 w-2 h-full bg-gray-200 rounded-full md:hidden"></div>
+
+                    <div class="flex flex-col md:flex-row justify-between relative z-10 space-y-8 md:space-y-0">
+                        
+                        <!-- 18歳 -->
+                        <div class="flex md:flex-col items-center group">
+                            <div class="w-16 h-16 rounded-full bg-white border-4 border-gray-300 flex items-center justify-center font-black text-xl text-gray-500 z-10 shrink-0">18<span class="text-xs ml-1">歳</span></div>
+                            <div class="ml-6 md:ml-0 md:mt-4 bg-gray-50 p-3 rounded-lg text-center shadow-sm w-48 border border-gray-100">
+                                <strong class="text-teal-700 block text-sm">身体の完成</strong>
+                                <span class="text-xs text-gray-600">物理的ポテンシャルのピーク</span>
+                            </div>
+                        </div>
+
+                        <!-- 28歳 -->
+                        <div class="flex md:flex-col items-center group">
+                            <div class="w-16 h-16 rounded-full bg-white border-4 border-teal-400 flex items-center justify-center font-black text-xl text-teal-600 z-10 shrink-0">28<span class="text-xs ml-1">歳</span></div>
+                            <div class="ml-6 md:ml-0 md:mb-4 md:-order-1 bg-teal-50 p-3 rounded-lg text-center shadow-sm w-48 border border-teal-100">
+                                <strong class="text-teal-700 block text-sm">脳（精神）の発達終了</strong>
+                                <span class="text-xs text-gray-600">ここまでのインプットが土台に</span>
+                            </div>
+                        </div>
+
+                        <!-- 35歳 -->
+                        <div class="flex md:flex-col items-center group">
+                            <div class="w-16 h-16 rounded-full bg-white border-4 border-orange-400 flex items-center justify-center font-black text-xl text-orange-600 z-10 shrink-0">35<span class="text-xs ml-1">歳</span></div>
+                            <div class="ml-6 md:ml-0 md:mt-4 bg-orange-50 p-3 rounded-lg text-center shadow-sm w-48 border border-orange-100 relative">
+                                <div class="absolute -top-3 left-1/2 -translate-x-1/2 text-orange-500 hidden md:block"><i class="fa-solid fa-bolt"></i> 壁</div>
+                                <strong class="text-orange-700 block text-sm">意欲低下の壁</strong>
+                                <span class="text-xs text-gray-600">代謝低下によるやる気の減退</span>
+                            </div>
+                        </div>
+
+                        <!-- 38歳 -->
+                        <div class="flex md:flex-col items-center group">
+                            <div class="w-16 h-16 rounded-full bg-white border-4 border-red-400 flex items-center justify-center font-black text-xl text-red-600 z-10 shrink-0">38<span class="text-xs ml-1">歳</span></div>
+                            <div class="ml-6 md:ml-0 md:mb-4 md:-order-1 bg-red-50 p-3 rounded-lg text-center shadow-sm w-48 border border-red-100">
+                                <strong class="text-red-700 block text-sm">自然寿命</strong>
+                                <span class="text-xs text-gray-600">本来の世代交代のタイミング</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 戦略 -->
+                <div class="mt-8 grid md:grid-cols-2 gap-4">
+                    <div class="bg-gradient-to-r from-teal-500 to-teal-600 p-6 rounded-2xl text-white shadow-lg">
+                        <h4 class="font-black text-lg mb-2"><i class="fa-solid fa-person-running mr-2"></i>20代〜30代前半</h4>
+                        <p class="text-sm font-medium leading-relaxed">脳が柔軟なこの時期に<strong>「全力疾走」</strong>して経験とインプットの厚みを作る。ここでの試行回数が勝負。</p>
+                    </div>
+                    <div class="bg-gradient-to-r from-orange-500 to-red-500 p-6 rounded-2xl text-white shadow-lg">
+                        <h4 class="font-black text-lg mb-2"><i class="fa-solid fa-robot mr-2"></i>35歳以降</h4>
+                        <p class="text-sm font-medium leading-relaxed">意志の力（やる気）に頼るのは非効率。無意識に体が動く<strong>「習慣」に人生の舵取りを任せる</strong>システム設計へシフトする。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 5. 日常の実践TIPS -->
+        <section class="fade-in-up pb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black text-stoic mb-4"><i class="fa-solid fa-list-check text-purple-500 mr-3"></i>ゆるストイック「5つの実践メソッド」</h2>
+                <p class="text-gray-500 font-medium">最小のエネルギーで最大の結果を出し、持続させる技術</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Tip 1 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100 hover:-translate-y-2 transition duration-300">
+                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <h3 class="font-black text-lg text-gray-800 mb-2">1.「7割完成」で手放す</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        完璧主義（100点）を目指すと行動が停滞する。「まず7割」でアウトプットし、小さな達成感を積み上げて脳の報酬系を刺激する。
+                    </p>
+                </div>
+
+                <!-- Tip 2 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100 hover:-translate-y-2 transition duration-300">
+                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-filter"></i>
+                    </div>
+                    <h3 class="font-black text-lg text-gray-800 mb-2">2. 情報デトックス</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        SNSやニュースの洪水は認知資源を浪費するノイズ。通知を制限し、自分に必要な情報だけを意図的に取捨選択して「空き容量」を作る。
+                    </p>
+                </div>
+
+                <!-- Tip 3 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100 hover:-translate-y-2 transition duration-300">
+                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+                    <h3 class="font-black text-lg text-gray-800 mb-2">3. 「回復」を習慣化する</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        休息は怠惰ではなく生産性の一部。「短い散歩」「深呼吸」「音楽」など、小さな回復を日常のルーティンやスケジュールの「余白」に組み込む。
+                    </p>
+                </div>
+
+                <!-- Tip 4 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100 hover:-translate-y-2 transition duration-300">
+                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <h3 class="font-black text-lg text-gray-800 mb-2">4. すべてを「ゲーム化」</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        脳は「予測不能な結果」に没頭する。10回中2〜3回（勝率20〜30%）当たるくらいの難易度の目標を設定し、確率ゲームとして挑戦を楽しむ。
+                    </p>
+                </div>
+
+                <!-- Tip 5 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100 hover:-translate-y-2 transition duration-300 md:col-span-2 lg:col-span-1">
+                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-calendar-day"></i>
+                    </div>
+                    <h3 class="font-black text-lg text-gray-800 mb-2">5. 今日が最後の日だとしたら？</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        1日を独立した単位としてリセットする。何の制約もなかった時にぱっと思いつく「本心」に従い、他人の尺度ではなく自分の基準で今日を生き直す。
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stoic text-gray-400 py-12 text-center border-t-8 border-accent">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-2xl font-black text-white mb-6">「ゆるストイック」は、最強のレジリエンス。</h2>
+            <p class="text-sm leading-relaxed mb-8">
+                分断が進み、正解が存在しない不確実な現代。<br>
+                他者の生き方を否定せず、無駄な摩擦を避けながらも、<br class="hidden md:block">
+                自分の山を淡々と、静かに登り続ける。<br>
+                「諦めの悪い」あなたへ向けた、新しい羅針盤です。
+            </p>
+            <p class="text-xs">
+                ※ 本ページは佐藤航陽 著『ゆるストイック ── ノイズに邪魔されず１日を積み上げる思考』（ダイヤモンド社）の書評・要約データを基にHTML/CSSで図解化したものです。
+            </p>
+        </div>
+    </footer>
+
+    <!-- スクロールアニメーション用スクリプト -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const elements = document.querySelectorAll('.fade-in-up');
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
