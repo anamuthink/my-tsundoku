@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図解：超初心者でも稼げるAI活用法</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #0ea5e9, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #0ea5e9, #10b981);
+        }
+
+        /* アニメーション関連 */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* タイムラインの線 */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background-color: #e5e7eb;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line::before {
+                left: 24px;
+            }
+        }
+
+        /* サイクル図のアニメーション */
+        .spin-slow {
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Header / Hero Section -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="font-bold text-lg tracking-tight text-gray-800 flex items-center gap-2">
+                <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                    </path>
+                </svg>
+                書籍図解まとめ
+            </div>
+            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">あべむつき 著</span>
+        </div>
+    </header>
+
+    <section class="max-w-5xl mx-auto px-4 pt-16 pb-20 text-center">
+        <span
+            class="inline-block py-1 px-3 rounded-full bg-emerald-100 text-emerald-700 font-semibold text-sm mb-4 border border-emerald-200 fade-in-up">
+            才能ゼロ・スキルゼロから始める
+        </span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight fade-in-up"
+            style="transition-delay: 100ms;">
+            2ヶ月で月30万円を実現する<br>
+            <span class="gradient-text">超初心者でも稼げるAI活用法</span>
+        </h1>
+        <p class="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto mb-10 fade-in-up" style="transition-delay: 200ms;">
+            「AIって難しそう…」「自分にはスキルがない…」そんな悩みを打ち破る！<br>
+            AIを「優秀な部下」として使いこなし、最短で収益化するロードマップを徹底図解。
+        </p>
+    </section>
+
+    <!-- The Core Concept -->
+    <section class="max-w-5xl mx-auto px-4 pb-20">
+        <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 relative overflow-hidden fade-in-up">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl -z-10 -mr-20 -mt-20"></div>
+
+            <h2 class="text-3xl font-bold text-center mb-10">この本の<span class="text-blue-600">3つの核心</span></h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Point 1 -->
+                <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow">
+                    <div
+                        class="w-14 h-14 rounded-full gradient-bg flex items-center justify-center text-white mb-4 shadow-lg">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">才能不要の「工場化」</h3>
+                    <p class="text-gray-600 text-sm">
+                        絵が描けない、文章が書けないは言い訳。AIがプロ級の成果物を一瞬で生成。あなたは「指示出し」と「仕組み化」に専念します。
+                    </p>
+                </div>
+                <!-- Point 2 -->
+                <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow">
+                    <div
+                        class="w-14 h-14 rounded-full gradient-bg flex items-center justify-center text-white mb-4 shadow-lg">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">最速での「0→1」達成</h3>
+                    <p class="text-gray-600 text-sm">
+                        SNSで伸び悩む前に、まずは「LINEスタンプ」を1時間で作成・販売。小さな成功体験が、その後の大きな原動力になります。
+                    </p>
+                </div>
+                <!-- Point 3 -->
+                <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow">
+                    <div
+                        class="w-14 h-14 rounded-full gradient-bg flex items-center justify-center text-white mb-4 shadow-lg">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Instagram × YouTube</h3>
+                    <p class="text-gray-600 text-sm">
+                        スマホで完結しファン化しやすいInstagramを主軸に、リール動画をYouTube Shortsに流用する最強の効率化モデルを構築。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7 Steps Timeline -->
+    <section class="max-w-4xl mx-auto px-4 pb-24">
+        <div class="text-center mb-16 fade-in-up">
+            <h2 class="text-3xl md:text-4xl font-black mb-4">月30万を目指す<span class="text-emerald-500">7つのステップ</span></h2>
+            <p class="text-gray-600">読んだその日から始められる、超実践的なロードマップ</p>
+        </div>
+
+        <div class="relative timeline-line">
+            <!-- Step 1 -->
+            <div class="relative z-10 flex flex-col md:flex-row items-center justify-center mb-16 fade-in-up">
+                <div class="md:w-1/2 md:pr-12 text-right md:text-right text-left w-full pl-16 md:pl-0">
+                    <span class="text-blue-500 font-bold text-sm tracking-wider">STEP 1</span>
+                    <h3 class="text-2xl font-bold mb-2">無料でAIを使ってみる</h3>
+                    <p class="text-gray-600 text-sm">まずは「ChatGPT」に触れること。専門用語（ディープラーニング等）は不要。「プロンプト（指示）」という言葉だけ覚えればOKです。
+                    </p>
+                </div>
+                <div
+                    class="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-12 h-12 bg-white border-4 border-blue-500 rounded-full flex items-center justify-center z-10 shadow-lg">
+                    <span class="text-blue-500 font-black">1</span>
+                </div>
+                <div class="md:w-1/2 md:pl-12 w-full mt-4 md:mt-0 pl-16 md:pl-0">
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-start gap-3">
+                        <div class="bg-gray-100 p-2 rounded text-xl">🤖</div>
+                        <div class="text-sm">「今日の天気は？」といった簡単な会話から始め、AIとの対話に慣れることが第一歩です。</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="relative z-10 flex flex-col md:flex-row-reverse items-center justify-center mb-16 fade-in-up">
+                <div class="md:w-1/2 md:pl-12 text-left w-full pl-16 md:pl-0">
+                    <span class="text-emerald-500 font-bold text-sm tracking-wider">STEP 2</span>
+                    <h3 class="text-2xl font-bold mb-2">良い「プロンプト」を書く</h3>
+                    <p class="text-gray-600 text-sm">AIを思い通りに動かす技術。以下のコツを意識するだけで、出力の質が劇的に上がります。</p>
+                    <ul class="mt-3 space-y-2 text-sm text-gray-700">
+                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd"></path>
+                            </svg> 役割を与える（例: 「あなたは優秀なイラストレーターです」）</li>
+                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd"></path>
+                            </svg> 回答の形式を指定する（表、箇条書きなど）</li>
+                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd"></path>
+                            </svg> 会話するように条件を追加していく</li>
+                    </ul>
+                </div>
+                <div
+                    class="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-12 h-12 bg-white border-4 border-emerald-500 rounded-full flex items-center justify-center z-10 shadow-lg">
+                    <span class="text-emerald-500 font-black">2</span>
+                </div>
+                <div class="md:w-1/2 md:pr-12 w-full mt-4 md:mt-0 pl-16 md:pl-0">
+                    <div class="bg-gray-800 text-gray-200 p-4 rounded-xl shadow-sm text-sm font-mono">
+                        <span class="text-green-400">User:</span>
+                        あなたは優秀なイラストレーターです。かわいらしいネコのキャラクターをゆるキャラ風で描いてください。<br><br>
+                        <span class="text-blue-400">AI:</span> 承知いたしました。(画像生成中...)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="relative z-10 flex flex-col md:flex-row items-center justify-center mb-16 fade-in-up">
+                <div class="md:w-1/2 md:pr-12 text-right md:text-right text-left w-full pl-16 md:pl-0">
+                    <span class="text-yellow-500 font-bold text-sm tracking-wider">STEP 3</span>
+                    <h3 class="text-2xl font-bold mb-2">LINEスタンプで「初収益」</h3>
+                    <p class="text-gray-600 text-sm">
+                        SNSを育てる前に、まずは「自分で作ったものが売れる」成功体験を。ChatGPTで画像を生成し、Canvaで文字を入れるだけ。1時間で販売申請が可能です。</p>
+                </div>
+                <div
+                    class="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-12 h-12 bg-white border-4 border-yellow-500 rounded-full flex items-center justify-center z-10 shadow-lg">
+                    <span class="text-yellow-500 font-black">3</span>
+                </div>
+                <div class="md:w-1/2 md:pl-12 w-full mt-4 md:mt-0 pl-16 md:pl-0">
+                    <div class="flex gap-2 justify-start md:justify-start">
+                        <div
+                            class="w-16 h-16 bg-white border-2 border-dashed border-gray-300 rounded-2xl flex items-center justify-center text-2xl shadow-sm">
+                            🐱</div>
+                        <div
+                            class="w-16 h-16 bg-white border-2 border-dashed border-gray-300 rounded-2xl flex items-center justify-center text-2xl shadow-sm">
+                            🐶</div>
+                        <div
+                            class="w-16 h-16 bg-white border-2 border-dashed border-gray-300 rounded-2xl flex items-center justify-center text-2xl shadow-sm">
+                            🐰</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="relative z-10 flex flex-col md:flex-row-reverse items-center justify-center mb-16 fade-in-up">
+                <div class="md:w-1/2 md:pl-12 text-left w-full pl-16 md:pl-0">
+                    <span class="text-purple-500 font-bold text-sm tracking-wider">STEP 4</span>
+                    <h3 class="text-2xl font-bold mb-2">稼ぐ器「SNSアカウント」構築</h3>
+                    <p class="text-gray-600 text-sm">
+                        自分の土地（アカウント）を持ちます。スマホで完結しフォロワーと距離が近い**Instagram**をメインに、そこで作ったリール動画を**YouTube
+                        Shorts**にも流用する一石二鳥戦略。</p>
+                </div>
+                <div
+                    class="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-12 h-12 bg-white border-4 border-purple-500 rounded-full flex items-center justify-center z-10 shadow-lg">
+                    <span class="text-purple-500 font-black">4</span>
+                </div>
+                <div class="md:w-1/2 md:pr-12 w-full mt-4 md:mt-0 pl-16 md:pl-0">
+                    <div class="flex items-center justify-center md:justify-end gap-4">
+                        <div class="text-center">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500 rounded-xl flex items-center justify-center text-white mx-auto mb-2">
+                                IG</div>
+                            <span class="text-xs font-bold text-gray-500">メイン</span>
+                        </div>
+                        <span class="text-gray-300">➡</span>
+                        <div class="text-center">
+                            <div
+                                class="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center text-white mx-auto mb-2">
+                                YT</div>
+                            <span class="text-xs font-bold text-gray-500">サブ (流用)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="relative z-10 flex flex-col md:flex-row items-center justify-center mb-16 fade-in-up">
+                <div class="md:w-1/2 md:pr-12 text-right md:text-right text-left w-full pl-16 md:pl-0">
+                    <span class="text-orange-500 font-bold text-sm tracking-wider">STEP 5</span>
+                    <h3 class="text-2xl font-bold mb-2">AIに「強み」を引き出させる</h3>
+                    <p class="text-gray-600 text-sm">SNSでファンを作るには「人柄」が必須。自分の経験や興味をAIに伝え、埋もれないコンセプトやプロフィール文を作成させます。</p>
+                </div>
+                <div
+                    class="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-12 h-12 bg-white border-4 border-orange-500 rounded-full flex items-center justify-center z-10 shadow-lg">
+                    <span class="text-orange-500 font-black">5</span>
+                </div>
+                <div class="md:w-1/2 md:pl-12 w-full mt-4 md:mt-0 pl-16 md:pl-0">
+                    <div class="bg-orange-50 p-4 rounded-xl border border-orange-100 text-sm">
+                        <strong class="text-orange-800">Tips:</strong><br>
+                        本書付属の「穴埋めプロンプト」を使ってAIに分析させることで、自分では気づかない強みやターゲット層を発見できます。
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="relative z-10 flex flex-col md:flex-row-reverse items-center justify-center mb-16 fade-in-up">
+                <div class="md:w-1/2 md:pl-12 text-left w-full pl-16 md:pl-0">
+                    <span class="text-indigo-500 font-bold text-sm tracking-wider">STEP 6</span>
+                    <h3 class="text-2xl font-bold mb-2">SNS投稿を「工場化」し量産</h3>
+                    <p class="text-gray-600 text-sm">根性論は捨てます。トレンドのリサーチ → 台本作成 → 画像/動画生成
+                        という一連の流れをAIに任せ、圧倒的なスピードでコンテンツを量産します。</p>
+                </div>
+                <div
+                    class="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-12 h-12 bg-white border-4 border-indigo-500 rounded-full flex items-center justify-center z-10 shadow-lg">
+                    <span class="text-indigo-500 font-black">6</span>
+                </div>
+                <div class="md:w-1/2 md:pr-12 w-full mt-4 md:mt-0 pl-16 md:pl-0">
+                    <div class="flex flex-col gap-2">
+                        <div class="bg-white p-2 border rounded shadow-sm text-xs text-center">🔍 リサーチ (ChatGPT)</div>
+                        <div class="text-center text-gray-400">⬇</div>
+                        <div class="bg-white p-2 border rounded shadow-sm text-xs text-center">📝 台本作成 (ChatGPT)</div>
+                        <div class="text-center text-gray-400">⬇</div>
+                        <div class="bg-white p-2 border rounded shadow-sm text-xs text-center">🎥 動画化 (Vrew等)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 7 -->
+            <div class="relative z-10 flex flex-col md:flex-row items-center justify-center fade-in-up">
+                <div class="md:w-1/2 md:pr-12 text-right md:text-right text-left w-full pl-16 md:pl-0">
+                    <span class="text-pink-500 font-bold text-sm tracking-wider">STEP 7</span>
+                    <h3 class="text-2xl font-bold mb-2">「ADAサイクル」で改善</h3>
+                    <p class="text-gray-600 text-sm">
+                        PDCAではなくADA。AIにデータを読ませて「評価・計画」をさせ、人間は「実行・選択」のみを行う、新時代のマーケティングサイクルです。</p>
+                </div>
+                <div
+                    class="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-12 h-12 bg-white border-4 border-pink-500 rounded-full flex items-center justify-center z-10 shadow-lg">
+                    <span class="text-pink-500 font-black">7</span>
+                </div>
+                <div class="md:w-1/2 md:pl-12 w-full mt-4 md:mt-0 pl-16 md:pl-0">
+                    <a href="#ada-cycle"
+                        class="inline-block bg-pink-100 text-pink-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-pink-200 transition">
+                        次項で詳しく解説 ↓
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deep Dive: ADA Cycle -->
+    <section id="ada-cycle" class="bg-gray-900 py-20 text-white">
+        <div class="max-w-5xl mx-auto px-4 fade-in-up">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">AI時代の新常識 <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500">ADAサイクル</span>
+                </h2>
+                <p class="text-gray-400 text-sm md:text-base">人間が悩む時代は終わりました。分析と計画はAIの仕事です。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Visual -->
+                <div class="relative aspect-square max-w-sm mx-auto w-full">
+                    <!-- Spinning Dashed Ring -->
+                    <div class="absolute inset-4 border-2 border-dashed border-gray-600 rounded-full spin-slow"></div>
+
+                    <!-- Nodes -->
+                    <div class="absolute inset-0">
+                        <div
+                            class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 w-24 h-24 rounded-full flex flex-col items-center justify-center shadow-lg border-4 border-gray-900 z-10">
+                            <span class="text-xs font-bold text-blue-100">AI</span>
+                            <span class="text-lg font-black">Plan</span>
+                            <span class="text-[10px]">(計画)</span>
+                        </div>
+                        <div
+                            class="absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 bg-emerald-500 w-24 h-24 rounded-full flex flex-col items-center justify-center shadow-lg border-4 border-gray-900 z-10">
+                            <span class="text-xs font-bold text-emerald-100">Human</span>
+                            <span class="text-lg font-black">Do</span>
+                            <span class="text-[10px]">(実行)</span>
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-blue-500 w-24 h-24 rounded-full flex flex-col items-center justify-center shadow-lg border-4 border-gray-900 z-10">
+                            <span class="text-xs font-bold text-blue-100">AI</span>
+                            <span class="text-lg font-black">Assess</span>
+                            <span class="text-[10px]">(評価)</span>
+                        </div>
+                        <div
+                            class="absolute top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2 bg-emerald-500 w-24 h-24 rounded-full flex flex-col items-center justify-center shadow-lg border-4 border-gray-900 z-10">
+                            <span class="text-xs font-bold text-emerald-100">Human</span>
+                            <span class="text-lg font-black">Action</span>
+                            <span class="text-[10px]">(改善/選択)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explanation -->
+                <div class="space-y-6">
+                    <div class="bg-gray-800 p-5 rounded-xl border-l-4 border-blue-500">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="bg-blue-500 text-white text-xs px-2 py-0.5 rounded">AIの役割</span>
+                            <h4 class="font-bold">分析と提案 (Assess & Plan)</h4>
+                        </div>
+                        <p class="text-sm text-gray-300">
+                            InstagramのインサイトやYouTubeのアナリティクス画面をスクショしてChatGPTに読み込ませます。<br>
+                            「このデータをもとに評価し、次に取るべき施策を複数提案して」と指示し、改善案を出させます。
+                        </p>
+                    </div>
+
+                    <div class="bg-gray-800 p-5 rounded-xl border-l-4 border-emerald-500">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="bg-emerald-500 text-white text-xs px-2 py-0.5 rounded">人間の役割</span>
+                            <h4 class="font-bold">選択と実行 (Action & Do)</h4>
+                        </div>
+                        <p class="text-sm text-gray-300">
+                            AIが出した複数のアイデアはすべてが正しいとは限りません。<br>
+                            その中から「自分の直感で良いと思ったもの」を選び取り、ひたすら実行に移すことだけに集中します。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Moneitize & Caution -->
+    <section class="max-w-5xl mx-auto px-4 py-20 fade-in-up">
+
+        <div class="mb-16">
+            <h2 class="text-2xl font-bold border-b-2 border-gray-200 pb-2 mb-6">💰 月30万円へのマネタイズ 3本柱</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="font-bold text-lg mb-2 text-blue-700">1. アフィリエイト</h3>
+                    <p class="text-sm text-gray-600">育てたSNSアカウントの世界観に合わせて、Amazonや楽天、ASPの商品を紹介。ストーリー機能でファンに訴求します。</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="font-bold text-lg mb-2 text-blue-700">2. 自社商品販売</h3>
+                    <p class="text-sm text-gray-600">LINEスタンプ、AI生成グッズ、自身のノウハウをまとめたnoteやPDF教材をBASE等で直接販売します。</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="font-bold text-lg mb-2 text-blue-700">3. スキル・代行販売</h3>
+                    <p class="text-sm text-gray-600">身につけた「AIを使ったSNS運用術」自体を、クラウドワークス等で企業向けの運用代行として受注します。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-red-50 rounded-2xl p-8 border border-red-100 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-2 h-full bg-red-400"></div>
+            <h2 class="text-xl font-bold text-red-700 mb-4 flex items-center gap-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                    </path>
+                </svg>
+                実践前の重要チェックリスト (著作権・規約)
+            </h2>
+            <p class="text-sm text-gray-700 mb-4">レビューでも指摘されている通り、AIに丸投げするだけでは失敗のコストが跳ね上がります。以下のルールを必ず守りましょう。</p>
+            <ul class="space-y-3 text-sm text-gray-700">
+                <li class="flex items-start gap-2">
+                    <span class="text-red-500 font-bold">×</span>
+                    <span>既存のキャラクター（アニメ等）や著名人に似せた画像を生成して販売するのは権利侵害のリスク大。絶対NG。</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="text-red-500 font-bold">×</span>
+                    <span>AIが作った文章をそのまま投稿しない。必ず「自分の経験、失敗談、人間ならではの感想」を加えて差別化・権利保全する。</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="text-red-500 font-bold">！</span>
+                    <span>SNS各社（Meta, YouTube等）の「AI生成コンテンツのラベリング（明記）規約」を確認し、誠実に運用する。</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-200 py-10 mt-10">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">書籍情報</h2>
+            <p class="text-sm text-gray-600 mb-2">『2ヶ月で月30万円を実現する 超初心者でも稼げるAI活用法』</p>
+            <p class="text-sm text-gray-500 mb-6">著者: あべ むつき / 出版社: KADOKAWA / 価格: 1,980円(税込)</p>
+
+            <p class="text-xs text-gray-400 mt-8">
+                ※この図解は書籍の内容および関連レビュー、要約データをもとに学習目的に作成されたインフォグラフィックです。
+            </p>
+        </div>
+    </footer>
+
+    <!-- スクロールアニメーション用スクリプト -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-up').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+
+</html>
