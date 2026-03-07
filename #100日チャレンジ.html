@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図解：＃100日チャレンジで人生が変わった話</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb', // Blue
+                        secondary: '#f59e0b', // Amber
+                        accent: '#10b981', // Emerald
+                        dark: '#1e293b',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-color: #f8fafc;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* タイムライン用の線 */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: linear-gradient(to bottom, #3b82f6, #10b981);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line::before {
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 antialiased">
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-12">
+        <div class="absolute inset-0 z-0 bg-gradient-to-br from-blue-50/50 to-emerald-50/50"></div>
+
+        <div class="container mx-auto px-4 z-10 relative">
+            <div class="max-w-4xl mx-auto text-center">
+                <div
+                    class="inline-block px-4 py-2 bg-blue-100 text-primary font-bold rounded-full mb-6 animate-float shadow-sm border border-blue-200">
+                    📚 書籍図解：大塚あみ 著
+                </div>
+                <h1 class="text-4xl md:text-6xl font-black text-dark mb-6 leading-tight tracking-tight">
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">＃100日チャレンジ</span><br>
+                    <span class="text-3xl md:text-5xl">毎日連続100本アプリを作ったら<br class="hidden md:block">人生が変わった</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-600 mb-10 font-medium">
+                    「サボりたい」文系大学生が、<br class="md:hidden">ChatGPTと出会い、<br>
+                    100日で凄腕エンジニアになるまでの全記録
+                </p>
+                <a href="#prologue"
+                    class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary text-white hover:bg-blue-700 transition-colors shadow-lg animate-bounce">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- 装飾アイコン -->
+        <div class="absolute top-20 left-10 text-6xl opacity-20 animate-float" style="animation-delay: 0.5s;">📱</div>
+        <div class="absolute bottom-40 right-10 text-6xl opacity-20 animate-float" style="animation-delay: 1.5s;">🤖
+        </div>
+        <div class="absolute top-40 right-20 text-6xl opacity-20 animate-float" style="animation-delay: 1s;">💻</div>
+    </header>
+
+    <!-- Prologue: 事の発端 -->
+    <section id="prologue" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-primary mb-2">01. 事の発端</h2>
+                <p class="text-slate-500">すべては「不純な動機」から始まった</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center gap-8 relative">
+                    <!-- 矢印線 (PC) -->
+                    <div
+                        class="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-slate-200 -z-10 transform -translate-y-1/2">
+                    </div>
+
+                    <!-- Step 1 -->
+                    <div class="glass-card flex-1 p-6 rounded-2xl text-center reveal w-full md:w-auto relative">
+                        <div
+                            class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 border-2 border-slate-300">
+                            🥱</div>
+                        <h3 class="font-bold text-lg mb-2">怠け者の文系学生</h3>
+                        <p class="text-sm text-slate-600">大学4年の春。「課題をサボりたい」「楽をしたい」という理由でChatGPTに手を出した。</p>
+                    </div>
+
+                    <div class="text-slate-400 rotate-90 md:rotate-0 reveal">➔</div>
+
+                    <!-- Step 2 -->
+                    <div
+                        class="glass-card flex-1 p-6 rounded-2xl text-center border-t-4 border-t-primary reveal w-full md:w-auto relative shadow-md">
+                        <div
+                            class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 border-2 border-primary">
+                            🤖</div>
+                        <h3 class="font-bold text-lg mb-2">ChatGPTで内職</h3>
+                        <p class="text-sm text-slate-600">授業中にAIにコードを書かせて「オセロ」を作ったら、数分で完成して衝撃を受ける。</p>
+                    </div>
+
+                    <div class="text-slate-400 rotate-90 md:rotate-0 reveal">➔</div>
+
+                    <!-- Step 3 -->
+                    <div
+                        class="glass-card flex-1 p-6 rounded-2xl text-center border-t-4 border-t-secondary reveal w-full md:w-auto relative shadow-md">
+                        <div
+                            class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 border-2 border-secondary">
+                            ✨</div>
+                        <h3 class="font-bold text-lg mb-2">先生にバレる…が!?</h3>
+                        <p class="text-sm text-slate-600">怒られると思いきや「面白い！学会で発表してみなさい」とまさかの大絶賛。</p>
+                    </div>
+                </div>
+
+                <div class="mt-12 bg-blue-50 rounded-2xl p-6 text-center reveal border border-blue-100">
+                    <p class="text-lg font-bold text-slate-700">「もっと実力をつけたい！」という焦りから、無謀な挑戦が幕を開ける。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Challenge Rules -->
+    <section class="py-20 bg-slate-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-secondary mb-2">02. 「＃100日チャレンジ」のルール</h2>
+                <p class="text-slate-300">過酷な環境を自ら作り出し、強制的に成長する</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div
+                    class="bg-slate-700 p-8 rounded-2xl reveal hover:-translate-y-2 transition-transform border border-slate-600">
+                    <div class="text-5xl mb-6">🗓️</div>
+                    <h3 class="text-xl font-bold mb-4">1. 毎日1本アプリを作る</h3>
+                    <p class="text-slate-300">どんなに忙しくても、体調が悪くても（牡蠣にあたっても）、毎日必ず新しいアプリを開発する。</p>
+                </div>
+                <div class="bg-slate-700 p-8 rounded-2xl reveal hover:-translate-y-2 transition-transform border border-slate-600"
+                    style="transition-delay: 100ms;">
+                    <div class="text-5xl mb-6">📢</div>
+                    <h3 class="text-xl font-bold mb-4">2. X（旧Twitter）に公開</h3>
+                    <p class="text-slate-300">完璧じゃなくても、60点の出来でも毎日投稿。他人の目を利用して「やめられない環境」を作る。</p>
+                </div>
+                <div class="bg-slate-700 p-8 rounded-2xl reveal hover:-translate-y-2 transition-transform border border-slate-600"
+                    style="transition-delay: 200ms;">
+                    <div class="text-5xl mb-6">🧠</div>
+                    <h3 class="text-xl font-bold mb-4">3. AIを相棒にする</h3>
+                    <p class="text-slate-300">ChatGPTをフル活用。ただし「丸投げ」ではなく、対話しながら構造を理解し、共に作り上げる。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Paradigm Shift (Before vs After) -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-accent mb-2">03. AI時代の新しい「学び方」</h2>
+                <p class="text-slate-500">従来のプログラミング学習と何が違うのか？</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-8">
+                <!-- Before -->
+                <div class="flex-1 border-2 border-slate-200 rounded-2xl p-8 reveal bg-slate-50 opacity-80">
+                    <div class="inline-block bg-slate-200 text-slate-600 font-bold px-3 py-1 rounded-full text-sm mb-4">
+                        従来（Before）</div>
+                    <h3 class="text-xl font-bold mb-6">知識先行型（フォワード・ラーニング）</h3>
+                    <ol class="space-y-4 relative">
+                        <li class="flex items-start">
+                            <span
+                                class="flex-shrink-0 w-8 h-8 rounded-full bg-slate-300 flex items-center justify-center font-bold text-white mr-3">1</span>
+                            <div>
+                                <p class="font-bold">基礎文法をひたすら覚える</p>
+                                <p class="text-sm text-slate-500">退屈な教科書。「変数とは？」「ループとは？」</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span
+                                class="flex-shrink-0 w-8 h-8 rounded-full bg-slate-300 flex items-center justify-center font-bold text-white mr-3">2</span>
+                            <div>
+                                <p class="font-bold">"Hello World" を表示</p>
+                                <p class="text-sm text-slate-500">達成感が少なく、何に使えるか分からない。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span
+                                class="flex-shrink-0 w-8 h-8 rounded-full bg-slate-300 flex items-center justify-center font-bold text-white mr-3">3</span>
+                            <div>
+                                <p class="font-bold text-red-500">作りたい物に辿り着けず挫折 💀</p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- After -->
+                <div class="flex-1 border-2 border-accent rounded-2xl p-8 reveal bg-emerald-50 relative shadow-lg">
+                    <div
+                        class="absolute -top-3 -right-3 bg-accent text-white font-bold px-4 py-2 rounded-full transform rotate-12 shadow-md">
+                        革命的！</div>
+                    <div class="inline-block bg-accent text-white font-bold px-3 py-1 rounded-full text-sm mb-4">
+                        本書のやり方（After）</div>
+                    <h3 class="text-xl font-bold mb-6">実践逆算型（バックワード・ラーニング）</h3>
+                    <ol class="space-y-4 relative">
+                        <li class="flex items-start">
+                            <span
+                                class="flex-shrink-0 w-8 h-8 rounded-full bg-accent flex items-center justify-center font-bold text-white mr-3">1</span>
+                            <div>
+                                <p class="font-bold">「作りたいもの」を先に決める</p>
+                                <p class="text-sm text-slate-600">例：「冷蔵庫の余り物レシピアプリを作りたい！」</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span
+                                class="flex-shrink-0 w-8 h-8 rounded-full bg-accent flex items-center justify-center font-bold text-white mr-3">2</span>
+                            <div>
+                                <p class="font-bold">AIに土台を書かせ、動かす</p>
+                                <p class="text-sm text-slate-600">すぐに形になるから、とにかく楽しい。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span
+                                class="flex-shrink-0 w-8 h-8 rounded-full bg-accent flex items-center justify-center font-bold text-white mr-3">3</span>
+                            <div>
+                                <p class="font-bold">バグ修正の過程で「必要」に迫られ学ぶ</p>
+                                <p class="text-sm text-slate-600">直すためにAIに質問し、構造（クラス等）を理解する。熱中した結果、スキルが定着！ 🚀</p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap: 成長の軌跡 -->
+    <section class="py-20 bg-slate-50 relative overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-primary mb-2">04. 100日間の成長ロードマップ</h2>
+                <p class="text-slate-500">単なる「AIまかせ」から「AIを使いこなす設計者」へ</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto relative timeline-line">
+
+                <!-- Phase 1 -->
+                <div class="relative flex flex-col md:flex-row items-center justify-between mb-16 reveal group">
+                    <div class="hidden md:block w-5/12 text-right pr-8">
+                        <h3 class="text-2xl font-black text-slate-300 group-hover:text-primary transition-colors">Day
+                            1〜23</h3>
+                    </div>
+                    <div
+                        class="absolute left-[20px] md:left-1/2 w-10 h-10 bg-white border-4 border-primary rounded-full transform -translate-x-1/2 flex items-center justify-center z-10 shadow-md">
+                        <span class="w-3 h-3 bg-primary rounded-full"></span>
+                    </div>
+                    <div class="w-full pl-[60px] md:pl-0 md:w-5/12 text-left md:pl-8">
+                        <div class="glass-card p-6 rounded-2xl shadow-sm border-l-4 border-l-primary">
+                            <h4 class="font-bold text-lg mb-2 text-primary">現実の洗礼（バイブコーディング期）</h4>
+                            <p class="text-sm text-slate-600 mb-3">AIが出すコードをコピペするだけ。とりあえず動くが、エラーが出ると原因が分からず何時間も格闘。</p>
+                            <div class="bg-slate-100 p-2 rounded text-xs text-slate-500 font-mono">「直して」とAIに泣きつく日々。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="relative flex flex-col md:flex-row items-center justify-between mb-16 reveal group">
+                    <div
+                        class="w-full pl-[60px] md:pl-0 md:w-5/12 text-left md:text-right pr-0 md:pr-8 mb-4 md:mb-0 order-2 md:order-1">
+                        <div
+                            class="glass-card p-6 rounded-2xl shadow-sm border-l-4 md:border-l-0 md:border-r-4 border-secondary">
+                            <h4 class="font-bold text-lg mb-2 text-secondary">構造化への目覚め</h4>
+                            <p class="text-sm text-slate-600 mb-3">限界を感じ、プログラムの構造（クラス、メソッド）やアルゴリズム、数学の重要性に気づく。</p>
+                            <div class="bg-amber-50 p-2 rounded text-xs text-amber-700 font-bold">気づき：「AIは私を超えられない」
+                            </div>
+                            <p class="text-xs text-slate-500 mt-2">指示する側の設計力・理解力がないと、良いアプリは作れないと悟る。</p>
+                        </div>
+                    </div>
+                    <div
+                        class="absolute left-[20px] md:left-1/2 w-10 h-10 bg-white border-4 border-secondary rounded-full transform -translate-x-1/2 flex items-center justify-center z-10 shadow-md order-1 md:order-2">
+                        <span class="w-3 h-3 bg-secondary rounded-full"></span>
+                    </div>
+                    <div class="hidden md:block w-5/12 text-left pl-8 order-3">
+                        <h3 class="text-2xl font-black text-slate-300 group-hover:text-secondary transition-colors">Day
+                            24〜50</h3>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="relative flex flex-col md:flex-row items-center justify-between mb-16 reveal group">
+                    <div class="hidden md:block w-5/12 text-right pr-8">
+                        <h3 class="text-2xl font-black text-slate-300 group-hover:text-accent transition-colors">Day
+                            51〜100</h3>
+                    </div>
+                    <div
+                        class="absolute left-[20px] md:left-1/2 w-10 h-10 bg-white border-4 border-accent rounded-full transform -translate-x-1/2 flex items-center justify-center z-10 shadow-md">
+                        <span class="w-3 h-3 bg-accent rounded-full animate-pulse-slow"></span>
+                    </div>
+                    <div class="w-full pl-[60px] md:pl-0 md:w-5/12 text-left md:pl-8">
+                        <div
+                            class="glass-card p-6 rounded-2xl shadow-sm border-l-4 border-l-accent relative overflow-hidden">
+                            <div class="absolute -right-4 -bottom-4 text-6xl opacity-10">👑</div>
+                            <h4 class="font-bold text-lg mb-2 text-accent">アイデンティティの確立</h4>
+                            <p class="text-sm text-slate-600 mb-3">単なるゲームだけでなく、スクレイピングツールなど実用的なアプリを量産。コードの再利用も身につく。</p>
+                            <div class="bg-emerald-50 p-2 rounded text-xs text-emerald-700">
+                                プログラミング未経験から、AIを使いこなし価値を創造するエンジニアへと完全に脱皮！</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Mindsets -->
+    <section class="py-20 bg-dark text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-white mb-2">05. 人生を変えた5つのマインドセット</h2>
+                <p class="text-slate-400">プログラミング技術以上に重要な「AI時代の思考法」</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+                <!-- Card 1 -->
+                <div
+                    class="bg-slate-800 rounded-2xl p-6 border border-slate-700 hover:border-primary transition-colors reveal">
+                    <div
+                        class="w-12 h-12 bg-primary/20 text-primary rounded-xl flex items-center justify-center text-2xl mb-4">
+                        😌</div>
+                    <h3 class="font-bold text-xl mb-3">「サボる」は才能である</h3>
+                    <p class="text-slate-400 text-sm">「面倒なことをやりたくない」「楽をしたい」という欲求こそが、効率化やイノベーションを生む強力な原動力になる。</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 hover:border-secondary transition-colors reveal"
+                    style="transition-delay: 100ms;">
+                    <div
+                        class="w-12 h-12 bg-secondary/20 text-secondary rounded-xl flex items-center justify-center text-2xl mb-4">
+                        🎭</div>
+                    <h3 class="font-bold text-xl mb-3">Fake it till you make it</h3>
+                    <p class="text-slate-400 text-sm">「成功するまで、成功者のフリをする」。未熟でもハッタリで「やる」と宣言し、後から必死に実力を追いつかせる。</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 hover:border-accent transition-colors reveal"
+                    style="transition-delay: 200ms;">
+                    <div
+                        class="w-12 h-12 bg-accent/20 text-accent rounded-xl flex items-center justify-center text-2xl mb-4">
+                        🔥</div>
+                    <h3 class="font-bold text-xl mb-3">「努力」より「熱狂」</h3>
+                    <p class="text-slate-400 text-sm">努力や根性論は長続きしない。どうやって「楽しくて夢中になれる状態（習慣）」を作るかが継続の鍵。</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div
+                    class="bg-slate-800 rounded-2xl p-6 border border-slate-700 hover:border-purple-400 transition-colors reveal">
+                    <div
+                        class="w-12 h-12 bg-purple-400/20 text-purple-400 rounded-xl flex items-center justify-center text-2xl mb-4">
+                        🤝</div>
+                    <h3 class="font-bold text-xl mb-3">AIは「相棒」である</h3>
+                    <p class="text-slate-400 text-sm">AIは丸投げするツールではない。明確な指示を出し、共に考え、自分の思考を増幅させる「共同創作者」として扱う。</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 hover:border-pink-400 transition-colors reveal"
+                    style="transition-delay: 100ms;">
+                    <div
+                        class="w-12 h-12 bg-pink-400/20 text-pink-400 rounded-xl flex items-center justify-center text-2xl mb-4">
+                        📣</div>
+                    <h3 class="font-bold text-xl mb-3">とりあえず、外に出す</h3>
+                    <p class="text-slate-400 text-sm">恥をかくことを恐れず、60点の出来でも公開する。行動する人・挑戦する人のところにしか、応援やチャンスはやってこない。</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="bg-gradient-to-br from-primary to-accent rounded-2xl p-6 text-white reveal flex flex-col justify-center"
+                    style="transition-delay: 200ms;">
+                    <h3 class="font-black text-2xl mb-2">何を頑張るかは<br>「自分」で決める</h3>
+                    <p class="text-white/80 text-sm">他人が決めた努力は続かない。自分が「これだ」と決めたことに全振りするからこそ、人生は劇的に変わる。</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-3xl mx-auto reveal">
+                <div class="inline-block p-4 bg-yellow-100 rounded-full mb-6">
+                    <svg class="w-12 h-12 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                        </path>
+                    </svg>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-black text-dark mb-6">結果、人生はどう変わったか？</h2>
+
+                <div class="flex flex-wrap justify-center gap-4 mb-10">
+                    <span
+                        class="px-6 py-3 bg-blue-50 text-primary font-bold rounded-full shadow-sm border border-blue-100">🎓
+                        国際学会での論文発表</span>
+                    <span
+                        class="px-6 py-3 bg-emerald-50 text-accent font-bold rounded-full shadow-sm border border-emerald-100">💻
+                        IT企業へエンジニア就職</span>
+                    <span
+                        class="px-6 py-3 bg-amber-50 text-secondary font-bold rounded-full shadow-sm border border-amber-100">📖
+                        書籍の出版（5刷重版!）</span>
+                </div>
+
+                <p class="text-lg text-slate-600 leading-relaxed mb-8">
+                    100日間の挑戦で得た最大の成果は、100個のアプリではありません。<br>
+                    <strong>「AIという知性を使いこなし、自らの意思で世界を変えていける」</strong>という確固たる自信（自己効力感）です。
+                </p>
+
+                <div class="bg-slate-50 border border-slate-200 p-8 rounded-2xl">
+                    <p class="font-bold text-xl text-slate-800 mb-2">次は、あなたの番かもしれません。</p>
+                    <p class="text-sm text-slate-500">動機は不純でもOK。まずは「やりたいこと」をAIに相談してみませんか？</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm">
+        <p>※本ページは書籍『＃100日チャレンジ 毎日連続100本アプリを作ったら人生が変わった』（大塚あみ 著 / 日経BP）の内容をもとに作成した図解コンテンツです。</p>
+    </footer>
+
+    <!-- Scroll Reveal Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // 一度表示されたら監視を解除する場合は以下の行のコメントを外す
+                        // observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
