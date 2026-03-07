@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図解でわかる『こころのチキンスープ』</title>
+
+    <!-- Google Fonts の読み込み -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS の読み込みとカスタマイズ -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        serif: ['"Kiwi Maru"', 'serif'],
+                    },
+                    colors: {
+                        soup: {
+                            50: '#fffbf0',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- カスタムCSS (アニメーション等) -->
+    <style>
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-soft {
+            0% {
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(245, 158, 11, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+            }
+        }
+
+        .animate-pulse-soft {
+            animation: pulse-soft 2s infinite;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #fffbf0;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #fbbf24;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+    </style>
+</head>
+
+<body class="bg-soup-50 text-stone-800 font-sans antialiased leading-relaxed">
+
+    <!-- ナビゲーションバー -->
+    <nav class="bg-white/90 backdrop-blur-md fixed w-full z-50 top-0 border-b border-soup-100 shadow-sm">
+        <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-soup-600 font-serif font-bold text-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M4 10h16a2 2 0 0 1 2 2v.5a8.5 8.5 0 0 1-8.5 8.5h-3A8.5 8.5 0 0 1 2 12.5V12a2 2 0 0 1 2-2Z" />
+                    <path d="M12 10V5" />
+                    <path d="M8 10V6" />
+                    <path d="M16 10V6" />
+                </svg>
+                こころのチキンスープ
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-bold text-stone-500">
+                <a href="#stories" class="hover:text-soup-600 flex items-center gap-1 transition"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                    </svg> 心温まる実話</a>
+                <a href="#principles" class="hover:text-soup-600 flex items-center gap-1 transition"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon
+                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg> 本質的な法則</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ヒーローセクション -->
+    <header class="pt-32 pb-20 px-4 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-soup-100/60 to-soup-50/20 -z-10"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div
+                class="w-24 h-24 mx-auto bg-soup-100 rounded-full flex items-center justify-center mb-6 shadow-inner animate-float">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                    stroke="#d97706" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M4 10h16a2 2 0 0 1 2 2v.5a8.5 8.5 0 0 1-8.5 8.5h-3A8.5 8.5 0 0 1 2 12.5V12a2 2 0 0 1 2-2Z" />
+                    <path d="M12 10V4" />
+                    <path d="M8 10V6" />
+                    <path d="M16 10V6" />
+                </svg>
+            </div>
+
+            <h1 class="text-4xl md:text-5xl font-serif font-bold text-soup-900 mb-6 leading-tight">
+                心を癒やす<span class="text-soup-600">「実話」</span>と<br>
+                人生を変える<span class="text-soup-600">「法則」</span>
+            </h1>
+            <p class="text-lg md:text-xl text-stone-600 mb-10 max-w-2xl mx-auto font-medium">
+                風邪を引いた時に飲むお母さんのチキンスープのように、<br>
+                傷ついた魂を癒やし、再び立ち上がる力を与えてくれる哲学を図解します。
+            </p>
+        </div>
+    </header>
+
+    <!-- PART 1: 心温まる実話 -->
+    <section id="stories" class="py-20 px-4 bg-soup-50">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <span
+                    class="inline-block py-1 px-3 rounded-full bg-soup-200 text-soup-700 font-bold text-sm tracking-widest mb-4">PART
+                    1</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-stone-800 mb-4">心温まる3つの実話</h2>
+                <p class="text-stone-600 max-w-2xl mx-auto">
+                    本書の根幹をなすのは、理屈ではなく「感情に直接語りかける」ストーリーの力です。私たちの心に眠る共感や優しさを呼び起こす、代表的な3つの物語を紹介します。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Story 1 -->
+                <div
+                    class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-orange-400 group flex flex-col h-full">
+                    <div
+                        class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-6 text-orange-600 group-hover:-translate-y-2 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.7.28 1.53 1 2 1.1-.32 2.52.48 3.5 1.5 1.07 1.12 1.4 2.5 1.5 3.5.07.7.3 1.5 1 2 .4.28 1.5.28 2 0 1.25-.7 1.7-2.73 1.5-4.5-.2-1.78-.5-3.5-1.5-4.5z" />
+                            <path
+                                d="M14 5.172C14 3.782 15.577 2.679 17.5 3c2.823.47 4.113 6.006 4 7-.08.7-.28 1.53-1 2-1.1-.32-2.52.48-3.5 1.5-1.07 1.12-1.4 2.5-1.5 3.5-.07.7-.3 1.5-1 2-.4.28-1.5.28-2 0-1.25-.7-1.7-2.73-1.5-4.5.2-1.78.5-3.5 1.5-4.5z" />
+                            <path
+                                d="M12 14c-.66-1.34-1.66-2.34-3-3-1.34.66-2.34 1.66-3 3 .66 1.34 1.66 2.34 3 3 1.34-.66 2.34-1.66 3-3z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-800 mb-2">子犬売ります<br><span
+                            class="text-sm font-normal text-stone-500">Puppies for Sale</span></h3>
+                    <div class="bg-orange-50 p-4 rounded-xl mb-4 flex-grow">
+                        <p class="text-stone-700 text-sm leading-relaxed">
+                            足を引きずる子犬を買いにきた少年。店主が「その犬は走れないからお金は要らない」と言うと、少年は自らのズボンの裾をめくり、金属の装具がついた自分の足を見せました。<br><strong>「僕も走れない。この子には自分をわかってくれる人が必要なんだ」</strong>
+                        </p>
+                    </div>
+                    <div class="border-t border-stone-100 pt-4">
+                        <p class="text-orange-700 font-bold text-sm">💡 完璧さよりも「共感」</p>
+                        <p class="text-stone-500 text-xs mt-1">人は完全な存在を求めているわけではありません。寄り添い、理解し合える存在こそが魂を救います。</p>
+                    </div>
+                </div>
+
+                <!-- Story 2 -->
+                <div
+                    class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-blue-400 group flex flex-col h-full">
+                    <div
+                        class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 text-blue-600 group-hover:-translate-y-2 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+                            <path
+                                d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
+                            <path d="m21 3 1 11h-2" />
+                            <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+                            <path d="M3 4h8S3 11 3 16" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-800 mb-2">ヒトデの物語<br><span
+                            class="text-sm font-normal text-stone-500">The Starfish Story</span></h3>
+                    <div class="bg-blue-50 p-4 rounded-xl mb-4 flex-grow">
+                        <p class="text-stone-700 text-sm leading-relaxed">
+                            浜辺に無数に打ち上げられたヒトデを、一つずつ海へ投げ返す少年。通りすがりの男が「全部救うなんて無理だ、意味がない」と笑います。少年はまた一匹投げ返し、言いました。<br><strong>「でも、今投げたこのヒトデにとっては、意味があることなんだ」</strong>
+                        </p>
+                    </div>
+                    <div class="border-t border-stone-100 pt-4">
+                        <p class="text-blue-700 font-bold text-sm">💡 小さな行動の「影響力」</p>
+                        <p class="text-stone-500 text-xs mt-1">すべてを解決できなくても、目の前の一人、一つの小さな親切が、確実に誰かの世界を変えます。</p>
+                    </div>
+                </div>
+
+                <!-- Story 3 -->
+                <div
+                    class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-yellow-400 group flex flex-col h-full">
+                    <div
+                        class="w-14 h-14 bg-yellow-100 rounded-2xl flex items-center justify-center mb-6 text-yellow-600 group-hover:-translate-y-2 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="8" />
+                            <line x1="12" y1="2" x2="12" y2="4" />
+                            <line x1="12" y1="20" x2="12" y2="22" />
+                            <line x1="2" y1="12" x2="4" y2="12" />
+                            <line x1="20" y1="12" x2="22" y2="12" />
+                            <line x1="4.93" y1="4.93" x2="6.34" y2="6.34" />
+                            <line x1="17.66" y1="17.66" x2="19.07" y2="19.07" />
+                            <line x1="4.93" y1="19.07" x2="6.34" y2="17.66" />
+                            <line x1="17.66" y1="4.93" x2="19.07" y2="6.34" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-800 mb-2">金の仏像<br><span
+                            class="text-sm font-normal text-stone-500">The Golden Buddha</span></h3>
+                    <div class="bg-yellow-50 p-4 rounded-xl mb-4 flex-grow">
+                        <p class="text-stone-700 text-sm leading-relaxed">
+                            タイのお寺にある巨大な泥の仏像。ある日、ひび割れた泥の隙間から眩い光が漏れているのに気づきます。泥をはがすと、中から純金でできた見事な仏像が現れました。過去の戦乱から金を守るために、泥で覆い隠されていたのです。
+                        </p>
+                    </div>
+                    <div class="border-t border-stone-100 pt-4">
+                        <p class="text-yellow-700 font-bold text-sm">💡 内に眠る「本来の価値」</p>
+                        <p class="text-stone-500 text-xs mt-1">誰もが心の中に「純金」を持っています。社会の泥や思い込みに覆われていても、その輝きは失われません。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PART 2: 本質的な法則 -->
+    <section id="principles" class="py-20 px-4 bg-white border-t border-soup-100">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <span
+                    class="inline-block py-1 px-3 rounded-full bg-soup-200 text-soup-700 font-bold text-sm tracking-widest mb-4">PART
+                    2</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-stone-800 mb-4">本質的な2つの成功法則</h2>
+                <p class="text-stone-600 max-w-2xl mx-auto">
+                    心を癒やすだけでなく、現実を変え、目標を達成するためのロジカルな哲学。著者自身が144回の出版拒絶を乗り越え、5億部のベストセラーを生み出した「不変のルール」です。
+                </p>
+            </div>
+
+            <!-- 法則1: E+R=O -->
+            <div class="mb-24">
+                <h3 class="text-2xl font-bold text-center text-stone-800 mb-2">法則1：人生を100%コントロールする方程式</h3>
+                <p class="text-center text-stone-500 mb-10 font-bold tracking-widest text-lg">E + R = O</p>
+
+                <div
+                    class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 relative z-10 bg-soup-50 p-8 md:p-12 rounded-3xl">
+
+                    <!-- [E] Event -->
+                    <div
+                        class="bg-white p-6 rounded-2xl shadow-sm w-full md:w-1/3 text-center border-t-4 border-stone-300">
+                        <div class="w-14 h-14 bg-stone-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-black text-stone-500">E</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-stone-700 mb-1">Event <span
+                                class="text-xs font-normal text-stone-500">(出来事)</span></h4>
+                        <p class="text-sm text-stone-600 mt-2">
+                            不況、病気、他人の評価など<br>
+                            <span class="text-red-500 font-bold">変えられないもの</span>
+                        </p>
+                    </div>
+
+                    <!-- Plus Icon -->
+                    <div class="text-3xl font-black text-stone-300 rotate-90 md:rotate-0">＋</div>
+
+                    <!-- [R] Response (Highlighted) -->
+                    <div
+                        class="bg-gradient-to-br from-soup-400 to-orange-500 p-8 rounded-2xl shadow-xl w-full md:w-1/3 text-center transform scale-105 z-20 relative animate-pulse-soft">
+                        <div
+                            class="absolute -top-3 -right-3 bg-stone-900 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md transform rotate-12">
+                            コントロール可能！
+                        </div>
+                        <div
+                            class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-white/50">
+                            <span class="text-3xl font-black text-white">R</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-1">Response <span
+                                class="text-sm font-normal text-orange-100">(反応)</span></h4>
+                        <p class="text-sm text-white mt-2 font-medium">
+                            出来事にどう考え、どう行動するか<br>
+                            <span
+                                class="bg-white/20 px-2 py-0.5 rounded text-white mt-1 inline-block">100%自分で選択できる</span>
+                        </p>
+                    </div>
+
+                    <!-- Equals Icon -->
+                    <div class="text-3xl font-black text-stone-300 rotate-90 md:rotate-0">＝</div>
+
+                    <!-- [O] Outcome -->
+                    <div
+                        class="bg-white p-6 rounded-2xl shadow-sm w-full md:w-1/3 text-center border-t-4 border-green-400">
+                        <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-black text-green-600">O</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-stone-700 mb-1">Outcome <span
+                                class="text-xs font-normal text-green-600">(結果)</span></h4>
+                        <p class="text-sm text-stone-600 mt-2">
+                            R（反応）を変えることで<br>
+                            <span class="text-green-600 font-bold">未来は全く違ったものになる</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 法則2: Rule of 5 -->
+            <div>
+                <h3 class="text-2xl font-bold text-center text-stone-800 mb-2">法則2：不可能を可能にする行動の法則</h3>
+                <p class="text-center text-stone-500 mb-10 font-bold tracking-widest text-lg">Rule of 5</p>
+
+                <div class="flex flex-col md:flex-row gap-8">
+                    <!-- 144回の拒絶エピソード -->
+                    <div class="w-full md:w-1/2 bg-stone-50 p-8 rounded-3xl border border-stone-200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="bg-red-100 p-2 rounded-lg text-red-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                                    <path d="M12 9v4" />
+                                    <path d="M12 17h.01" />
+                                </svg>
+                            </div>
+                            <h4 class="font-bold text-xl text-stone-800">144回の出版拒絶</h4>
+                        </div>
+                        <p class="text-stone-600 text-sm leading-relaxed mb-6">
+                            当初、「短編集は売れない」とニューヨークの出版社144社すべてから出版を断られました（巨大なE＝出来事）。しかし、著者たちは諦めたり不平を言ったりするのではなく、反応（R）を変えました。
+                        </p>
+                        <div class="bg-white p-4 rounded-xl border-l-4 border-soup-400 shadow-sm">
+                            <p class="font-bold text-stone-800 text-sm mb-1">劇的なアプローチ（Rの変更）</p>
+                            <p class="text-stone-600 text-xs">
+                                「どうすればイエスと言ってくれますか？」と出版社に尋ね、「2万部売れる保証があれば」という条件を引き出し、実際に2万人の購入誓約書を集めて出版を勝ち取りました。</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule of 5 の解説 -->
+                    <div
+                        class="w-full md:w-1/2 bg-soup-600 p-8 rounded-3xl text-white shadow-lg relative overflow-hidden">
+                        <!-- 背景の装飾アイコン -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                            class="absolute -right-4 -bottom-4 opacity-10">
+                            <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+                            <path d="M15 18H9" />
+                            <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
+                            <circle cx="17" cy="18" r="2" />
+                            <circle cx="7" cy="18" r="2" />
+                        </svg>
+
+                        <div class="flex items-center gap-3 mb-4 relative z-10">
+                            <div class="bg-white/20 p-2 rounded-lg text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M13.23 6.77a2 2 0 0 0-2.83 0L3.13 14.04a2.5 2.5 0 0 0-.64 2.6l1.24 3.73a.5.5 0 0 0 .63.34l3.73-1.24a2.5 2.5 0 0 0 1.5-1.54L17.23 9.6a2 2 0 0 0 0-2.83Z" />
+                                    <path d="m14 10 3 3" />
+                                    <path d="M6 14l3 3" />
+                                    <path d="m2 22 3.5-3.5" />
+                                </svg>
+                            </div>
+                            <h4 class="font-bold text-xl">「Rule of 5」の徹底</h4>
+                        </div>
+                        <p class="text-soup-100 text-sm leading-relaxed mb-6 relative z-10">
+                            出版後、彼らは「どんなに大きな木でも、毎日鋭い斧で5回叩き続ければ必ず倒れる」という教えに従い、<strong>目標達成のための具体的な行動を毎日必ず5つ</strong>実行しました。
+                        </p>
+
+                        <ul class="space-y-3 relative z-10 text-sm">
+                            <li class="flex items-start gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"
+                                    stroke-linejoin="round" class="mt-0.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                                <span>ラジオ局に本を送る</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"
+                                    stroke-linejoin="round" class="mt-0.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                                <span>書評家に電話をかける</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"
+                                    stroke-linejoin="round" class="mt-0.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                                <span>セミナーで販売する</span>
+                            </li>
+                        </ul>
+                        <p class="mt-6 text-xs text-soup-200 font-bold bg-white/10 p-3 rounded-lg relative z-10">
+                            結果：1年半で130万部、のちに世界で5億部を超える大ベストセラーへと成長しました。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-stone-900 text-stone-300 py-16 px-4 text-center">
+        <div class="max-w-3xl mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                class="mx-auto mb-6 text-soup-500 opacity-50">
+                <path d="M4 10h16a2 2 0 0 1 2 2v.5a8.5 8.5 0 0 1-8.5 8.5h-3A8.5 8.5 0 0 1 2 12.5V12a2 2 0 0 1 2-2Z" />
+                <path d="M12 10V5" />
+                <path d="M8 10V6" />
+                <path d="M16 10V6" />
+            </svg>
+
+            <p class="font-serif text-xl md:text-2xl mb-8 leading-relaxed text-white">
+                「生徒たちに教えることは何もない。<br>
+                なぜなら、彼らは『自分自身』を学ぶしかないからだ。<br>
+                そして、自分が誰であるかを知るには、世界中の物語が必要なのだ」
+            </p>
+            <p class="text-sm text-stone-500 mb-12">― ジョン・シュラッター (作中より)</p>
+
+            <div class="border-t border-stone-800 pt-8 text-xs text-stone-500">
+                <p>このページは『こころのチキンスープ』の魅力を図解で伝えるために作成されたインフォグラフィックです。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- スムーススクロール用JS -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
