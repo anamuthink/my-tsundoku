@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「具体⇔抽象」トレーニング 図解ガイド</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        bgBase: '#fcfaf5', // 温かみのあるオフホワイト
+                        textBase: '#4a443c', // 柔らかいダークブラウン
+                        textMuted: '#7c7365', // ミュートテキスト
+                        abstract: {
+                            light: '#fcf3eb',
+                            DEFAULT: '#e69a59', // テラコッタ/キャメル（抽象）
+                            dark: '#c77d3f'
+                        },
+                        concrete: {
+                            light: '#eef5f5',
+                            DEFAULT: '#6ba5a5', // くすみティール（具体）
+                            dark: '#518585'
+                        },
+                        accent: {
+                            light: '#f5efe6', // ベージュ
+                            DEFAULT: '#d1c7b8'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fcfaf5;
+            color: #4a443c;
+            line-height: 1.7;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-100 {
+            animation-delay: 100ms;
+        }
+
+        .delay-200 {
+            animation-delay: 200ms;
+        }
+
+        .delay-300 {
+            animation-delay: 300ms;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-abstract selection:text-white">
+
+    <!-- Header -->
+    <header class="pt-20 pb-16 px-6 text-center max-w-4xl mx-auto fade-in-up">
+        <span class="text-sm font-bold tracking-wider text-abstract uppercase mb-4 block">Book Summary & Visual
+            Guide</span>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight text-textBase">
+            「具体⇔抽象」トレーニング<br>
+            <span class="text-2xl md:text-3xl font-normal text-textMuted mt-4 block">思考力が飛躍的にアップする仕組み</span>
+        </h1>
+        <p class="text-lg md:text-xl text-textMuted max-w-2xl mx-auto">
+            「話が噛み合わない」「応用が利かない」「指示が伝わらない」…<br>
+            その原因は「具体」と「抽象」の行き来ができていないからかもしれません。
+        </p>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 pb-24 space-y-24">
+
+        <!-- SECTION 1: 具体と抽象とは？ -->
+        <section class="fade-in-up delay-100">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-4 relative inline-block">
+                    1. 「具体」と「抽象」の違い
+                    <span class="absolute -bottom-2 left-0 w-full h-1 bg-accent rounded-full"></span>
+                </h2>
+                <p class="text-textMuted">まずは2つの言葉の性質を正しく理解しましょう。「具体＝わかりやすい」「抽象＝わかりにくい」というイメージは誤解です。</p>
+            </div>
+
+            <!-- 比較カード -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- 具体カード -->
+                <div
+                    class="bg-white rounded-2xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-concrete-light relative overflow-hidden group hover:shadow-[0_8px_30px_rgba(107,165,165,0.15)] transition-shadow">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-concrete"></div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div
+                            class="w-12 h-12 rounded-full bg-concrete-light flex items-center justify-center text-concrete">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-concrete-dark">具 体 <span
+                                class="text-sm font-normal text-textMuted ml-2">Concrete</span></h3>
+                    </div>
+                    <ul class="space-y-4 text-textBase">
+                        <li class="flex items-start gap-3">
+                            <span class="text-concrete mt-1">●</span>
+                            <span><strong>目に見える実体</strong>があり、個別に対応する</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-concrete mt-1">●</span>
+                            <span>違いを明確にし、<strong>「How（どうやって）」</strong>を問う</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-concrete mt-1">●</span>
+                            <span>解釈の自由度が低く、誰が見ても同じ（数字や固有名詞）</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-concrete mt-1">●</span>
+                            <span><strong>例：</strong>「サケのおにぎり」「会議を30分短縮する」</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 抽象カード -->
+                <div
+                    class="bg-white rounded-2xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-abstract-light relative overflow-hidden group hover:shadow-[0_8px_30px_rgba(230,154,89,0.15)] transition-shadow">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-abstract"></div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div
+                            class="w-12 h-12 rounded-full bg-abstract-light flex items-center justify-center text-abstract">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-abstract-dark">抽 象 <span
+                                class="text-sm font-normal text-textMuted ml-2">Abstract</span></h3>
+                    </div>
+                    <ul class="space-y-4 text-textBase">
+                        <li class="flex items-start gap-3">
+                            <span class="text-abstract mt-1">●</span>
+                            <span>複数の事象から<strong>共通点を抜き出す</strong>（分類・線引き）</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-abstract mt-1">●</span>
+                            <span>関係性や構造を見抜き、<strong>「Why（なぜ）」</strong>を問う</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-abstract mt-1">●</span>
+                            <span>解釈の自由度が高く、別の分野へ<strong>応用が利く</strong></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-abstract mt-1">●</span>
+                            <span><strong>例：</strong>「食べ物」「無駄をなくす」</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: ピラミッドとマジックミラー -->
+        <section class="fade-in-up delay-200">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-4 relative inline-block">
+                    2. 知的発展のピラミッド構造
+                    <span class="absolute -bottom-2 left-0 w-full h-1 bg-accent rounded-full"></span>
+                </h2>
+                <p class="text-textMuted">人類の知は「横軸（知識の量）」と「縦軸（抽象度）」で発展してきました。</p>
+            </div>
+
+            <div class="bg-white rounded-3xl p-8 md:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-accent">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+
+                    <!-- ピラミッド図解 (配置修正済) -->
+                    <div class="w-full md:w-1/2 flex justify-center">
+                        <div class="relative w-full max-w-[340px] flex items-stretch">
+                            <!-- ピラミッド本体 -->
+                            <div class="flex-1 flex flex-col items-center">
+                                <!-- 上層（抽象） -->
+                                <div class="w-1/3 bg-abstract text-white text-center py-4 rounded-t-lg shadow-sm">
+                                    <span class="font-bold tracking-widest">抽象</span><br>
+                                    <span class="text-[10px] md:text-xs opacity-90">概念・法則</span>
+                                </div>
+
+                                <!-- マジックミラーの線 -->
+                                <div
+                                    class="w-full h-px my-3 border-t-2 border-dashed border-accent-DEFAULT relative flex justify-center z-10">
+                                    <div class="absolute -top-3 text-xs font-bold text-textMuted bg-white px-2">マジックミラー
+                                    </div>
+                                </div>
+
+                                <!-- 中層 -->
+                                <div class="w-2/3 bg-accent-DEFAULT text-textBase text-center py-4 rounded shadow-sm">
+                                    <span class="font-bold tracking-widest">中抽象</span><br>
+                                    <span class="text-[10px] md:text-xs opacity-80">パターン・分類</span>
+                                </div>
+
+                                <div class="h-2 w-full"></div>
+
+                                <!-- 下層（具体） -->
+                                <div class="w-full bg-concrete text-white text-center py-4 rounded-b-lg shadow-sm">
+                                    <span class="font-bold tracking-widest">具体</span><br>
+                                    <span class="text-[10px] md:text-xs opacity-90">個別事象・実体</span>
+                                </div>
+
+                                <!-- 軸ラベル -->
+                                <div
+                                    class="mt-4 flex justify-between text-xs md:text-sm text-textMuted font-medium w-full px-2 border-t border-accent pt-2">
+                                    <span>← 知識の量 (横軸) →</span>
+                                </div>
+                            </div>
+
+                            <!-- 右側ラベル (はみ出し防止のためグリッド内に配置) -->
+                            <div class="w-20 ml-2 md:ml-4 flex flex-col relative pt-4 pb-12">
+                                <div
+                                    class="text-abstract-dark flex items-center gap-1 text-xs md:text-sm font-bold mt-2">
+                                    <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                        </path>
+                                    </svg>
+                                    見える
+                                </div>
+                                <div
+                                    class="text-concrete-dark flex items-center gap-1 text-xs md:text-sm font-bold opacity-50 absolute bottom-16">
+                                    <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21">
+                                        </path>
+                                    </svg>
+                                    見えない
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 解説 -->
+                    <div class="w-full md:w-1/2 space-y-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-abstract-dark mb-2 flex items-center gap-2">
+                                <span
+                                    class="bg-abstract text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-sm">1</span>
+                                上にいくほど「一つにまとまる」
+                            </h3>
+                            <p class="text-textMuted text-sm">
+                                具体の世界（下）では事象はバラバラで数が多いですが、抽象の世界（上）へ行くほど、共通項が括られて情報が一つに収束していきます。</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-textBase mb-2 flex items-center gap-2">
+                                <span
+                                    class="bg-textBase text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-sm">2</span>
+                                マジックミラーの法則
+                            </h3>
+                            <p class="text-textMuted text-sm">
+                                <strong>「上の抽象の世界からは下の具体の世界が見えるが、下の具体の世界からは上の抽象の世界が見えない」</strong>という残酷な法則があります。これがコミュニケーションギャップの最大の原因です。
+                            </p>
+                        </div>
+                        <div class="bg-accent-light p-4 rounded-lg text-sm border-l-4 border-accent-DEFAULT">
+                            <p><strong>話が噛み合わない理由：</strong><br>
+                                抽象レベルで本質を語る人に対し、具体レベルでしか見ていない人は「例外がある」「現実を見ていない」と枝葉の反論をしてしまいます。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: 思考の病（具体病と抽象病） -->
+        <section class="fade-in-up delay-300">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-4 relative inline-block">
+                    3. 現代にはびこる「2つの病」
+                    <span class="absolute -bottom-2 left-0 w-full h-1 bg-accent rounded-full"></span>
+                </h2>
+                <p class="text-textMuted">どちらか一方に偏ると、思考停止や実行力不足に陥ります。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 具体病 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-concrete-light border-dashed">
+                    <h3 class="text-xl font-bold text-concrete-dark mb-4 border-b pb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                            </path>
+                        </svg>
+                        具体病（下流に偏る）
+                    </h3>
+                    <ul class="space-y-3 text-sm text-textBase">
+                        <li><strong class="text-concrete">症状：</strong> 具体的な事例やマニュアルがないと動けない。思考停止状態。</li>
+                        <li><strong class="text-concrete">口癖：</strong> 「前例がない」「具体的に言ってください」「それは例外だ」</li>
+                        <li><strong class="text-concrete">弊害：</strong> 環境の変化に弱く、未知の状況に応用が利かない。AIに代替されやすい。</li>
+                    </ul>
+                </div>
+
+                <!-- 抽象病 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-abstract-light border-dashed">
+                    <h3 class="text-xl font-bold text-abstract-dark mb-4 border-b pb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z">
+                            </path>
+                        </svg>
+                        抽象病（上流に偏る）
+                    </h3>
+                    <ul class="space-y-3 text-sm text-textBase">
+                        <li><strong class="text-abstract">症状：</strong> 耳障りの良い言葉だけを並べ、行動に結びつかない。</li>
+                        <li><strong class="text-abstract">口癖：</strong> 「頑張ろう」「最適化を目指す」「シナジーを生む」</li>
+                        <li><strong class="text-abstract">弊害：</strong> 数字やアクションプランが不在のため、「口だけ」で実効性が伴わない。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-white rounded-xl p-6 shadow-sm border border-accent text-center">
+                <h4 class="font-bold text-lg mb-2">コミュニケーションの自己矛盾</h4>
+                <p class="text-textMuted text-sm">
+                    私たちは、<strong>「他人のことは抽象化してレッテルを貼り、自分のことは具体化して言い訳をする」</strong>という強いバイアスを持っています。<br>
+                    これを自覚し、逆に「他人は具体的な事情を考慮し、自分は抽象化して客観視する」ことがギャップ解消の第一歩です。
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 4: 往復運動 -->
+        <section class="fade-in-up delay-300">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-4 relative inline-block">
+                    4. 最強の思考法「具体⇄抽象の往復」
+                    <span class="absolute -bottom-2 left-0 w-full h-1 bg-accent rounded-full"></span>
+                </h2>
+                <p class="text-textMuted">真の思考力とは、この2つの世界を高速で行き来することです。</p>
+            </div>
+
+            <div class="relative max-w-2xl mx-auto py-8">
+                <!-- サイクル図解 (配置修正済) -->
+                <div class="flex flex-col items-center">
+
+                    <!-- 抽象エリア -->
+                    <div
+                        class="bg-abstract-light border-2 border-abstract rounded-full py-4 px-12 text-center w-64 shadow-md z-10 relative">
+                        <span class="block text-sm text-abstract-dark font-bold mb-1">STEP 2</span>
+                        <h3 class="text-xl font-bold text-textBase">抽象化 <span
+                                class="text-sm font-normal text-textMuted">Why</span></h3>
+                        <p class="text-xs text-textMuted mt-1">本質を見抜く・構造化・法則発見</p>
+                    </div>
+
+                    <!-- 矢印エリア -->
+                    <div class="flex justify-center w-full max-w-sm my-4 gap-8">
+                        <!-- 上り矢印 -->
+                        <div class="flex flex-col items-center text-abstract">
+                            <span class="text-xs font-bold mb-1 text-center">共通点を探す<br>枝葉を切り捨てる</span>
+                            <svg class="w-8 h-12 md:w-10 md:h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M5 15l7-7 7 7"></path>
+                            </svg>
+                        </div>
+                        <!-- 下り矢印 -->
+                        <div class="flex flex-col items-center text-concrete">
+                            <svg class="w-8 h-12 md:w-10 md:h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                            <span class="text-xs font-bold mt-1 text-center">行動に落とし込む<br>5W3Hで定義する</span>
+                        </div>
+                    </div>
+
+                    <!-- 具体エリア -->
+                    <div class="flex flex-col md:flex-row gap-4 w-full justify-center z-10 items-center">
+                        <div
+                            class="bg-concrete-light border-2 border-concrete rounded-full py-4 px-8 text-center w-56 md:w-48 shadow-md">
+                            <span class="block text-sm text-concrete-dark font-bold mb-1">STEP 1</span>
+                            <h3 class="text-lg font-bold text-textBase">現実の観察</h3>
+                            <p class="text-xs text-textMuted mt-1">個別事象の把握</p>
+                        </div>
+                        <div
+                            class="bg-concrete-light border-2 border-concrete rounded-full py-4 px-8 text-center w-56 md:w-48 shadow-md">
+                            <span class="block text-sm text-concrete-dark font-bold mb-1">STEP 3</span>
+                            <h3 class="text-lg font-bold text-textBase">具体化 <span
+                                    class="text-sm font-normal text-textMuted">How</span></h3>
+                            <p class="text-xs text-textMuted mt-1">実行・解決策</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 応用例：アナロジー -->
+                <div class="mt-12 bg-white rounded-2xl p-8 border border-accent shadow-sm">
+                    <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        💡 応用例：アナロジー（類推）
+                    </h4>
+                    <p class="text-textMuted text-sm mb-4">
+                        表面的なデザインや機能を真似するのは単なる「パクリ（具体の模倣）」です。<br>
+                        しかし、別の業界の<strong>「仕組みや構造（抽象）」を抽出し、自分の業界に「具体化」して当てはめること</strong>が、イノベーションを生む「アナロジー」です。
+                    </p>
+                    <div class="bg-accent-light p-4 rounded-lg text-sm flex flex-col md:flex-row gap-4 items-center">
+                        <div class="flex-1 text-center">
+                            <span class="block font-bold text-concrete-dark">持ち家 vs 賃貸</span>
+                            <span class="text-xs text-textMuted">(具体的な住居の話)</span>
+                        </div>
+                        <div class="text-abstract text-xl font-bold">→ 抽象化 →</div>
+                        <div class="flex-1 text-center">
+                            <span class="block font-bold text-abstract-dark">所有か、利用(都度払い)か</span>
+                            <span class="text-xs text-textMuted">(ビジネスモデルの構造)</span>
+                        </div>
+                        <div class="text-concrete text-xl font-bold">→ 具体化 →</div>
+                        <div class="flex-1 text-center">
+                            <span class="block font-bold text-concrete-dark">音楽/車のサブスク</span>
+                            <span class="text-xs text-textMuted">(新しいアイデアの創出)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: 仕事での実践 -->
+        <section class="fade-in-up delay-300">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-4 relative inline-block">
+                    5. 組織マネジメントへの応用
+                    <span class="absolute -bottom-2 left-0 w-full h-1 bg-accent rounded-full"></span>
+                </h2>
+                <p class="text-textMuted">指示出しにおける「期待値のギャップ」を図解します。</p>
+            </div>
+
+            <!-- マトリクス (配置修正済) -->
+            <div
+                class="max-w-3xl mx-auto bg-white p-4 md:p-8 rounded-2xl shadow-sm border border-accent overflow-x-auto">
+
+                <div class="min-w-[500px] flex gap-4 items-stretch">
+
+                    <!-- 縦軸ラベル (rotate-90で横文字を回転させて崩れを防止) -->
+                    <div class="w-10 md:w-12 flex justify-center items-center relative">
+                        <div
+                            class="-rotate-90 whitespace-nowrap text-xs md:text-sm font-bold text-textMuted flex items-center gap-3">
+                            <span>← 具体的 (How)</span>
+                            <span class="bg-accent-DEFAULT text-white px-3 py-1 rounded">上司の指示</span>
+                            <span>抽象的 (Why) →</span>
+                        </div>
+                    </div>
+
+                    <!-- グリッド本体 -->
+                    <div class="flex-1 flex flex-col">
+                        <!-- 横軸ラベル -->
+                        <div class="flex justify-between text-xs md:text-sm font-bold text-textMuted mb-3 px-2 md:px-6">
+                            <span>← 抽象的 (裁量が欲しい)</span>
+                            <span class="bg-accent-DEFAULT text-white px-3 py-1 rounded">部下の期待</span>
+                            <span>具体的 (手順が欲しい) →</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 grid-rows-2 gap-3 h-[300px]">
+                            <!-- 抽象×抽象 -->
+                            <div
+                                class="bg-abstract-light border-2 border-abstract rounded-xl p-3 flex flex-col justify-center items-center text-center transition-transform hover:scale-105">
+                                <span class="text-2xl md:text-3xl mb-2">🤝</span>
+                                <h4 class="font-bold text-abstract-dark mb-1 text-sm md:text-base">任せるのが上手い</h4>
+                                <p class="text-[10px] md:text-xs text-textMuted leading-tight">
+                                    大局的な目的を共有し<br>プロセスは委ねる（ギャップ無）</p>
+                            </div>
+                            <!-- 抽象×具体 -->
+                            <div
+                                class="bg-red-50 border-2 border-red-200 rounded-xl p-3 flex flex-col justify-center items-center text-center transition-transform hover:scale-105">
+                                <span class="text-2xl md:text-3xl mb-2">💢</span>
+                                <h4 class="font-bold text-red-700 mb-1 text-sm md:text-base">丸投げ上司</h4>
+                                <p class="text-[10px] md:text-xs text-textMuted leading-tight">
+                                    部下は手順を求めているのに<br>目的しか言わず不満を生む</p>
+                            </div>
+                            <!-- 具体×抽象 -->
+                            <div
+                                class="bg-red-50 border-2 border-red-200 rounded-xl p-3 flex flex-col justify-center items-center text-center transition-transform hover:scale-105">
+                                <span class="text-2xl md:text-3xl mb-2">⛓️</span>
+                                <h4 class="font-bold text-red-700 mb-1 text-sm md:text-base">マイクロマネジメント</h4>
+                                <p class="text-[10px] md:text-xs text-textMuted leading-tight">
+                                    部下は自由を求めているのに<br>細かく指示し意欲を削ぐ</p>
+                            </div>
+                            <!-- 具体×具体 -->
+                            <div
+                                class="bg-concrete-light border-2 border-concrete rounded-xl p-3 flex flex-col justify-center items-center text-center transition-transform hover:scale-105">
+                                <span class="text-2xl md:text-3xl mb-2">🧑‍🏫</span>
+                                <h4 class="font-bold text-concrete-dark mb-1 text-sm md:text-base">面倒見が良い</h4>
+                                <p class="text-[10px] md:text-xs text-textMuted leading-tight">
+                                    明確な指示と手順を提供<br>新人育成に最適（ギャップ無）</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-sm text-center text-textMuted mt-6 bg-accent-light p-3 rounded-lg">
+                    相手の習熟度に合わせて「抽象度」をチューニングすることが、優れたマネジメントの鍵です。
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-textBase text-accent-light py-12 text-center">
+        <div class="max-w-2xl mx-auto px-6">
+            <h2 class="text-2xl font-bold mb-4">まとめ：AI時代に求められる「知性」</h2>
+            <p class="text-sm opacity-80 mb-6 leading-relaxed">
+                指示された作業をこなすだけの「具体の極致」はAIに代替されます。<br>
+                「何のためにやるのか（Why）」という目的を自ら設定し、異なる領域から構造的なヒントを引き出し、再び実行可能な形へ落とし込む。<br>
+                この<strong>「具体と抽象を往復する力」こそが、人間に残された最後の思考力</strong>なのです。
+            </p>
+            <div class="w-16 h-1 bg-abstract mx-auto rounded-full mb-6"></div>
+            <p class="text-xs opacity-60">参考書籍：細谷功 著『「具体⇔抽象」トレーニング 思考力が飛躍的にアップする29問』</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
