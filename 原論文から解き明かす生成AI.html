@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原論文から解き明かす生成AI - 図解ガイド</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.5s ease-out forwards',
+                        'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-[#0b1120] text-slate-50 font-sans min-h-screen selection:bg-blue-500/30">
+
+    <div class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex flex-col items-center text-center px-4">
+        <div class="absolute inset-0 w-full h-full bg-slate-900 z-0">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px] animate-pulse">
+            </div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-600/20 rounded-full blur-[120px] animate-pulse"
+                style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <div
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/80 border border-slate-700 text-sm text-blue-300 mb-8 backdrop-blur-sm">
+                <i data-lucide="book-open" class="w-4 h-4"></i>
+                <span>菊田遥平 著 / 技術評論社</span>
+            </div>
+            <h1 class="text-5xl lg:text-7xl font-extrabold text-white mb-8 tracking-tight leading-tight">
+                <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400">
+                    原論文から解き明かす
+                </span>
+                <br />生成AI
+            </h1>
+            <p class="text-xl lg:text-2xl text-slate-300 mb-12 leading-relaxed max-w-3xl mx-auto">
+                表面的なトレンドやニュースを追うのはもうやめましょう。<br class="hidden md:block" />
+                AIの「ブラックボックス」を原論文レベルの理論から紐解く、<br class="hidden md:block" />
+                真の理解を求めるエンジニア・研究者のための実践的ガイド。
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contents"
+                    class="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(37,99,235,0.4)] flex items-center justify-center gap-2">
+                    図解で理論を見る <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <section id="concept" class="py-20 px-6 md:px-12 max-w-7xl mx-auto bg-slate-950/50 border-y border-slate-800/50">
+        <div class="text-center mb-16">
+            <h2
+                class="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 mb-4 tracking-tight">
+                なぜ「原論文」を読むのか？
+            </h2>
+            <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                生成AIに要約させる時代に、あえて自らの頭で理論を追体験する理由</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8 mt-12">
+            <div
+                class="bg-slate-900 p-8 rounded-2xl border border-slate-800 hover:border-blue-500/50 transition-colors">
+                <div class="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400 mb-6">
+                    <i data-lucide="search" class="w-7 h-7"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-4">一次情報へのアクセス力</h3>
+                <p class="text-slate-400 leading-relaxed">
+                    誰かの二次情報に頼るのではなく、論文という「一次情報」に直接触れることで、前提条件や制約を正確に把握し、技術の本質を自力で見極める力を養います。
+                </p>
+            </div>
+            <div
+                class="bg-slate-900 p-8 rounded-2xl border border-slate-800 hover:border-purple-500/50 transition-colors">
+                <div
+                    class="w-14 h-14 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-400 mb-6">
+                    <i data-lucide="link" class="w-7 h-7"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-4">点と点を線で繋ぐ</h3>
+                <p class="text-slate-400 leading-relaxed">
+                    最新技術も過去の積み重ねの上にあります。分布仮説からTransformer、拡散モデルへと至る33本の重要論文を体系的に繋ぎ合わせ、技術の必然性を理解します。
+                </p>
+            </div>
+            <div
+                class="bg-slate-900 p-8 rounded-2xl border border-slate-800 hover:border-emerald-500/50 transition-colors">
+                <div
+                    class="w-14 h-14 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 mb-6">
+                    <i data-lucide="sparkles" class="w-7 h-7"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-4">最高のエンターテイメント</h3>
+                <p class="text-slate-400 leading-relaxed">
+                    「コスパ」だけを追い求めるのではなく、著者の試行錯誤や「ひらめき」を追体験すること。それは人間らしい知的生産活動であり、知的な喜びをもたらします。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contents" class="py-20 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2
+                class="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 mb-4 tracking-tight">
+                コア技術の図解ロードマップ
+            </h2>
+            <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                本書で解説される主要なテーマを、直感的な図解で体験してみましょう。</p>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+
+            <div
+                class="bg-slate-900/50 backdrop-blur-md border border-blue-500/30 rounded-2xl p-6 md:p-8 shadow-2xl my-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="p-3 bg-blue-500/20 rounded-lg text-blue-400"><i data-lucide="text" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">第2章: 言語を数値化する「特徴量化」</h3>
+                </div>
+                <p class="text-slate-300 mb-8 leading-relaxed">
+                    AIは文字をそのまま理解できません。<strong>分布仮説</strong>（似た文脈の単語は似た意味を持つ）に基づき、文章を意味の塊（サブワード）に切り分け、空間上の座標（ベクトル）に変換します。これが<strong>埋め込み（Embedding）</strong>です。
+                </p>
+
+                <div class="bg-slate-950 p-6 rounded-xl border border-slate-800 relative overflow-hidden">
+                    <div class="flex justify-center mb-8 gap-4">
+                        <button id="btn-step-0"
+                            class="px-4 py-2 rounded-full font-medium transition-all bg-blue-600 text-white">1.
+                            原文</button>
+                        <button id="btn-step-1"
+                            class="px-4 py-2 rounded-full font-medium transition-all bg-slate-800 text-slate-400 hover:bg-slate-700">2.
+                            トークン化</button>
+                        <button id="btn-step-2"
+                            class="px-4 py-2 rounded-full font-medium transition-all bg-slate-800 text-slate-400 hover:bg-slate-700">3.
+                            ベクトル化</button>
+                    </div>
+
+                    <div class="min-h-[120px] flex flex-wrap items-center justify-center gap-3" id="token-container">
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="bg-slate-900/50 backdrop-blur-md border border-purple-500/30 rounded-2xl p-6 md:p-8 shadow-2xl my-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="p-3 bg-purple-500/20 rounded-lg text-purple-400"><i data-lucide="brain"
+                            class="w-6 h-6"></i></div>
+                    <h3 class="text-2xl font-bold text-white">第3章: AIの心臓部「Transformer」</h3>
+                </div>
+                <p class="text-slate-300 mb-8 leading-relaxed">
+                    現在の生成AIの大前提となるアーキテクチャです。従来のRNNと違い、<strong>自己注意機構（Self-Attention）</strong>により文脈全体を一度に見渡すことができます。<br />
+                    <span class="text-sm text-purple-300">👇
+                        「it」にマウスを乗せてみてください。AIが「it（それ）」を「animal（動物）」だと強く認識していることがわかります。</span>
+                </p>
+
+                <div class="bg-slate-950 p-8 rounded-xl border border-slate-800 relative">
+                    <div class="flex flex-wrap justify-center gap-2 md:gap-4 relative z-10" id="attention-container">
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="bg-slate-900/50 backdrop-blur-md border border-indigo-500/30 rounded-2xl p-6 md:p-8 shadow-2xl my-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="p-3 bg-indigo-500/20 rounded-lg text-indigo-400"><i data-lucide="database"
+                            class="w-6 h-6"></i></div>
+                    <h3 class="text-2xl font-bold text-white">第4章: GPTと学習パラダイムの変遷</h3>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-slate-950 p-5 rounded-lg border border-slate-800">
+                        <h4 class="text-indigo-400 font-bold mb-2">文脈内学習 (In-Context Learning)</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            GPT-3以降で顕著になった能力。モデルの重みを更新せずとも、プロンプト内にいくつかの例（Few-shot）を提示するだけで未知のタスクを解ける現象。
+                        </p>
+                    </div>
+                    <div class="bg-slate-950 p-5 rounded-lg border border-slate-800">
+                        <h4 class="text-indigo-400 font-bold mb-2">RLHF (人間からのフィードバック)</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            単に「次の単語を予測する」だけでは有害な出力が出るため、人間の「好み」を報酬モデルとして学習させ、強化学習でアライメント（調整）する技術。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="bg-slate-900/50 backdrop-blur-md border border-emerald-500/30 rounded-2xl p-6 md:p-8 shadow-2xl my-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="p-3 bg-emerald-500/20 rounded-lg text-emerald-400"><i data-lucide="image"
+                            class="w-6 h-6"></i></div>
+                    <h3 class="text-2xl font-bold text-white">第5章: 画像を描き出す「拡散モデル」</h3>
+                </div>
+                <p class="text-slate-300 mb-8 leading-relaxed">
+                    画像生成の核となる技術です。データに徐々にノイズを加える<strong>「拡散過程」</strong>と、ノイズを少しずつ除去して画像を復元する<strong>「逆拡散過程」</strong>が、数学的に同じ関数形で表現できるという奇跡を利用しています。
+                </p>
+
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="flex-1 w-full bg-slate-950 p-6 rounded-xl border border-slate-800">
+                        <label class="block text-sm font-medium text-slate-400 mb-4 flex justify-between">
+                            <span>完全な画像 (ノイズ0%)</span>
+                            <span>完全なノイズ (ノイズ100%)</span>
+                        </label>
+                        <input type="range" id="noise-slider" min="0" max="100" value="100"
+                            class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500 mb-6" />
+                        <div class="flex justify-between text-xs text-emerald-400 font-mono">
+                            <span>逆拡散過程 (生成) ⟵</span>
+                            <span id="noise-value-text">ノイズ量: 100%</span>
+                            <span>⟶ 拡散過程 (学習)</span>
+                        </div>
+                    </div>
+
+                    <div
+                        class="w-48 h-48 relative rounded-2xl overflow-hidden border-2 border-slate-700 shadow-2xl flex-shrink-0 bg-white">
+                        <div class="absolute inset-0 flex items-center justify-center text-8xl">🚀</div>
+                        <div id="noise-overlay" class="absolute inset-0 transition-opacity duration-200"
+                            style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E&quot;); mix-blend-mode: hard-light; opacity: 1;">
+                        </div>
+                        <div id="blur-overlay" class="absolute inset-0 backdrop-blur-md transition-all duration-200"
+                            style="opacity: 0.8;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="bg-slate-900/50 backdrop-blur-md border border-teal-500/30 rounded-2xl p-6 md:p-8 shadow-2xl my-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="p-3 bg-teal-500/20 rounded-lg text-teal-400"><i data-lucide="layers"
+                            class="w-6 h-6"></i></div>
+                    <h3 class="text-2xl font-bold text-white">第6章: テキストと画像の融合 (CLIP)</h3>
+                </div>
+                <p class="text-slate-300 leading-relaxed">
+                    異なるモダリティ（言語と画像）を、対照学習によって<strong>共通のベクトル空間</strong>に埋め込む技術。これにより「犬の写真」と「"A
+                    dog"というテキスト」が空間上の近い位置に配置され、テキストから画像を生成する基盤（DALL·E 2など）が完成しました。
+                </p>
+            </div>
+
+            <div
+                class="bg-slate-900/50 backdrop-blur-md border border-orange-500/30 rounded-2xl p-6 md:p-8 shadow-2xl my-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="p-3 bg-orange-500/20 rounded-lg text-orange-400"><i data-lucide="trending-up"
+                            class="w-6 h-6"></i></div>
+                    <h3 class="text-2xl font-bold text-white">第7章: AIの成長法則と DeepSeek-R1</h3>
+                </div>
+                <p class="text-slate-300 mb-8 leading-relaxed">
+                    「モデルを大きく、データと計算量を増やせば賢くなる」のが<strong>事前学習のスケーリング則</strong>です。しかし最新のトレンドは、答える前に「じっくり考えさせる（計算量をかける）」ことで推論能力を飛躍させる<strong>推論時のスケーリング則</strong>です。DeepSeek-R1はこの技術でOpenAI
+                    o1に匹敵する性能を出しました。
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-slate-950 p-6 rounded-xl border border-slate-800 flex flex-col h-full">
+                        <div class="text-sm font-bold text-slate-400 mb-4 flex items-center gap-2">
+                            <i data-lucide="zap" class="w-4 h-4"></i> 従来のLLM (即座に回答)
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-slate-800/50 p-3 rounded text-sm text-slate-300 border border-slate-700">Q:
+                                複雑な論理パズル...</div>
+                            <div class="bg-blue-900/20 p-3 rounded text-sm text-blue-300 border border-blue-800">A:
+                                (直感的な回答) 間違いやすい</div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-slate-950 p-6 rounded-xl border border-orange-500/30 flex flex-col h-full relative overflow-hidden">
+                        <div class="text-sm font-bold text-orange-400 mb-4 flex items-center gap-2">
+                            <i data-lucide="brain" class="w-4 h-4"></i> 推論スケーリング (DeepSeek-R1等)
+                        </div>
+                        <div class="space-y-4 flex-1">
+                            <div class="bg-slate-800/50 p-3 rounded text-sm text-slate-300 border border-slate-700">Q:
+                                複雑な論理パズル...</div>
+
+                            <button id="btn-think"
+                                class="w-full py-2 bg-orange-600 hover:bg-orange-500 text-white rounded font-medium transition-colors">
+                                思考を開始する
+                            </button>
+
+                            <div id="thinking-process" class="space-y-2 hidden">
+                                <div class="text-xs text-orange-400/80 font-mono flex items-center gap-2">
+                                    <i id="thinking-icon" data-lucide="activity" class="w-3 h-3 animate-pulse"></i>
+                                    <span id="thinking-status">&lt;think&gt; 自己検証・試行錯誤中...</span>
+                                </div>
+                                <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                                    <div id="progress-bar-fill"
+                                        class="h-full bg-gradient-to-r from-orange-500 to-yellow-400 transition-all duration-75"
+                                        style="width: 0%;"></div>
+                                </div>
+
+                                <div id="thinking-logs"
+                                    class="h-20 bg-slate-900 rounded border border-slate-800 p-2 text-xs text-slate-500 font-mono overflow-hidden opacity-50 whitespace-pre-line">
+                                </div>
+
+                                <div id="thinking-result"
+                                    class="bg-orange-900/20 p-3 rounded text-sm text-orange-300 border border-orange-800 animate-fade-in hidden">
+                                    A: 厳密な推論に基づいた正確な解答
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="audience" class="py-20 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2
+                class="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 mb-4 tracking-tight">
+                こんな方にオススメです
+            </h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <div class="flex items-start gap-4">
+                    <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-500 mt-1 flex-shrink-0"></i>
+                    <p class="text-lg text-slate-300">学部レベルの機械学習の知識があり、基礎を固めたい方</p>
+                </div>
+                <div class="flex items-start gap-4">
+                    <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-500 mt-1 flex-shrink-0"></i>
+                    <p class="text-lg text-slate-300">AIを業務で活用し、「なぜ動くのか」を知りたいエンジニア</p>
+                </div>
+                <div class="flex items-start gap-4">
+                    <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-500 mt-1 flex-shrink-0"></i>
+                    <p class="text-lg text-slate-300">生成AI研究室に所属する修士・博士課程の学生</p>
+                </div>
+                <div class="flex items-start gap-4">
+                    <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-500 mt-1 flex-shrink-0"></i>
+                    <p class="text-lg text-slate-300">表面的なニュースに飽き、自律的に技術を追えるようになりたい方</p>
+                </div>
+            </div>
+            <div
+                class="bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-3xl border border-slate-700 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 text-slate-800"><i data-lucide="message-square"
+                        class="w-32 h-32 opacity-20"></i></div>
+                <div class="relative z-10">
+                    <h4 class="text-2xl font-bold text-white mb-4">読者の声 (Zenn書評より)</h4>
+                    <blockquote class="text-slate-300 italic leading-relaxed border-l-4 border-blue-500 pl-4 mb-6">
+                        「最近生成AIに携わるようになって、各技術要素を雰囲気理解しているが、『果たしてちゃんと理解できているのか？』とモヤモヤしている人にはとてもいいと思います。」
+                    </blockquote>
+                    <blockquote class="text-slate-300 italic leading-relaxed border-l-4 border-emerald-500 pl-4">
+                        「2025年に読んだ約50冊の専門書の中で、最も自分のためになった本。数式が難解な部分もあるが、理解の解像度を一段引き上げてくれる。」
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 py-12 border-t border-slate-900 text-center">
+        <p class="text-slate-500 flex items-center justify-center gap-2">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            『原論文から解き明かす生成AI』 (技術評論社) をもとに作成された非公式の学習用図解ガイドです。
+        </p>
+    </footer>
+
+    <script>
+        // 1. Lucideアイコンの初期化（HTML内の data-lucide 属性をSVGに変換）
+        lucide.createIcons();
+
+        // 2. 第2章: トークン化と埋め込み (Tokenization & Embedding) の処理
+        const textData = "原論文から解き明かす生成AI";
+        const tokensData = ["原", "論文", "から", "解き明かす", "生成", "AI"];
+        const vectorsData = [
+            "[0.12, -0.45, ...]", "[0.88, 0.02, ...]", "[-0.3, 0.91, ...]",
+            "[0.55, -0.11, ...]", "[0.76, 0.44, ...]", "[0.99, -0.05, ...]"
+        ];
+
+        const tokenContainer = document.getElementById('token-container');
+        const btns = [
+            document.getElementById('btn-step-0'),
+            document.getElementById('btn-step-1'),
+            document.getElementById('btn-step-2')
+        ];
+
+        function renderTokenStep(step) {
+            // ボタンの色を更新
+            btns.forEach((btn, index) => {
+                if (index === step) {
+                    const colors = ['bg-blue-600', 'bg-purple-600', 'bg-emerald-600'];
+                    btn.className = `px-4 py-2 rounded-full font-medium transition-all ${colors[index]} text-white`;
+                } else {
+                    btn.className = `px-4 py-2 rounded-full font-medium transition-all bg-slate-800 text-slate-400 hover:bg-slate-700`;
+                }
+            });
+
+            // コンテンツを更新
+            tokenContainer.innerHTML = '';
+            if (step === 0) {
+                tokenContainer.innerHTML = `<div class="text-3xl font-bold text-white tracking-widest animate-fade-in">${textData}</div>`;
+            } else if (step === 1) {
+                tokensData.forEach((token, i) => {
+                    tokenContainer.innerHTML += `<div class="px-4 py-3 bg-slate-800 border border-purple-500/50 rounded-lg text-xl font-bold text-purple-300 animate-slide-up" style="animation-delay: ${i * 100}ms">${token}</div>`;
+                });
+            } else if (step === 2) {
+                tokensData.forEach((token, i) => {
+                    tokenContainer.innerHTML += `
+            <div class="flex flex-col items-center gap-2 animate-slide-up" style="animation-delay: ${i * 100}ms">
+              <div class="text-sm font-medium text-slate-500">${token}</div>
+              <div class="px-3 py-2 bg-emerald-900/30 border border-emerald-500/50 rounded text-xs font-mono text-emerald-300">
+                ${vectorsData[i]}
+              </div>
+            </div>`;
+                });
+            }
+        }
+
+        // イベントリスナーの登録と初期表示
+        btns.forEach((btn, i) => btn.addEventListener('click', () => renderTokenStep(i)));
+        renderTokenStep(0);
+
+
+        // 3. 第3章: Transformer & Self-Attention の処理
+        const wordsData = ["The", "animal", "didn't", "cross", "the", "street", "because", "it", "was", "too", "tired"];
+        const attentionWeights = [0.05, 0.85, 0.05, 0.1, 0.02, 0.08, 0.15, 1.0, 0.2, 0.05, 0.4];
+        const attentionContainer = document.getElementById('attention-container');
+
+        function renderAttentionWords(hoveredIndex) {
+            attentionContainer.innerHTML = '';
+            wordsData.forEach((word, i) => {
+                const isTarget = hoveredIndex === 7; // "it" (インデックス7) にホバーしているか
+                const weight = (isTarget && hoveredIndex === 7) ? attentionWeights[i] : 0;
+                const bgOpacity = isTarget ? weight * 0.8 : 0;
+
+                let classes = `relative px-4 py-3 rounded-lg text-lg md:text-xl font-bold cursor-pointer transition-all duration-300 `;
+                classes += (i === 7) ? 'ring-2 ring-purple-500 text-purple-200 ' : 'text-slate-400 ';
+                if (hoveredIndex === i) classes += '-translate-y-1 scale-110 ';
+
+                let style = `background-color: rgba(168, 85, 247, ${bgOpacity}); `;
+                if (bgOpacity > 0.4) style += `color: #fff;`;
+
+                let tooltip = '';
+                if (isTarget && i !== 7 && weight > 0.1) {
+                    tooltip = `<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs text-purple-300 font-mono">${Math.round(weight * 100)}%</div>`;
+                }
+
+                const div = document.createElement('div');
+                div.className = classes;
+                div.style = style;
+                div.innerHTML = `${word}${tooltip}`;
+
+                // マウスイベントの登録
+                div.addEventListener('mouseenter', () => renderAttentionWords(i));
+                div.addEventListener('mouseleave', () => renderAttentionWords(null));
+
+                attentionContainer.appendChild(div);
+            });
+        }
+        renderAttentionWords(null);
+
+
+        // 4. 第5章: 拡散モデル (Diffusion Models) の処理
+        const noiseSlider = document.getElementById('noise-slider');
+        const noiseOverlay = document.getElementById('noise-overlay');
+        const blurOverlay = document.getElementById('blur-overlay');
+        const noiseValueText = document.getElementById('noise-value-text');
+
+        noiseSlider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            noiseValueText.textContent = `ノイズ量: ${val}%`;
+            noiseOverlay.style.opacity = val / 100;
+            blurOverlay.style.opacity = (val / 100) * 0.8;
+        });
+
+
+        // 5. 第7章: スケーリング則と DeepSeek-R1 (推論時スケーリング) の処理
+        const btnThink = document.getElementById('btn-think');
+        const thinkingProcess = document.getElementById('thinking-process');
+        const progressBarFill = document.getElementById('progress-bar-fill');
+        const thinkingLogs = document.getElementById('thinking-logs');
+        const thinkingResult = document.getElementById('thinking-result');
+        const thinkingStatus = document.getElementById('thinking-status');
+        const thinkingIcon = document.getElementById('thinking-icon');
+
+        btnThink.addEventListener('click', () => {
+            btnThink.classList.add('hidden'); // ボタンを隠す
+            thinkingProcess.classList.remove('hidden'); // プロセスを表示
+
+            let progress = 0;
+            thinkingLogs.innerHTML = "";
+            thinkingResult.classList.add('hidden');
+            thinkingLogs.classList.remove('hidden');
+
+            const interval = setInterval(() => {
+                progress += 2;
+                progressBarFill.style.width = `${progress}%`;
+
+                // ログの追加
+                if (progress === 12) thinkingLogs.innerHTML += "待てよ、この前提は間違っているかもしれない。\n";
+                if (progress === 42) thinkingLogs.innerHTML += "別のアプローチを試そう。もしX=1なら...\n";
+                if (progress === 72) thinkingLogs.innerHTML += "あ、ひらめいた！(Aha moment)\n";
+
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    thinkingStatus.textContent = "<think> 思考完了";
+                    thinkingIcon.classList.remove('animate-pulse'); // 点滅を止める
+                    thinkingLogs.classList.add('hidden'); // ログを隠す
+                    thinkingResult.classList.remove('hidden'); // 最終結果を表示
+                }
+            }, 50);
+        });
+
+    </script>
+</body>
+
+</html>
