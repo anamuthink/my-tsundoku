@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図解『百冊で耕す』- 〈自由に、なる〉ための読書術</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Noto Serif JP"', 'serif'],
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        paper: '#F9F6F0',
+                        ink: '#2C3E50',
+                        earth: '#8B5A2B',
+                        forest: '#2E4F4F',
+                        sand: '#EAE0C8'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F9F6F0;
+            color: #2C3E50;
+        }
+
+        .text-vertical {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-100 {
+            animation-delay: 100ms;
+        }
+
+        .delay-200 {
+            animation-delay: 200ms;
+        }
+
+        .delay-300 {
+            animation-delay: 300ms;
+        }
+
+        .delay-400 {
+            animation-delay: 400ms;
+        }
+    </style>
+</head>
+
+<body class="font-sans leading-relaxed antialiased">
+
+    <!-- Hero Section -->
+    <header
+        class="relative bg-forest text-paper py-20 px-6 md:px-12 overflow-hidden flex flex-col items-center justify-center min-h-[80vh]">
+        <div class="absolute inset-0 opacity-10"
+            style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');">
+        </div>
+
+        <div class="z-10 text-center max-w-4xl mx-auto fade-in-up">
+            <span
+                class="inline-block py-1 px-3 border border-sand/50 rounded-full text-sm tracking-widest mb-6 font-serif">近藤康太郎
+                著『百冊で耕す』直感図解</span>
+            <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                本は、<span class="text-sand">百冊</span>あればいい。
+            </h1>
+            <p class="text-xl md:text-2xl font-serif mb-10 text-sand/90">
+                情報を「消費」するのではなく、自分を「耕す」ための読書術
+            </p>
+            <div class="w-24 h-1 bg-earth mx-auto mb-10"></div>
+            <p class="text-base md:text-lg opacity-90 max-w-2xl mx-auto">
+                「朝日新聞」名文記者であり、猟師・百姓でもある著者が説く、<br class="hidden md:block">
+                〈自由に、なる〉ため、そして〈人を愛する〉ための型破りな読書哲学。
+            </p>
+        </div>
+
+        <div class="absolute bottom-8 animate-bounce text-sand/50">
+            <i class="fa-solid fa-chevron-down text-2xl"></i>
+        </div>
+    </header>
+
+    <!-- Section 1: Core Concept -->
+    <section class="py-20 px-6 md:px-12 max-w-6xl mx-auto">
+        <div class="text-center mb-16 fade-in-up">
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-earth mb-4">読書とは「自分を耕す」こと</h2>
+            <p class="text-gray-600">大量の情報を流し込むだけの読書から卒業する</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Bad Example -->
+            <div
+                class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center fade-in-up delay-100">
+                <div
+                    class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center text-gray-400 mb-6 text-3xl">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">情報の「消費」</h3>
+                <p class="text-gray-600 mb-4">
+                    アルゴリズムに勧められるまま、自分の好きな情報、分かりやすい情報だけを浴び続ける。
+                </p>
+                <div class="bg-gray-50 p-4 rounded-lg w-full">
+                    <p class="text-sm font-bold text-red-500"><i class="fa-solid fa-xmark mr-2"></i>ちっぽけな自分に隷属してしまう</p>
+                </div>
+            </div>
+
+            <!-- Good Example -->
+            <div
+                class="bg-sand/30 p-8 rounded-2xl shadow-sm border border-earth/20 flex flex-col items-center text-center relative fade-in-up delay-200">
+                <div
+                    class="absolute -top-4 -left-4 w-12 h-12 bg-earth text-white rounded-full flex items-center justify-center font-bold shadow-lg">
+                    理想</div>
+                <div
+                    class="w-20 h-20 bg-earth/10 rounded-full flex items-center justify-center text-earth mb-6 text-3xl">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-earth">自己の「耕作（カルティベイト）」</h3>
+                <p class="text-gray-700 mb-4">
+                    一万冊から選び抜いた自分にとっての「正典（カノン）百冊」と格闘し、血肉化する。
+                </p>
+                <div class="bg-white p-4 rounded-lg w-full border border-earth/20">
+                    <p class="text-sm font-bold text-forest"><i class="fa-solid fa-check mr-2"></i>アルゴリズムから逃れ、自由を獲得する
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Benefits -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-forest mb-4">読書がもたらす「2つの現世利益」</h2>
+                <p class="text-gray-600">本を読むことで、厳しい現実を生き抜く強力な武器が手に入る</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Benefit 1 -->
+                <div
+                    class="p-8 rounded-2xl bg-paper border-l-8 border-earth shadow-sm hover:shadow-md transition-shadow fade-in-up delay-100">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="w-12 h-12 bg-earth/10 text-earth rounded-full flex items-center justify-center text-xl mr-4">
+                            <i class="fa-solid fa-person-running"></i>
+                        </div>
+                        <h3 class="text-2xl font-serif font-bold">1. 逃げる気力がつく</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        読書は「世界の外」を想像するためにあります。失恋、大切なものの死、理不尽な環境など、生き死にに関わるほど辛い現実から一時的に離れ、精神的な「逃げ場」を確保する力を養います。
+                    </p>
+                    <div class="text-sm font-bold text-earth bg-white inline-block px-3 py-1 rounded">
+                        <i class="fa-solid fa-door-open mr-1"></i> 別の世界観が救いになる
+                    </div>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div
+                    class="p-8 rounded-2xl bg-paper border-l-8 border-forest shadow-sm hover:shadow-md transition-shadow fade-in-up delay-200">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="w-12 h-12 bg-forest/10 text-forest rounded-full flex items-center justify-center text-xl mr-4">
+                            <i class="fa-solid fa-guitar"></i>
+                        </div>
+                        <h3 class="text-2xl font-serif font-bold">2. 「不良（ずれる人）」になれる</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        本の世界に遊べる人は、群れることなく独りでいられる強さを持ちます。世間の常識や他者の承認から「ずれる」ことを恐れなくなり、孤独に耐える力を得ることができます。
+                    </p>
+                    <div class="text-sm font-bold text-forest bg-white inline-block px-3 py-1 rounded">
+                        <i class="fa-solid fa-user-shield mr-1"></i> 他人の物差しで生きない
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: The 4 Steps (腑分け) -->
+    <section class="py-20 px-6 md:px-12 max-w-6xl mx-auto">
+        <div class="text-center mb-16 fade-in-up">
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-earth mb-4">本を血肉にする「腑分け」の4ステップ</h2>
+            <p class="text-gray-600">本はきれいに読むな。物理的に加工し、自己の一部にするプロセス。</p>
+        </div>
+
+        <div class="relative">
+            <!-- Connecting Line (Desktop) -->
+            <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-sand -translate-y-1/2 z-0"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+                <!-- Step 1 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center border-t-4 border-earth fade-in-up delay-100">
+                    <div
+                        class="w-16 h-16 mx-auto bg-earth text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 border-4 border-paper shadow-md">
+                        1</div>
+                    <div class="text-earth text-3xl mb-4"><i class="fa-solid fa-pen-line"></i></div>
+                    <h3 class="text-lg font-bold mb-2">傍線を引く</h3>
+                    <p class="text-sm text-gray-600 text-left">気になる箇所に線を引く。これは著者との対話の開始であり、自分の思考の「痕跡」を残す行為です。</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center border-t-4 border-earth fade-in-up delay-200">
+                    <div
+                        class="w-16 h-16 mx-auto bg-earth text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 border-4 border-paper shadow-md">
+                        2</div>
+                    <div class="text-earth text-3xl mb-4"><i class="fa-solid fa-bookmark"></i></div>
+                    <h3 class="text-lg font-bold mb-2">ドッグイヤー</h3>
+                    <p class="text-sm text-gray-600 text-left">重要だと思ったページの端を折る。これにより、本が物理的に膨らみ、自分だけの「厚み」を持ちます。</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center border-t-4 border-earth fade-in-up delay-300">
+                    <div
+                        class="w-16 h-16 mx-auto bg-earth text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 border-4 border-paper shadow-md">
+                        3</div>
+                    <div class="text-earth text-3xl mb-4"><i class="fa-solid fa-book-open"></i></div>
+                    <h3 class="text-lg font-bold mb-2">抜き書き（写本）</h3>
+                    <p class="text-sm text-gray-600 text-left">折ったページから厳選し、ノートに手で書き写す。著者の思考の呼吸を脳に刻み込みます（数箇所〜10箇所）。</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div
+                    class="bg-earth rounded-xl shadow-lg p-6 text-center border-t-4 border-forest text-white transform md:scale-110 fade-in-up delay-400">
+                    <div
+                        class="absolute -top-3 -right-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                        最重要！</div>
+                    <div
+                        class="w-16 h-16 mx-auto bg-paper text-earth rounded-full flex items-center justify-center text-2xl font-bold mb-4 border-4 border-earth shadow-md">
+                        4</div>
+                    <div class="text-paper text-3xl mb-4"><i class="fa-solid fa-arrows-rotate"></i></div>
+                    <h3 class="text-lg font-bold mb-2">読み返す</h3>
+                    <p class="text-sm text-paper/90 text-left">1日15分、抜き書き帳を読み返す。異なるジャンルの言葉が出会い、脳内で本が「血液」として循環し始めます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Dichotomy (11の二律背反) -->
+    <section class="py-20 bg-forest text-paper">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4 text-sand">矛盾を往復する「二律背反」の読書術</h2>
+                <p class="opacity-80">どちらか一方が正しいのではない。両極を往復することで重層的な読書家になる。</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Item 1 -->
+                <div
+                    class="bg-white/10 p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 fade-in-up delay-100">
+                    <div class="flex-1 text-center md:text-right">
+                        <h3 class="text-xl font-bold text-sand mb-2"><i class="fa-solid fa-bolt mr-2"></i>速読の技術</h3>
+                        <p class="text-sm opacity-90">精読に値する本を見つけ出す「精査」。<br>紙の本の物理的一覧性を活かす。</p>
+                    </div>
+                    <div
+                        class="w-12 h-12 shrink-0 bg-sand text-forest rounded-full flex items-center justify-center font-bold text-xl">
+                        VS
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <h3 class="text-xl font-bold text-sand mb-2">遅読の作法 <i class="fa-solid fa-mug-hot ml-2"></i></h3>
+                        <p class="text-sm opacity-90">小説やカノンを味わう。<br>文章のリズムに乗り、空気を味わう。</p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div
+                    class="bg-white/10 p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 fade-in-up delay-200">
+                    <div class="flex-1 text-center md:text-right">
+                        <h3 class="text-xl font-bold text-sand mb-2"><i class="fa-solid fa-heart mr-2"></i>偏食選書</h3>
+                        <p class="text-sm opacity-90">自分がはまっている関心事、<br>好みを徹底的に深掘りする。</p>
+                    </div>
+                    <div
+                        class="w-12 h-12 shrink-0 bg-sand text-forest rounded-full flex items-center justify-center font-bold text-xl">
+                        VS
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <h3 class="text-xl font-bold text-sand mb-2">健康選書 <i class="fa-solid fa-apple-whole ml-2"></i>
+                        </h3>
+                        <p class="text-sm opacity-90">定評のある「必読リスト」に従い、<br>あえて興味外の本を読み脳の癖を正す。</p>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div
+                    class="bg-white/10 p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 fade-in-up delay-300">
+                    <div class="flex-1 text-center md:text-right">
+                        <h3 class="text-xl font-bold text-sand mb-2"><i
+                                class="fa-solid fa-magnifying-glass mr-2"></i>批判して読む</h3>
+                        <p class="text-sm opacity-90">論理的な不備を突き、<br>客観的に分析して知的独立性を保つ。</p>
+                    </div>
+                    <div
+                        class="w-12 h-12 shrink-0 bg-sand text-forest rounded-full flex items-center justify-center font-bold text-xl">
+                        VS
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <h3 class="text-xl font-bold text-sand mb-2">憑依されて読む <i class="fa-solid fa-ghost ml-2"></i></h3>
+                        <p class="text-sm opacity-90">著者の思考のリズムに身を委ね、<br>他者の人生を内側から追体験する。</p>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div
+                    class="bg-white/10 p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 fade-in-up delay-400">
+                    <div class="flex-1 text-center md:text-right">
+                        <h3 class="text-xl font-bold text-sand mb-2"><i class="fa-solid fa-lightbulb mr-2"></i>「分かる」読書
+                        </h3>
+                        <p class="text-sm opacity-90">情報を正確に受け取り、<br>論理を把握する基礎的な読解力。</p>
+                    </div>
+                    <div
+                        class="w-12 h-12 shrink-0 bg-sand text-forest rounded-full flex items-center justify-center font-bold text-xl">
+                        VS
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <h3 class="text-xl font-bold text-sand mb-2">「分からない」読書 <i class="fa-solid fa-question ml-2"></i>
+                        </h3>
+                        <p class="text-sm opacity-90">理解を超えた難解な書物に体当たりし、<br>対峙し続けることで知性が拡張する。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Bookshelf as Fashion -->
+    <section class="py-20 px-6 md:px-12 max-w-5xl mx-auto">
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row">
+            <div class="md:w-1/2 p-10 flex flex-col justify-center fade-in-up">
+                <div class="text-earth text-4xl mb-6"><i class="fa-solid fa-book-open-reader"></i></div>
+                <h2 class="font-serif text-3xl font-bold text-ink mb-4">「積ん読」は、<br>ファッションである</h2>
+                <p class="text-gray-700 leading-relaxed mb-6">
+                    背伸びをして難解な本を買い、本棚に飾る。それは決して無駄ではありません。<br><br>
+                    書棚に飾られたその本は、「いつか自分もこのような本を読む人間になりたい」という未来の自分への約束であり、高い目標としてそびえ立ちます。<br><br>
+                    似合っていなくても好きな服を着れば、やがてその服の似合う人間になるように、<b>本棚が人格を作っていく</b>のです。
+                </p>
+            </div>
+            <div class="md:w-1/2 bg-sand p-10 flex items-center justify-center relative fade-in-up delay-200">
+                <!-- Abstract Bookshelf Visual -->
+                <div class="w-full max-w-xs space-y-4">
+                    <div class="h-4 bg-earth rounded shadow-sm w-full"></div>
+                    <div class="flex items-end justify-center space-x-2 h-32 px-4">
+                        <div class="w-8 bg-forest h-24 rounded-t border border-white/20"></div>
+                        <div class="w-10 bg-earth h-28 rounded-t border border-white/20 relative">
+                            <div class="absolute inset-0 flex items-center justify-center"><i
+                                    class="fa-solid fa-bookmark text-white/50"></i></div>
+                        </div>
+                        <div class="w-6 bg-[#2C3E50] h-20 rounded-t border border-white/20"></div>
+                        <div
+                            class="w-12 bg-[#8B5A2B] h-32 rounded-t border border-white/20 -rotate-6 origin-bottom-right">
+                        </div>
+                        <div class="w-8 bg-white h-24 rounded-t border border-gray-300"></div>
+                    </div>
+                    <div class="h-4 bg-earth rounded shadow-sm w-full"></div>
+                    <div class="text-center mt-4">
+                        <p class="font-serif text-earth font-bold tracking-widest text-lg">百冊の本棚</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion -->
+    <section class="py-24 bg-ink text-paper text-center px-6">
+        <div class="max-w-3xl mx-auto fade-in-up">
+            <h2 class="font-serif text-3xl md:text-5xl font-bold mb-10 leading-normal">
+                読書とは、<br>
+                <span class="text-sand border-b-2 border-sand pb-2">人を愛するレッスン</span>だ。
+            </h2>
+            <p class="text-lg md:text-xl opacity-90 leading-relaxed mb-12 font-serif">
+                本を読み、自分を鍛え、豊かにした果てに、他者や世界を愛し、新しい自分を発見する。<br><br>
+                孤独に耐え、本と共に生きられる人は、他者からの承認を渇望せず、ただ人を愛することができる。<br><br>
+                終着駅ではない。始発駅に立つために、本は読む。
+            </p>
+            <div class="w-16 h-16 mx-auto text-sand opacity-50 text-4xl">
+                <i class="fa-solid fa-leaf"></i>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-gray-500 py-8 text-center text-sm">
+        <p>※本ページは近藤康太郎 著『百冊で耕す 〈自由に、なる〉ための読書術』の内容を図解・要約したものです。</p>
+    </footer>
+
+</body>
+
+</html>
