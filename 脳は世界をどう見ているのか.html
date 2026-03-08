@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図解：脳は世界をどう見ているのか「1000の脳」理論</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        // ミニマルで読みやすいフォント設定
+                        sans: ['"Helvetica Neue"', 'Arial', '"Hiragino Kaku Gothic ProN"', '"Hiragino Sans"', 'Meiryo', 'sans-serif'],
+                        serif: ['"Yu Mincho"', '"Hiragino Mincho ProN"', 'serif'],
+                    },
+                    colors: {
+                        warm: {
+                            paper: '#FDFBF7',    // 温かみのある背景（オフホワイト）
+                            surface: '#FFFFFF',  // カード背景
+                            ink: '#2C2825',      // メインテキスト（墨色）
+                            muted: '#7A736E',    // サブテキスト（温かいグレー）
+                            border: '#EBE6E0',   // 境界線
+                            clay: '#D07C60',     // アクセント：テラコッタ（古い脳）
+                            sage: '#799485',     // アクセント：セージグリーン（新しい脳）
+                            mustard: '#D4A35C',  // アクセント：マスタード（ハイライト）
+                            wine: '#9E6B76'      // アクセント：くすみワインレッド
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'dash': 'dash 20s linear infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        },
+                        dash: {
+                            to: { strokeDashoffset: -1000 }
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 20px 40px -15px rgba(44, 40, 37, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #2C2825;
+            /* かすかなノイズテクスチャで紙のような質感を表現 */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
+        }
+
+        /* スクロール時のふわっと表示アニメーション */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* アニメーション用の破線 */
+        .path-animated {
+            stroke-dasharray: 8 8;
+            animation: dashMove 1.5s linear infinite;
+        }
+
+        @keyframes dashMove {
+            to {
+                stroke-dashoffset: -16;
+            }
+        }
+
+        /* 繊細なカードデザイン */
+        .minimal-card {
+            background-color: #FFFFFF;
+            border: 1px solid #EBE6E0;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -15px rgba(44, 40, 37, 0.04);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .minimal-card:hover {
+            box-shadow: 0 30px 50px -15px rgba(44, 40, 37, 0.08);
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-warm-sage selection:text-white overflow-x-hidden">
+
+    <!-- プログレスバー -->
+    <div class="fixed top-0 left-0 h-1 bg-warm-sage z-50 transition-all duration-150" id="progress-bar"></div>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center px-4 overflow-hidden pt-12 pb-24">
+        <!-- 背景の柔らかな円形装飾 -->
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-warm-mustard/5 rounded-full blur-3xl -z-10">
+        </div>
+        <div
+            class="absolute top-0 right-0 w-[500px] h-[500px] bg-warm-sage/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2">
+        </div>
+
+        <div class="relative z-10 text-center max-w-4xl mx-auto flex flex-col items-center">
+            <span
+                class="text-warm-clay text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-8 border border-warm-clay/30 px-4 py-1.5 rounded-full">
+                Visual Guide
+            </span>
+
+            <h1
+                class="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.15] mb-8 text-warm-ink tracking-tight font-serif">
+                脳は世界を<br class="md:hidden">どう見ているのか
+            </h1>
+
+            <p class="text-lg md:text-2xl text-warm-muted font-light mb-12 leading-relaxed max-w-2xl">
+                知能の謎を解く<span class="text-warm-ink font-medium border-b border-warm-sage/50 pb-1">「1000の脳」理論</span><br>
+                <span class="text-sm md:text-base mt-4 block">ジェフ・ホーキンス著 / 初心者向け図解ガイド</span>
+            </p>
+
+            <a href="#ch1"
+                class="group flex flex-col items-center gap-3 text-warm-muted hover:text-warm-ink transition-colors duration-300">
+                <span class="text-sm tracking-widest uppercase">Scroll to explore</span>
+                <div class="w-[1px] h-12 bg-warm-border relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1/2 bg-warm-ink animate-[float_2s_ease-in-out_infinite]">
+                    </div>
+                </div>
+            </a>
+        </div>
+    </header>
+
+    <main class="relative z-10 space-y-32 md:space-y-48 pb-32">
+
+        <!-- Chapter 1: 古い脳と新しい脳 -->
+        <section id="ch1" class="px-4 max-w-6xl mx-auto pt-10">
+            <div class="text-center mb-16 reveal">
+                <div class="text-warm-sage font-bold tracking-[0.2em] uppercase text-xs mb-3">Chapter 1</div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold font-serif">あなたの中に同居する「2つの脳」</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                <!-- 文章エリア -->
+                <div class="order-2 lg:order-1 reveal space-y-8">
+                    <p class="text-lg text-warm-ink leading-loose">
+                        私たちの脳は、進化の過程で「増築」されてきました。大きく分けると、生存に関わる<strong
+                            class="text-warm-clay font-medium">「古い脳」</strong>の上に、知能を司る<strong
+                            class="text-warm-sage font-medium">「新しい脳（新皮質）」</strong>が覆いかぶさるような構造をしています。
+                    </p>
+
+                    <div class="space-y-6">
+                        <!-- 古い脳 -->
+                        <div class="minimal-card p-6 flex items-start gap-6">
+                            <div
+                                class="w-12 h-12 rounded-full bg-warm-clay/10 flex items-center justify-center shrink-0 mt-1">
+                                <svg class="w-6 h-6 text-warm-clay" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-warm-ink mb-2">古い脳（生命維持・感情）</h3>
+                                <p class="text-warm-muted leading-relaxed">
+                                    呼吸、食欲、怒り、恐怖など、生存に直結する機能を担当。動物としての本能を司り、行動の「目的」を作ります。</p>
+                            </div>
+                        </div>
+
+                        <!-- 新しい脳 -->
+                        <div class="minimal-card p-6 flex items-start gap-6">
+                            <div
+                                class="w-12 h-12 rounded-full bg-warm-sage/10 flex items-center justify-center shrink-0 mt-1">
+                                <svg class="w-6 h-6 text-warm-sage" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-warm-ink mb-2">新しい脳：新皮質（知能・学習）</h3>
+                                <p class="text-warm-muted leading-relaxed">
+                                    人間で特に大きく発達した部分。言葉を話し、数学を解き、世界を学習する「知能」の源。それ自体は感情を持っていません。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 完全レスポンシブなSVG図解 -->
+                <div class="order-1 lg:order-2 flex justify-center reveal">
+                    <div class="w-full max-w-md aspect-square relative">
+                        <!-- 背景の装飾サークル -->
+                        <div class="absolute inset-0 bg-white rounded-full border border-warm-border/50 shadow-sm">
+                        </div>
+
+                        <svg viewBox="0 0 400 400" class="w-full h-full p-8 relative z-10"
+                            preserveAspectRatio="xMidYMid meet">
+                            <!-- 古い脳 (脳幹周辺) -->
+                            <g class="animate-pulse-slow">
+                                <path d="M185,220 C170,280 185,340 200,340 C215,340 230,280 215,220 Z" fill="#D07C60"
+                                    opacity="0.3" />
+                                <circle cx="200" cy="210" r="35" fill="#D07C60" />
+                                <text x="200" y="215" fill="#FFFFFF" font-size="14" font-weight="bold"
+                                    text-anchor="middle" font-family="sans-serif">古い脳</text>
+                            </g>
+
+                            <!-- 新皮質 (大脳) -->
+                            <path
+                                d="M200,60 C80,60 40,140 70,220 C90,270 130,260 160,240 C160,160 240,160 240,240 C270,260 310,270 330,220 C360,140 320,60 200,60 Z"
+                                fill="#799485" opacity="0.1" stroke="#799485" stroke-width="3" />
+
+                            <!-- シワ（簡略化したミニマルな線） -->
+                            <path d="M120,100 Q160,150 200,110 Q240,150 280,100" fill="none" stroke="#799485"
+                                stroke-width="2" opacity="0.6" stroke-linecap="round" />
+                            <path d="M90,160 Q130,190 160,150" fill="none" stroke="#799485" stroke-width="2"
+                                opacity="0.6" stroke-linecap="round" />
+                            <path d="M310,160 Q270,190 240,150" fill="none" stroke="#799485" stroke-width="2"
+                                opacity="0.6" stroke-linecap="round" />
+
+                            <!-- ラベル -->
+                            <rect x="130" y="85" width="140" height="30" rx="15" fill="#799485" />
+                            <text x="200" y="105" fill="#FFFFFF" font-size="14" font-weight="bold" text-anchor="middle"
+                                font-family="sans-serif">新皮質 (新しい脳)</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 2: 皮質コラム -->
+        <section class="px-4 max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <div class="text-warm-mustard font-bold tracking-[0.2em] uppercase text-xs mb-3">Chapter 2</div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold font-serif">知能の正体は「15万のコピー部品」</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                <!-- 皮質コラムのSVG -->
+                <div class="flex justify-center reveal">
+                    <div
+                        class="w-full max-w-md bg-white rounded-[40px] p-8 border border-warm-border shadow-soft aspect-square flex items-center justify-center">
+                        <svg viewBox="0 0 400 400" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
+                            <!-- 背景のドット（多数存在することを示唆） -->
+                            <g fill="#EBE6E0">
+                                <circle cx="80" cy="150" r="4" />
+                                <circle cx="120" cy="130" r="4" />
+                                <circle cx="160" cy="110" r="4" />
+                                <circle cx="280" cy="110" r="4" />
+                                <circle cx="320" cy="130" r="4" />
+                                <circle cx="360" cy="150" r="4" />
+                            </g>
+
+                            <!-- アイソメトリックな円柱（皮質コラム） -->
+                            <g transform="translate(200, 160) scale(1.4)">
+                                <!-- 奥のコラム -->
+                                <g transform="translate(-35, -15)" opacity="0.4">
+                                    <path d="M-15,0 L-15,70 A15,7 0 0,0 15,70 L15,0 Z" fill="#D4A35C" />
+                                    <ellipse cx="0" cy="0" rx="15" ry="7" fill="#E8BD80" />
+                                </g>
+                                <g transform="translate(35, -15)" opacity="0.4">
+                                    <path d="M-15,0 L-15,70 A15,7 0 0,0 15,70 L15,0 Z" fill="#799485" />
+                                    <ellipse cx="0" cy="0" rx="15" ry="7" fill="#95AD9F" />
+                                </g>
+
+                                <!-- 手前のメインコラム -->
+                                <g transform="translate(0, 15)">
+                                    <path d="M-20,0 L-20,80 A20,9 0 0,0 20,80 L20,0 Z" fill="#FDFBF7" stroke="#2C2825"
+                                        stroke-width="1.5" />
+                                    <ellipse cx="0" cy="0" rx="20" ry="9" fill="#FFFFFF" stroke="#2C2825"
+                                        stroke-width="1.5" />
+                                    <!-- 内部の層を示す線 -->
+                                    <path d="M-20,20 A20,9 0 0,0 20,20" fill="none" stroke="#EBE6E0"
+                                        stroke-width="1.5" />
+                                    <path d="M-20,40 A20,9 0 0,0 20,40" fill="none" stroke="#EBE6E0"
+                                        stroke-width="1.5" />
+                                    <path d="M-20,60 A20,9 0 0,0 20,60" fill="none" stroke="#EBE6E0"
+                                        stroke-width="1.5" />
+                                </g>
+                            </g>
+
+                            <!-- 引き出し線とラベル -->
+                            <path d="M 230 180 L 290 120 L 350 120" fill="none" stroke="#2C2825" stroke-width="1.5" />
+                            <circle cx="230" cy="180" r="3" fill="#2C2825" />
+                            <rect x="250" y="85" width="130" height="26" rx="4" fill="#2C2825" />
+                            <text x="315" y="103" fill="#FFFFFF" font-size="12" font-weight="bold" text-anchor="middle"
+                                font-family="sans-serif">皮質コラム (米粒大)</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="reveal space-y-8">
+                    <p class="text-lg text-warm-ink leading-loose">
+                        新皮質は複雑なスパゲッティのように見えますが、実は<strong>「皮質コラム」</strong>と呼ばれる、米粒ほどの大きさの円柱形モジュールが<strong>約15万個</strong>集まってできています。
+                    </p>
+
+                    <div class="minimal-card bg-warm-paper p-8 border-none relative overflow-hidden">
+                        <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-warm-mustard"></div>
+                        <h4 class="text-xl font-bold text-warm-ink mb-4 font-serif">すべて同じアルゴリズム</h4>
+                        <p class="text-warm-muted leading-relaxed">
+                            視覚（見る）、聴覚（聞く）、触覚（触る）、そして高度な思考や言語。これらは全く違うことをしているように思えますが、脳を解剖してみると、<strong>どこも全く同じ構造（コラム）</strong>をしています。<br><br>
+                            つまり脳は、たった1つの「学習アルゴリズム（コラム）」を発明し、それを15万個コピーして配線を繋ぎ変えることで、複雑な「知能」を生み出したのです。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 3: 1000の脳理論 (投票システム) - 完全にSVGで作り直した堅牢なレイアウト -->
+        <section class="px-4 max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <div class="text-warm-wine font-bold tracking-[0.2em] uppercase text-xs mb-3">Chapter 3</div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold font-serif mb-8">「1000の脳」理論：知覚は多数決で決まる</h2>
+                <p class="text-lg text-warm-muted max-w-3xl mx-auto leading-relaxed">
+                    目や耳からの情報が一つの中央処理装置に送られるのではありません。<br>
+                    実は、<strong>数千のコラムがそれぞれ「独立した脳」として対象物を推測し、ネットワーク上で投票し合っている</strong>のです。
+                </p>
+            </div>
+
+            <!-- 完全レスポンシブなSVGダイアグラム -->
+            <div class="minimal-card p-6 md:p-10 reveal">
+                <svg viewBox="0 0 800 500" class="w-full h-auto" preserveAspectRatio="xMidYMid meet">
+                    <!-- 背景の繋がり（神経接続） -->
+                    <!-- 中央から各ノードへの接続線 -->
+                    <path d="M400,250 C300,250 250,150 200,150" fill="none" stroke="#D07C60" stroke-width="3"
+                        class="path-animated" opacity="0.4" />
+                    <path d="M400,250 C500,250 550,150 600,150" fill="none" stroke="#799485" stroke-width="3"
+                        class="path-animated" opacity="0.4" />
+                    <path d="M400,250 C400,320 400,350 400,380" fill="none" stroke="#D4A35C" stroke-width="3"
+                        class="path-animated" opacity="0.4" />
+
+                    <!-- ノード1：視覚コラムA -->
+                    <g transform="translate(200, 150)">
+                        <circle cx="0" cy="0" r="45" fill="#FFFFFF" stroke="#D07C60" stroke-width="2" />
+                        <circle cx="0" cy="0" r="38" fill="#D07C60" opacity="0.1" />
+                        <!-- 目のアイコン -->
+                        <path d="M-15,0 Q0,-15 15,0 Q0,15 -15,0" fill="none" stroke="#D07C60" stroke-width="2" />
+                        <circle cx="0" cy="0" r="5" fill="#D07C60" />
+
+                        <text x="0" y="65" fill="#2C2825" font-size="16" font-weight="bold" text-anchor="middle"
+                            font-family="sans-serif">視覚コラムA</text>
+                        <text x="0" y="85" fill="#7A736E" font-size="14" text-anchor="middle"
+                            font-family="sans-serif">「白い取っ手」</text>
+                    </g>
+
+                    <!-- ノード2：触覚コラムB -->
+                    <g transform="translate(600, 150)">
+                        <circle cx="0" cy="0" r="45" fill="#FFFFFF" stroke="#799485" stroke-width="2" />
+                        <circle cx="0" cy="0" r="38" fill="#799485" opacity="0.1" />
+                        <!-- 手のアイコン（シンプル） -->
+                        <path d="M-10,10 L-10,-5 A5,5 0 0,1 0,-5 L0,10 M0,5 L0,-8 A5,5 0 0,1 10,-8 L10,10" fill="none"
+                            stroke="#799485" stroke-width="2" stroke-linecap="round" />
+
+                        <text x="0" y="65" fill="#2C2825" font-size="16" font-weight="bold" text-anchor="middle"
+                            font-family="sans-serif">触覚コラムB</text>
+                        <text x="0" y="85" fill="#7A736E" font-size="14" text-anchor="middle"
+                            font-family="sans-serif">「滑らかで温かい」</text>
+                    </g>
+
+                    <!-- ノード3：視覚コラムC -->
+                    <g transform="translate(400, 400)">
+                        <circle cx="0" cy="0" r="45" fill="#FFFFFF" stroke="#D4A35C" stroke-width="2" />
+                        <circle cx="0" cy="0" r="38" fill="#D4A35C" opacity="0.1" />
+                        <!-- 目のアイコン -->
+                        <path d="M-15,0 Q0,-15 15,0 Q0,15 -15,0" fill="none" stroke="#D4A35C" stroke-width="2" />
+                        <circle cx="0" cy="0" r="5" fill="#D4A35C" />
+
+                        <text x="0" y="65" fill="#2C2825" font-size="16" font-weight="bold" text-anchor="middle"
+                            font-family="sans-serif">視覚コラムC</text>
+                        <text x="0" y="85" fill="#7A736E" font-size="14" text-anchor="middle"
+                            font-family="sans-serif">「黒い液体」</text>
+                    </g>
+
+                    <!-- 中央：コンセンサス（多数決の結果） -->
+                    <g transform="translate(400, 200)">
+                        <!-- 後光効果 -->
+                        <circle cx="0" cy="0" r="70" fill="#9E6B76" opacity="0.1" class="animate-pulse-slow" />
+                        <circle cx="0" cy="0" r="60" fill="#FFFFFF" stroke="#9E6B76" stroke-width="3" />
+
+                        <!-- カップアイコン -->
+                        <path d="M-15,-20 L-15,10 A15,15 0 0,0 15,10 L15,-20 Z" fill="none" stroke="#9E6B76"
+                            stroke-width="3" />
+                        <path d="M15,-10 L22,-10 A8,8 0 0,1 22,6 L15,6" fill="none" stroke="#9E6B76" stroke-width="3" />
+                        <path d="M-5,-10 L-5,0 M5,-10 L5,0" stroke="#9E6B76" stroke-width="2" stroke-linecap="round" />
+
+                        <!-- 吹き出し -->
+                        <rect x="-80" y="70" width="160" height="36" rx="18" fill="#9E6B76" />
+                        <text x="0" y="93" fill="#FFFFFF" font-size="16" font-weight="bold" text-anchor="middle"
+                            font-family="sans-serif">「コーヒーカップだ」</text>
+                    </g>
+
+                    <!-- 投票アクションを示すテキスト -->
+                    <text x="290" y="190" fill="#D07C60" font-size="14" font-weight="bold" font-family="sans-serif"
+                        opacity="0.8">Vote →</text>
+                    <text x="510" y="190" fill="#799485" font-size="14" font-weight="bold" font-family="sans-serif"
+                        opacity="0.8">← Vote</text>
+                    <text x="415" y="320" fill="#D4A35C" font-size="14" font-weight="bold" font-family="sans-serif"
+                        opacity="0.8">↑ Vote</text>
+                </svg>
+
+                <div class="mt-8 text-center border-t border-warm-border pt-6">
+                    <p class="text-warm-muted text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+                        各コラムは不完全な情報から推測を立て、互いに「投票」を行います。<br>
+                        瞬時に合意（コンセンサス）が形成されるため、私たちはバラバラな感覚を「一つの安定した世界」として感じることができるのです。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 4: 座標系 (Reference Frames) -->
+        <section class="px-4 max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <div class="text-warm-sage font-bold tracking-[0.2em] uppercase text-xs mb-3">Chapter 4</div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold font-serif">知識の「地図」と座標系</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                <div class="reveal space-y-8 order-2 lg:order-1">
+                    <p class="text-lg text-warm-ink leading-loose">
+                        私たちが部屋の中を歩くとき、脳内の「場所細胞」と「格子細胞」が働き、空間の地図を作ります。<br><br>
+                        ホーキンスの最大の発見は、<strong>「思考や概念（言葉、数学、歴史など）も、空間の移動と全く同じように『脳内の座標系』に配置されている」</strong>ということです。
+                    </p>
+                    <blockquote
+                        class="border-l-4 border-warm-sage pl-6 py-2 text-warm-muted italic bg-warm-sage/5 rounded-r-xl text-lg">
+                        「知識は座標系で保存される。思考するとは、頭の中で座標系を移動することだ」
+                    </blockquote>
+                </div>
+
+                <!-- SVG: 座標系 -->
+                <div class="order-1 lg:order-2 flex justify-center reveal">
+                    <div
+                        class="w-full max-w-md bg-white rounded-[40px] p-6 border border-warm-border shadow-soft aspect-square">
+                        <svg viewBox="0 0 500 500" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(250, 300) scale(1.6)">
+                                <!-- アイソメトリックグリッド（床） -->
+                                <path d="M0,0 L100,-50 L0,-100 L-100,-50 Z" fill="#FDFBF7" stroke="#EBE6E0"
+                                    stroke-width="1.5" />
+                                <path d="M-50,-25 L50,-75 M50,-25 L-50,-75" fill="none" stroke="#EBE6E0"
+                                    stroke-width="1" />
+
+                                <!-- 縦軸（Z軸） -->
+                                <line x1="0" y1="0" x2="0" y2="-130" stroke="#CFCAC4" stroke-width="1.5"
+                                    stroke-dasharray="4" />
+
+                                <!-- ノードとリンク -->
+                                <!-- リンク線 -->
+                                <path d="M-40,-60 L30,-85" fill="none" stroke="#799485" stroke-width="2"
+                                    class="path-animated" />
+                                <path d="M-40,-60 L0,-40" fill="none" stroke="#799485" stroke-width="2"
+                                    class="path-animated" />
+
+                                <!-- ノード：リンゴ -->
+                                <g transform="translate(-40, -60)">
+                                    <circle cx="0" cy="0" r="7" fill="#D07C60" class="animate-pulse" />
+                                    <rect x="-25" y="-28" width="50" height="20" rx="10" fill="#FFFFFF" stroke="#EBE6E0"
+                                        stroke-width="1" />
+                                    <text x="0" y="-15" fill="#2C2825" font-size="10" font-weight="bold"
+                                        text-anchor="middle" font-family="sans-serif">リンゴ</text>
+                                </g>
+
+                                <!-- ノード：果物 -->
+                                <g transform="translate(30, -85)">
+                                    <circle cx="0" cy="0" r="6" fill="#D4A35C" />
+                                    <rect x="-20" y="-28" width="40" height="20" rx="10" fill="#FFFFFF" stroke="#EBE6E0"
+                                        stroke-width="1" />
+                                    <text x="0" y="-15" fill="#2C2825" font-size="10" font-weight="bold"
+                                        text-anchor="middle" font-family="sans-serif">果物</text>
+                                </g>
+
+                                <!-- ノード：赤色 -->
+                                <g transform="translate(0, -40)">
+                                    <circle cx="0" cy="0" r="6" fill="#9E6B76" />
+                                    <rect x="-20" y="-28" width="40" height="20" rx="10" fill="#FFFFFF" stroke="#EBE6E0"
+                                        stroke-width="1" />
+                                    <text x="0" y="-15" fill="#2C2825" font-size="10" font-weight="bold"
+                                        text-anchor="middle" font-family="sans-serif">赤色</text>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 5: AIの未来 (AGIへの道) -->
+        <section class="px-4 max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <div class="text-warm-ink font-bold tracking-[0.2em] uppercase text-xs mb-3">Chapter 5</div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold font-serif">真のAI（AGI）への道</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 reveal">
+                <!-- 今のAI -->
+                <div class="minimal-card p-10 relative overflow-hidden bg-[#FAFAF9]">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-warm-muted/30"></div>
+                    <h3 class="text-2xl font-bold mb-4 text-warm-ink font-serif">現在のAI<br><span
+                            class="text-sm font-sans font-normal text-warm-muted mt-2 block">（ディープラーニング）</span></h3>
+                    <p class="text-warm-ink/80 mb-8 leading-relaxed">
+                        大量の画像データからパターンを覚えるのは得意ですが、<strong>「対象物が立体的にどうなっているか（座標系）」</strong>を持っていません。そのため、少しでも想定外の状況になると間違えてしまい、真の汎用性がありません。
+                    </p>
+                    <div
+                        class="flex items-center gap-4 text-warm-muted bg-white p-4 rounded-xl border border-warm-border">
+                        <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                        <span class="font-medium text-sm">平面的なパターンマッチング</span>
+                    </div>
+                </div>
+
+                <!-- 未来のAI -->
+                <div
+                    class="minimal-card p-10 relative overflow-hidden border-warm-mustard/30 shadow-[0_10px_40px_-10px_rgba(212,163,92,0.15)]">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-warm-mustard"></div>
+                    <h3 class="text-2xl font-bold mb-4 text-warm-ink font-serif">未来のAI<br><span
+                            class="text-sm font-sans font-normal text-warm-mustard mt-2 block">（1000の脳モデル）</span></h3>
+                    <p class="text-warm-ink/80 mb-8 leading-relaxed">
+                        汎用人工知能（AGI）を作るには、AIに脳と同じ<strong>「座標系」</strong>と、実際に動いて確かめる<strong>「感覚運動」</strong>を持たせる必要があります。モデルの多数決によって、未知の状況にも柔軟に対応できるようになります。
+                    </p>
+                    <div
+                        class="flex items-center gap-4 text-warm-mustard bg-warm-mustard/5 p-4 rounded-xl border border-warm-mustard/20">
+                        <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5">
+                            </path>
+                        </svg>
+                        <span class="font-bold text-sm">立体的な座標系と投票システム</span>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="mt-12 minimal-card p-8 reveal bg-white flex flex-col md:flex-row gap-6 items-start md:items-center">
+                <div class="w-12 h-12 rounded-full bg-warm-wine/10 flex items-center justify-center shrink-0">
+                    <svg class="w-6 h-6 text-warm-wine" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-warm-ink mb-2">ターミネーターは生まれない？</h4>
+                    <p class="text-warm-muted leading-relaxed text-sm md:text-base">
+                        著者は「AIが人類を滅ぼす」というSFのシナリオを否定しています。なぜなら、<strong>怒り、支配欲、生存本能は「古い脳」の機能</strong>だからです。私たちが作るAIは「新しい脳（新皮質）」の模倣であり、それ自体が自発的に悪意ある目標を持つことはありません。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 6: 結論 -->
+        <section class="px-4 max-w-4xl mx-auto text-center pt-20 pb-10 reveal">
+            <svg class="w-12 h-12 mx-auto text-warm-sage mb-8 opacity-80" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                </path>
+            </svg>
+
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 font-serif text-warm-ink">人類の遺産を残すために</h2>
+
+            <p class="text-lg md:text-xl text-warm-ink/80 leading-loose mb-10 max-w-2xl mx-auto">
+                人間の知能（新しい脳）は、宇宙の謎を解き明かすほどの知識を持っています。<br>しかし同時に、私たちを戦争や環境破壊へと駆り立てる「古い脳」のリスクも抱えています。
+            </p>
+            <p class="text-base md:text-lg text-warm-muted mb-16 max-w-2xl mx-auto leading-relaxed">
+                私たちが築き上げた「世界モデル（知識）」を、地球外の知的生命体や後世のAIに向けて保存していくこと。それが、知能を持った種の最終的な役割なのかもしれません。
+            </p>
+
+            <div
+                class="inline-block p-1 rounded-full border border-warm-border bg-white shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div class="px-8 py-4 rounded-full text-warm-ink text-sm md:text-base font-medium">
+                    書籍『脳は世界をどう見ているのか』にて、さらに深い謎を探求してみてください。
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-12 border-t border-warm-border bg-warm-paper text-warm-muted text-sm">
+        <p>This is a visual guide based on "A Thousand Brains" by Jeff Hawkins.</p>
+    </footer>
+
+    <!-- スクロールアニメーション用JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // プログレスバー
+            const progressBar = document.getElementById('progress-bar');
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                progressBar.style.width = scrolled + "%";
+            });
+
+            // Intersection Observer (要素のフェードイン)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
