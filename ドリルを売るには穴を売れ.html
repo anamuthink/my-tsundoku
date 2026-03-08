@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図解でわかる『ドリルを売るには穴を売れ』</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: 温かみのある丸ゴシック系 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        base: '#FDFBF7',     /* 温かみのあるオフホワイト */
+                        text: '#4A4238',     /* 柔らかいダークブラウン */
+                        primary: '#D97757',  /* テラコッタ（アクセント） */
+                        secondary: '#81B29A',/* セージグリーン */
+                        accent: '#F2CC8F',   /* マスタードイエロー */
+                        blue: '#6A8CAF',     /* くすみブルー */
+                        card: '#FFFFFF',
+                    },
+                    fontFamily: {
+                        sans: ['"Zen Kaku Gothic New"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(74, 66, 56, 0.08)',
+                        'float': '0 20px 40px -10px rgba(217, 119, 87, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: theme('colors.base');
+            color: theme('colors.text');
+            overflow-x: hidden;
+        }
+
+        /* アニメーション用クラス */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ドリルと穴のアニメーション */
+        .arrow-flow {
+            animation: flow 2s infinite ease-in-out;
+        }
+
+        @keyframes flow {
+            0% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            100% {
+                transform: translateX(-5px);
+            }
+        }
+
+        /* 氷山の図解用 */
+        .iceberg-top {
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+        }
+
+        .iceberg-bottom {
+            clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%);
+        }
+
+        /* ぼかし背景の装飾 */
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body class="antialiased leading-relaxed font-sans">
+
+    <!-- 背景のふんわりした装飾 -->
+    <div class="blob bg-primary w-96 h-96 top-0 left-[-10%]"></div>
+    <div class="blob bg-secondary w-96 h-96 top-[20%] right-[-10%]"></div>
+    <div class="blob bg-accent w-96 h-96 bottom-[10%] left-[-10%]"></div>
+
+    <!-- ヘッダー -->
+    <header class="pt-24 pb-16 px-6 text-center max-w-4xl mx-auto fade-up">
+        <p class="text-primary font-bold tracking-widest text-sm md:text-base mb-4">MARKETING ESSENTIALS</p>
+        <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+            図解でわかる！<br>
+            <span class="relative inline-block mt-2">
+                『ドリルを売るには穴を売れ』
+                <svg class="absolute w-full h-3 -bottom-1 left-0 text-accent/60" viewBox="0 0 100 10"
+                    preserveAspectRatio="none">
+                    <path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="4"
+                        stroke-linecap="round" />
+                </svg>
+            </span>
+        </h1>
+        <p class="text-lg md:text-xl text-text/80 mt-8 max-w-2xl mx-auto">
+            モノが溢れる時代、お客様は「商品」を買っているのではありません。<br>
+            マーケティングの永遠の真理を、4つのステップで直感的に紐解きます。
+        </p>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 pb-24 space-y-32">
+
+        <!-- 核心のメッセージ：ドリルと穴 -->
+        <section class="fade-up">
+            <div class="bg-card rounded-3xl p-8 md:p-12 shadow-soft border border-text/5 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-bl-full -z-10"></div>
+
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-10">
+                    なぜ「良い商品」が売れないのか？
+                </h2>
+
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+                    <!-- ドリル（売り手の視点） -->
+                    <div class="bg-base rounded-2xl p-6 text-center w-full md:w-1/3 border-2 border-text/10">
+                        <div class="w-20 h-20 mx-auto bg-text/5 rounded-full flex items-center justify-center mb-4">
+                            <svg class="w-10 h-10 text-text/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">ドリル（手段・機能）</h3>
+                        <p class="text-sm text-text/70">「このドリルはチタン製で、1分間に1万回転します！」</p>
+                        <div class="mt-4 text-xs font-bold text-text/40 tracking-wider">売り手の目線</div>
+                    </div>
+
+                    <!-- 矢印 -->
+                    <div class="arrow-flow flex flex-col items-center text-primary">
+                        <span class="text-sm font-bold mb-2 hidden md:block">お客様が本当に欲しいのは…</span>
+                        <svg class="w-10 h-10 transform rotate-90 md:rotate-0" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </div>
+
+                    <!-- 穴（買い手の視点） -->
+                    <div
+                        class="bg-primary/5 rounded-2xl p-6 text-center w-full md:w-1/3 border-2 border-primary/20 shadow-float">
+                        <div class="w-20 h-20 mx-auto bg-primary/20 rounded-full flex items-center justify-center mb-4">
+                            <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 text-primary">壁の穴（価値・未来）</h3>
+                        <p class="text-sm text-text/80">「綺麗に棚を取り付けて、快適な部屋を作りたい！」</p>
+                        <div class="mt-4 text-xs font-bold text-primary/60 tracking-wider">買い手の目線</div>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center">
+                    <p
+                        class="text-lg md:text-xl font-bold bg-primary/10 text-primary inline-block px-6 py-3 rounded-full">
+                        人は「ドリル」ではなく、ドリルが開ける「穴」を買っている。
+                    </p>
+                </div>
+            </div>
+
+            <p class="text-center mt-8 text-text/80 max-w-2xl mx-auto">
+                これがマーケティングの出発点です。この本質を実現するために、<br>
+                知っておくべきたった4つの基本理論を見ていきましょう。
+            </p>
+        </section>
+
+        <!-- 理論1：ベネフィット -->
+        <section class="fade-up relative">
+            <div class="flex items-center gap-4 mb-8">
+                <div
+                    class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl shadow-lg">
+                    1</div>
+                <div>
+                    <h2 class="text-2xl font-bold">あなたは何を売っているのか？</h2>
+                    <p class="text-primary font-bold">理論1：ベネフィット（顧客にとっての価値）</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div class="space-y-6">
+                    <p class="text-lg leading-relaxed">
+                        お客様は商品の「スペック（機能）」にお金を払うのではありません。その商品を使うことで得られる「良いこと（未来）」にお金を払います。
+                    </p>
+                    <div class="bg-card p-6 rounded-2xl shadow-soft">
+                        <h3 class="font-bold mb-4 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z">
+                                </path>
+                            </svg>
+                            例えば、レストランなら？
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <span class="text-text/40 mt-1">❌</span>
+                                <div>
+                                    <span class="font-bold text-sm text-text/60">機能・特徴：</span><br>
+                                    無農薬野菜を使ったイタリアン
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-primary mt-1">⭕️</span>
+                                <div>
+                                    <span class="font-bold text-sm text-primary">ベネフィット（価値）：</span><br>
+                                    大切な人とリラックスして語り合える、素敵な時間
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 氷山の図解 -->
+                <div
+                    class="relative bg-blue/10 rounded-3xl p-8 flex flex-col items-center justify-center min-h-[350px]">
+                    <div class="absolute inset-0 overflow-hidden rounded-3xl">
+                        <!-- 海面ライン -->
+                        <div class="absolute top-1/3 left-0 w-full border-t-2 border-dashed border-blue/30"></div>
+                    </div>
+
+                    <!-- 氷山上部（機能） -->
+                    <div
+                        class="z-10 w-32 h-24 bg-white/80 backdrop-blur iceberg-top flex items-end justify-center pb-2 shadow-sm border border-white">
+                        <span class="text-sm font-bold text-blue">機能・特徴</span>
+                    </div>
+
+                    <!-- 海面 -->
+                    <div class="z-10 w-full text-center my-2 text-xs font-bold text-blue/60 tracking-widest">目に見える部分 /
+                        見えない部分</div>
+
+                    <!-- 氷山下部（ベネフィット） -->
+                    <div
+                        class="z-10 w-64 h-48 bg-blue/20 backdrop-blur iceberg-bottom flex flex-col items-center justify-start pt-8 shadow-inner border border-white/50">
+                        <span class="text-xl font-bold text-blue">ベネフィット</span>
+                        <span class="text-sm text-blue/80 mt-2">（感情・欲求・未来）</span>
+                        <span class="text-xs text-blue/60 mt-4 text-center px-4">ここが大きければ大きいほど、<br>人はお金を払う</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 理論2：セグメンテーション＆ターゲティング -->
+        <section class="fade-up">
+            <div class="flex items-center gap-4 mb-8">
+                <div
+                    class="w-12 h-12 rounded-full bg-secondary text-white flex items-center justify-center font-bold text-xl shadow-lg">
+                    2</div>
+                <div>
+                    <h2 class="text-2xl font-bold">誰が買ってくれるのか？</h2>
+                    <p class="text-secondary font-bold">理論2：セグメンテーションとターゲット</p>
+                </div>
+            </div>
+
+            <div class="bg-card rounded-3xl p-8 md:p-12 shadow-soft border border-text/5">
+                <div class="text-center mb-10">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4">「みんなに売りたい」は、「誰にも売れない」の始まり。</h3>
+                    <p class="text-text/80">市場を分け（セグメンテーション）、狙う顧客を絞り込む（ターゲティング）勇気が必要です。</p>
+                </div>
+
+                <!-- ターゲット絞り込みの図解 -->
+                <div class="relative max-w-2xl mx-auto flex flex-col items-center justify-center min-h-[240px] py-4">
+                    <!-- 大勢の人群れ（背景として配置） -->
+                    <div
+                        class="absolute inset-0 flex flex-wrap justify-center content-start gap-4 opacity-30 z-0 overflow-hidden">
+                        <!-- 人型アイコンを複数生成 -->
+                        <script>
+                            for (let i = 0; i < 20; i++) {
+                                document.write(`
+                                <svg class="w-8 h-8 text-text/40" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                </svg>
+                                `);
+                            }
+                        </script>
+                    </div>
+
+                    <!-- 虫眼鏡・フォーカス -->
+                    <div
+                        class="relative z-10 w-40 h-40 md:w-48 md:h-48 border-4 border-secondary rounded-full bg-secondary/20 flex flex-wrap items-center justify-center p-4 backdrop-blur-md shadow-float mt-4">
+                        <!-- ターゲットとなる人 -->
+                        <svg class="w-10 h-10 md:w-12 md:h-12 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <svg class="w-10 h-10 md:w-12 md:h-12 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <div
+                            class="absolute -bottom-4 md:-bottom-5 bg-secondary text-white text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap shadow-md">
+                            絞り込んだターゲット
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-20 grid md:grid-cols-2 gap-6 text-sm">
+                    <div class="bg-base p-6 rounded-2xl border-l-4 border-text/20">
+                        <strong class="block mb-2 text-text/60">❌ 失敗する絞り込み</strong>
+                        「20代〜60代の男女すべて」<br>
+                        → メッセージがぼやけて、誰の心にも刺さらない。
+                    </div>
+                    <div class="bg-secondary/10 p-6 rounded-2xl border-l-4 border-secondary">
+                        <strong class="block mb-2 text-secondary">⭕️ 成功する絞り込み</strong>
+                        「仕事帰りに1人でゆっくり美味しいワインを飲みたい30代女性」<br>
+                        → 刺さるメニューや雰囲気が明確になる！
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 理論3：差別化 -->
+        <section class="fade-up">
+            <div class="flex items-center gap-4 mb-8">
+                <div
+                    class="w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center font-bold text-xl shadow-lg">
+                    3</div>
+                <div>
+                    <h2 class="text-2xl font-bold">なぜ「あなた」から買うのか？</h2>
+                    <p class="text-accent font-bold drop-shadow-sm">理論3：差別化（競合より高い価値）</p>
+                </div>
+            </div>
+
+            <p class="text-lg mb-10">
+                ターゲットが決まったら、競合（ライバル）とどう違うのかを明確にします。<br>
+                差別化の方向性は、大きく分けて**3つの軸**しかありません。
+            </p>
+
+            <!-- 3つの差別化軸の図解（三角形レイアウト） -->
+            <div class="relative max-w-3xl mx-auto py-8 md:py-12">
+                <!-- 背景の三角形ライン（PCのみ） -->
+                <div class="hidden md:block absolute top-[20%] left-1/2 -translate-x-1/2 w-[55%] h-[60%] border-2 border-dashed border-text/10 z-0"
+                    style="clip-path: polygon(50% 0%, 100% 100%, 0% 100%);"></div>
+
+                <div class="flex flex-col items-center gap-6 md:gap-12 relative z-10">
+                    <!-- 上段: 手軽軸 -->
+                    <div
+                        class="w-full md:w-[30%] bg-card p-6 rounded-3xl shadow-soft border-t-4 border-blue text-center transform hover:-translate-y-2 transition-transform">
+                        <div class="w-14 h-14 mx-auto bg-blue/10 rounded-full flex items-center justify-center mb-4">
+                            <svg class="w-7 h-7 text-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">手軽軸</h3>
+                        <p class="text-sm text-text/70 mb-3">早い、安い、便利！</p>
+                        <p class="text-xs bg-base p-2 rounded text-left">例：ファストフード、100円ショップ</p>
+                    </div>
+
+                    <!-- 下段: 商品軸 ＆ 密着軸 -->
+                    <div class="flex flex-col md:flex-row w-full justify-between gap-6 md:gap-0">
+                        <!-- 商品軸 -->
+                        <div
+                            class="w-full md:w-[30%] bg-card p-6 rounded-3xl shadow-soft border-t-4 border-primary text-center transform hover:-translate-y-2 transition-transform">
+                            <div
+                                class="w-14 h-14 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2">商品軸</h3>
+                            <p class="text-sm text-text/70 mb-3">最新技術、最高品質！</p>
+                            <p class="text-xs bg-base p-2 rounded text-left">例：高級フレンチ、Apple製品</p>
+                        </div>
+
+                        <!-- 密着軸 -->
+                        <div
+                            class="w-full md:w-[30%] bg-card p-6 rounded-3xl shadow-soft border-t-4 border-secondary text-center transform hover:-translate-y-2 transition-transform">
+                            <div
+                                class="w-14 h-14 mx-auto bg-secondary/10 rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-7 h-7 text-secondary" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2">密着軸</h3>
+                            <p class="text-sm text-text/70 mb-3">顧客を知り尽くす！</p>
+                            <p class="text-xs bg-base p-2 rounded text-left">例：なじみの美容院、御用聞き</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-accent/10 p-6 rounded-2xl text-center max-w-2xl mx-auto mt-4 border border-accent/20">
+                <p class="font-bold text-text">💡 鉄則：どれか1つの軸で「ダントツ」になること！</p>
+                <p class="text-sm text-text/80 mt-2">
+                    すべてを追うと中途半端になります。ただし、選ばなかった軸も「平均レベル」は保つ必要があります。（例：いくら安くても、不味すぎたら行かない）</p>
+            </div>
+        </section>
+
+        <!-- 理論4：4P -->
+        <section class="fade-up">
+            <div class="flex items-center gap-4 mb-8">
+                <div
+                    class="w-12 h-12 rounded-full bg-text text-white flex items-center justify-center font-bold text-xl shadow-lg">
+                    4</div>
+                <div>
+                    <h2 class="text-2xl font-bold">どうやって価値を届けるか？</h2>
+                    <p class="text-text/70 font-bold">理論4：４Ｐ（一貫した戦術）</p>
+                </div>
+            </div>
+
+            <p class="text-lg mb-10">
+                ベネフィット、ターゲット、差別化が決まったら、それを具体的な「目に見える形」に落とし込みます。この4つの要素に**「一貫性」**を持たせることが最強の仕組みを作ります。
+            </p>
+
+            <!-- 4P パズル/歯車 図解 -->
+            <div class="relative bg-card p-4 md:p-12 rounded-3xl shadow-soft overflow-hidden">
+                <!-- 中央の価値 -->
+                <div
+                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 md:w-28 md:h-28 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm md:text-xl shadow-xl z-20 border-4 border-card">
+                    顧客価値
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 md:gap-8 relative z-10">
+                    <!-- Product -->
+                    <div
+                        class="bg-base p-4 md:p-8 rounded-tl-3xl rounded-br-xl rounded-tr-xl rounded-bl-xl text-center h-40 md:h-56 flex flex-col justify-between border border-text/5 hover:bg-white hover:shadow-md transition-all">
+                        <div class="text-left"><span
+                                class="text-2xl md:text-4xl font-bold text-text/10 leading-none">1</span></div>
+                        <div class="mb-auto mt-2 md:mt-4">
+                            <h3 class="font-bold text-base md:text-xl mb-1 text-primary">Product</h3>
+                            <p class="text-xs md:text-base font-bold mb-1">製品・サービス</p>
+                            <p class="text-[10px] md:text-sm text-text/60">どんな商品を提供する？</p>
+                        </div>
+                    </div>
+
+                    <!-- Price -->
+                    <div
+                        class="bg-base p-4 md:p-8 rounded-tr-3xl rounded-bl-xl rounded-tl-xl rounded-br-xl text-center h-40 md:h-56 flex flex-col justify-between border border-text/5 hover:bg-white hover:shadow-md transition-all">
+                        <div class="text-right"><span
+                                class="text-2xl md:text-4xl font-bold text-text/10 leading-none">2</span></div>
+                        <div class="mb-auto mt-2 md:mt-4">
+                            <h3 class="font-bold text-base md:text-xl mb-1 text-secondary">Price</h3>
+                            <p class="text-xs md:text-base font-bold mb-1">価格</p>
+                            <p class="text-[10px] md:text-sm text-text/60">いくらで売る？</p>
+                        </div>
+                    </div>
+
+                    <!-- Place -->
+                    <div
+                        class="bg-base p-4 md:p-8 rounded-bl-3xl rounded-tr-xl rounded-br-xl rounded-tl-xl text-center h-40 md:h-56 flex flex-col justify-between border border-text/5 hover:bg-white hover:shadow-md transition-all">
+                        <div class="mt-auto mb-2 md:mb-4">
+                            <h3 class="font-bold text-base md:text-xl mb-1 text-accent">Place</h3>
+                            <p class="text-xs md:text-base font-bold mb-1">流通・販路</p>
+                            <p class="text-[10px] md:text-sm text-text/60">どこで売る？</p>
+                        </div>
+                        <div class="text-left"><span
+                                class="text-2xl md:text-4xl font-bold text-text/10 leading-none">3</span></div>
+                    </div>
+
+                    <!-- Promotion -->
+                    <div
+                        class="bg-base p-4 md:p-8 rounded-br-3xl rounded-tl-xl rounded-bl-xl rounded-tr-xl text-center h-40 md:h-56 flex flex-col justify-between border border-text/5 hover:bg-white hover:shadow-md transition-all">
+                        <div class="mt-auto mb-2 md:mb-4">
+                            <h3 class="font-bold text-base md:text-xl mb-1 text-blue">Promotion</h3>
+                            <p class="text-xs md:text-base font-bold mb-1">広告・販促</p>
+                            <p class="text-[10px] md:text-sm text-text/60">どう知ってもらう？</p>
+                        </div>
+                        <div class="text-right"><span
+                                class="text-2xl md:text-4xl font-bold text-text/10 leading-none">4</span></div>
+                    </div>
+                </div>
+
+                <!-- 連結を示す円 -->
+                <div
+                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[85%] h-[85%] border-2 border-dashed border-text/10 rounded-full z-0 pointer-events-none hidden md:block animate-[spin_30s_linear_infinite]">
+                </div>
+            </div>
+
+            <div class="mt-8 bg-text text-white p-6 rounded-2xl flex items-start gap-4 shadow-lg">
+                <span class="text-2xl">⚠️</span>
+                <div>
+                    <h4 class="font-bold mb-1">一貫性が崩れると売れない</h4>
+                    <p class="text-sm text-white/80">
+                        「最高級のフレンチ（Product）」を「500円（Price）」で「スーパーの片隅（Place）」で「チラシ（Promotion）」で売ろうとしていませんか？
+                        4つが美しく連動した時、「売れる仕組み」が完成します。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="fade-up mt-24">
+            <div
+                class="bg-gradient-to-br from-primary/10 to-accent/10 p-10 rounded-[3rem] text-center border border-white">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6">マーケティングとは、「優しさ」である。</h2>
+                <p class="text-lg leading-relaxed text-text/80 max-w-2xl mx-auto mb-8">
+                    『ドリルを売るには穴を売れ』の物語の舞台は、赤字続きのイタリアンレストランでした。<br>
+                    主人公は小手先のテクニックではなく、**「お客様の喜び（ベネフィット）は何か？」**を徹底的に考えることでお店を立て直します。
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-sm font-bold text-text/60">
+                    <span class="bg-white px-4 py-2 rounded-full shadow-sm">1. ベネフィットを見つけ</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span class="bg-white px-4 py-2 rounded-full shadow-sm">2. ターゲットを絞り</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span class="bg-white px-4 py-2 rounded-full shadow-sm">3. 差別化し</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span class="bg-white px-4 py-2 rounded-full shadow-sm">4. 4Pで一貫して届ける</span>
+                </div>
+                <p class="mt-8 text-primary font-bold text-xl">
+                    お客様の「欲しい（穴）」を見抜き、価値を届ける仕組みを作りましょう！
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-8 text-text/40 text-sm">
+        <p>参考書籍：『ドリルを売るには穴を売れ』 佐藤義典 著 (青春出版社)</p>
+    </footer>
+
+    <!-- スクロールアニメーション用スクリプト -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1, // 10%見えたら発火
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            document.querySelectorAll('.fade-up').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
