@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【図解】三行で撃つ ＜善く、生きる＞ための文章塾</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        serif: ['"Noto Serif JP"', 'serif'],
+                    },
+                    colors: {
+                        'book-red': '#DC2626', // 印象的な赤色（弾丸・撃つイメージ）
+                        'book-bg': '#FDFCF8',  // 温かみのある紙の色
+                        'book-dark': '#1F2937',// 濃いグレー（墨色）
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* 原稿用紙風の背景パターン */
+        .bg-genkou {
+            background-color: #FDFCF8;
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+            background-size: 24px 24px;
+            background-position: center top;
+        }
+
+        /* スクロールアニメーション用クラス */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* テキストのハイライト効果 */
+        .marker-red {
+            background: linear-gradient(transparent 60%, rgba(220, 38, 38, 0.2) 60%);
+        }
+    </style>
+</head>
+
+<body class="bg-book-bg text-book-dark font-sans leading-loose antialiased">
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <header class="relative pt-24 pb-20 px-6 overflow-hidden bg-genkou border-b border-gray-200">
+        <div class="max-w-4xl mx-auto relative z-10 text-center fade-in-up">
+            <div
+                class="inline-flex items-center justify-center space-x-2 bg-white px-4 py-1.5 rounded-full border border-gray-200 shadow-sm mb-6">
+                <i data-lucide="book-open" class="w-4 h-4 text-book-red"></i>
+                <span class="text-sm font-bold text-gray-600 tracking-wider">近藤康太郎 著 / CCCメディアハウス</span>
+            </div>
+
+            <h1 class="font-serif text-5xl md:text-7xl font-black tracking-tight mb-6 leading-tight">
+                <span class="text-book-red">三行</span>で撃つ
+            </h1>
+            <p class="text-2xl md:text-3xl font-serif mb-10 text-gray-800 font-bold">
+                ＜善く、生きる＞ための文章塾
+            </p>
+
+            <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium">
+                「あの人の文章は、ちょっといい」<br>
+                そう言われるわたしになれば、自分が変わる。<br>
+                現役新聞記者が教える、単なる技術を超えた<span class="marker-red font-bold text-book-dark">「サバイバルとしての文章術」</span>。
+            </p>
+        </div>
+    </header>
+
+    <!-- ==================== SECTION 1: 大前提 ==================== -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto fade-in-up">
+            <div
+                class="flex flex-col md:flex-row items-center gap-10 bg-white border-l-8 border-book-red p-8 md:p-12 rounded-r-2xl shadow-lg">
+                <div class="flex-shrink-0 bg-red-50 p-6 rounded-full">
+                    <i data-lucide="users" class="w-16 h-16 text-book-red"></i>
+                </div>
+                <div>
+                    <h2 class="font-serif text-2xl md:text-3xl font-bold mb-4">残酷な大前提：<br
+                            class="md:hidden">「読者は、あなたに興味がない」</h2>
+                    <p class="text-gray-700 text-lg">
+                        あなたが何を書こうが、どんなテーマだろうが、読者は基本的に気にしません。この冷厳な現実を受け入れるところから文章は始まります。<br><br>
+                        だからこそ、<strong class="text-book-red">最初の「三行」で読者の襟首を掴み、のけぞらせるほどの衝撃</strong>を与えなければならないのです。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 2: 4つの核心 ==================== -->
+    <section class="py-20 px-6 bg-gray-50">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4">読者の心を撃ち抜く「4つの核心」</h2>
+                <p class="text-gray-600 text-lg">25発の弾丸（章）から、特に重要なエッセンスを抽出しました。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- 核心1 -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group hover:shadow-md transition duration-300 fade-in-up">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-book-red"></div>
+                    <i data-lucide="target" class="w-10 h-10 text-book-red mb-5"></i>
+                    <h3 class="font-serif text-2xl font-bold mb-3">1. 最初の三行で「銃」を見せろ</h3>
+                    <p class="text-gray-600 mb-4">
+                        書き出しを外すと、次はありません。最初の三行で読者を驚かせましょう。劇作家チェーホフの言葉通り、<strong
+                            class="text-book-dark">「銃が出てきた以上、それは発射されなければならない」</strong>のです。
+                    </p>
+                </div>
+
+                <!-- 核心2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group hover:shadow-md transition duration-300 fade-in-up"
+                    style="transition-delay: 100ms;">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-gray-800"></div>
+                    <i data-lucide="ban" class="w-10 h-10 text-gray-800 mb-5"></i>
+                    <h3 class="font-serif text-2xl font-bold mb-3">2. 常套句は「親の仇」</h3>
+                    <p class="text-gray-600 mb-4">
+                        「抜けるような青空」「美しい花」といった決まり文句（クリシェ）は思考停止の証拠です。他人のフィルターで世界を見ず、<strong
+                            class="text-book-dark">感性のマイノリティ</strong>になって自分の言葉を探し出せ。
+                    </p>
+                    <div class="bg-red-50 text-red-700 text-sm p-3 rounded-lg border border-red-100">
+                        <span class="font-bold">NG:</span> 「〜としたもんだ」「エモい」「ヤバい」等の安易な使用
+                    </div>
+                </div>
+
+                <!-- 核心3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group hover:shadow-md transition duration-300 fade-in-up"
+                    style="transition-delay: 200ms;">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-blue-600"></div>
+                    <i data-lucide="eye" class="w-10 h-10 text-blue-600 mb-5"></i>
+                    <h3 class="font-serif text-2xl font-bold mb-3">3. 感情は「エピソード」で語れ</h3>
+                    <p class="text-gray-600 mb-4">
+                        「私は怒っていた」と感情を直接説明してはいけません。五感を研ぎ澄まし、<strong
+                            class="text-book-dark">怒っていることが読者に伝わる具体的な情景や行動</strong>を正確に描写すること。
+                    </p>
+                    <div class="bg-blue-50 text-blue-800 text-sm p-3 rounded-lg border border-blue-100">
+                        <span class="font-bold">OK:</span> 「震える手で強く唇を噛み締めた」
+                    </div>
+                </div>
+
+                <!-- 核心4 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group hover:shadow-md transition duration-300 fade-in-up"
+                    style="transition-delay: 300ms;">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-green-600"></div>
+                    <i data-lucide="shuffle" class="w-10 h-10 text-green-600 mb-5"></i>
+                    <h3 class="font-serif text-2xl font-bold mb-3">4. 「転」で読者を裏切れ</h3>
+                    <p class="text-gray-600 mb-4">
+                        起承転結の「転」こそが、AIには書けない人間の価値です。予定調和を壊し、自分が書く前には考えてもいなかった方向へ文章を転がすこと。
+                    </p>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-bold">古今</span>
+                        <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-bold">東西</span>
+                        <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-bold">逆張り</span>
+                        <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-bold">順張り</span>
+                        <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-bold">脱臼</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 3: テクニックと3感 ==================== -->
+    <section class="py-20 px-6">
+        <div class="max-w-5xl mx-auto">
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+                <!-- すべる文章の基本 -->
+                <div class="fade-in-up">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="feather" class="w-8 h-8 text-gray-800"></i>
+                        <h2 class="font-serif text-3xl font-bold">「すべる文章」の基礎</h2>
+                    </div>
+                    <p class="text-gray-600 mb-6">読者に摩擦を感じさせず、スルスルと読ませるための鉄則。</p>
+
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4 p-4 bg-white rounded-lg shadow-sm border border-gray-100">
+                            <i data-lucide="check-circle-2" class="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">一文は短く</h4>
+                                <p class="text-sm text-gray-600">二つに分けられる文は、全部二つに分ける。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4 p-4 bg-white rounded-lg shadow-sm border border-gray-100">
+                            <i data-lucide="check-circle-2" class="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">主語と述語の整理</h4>
+                                <p class="text-sm text-gray-600">一つの文に主語と述語はひとつずつ。修飾語は被修飾語に近づける。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4 p-4 bg-white rounded-lg shadow-sm border border-gray-100">
+                            <i data-lucide="x-circle" class="w-6 h-6 text-red-500 flex-shrink-0 mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">「逃げの言葉」の撲滅</h4>
+                                <p class="text-sm text-gray-600">「など」「いろんな」「さまざま」といった曖昧なエクスキューズを消し、事実を正確に書く。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 読ませる3感 -->
+                <div class="fade-in-up" style="transition-delay: 200ms;">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="music" class="w-8 h-8 text-gray-800"></i>
+                        <h2 class="font-serif text-3xl font-bold">読ませるための「3感」</h2>
+                    </div>
+                    <p class="text-gray-600 mb-6">文章を書くことは肉体的な作業。生理的な快感を生み出す技術。</p>
+
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-yellow-400 pl-5">
+                            <h4 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+                                <i data-lucide="zap" class="w-5 h-5 text-yellow-500"></i> スピード感
+                            </h4>
+                            <p class="text-gray-600 text-sm mt-1">ダブリを省き、適度に主語を省略する。主語と語尾の距離を縮めて一気に走り出す。</p>
+                        </div>
+
+                        <div class="border-l-4 border-indigo-400 pl-5">
+                            <h4 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+                                <i data-lucide="activity" class="w-5 h-5 text-indigo-500"></i> リズム感
+                            </h4>
+                            <p class="text-gray-600 text-sm mt-1">句読点・カッコ・改行などの「グラフィック効果」で視覚的・聴覚的な緩急（長短）のリズムを刻む。話芸から盗む。
+                            </p>
+                        </div>
+
+                        <div class="border-l-4 border-pink-400 pl-5">
+                            <h4 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+                                <i data-lucide="headphones" class="w-5 h-5 text-pink-500"></i> グルーヴ感
+                            </h4>
+                            <p class="text-gray-600 text-sm mt-1">推敲時のサウンドチェック。小さく音読し、音楽のように流れるか、つっかえないかを身体で確認する。</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 4: 思想・結論 ==================== -->
+    <section class="py-24 px-6 bg-gray-900 text-white relative overflow-hidden">
+        <!-- 装飾用の大きな引用符 -->
+        <i data-lucide="quote" class="absolute top-10 left-10 w-48 h-48 text-gray-800 opacity-50"></i>
+
+        <div class="max-w-4xl mx-auto relative z-10 text-center fade-in-up">
+            <h2 class="font-serif text-3xl md:text-5xl font-bold mb-10 leading-tight">
+                書くとは、考えること。<br>
+                生きること。
+            </h2>
+
+            <blockquote class="text-xl md:text-2xl font-serif italic text-gray-300 mb-12 leading-relaxed">
+                「言葉にならない感情、言葉に落とせない思想は、存在しない。<br class="hidden md:block">
+                言葉にならないのではない。はなから感じていないし、考えてさえいないのだ」
+            </blockquote>
+
+            <div class="bg-gray-800/50 p-8 rounded-2xl border border-gray-700 backdrop-blur-sm text-left">
+                <p class="text-gray-300 mb-4">
+                    言葉は自分の考えを伝える単なる「道具」ではありません。言葉を探し、選び抜く過程そのものが、自分の思想や感情を生起させるのです。
+                </p>
+                <p class="text-gray-300">
+                    世間の流行語や常套句を使うことは、自分のマインドを世間に売り渡すこと。自分だけの言葉を見つけ、自分の頭で世界を見る。それこそが、情報過多の現代を<strong
+                        class="text-white">「善く、生きる」</strong>ためのサバイバル術なのです。
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <p class="font-serif text-2xl font-bold text-book-red">
+                    生まれたからには生きてみる。<br>わたしに〈なる〉ために。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-gray-100 py-8 text-center text-gray-500 text-sm">
+        <p>※本ページは書籍『三行で撃つ 〈善く、生きる〉ための文章塾』（近藤康太郎 著）の要約・図解です。</p>
+        <p class="mt-2">HTML/CSS Graphic Visualization</p>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        // Lucideアイコンの初期化
+        lucide.createIcons();
+
+        // スクロール時のフェードインアニメーション
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // 要素が15%見えたら発火
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // 一度発火したら監視を解除（1回だけのアニメーション）
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // .fade-in-up クラスを持つすべての要素を監視
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
