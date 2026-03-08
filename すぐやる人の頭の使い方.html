@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「すぐやる人」になるための図解ガイド</title>
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#fff7ed',
+                            DEFAULT: '#f97316', // Orange-500
+                            dark: '#c2410c',
+                        },
+                        neg: {
+                            light: '#f1f5f9',
+                            DEFAULT: '#64748b', // Slate-500
+                            dark: '#334155',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .blob-shape {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        @keyframes morph {
+
+            0%,
+            100% {
+                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            }
+
+            34% {
+                border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+            }
+
+            67% {
+                border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+            }
+        }
+
+        /* カスタムスクロールバー */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased overflow-x-hidden">
+
+    <!-- Hero Section -->
+    <header class="relative pt-20 pb-24 lg:pt-32 lg:pb-40 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-orange-50 to-rose-50 -z-10"></div>
+        <div
+            class="absolute top-20 right-10 w-64 h-64 bg-orange-300 opacity-20 blob-shape mix-blend-multiply filter blur-2xl -z-10">
+        </div>
+        <div class="absolute bottom-10 left-10 w-72 h-72 bg-rose-300 opacity-20 blob-shape mix-blend-multiply filter blur-2xl -z-10"
+            style="animation-delay: 2s;"></div>
+
+        <div class="max-w-5xl mx-auto px-6 text-center animate-on-scroll">
+            <span
+                class="inline-block py-1 px-3 rounded-full bg-brand-light text-brand-dark font-bold text-sm tracking-wider mb-4 border border-orange-200">
+                やる気に頼らず、自分を動かす
+            </span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6 text-slate-900">
+                <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-rose-500">「すぐやる人」</span>になるための<br
+                    class="hidden md:block">完全図解ガイド
+            </h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+                「やらなきゃいけないのに、動けない…」それはあなたの意志が弱いからではありません。<br class="hidden md:block">
+                脳の仕組みを理解し、思考をシンプルにするだけで、誰でも「すぐやる人」になれます。
+            </p>
+            <a href="#cause"
+                class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-brand rounded-full hover:bg-orange-600 shadow-lg shadow-orange-500/30 transition-all hover:-translate-y-1">
+                なぜ動けないのかを知る
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Section 1: 原因解明 -->
+    <section id="cause" class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-black mb-4">なぜ私たちは「先延ばし」するのか？</h2>
+                <p class="text-slate-500">気合いや根性の問題ではなく、「脳の防衛本能」が原因です。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10 items-center animate-on-scroll">
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 relative overflow-hidden">
+                    <div class="absolute -right-4 -top-4 text-9xl opacity-5">🧠</div>
+                    <div class="flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">脳は「超・省エネ主義」</h3>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        人間の脳は、生命維持のためにエネルギー消費を最小限に抑えようとします。これを<strong>「現状維持バイアス」</strong>と呼びます。
+                    </p>
+                    <p class="text-slate-600 leading-relaxed">
+                        新しい行動や面倒なタスクは、脳にとって「無駄なエネルギーを使う脅威」とみなされ、無意識に強力なブレーキがかかってしまうのです。
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="flex items-start p-6 bg-rose-50 rounded-2xl border border-rose-100">
+                        <div class="text-rose-500 mt-1 mr-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 mb-1">❌ 間違ったアプローチ</h4>
+                            <p class="text-sm text-slate-600">「自分の意志が弱いせいだ」と自己嫌悪に陥り、無理やり気合いで動こうとする。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-6 bg-emerald-50 rounded-2xl border border-emerald-100">
+                        <div class="text-emerald-500 mt-1 mr-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 mb-1">⭕ 正しいアプローチ</h4>
+                            <p class="text-sm text-slate-600">「脳は怠け者である」と前提を受け入れ、気合いに頼らず<strong>環境や仕組み</strong>で自分を動かす。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: 比較 -->
+    <section class="py-20 bg-slate-900 text-white relative">
+        <div class="absolute inset-0 opacity-10"
+            style="background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 32px 32px;"></div>
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-black mb-4">「やれない人」と「すぐやる人」の違い</h2>
+                <p class="text-slate-400">行動のスピードは「考え方のクセ」で決まります。</p>
+            </div>
+
+            <!-- 比較テーブル（カード型） -->
+            <div class="grid md:grid-cols-2 gap-8 animate-on-scroll">
+                <!-- やれない人 -->
+                <div class="bg-slate-800 rounded-3xl p-8 border border-slate-700 shadow-xl">
+                    <div
+                        class="flex items-center justify-center w-16 h-16 bg-slate-700 text-slate-400 rounded-full mb-6 mx-auto">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-center mb-8 text-slate-300">やれない人</h3>
+
+                    <ul class="space-y-6">
+                        <li class="flex flex-col">
+                            <span
+                                class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">やる気・モチベーション</span>
+                            <div class="flex items-start">
+                                <span class="text-slate-500 mr-2">❌</span>
+                                <span class="text-slate-300">「やる気」が湧いてくるのをじっと待つ</span>
+                            </div>
+                        </li>
+                        <li class="flex flex-col">
+                            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">目標設定</span>
+                            <div class="flex items-start">
+                                <span class="text-slate-500 mr-2">❌</span>
+                                <span class="text-slate-300">最初から「100点満点」の完璧を目指すため、ハードルが高すぎる</span>
+                            </div>
+                        </li>
+                        <li class="flex flex-col">
+                            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">行動の基準</span>
+                            <div class="flex items-start">
+                                <span class="text-slate-500 mr-2">❌</span>
+                                <span class="text-slate-300">「やればできる」と考えて、今はやらない自分を正当化する</span>
+                            </div>
+                        </li>
+                        <li class="flex flex-col">
+                            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">スケジュール</span>
+                            <div class="flex items-start">
+                                <span class="text-slate-500 mr-2">❌</span>
+                                <span class="text-slate-300">「締め切り（いつ終わるか）」だけを気にして、ギリギリまで動かない</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- すぐやる人 -->
+                <div
+                    class="bg-gradient-to-br from-brand to-rose-500 rounded-3xl p-8 border border-orange-400 shadow-2xl shadow-orange-500/20 transform md:-translate-y-4">
+                    <div
+                        class="flex items-center justify-center w-16 h-16 bg-white/20 text-white rounded-full mb-6 mx-auto backdrop-blur-sm">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-center mb-8 text-white">すぐやる人</h3>
+
+                    <ul class="space-y-6">
+                        <li class="flex flex-col">
+                            <span
+                                class="text-xs font-bold text-white/60 uppercase tracking-wider mb-1">やる気・モチベーション</span>
+                            <div class="flex items-start">
+                                <span class="text-white mr-2">⭕</span>
+                                <span class="text-white font-medium">小さく行動し始めて、後から「やる気」を出す（作業興奮）</span>
+                            </div>
+                        </li>
+                        <li class="flex flex-col">
+                            <span class="text-xs font-bold text-white/60 uppercase tracking-wider mb-1">目標設定</span>
+                            <div class="flex items-start">
+                                <span class="text-white mr-2">⭕</span>
+                                <span class="text-white font-medium">まずは「70点」で形にして、高速で改善していく</span>
+                            </div>
+                        </li>
+                        <li class="flex flex-col">
+                            <span class="text-xs font-bold text-white/60 uppercase tracking-wider mb-1">行動の基準</span>
+                            <div class="flex items-start">
+                                <span class="text-white mr-2">⭕</span>
+                                <span class="text-white font-medium">「やるからできる」と考え、行動で自分に自信をつける</span>
+                            </div>
+                        </li>
+                        <li class="flex flex-col">
+                            <span class="text-xs font-bold text-white/60 uppercase tracking-wider mb-1">スケジュール</span>
+                            <div class="flex items-start">
+                                <span class="text-white mr-2">⭕</span>
+                                <span class="text-white font-medium">「スタート期限（いつ始めるか）」をスケジュール帳に書き込む</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: 4つのステップ図解 -->
+    <section class="py-20 bg-gray-50 overflow-hidden">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="text-brand font-bold tracking-wider text-sm uppercase">Framework</span>
+                <h2 class="text-3xl md:text-4xl font-black mt-2 mb-4">科学的に自分を動かす 4つのステップ</h2>
+                <p class="text-slate-500">意志力を使わずに、自然と身体が動き出す「仕組み」を作りましょう。</p>
+            </div>
+
+            <div class="relative animate-on-scroll">
+                <!-- 縦の線 (PC用) -->
+                <div
+                    class="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-orange-400 to-rose-400 transform -translate-x-1/2 rounded-full">
+                </div>
+
+                <div class="space-y-12 relative">
+                    <!-- Step 1 -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between">
+                        <div class="md:w-5/12 mb-6 md:mb-0 md:text-right">
+                            <div
+                                class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                                <h3 class="text-xl font-bold text-slate-800 mb-2">Step 1. 思考のハードルを下げる</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    失敗を恐れて「完璧な計画」を立てようとすると動けません。<strong>「仮決め・仮行動」</strong>で、とりあえずラフ案で動いてみましょう。失敗は単なる「データ収集」です。
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center w-12 h-12 bg-white border-4 border-orange-400 rounded-full text-orange-500 font-black text-xl z-10 hidden md:flex shadow-lg">
+                            1</div>
+                        <div class="md:w-5/12 flex justify-start pl-8 md:pl-0">
+                            <div
+                                class="bg-orange-100 text-orange-700 px-4 py-2 rounded-lg font-bold text-sm inline-flex items-center">
+                                💡 キーワード：70点主義 / リフレーミング
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative flex flex-col md:flex-row-reverse items-center justify-between">
+                        <div class="md:w-5/12 mb-6 md:mb-0">
+                            <div
+                                class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                                <h3 class="text-xl font-bold text-slate-800 mb-2">Step 2. 最初の1歩を「極小」にする</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    タスクが大きすぎると脳が拒絶します。<strong>「1分以内に終わる行動（ベイビーステップ）」</strong>に分解しましょう。靴を履く、PCを開くなど、失敗しようがないレベルまで小さくします。
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center w-12 h-12 bg-white border-4 border-orange-400 rounded-full text-orange-500 font-black text-xl z-10 hidden md:flex shadow-lg">
+                            2</div>
+                        <div class="md:w-5/12 flex justify-end pr-8 md:pr-0">
+                            <div
+                                class="bg-rose-100 text-rose-700 px-4 py-2 rounded-lg font-bold text-sm inline-flex items-center">
+                                💡 キーワード：10秒アクション / 作業興奮
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between">
+                        <div class="md:w-5/12 mb-6 md:mb-0 md:text-right">
+                            <div
+                                class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                                <h3 class="text-xl font-bold text-slate-800 mb-2">Step 3. 「やらないこと」を決める</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    優先順位を決める前に<strong>「劣後順位（やらないことリスト）」</strong>を決めましょう。ノイズを削ぎ落とし、脳に「余白」を作ることで、本当に重要なことにエネルギーを注げます。
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center w-12 h-12 bg-white border-4 border-orange-400 rounded-full text-orange-500 font-black text-xl z-10 hidden md:flex shadow-lg">
+                            3</div>
+                        <div class="md:w-5/12 flex justify-start pl-8 md:pl-0">
+                            <div
+                                class="bg-orange-100 text-orange-700 px-4 py-2 rounded-lg font-bold text-sm inline-flex items-center">
+                                💡 キーワード：情報の断捨離 / ゼロベース行動
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative flex flex-col md:flex-row-reverse items-center justify-between">
+                        <div class="md:w-5/12">
+                            <div
+                                class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                                <h3 class="text-xl font-bold text-slate-800 mb-2">Step 4. やるしかない「環境」を作る</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    意志力は消耗品です。スマホを見えない場所に置く（誘惑の排除）、カフェに行く、人に宣言するなど、<strong>物理的・心理的に強制力のある環境</strong>に身を置きましょう。
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center w-12 h-12 bg-white border-4 border-orange-400 rounded-full text-orange-500 font-black text-xl z-10 hidden md:flex shadow-lg">
+                            4</div>
+                        <div class="md:w-5/12 flex justify-end pr-8 md:pr-0">
+                            <div
+                                class="bg-rose-100 text-rose-700 px-4 py-2 rounded-lg font-bold text-sm inline-flex items-center">
+                                💡 キーワード：自分とのアポ / ミラーニューロン
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: 実践テクニック集 -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-black mb-4">今日から使える！「すぐやる」テクニック</h2>
+                <p class="text-slate-500">ちょっとした工夫で、驚くほど行動力が上がります。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-on-scroll">
+                <!-- Card 1 -->
+                <div
+                    class="border border-slate-200 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-gradient-to-b from-white to-slate-50 group">
+                    <div
+                        class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">3秒ルール</h3>
+                    <p class="text-sm text-slate-600">
+                        脳は5秒以上考えると「やらない理由」を探し始めます。「あとで」を禁句にし、思い立ったら3秒以内に初動（ペンを持つなど）を起こしましょう。</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="border border-slate-200 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-gradient-to-b from-white to-slate-50 group">
+                    <div
+                        class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">ツァイガルニック効果</h3>
+                    <p class="text-sm text-slate-600">
+                        人間は「中途半端な状態（未完了）」のものを強く記憶し、やり遂げたくなる性質があります。モチベーションが高いうちに、あえて少しだけ手をつけて放置するのも有効です。</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="border border-slate-200 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-gradient-to-b from-white to-slate-50 group">
+                    <div
+                        class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">自分とのアポ取り</h3>
+                    <p class="text-sm text-slate-600">
+                        他人の依頼は手帳に書くのに、自分の時間は後回しにしていませんか？読書や勉強の時間も「自分との会議」として予定にブロックし、当事者意識を高めましょう。</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div
+                    class="border border-slate-200 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-gradient-to-b from-white to-slate-50 group">
+                    <div
+                        class="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">10秒コマンドメモ</h3>
+                    <p class="text-sm text-slate-600">
+                        作業を中断するときは「次に戻ってきたら何をするか」を付箋に書いてPCに貼っておきましょう。再開時の「何するんだっけ？」という脳の負担をゼロにできます。</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div
+                    class="border border-slate-200 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-gradient-to-b from-white to-slate-50 group">
+                    <div
+                        class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">言葉の解像度を上げる</h3>
+                    <p class="text-sm text-slate-600">
+                        「徹底する」「推進する」といった曖昧な目標では動けません。「1日1回〇〇をする」のように、脳内で映像化できるレベルまで具体的な行動（Do）に変換しましょう。</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div
+                    class="border border-slate-200 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-gradient-to-b from-white to-slate-50 group">
+                    <div
+                        class="w-12 h-12 bg-cyan-100 text-cyan-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">プランBを用意する</h3>
+                    <p class="text-sm text-slate-600">
+                        予定通りにいかないと、心が折れて先延ばししがちです。「雨が降ったら家でヨガをする」など、あらかじめ代替案（プランB）を用意しておけば立ち止まりません。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action / Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-6 text-center animate-on-scroll">
+            <h2 class="text-2xl font-bold text-white mb-6">さあ、今すぐ「極小の1歩」を踏み出そう</h2>
+            <p class="mb-8 text-sm leading-relaxed">
+                本ガイドは、鈴木進介氏の『すぐやる人の頭の使い方』や塚本亮氏の『「すぐやる人」と「やれない人」の習慣』などの<br class="hidden md:block">
+                行動科学・心理学に基づく知見を統合し、視覚的に分かりやすくまとめたものです。
+            </p>
+            <div class="inline-flex items-center justify-center p-4 bg-slate-800 rounded-xl border border-slate-700">
+                <span class="text-orange-400 font-bold mr-3">🔥 今すぐできるアクション：</span>
+                <span class="text-white">このページを閉じる前に、何か1つ小さなタスクを片付けてみましょう！</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- スクロールアニメーション用スクリプト -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-8');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+                // 初期状態を設定
+                el.classList.add('opacity-0', 'translate-y-8', 'transition-all', 'duration-700', 'ease-out');
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
