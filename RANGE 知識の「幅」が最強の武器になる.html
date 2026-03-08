@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図解でわかる『RANGE』知識の幅が最強の武器になる</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- ミニマルデザインに合わせて、細いウェイト（300）も追加 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        // ミニマルなモノトーンパレットに再定義
+                        brand: {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                            950: '#0a0a0a',
+                        }
+                    },
+                    animation: {
+                        'draw': 'draw 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-in': 'fadeIn 1.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        draw: {
+                            '0%': { strokeDashoffset: '1000' },
+                            '100%': { strokeDashoffset: '0' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* スクロールアニメーション用 */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* SVGパスアニメーション */
+        .path-animated {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+        }
+
+        .visible .path-animated {
+            animation: draw 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation-delay: 0.3s;
+        }
+
+        /* ドット柄の背景（ごく薄く） */
+        .bg-dot-pattern {
+            background-image: radial-gradient(#e5e5e5 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-white text-brand-900 font-sans antialiased overflow-x-hidden selection:bg-brand-900 selection:text-white">
+
+    <!-- ヒーローセクション -->
+    <header class="relative pt-32 pb-24 lg:pt-40 lg:pb-32 bg-dot-pattern border-b border-brand-100">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+
+            <div
+                class="inline-flex items-center gap-2 px-4 py-1.5 border border-brand-300 rounded-full text-xs font-bold tracking-widest text-brand-500 mb-8 uppercase bg-white">
+                <i data-lucide="book" class="w-3.5 h-3.5"></i>
+                <span>David Epstein</span>
+            </div>
+
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-8 tracking-tighter text-brand-900">
+                <span
+                    class="block text-xl md:text-2xl lg:text-3xl mb-4 font-bold tracking-widest text-brand-400">RANGE</span>
+                知識の「幅」が<br>最強の武器になる
+            </h1>
+
+            <p class="text-lg md:text-xl text-brand-600 max-w-2xl mx-auto font-medium leading-relaxed mb-16">
+                「早くから一つのことを極めた人」だけが成功する時代は終わった。<br>
+                複雑で予測不能な現代において、本当に強いのは<br class="hidden md:block">
+                <span class="font-bold text-brand-900 border-b-2 border-brand-900 pb-0.5">「寄り道」をしてきたジェネラリスト</span>である。
+            </p>
+
+            <a href="#section1"
+                class="inline-flex items-center justify-center w-12 h-12 rounded-full border border-brand-300 text-brand-400 hover:text-brand-900 hover:border-brand-900 transition-colors duration-300">
+                <i data-lucide="arrow-down" class="w-5 h-5"></i>
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-20 space-y-32 md:space-y-48">
+
+        <!-- セクション1: 二人の天才の対比 -->
+        <section id="section1" class="fade-up scroll-mt-32">
+            <div class="mb-16">
+                <span class="text-brand-400 font-bold tracking-widest text-xs uppercase mb-2 block">Chapter 01</span>
+                <h2 class="text-3xl md:text-4xl font-black mb-4 tracking-tight">二人の天才、全く異なる「成功の道」</h2>
+                <p class="text-brand-500 font-medium">世間は「早期特化」をもてはやしますが、本当にそれだけが正解でしょうか？</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+
+                <!-- タイガー・ウッズ型 -->
+                <div class="p-8 lg:p-10 border border-brand-200 rounded-2xl bg-brand-50 relative group">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div
+                            class="w-12 h-12 bg-white border border-brand-200 rounded-lg flex items-center justify-center">
+                            <i data-lucide="target" class="w-6 h-6 text-brand-900"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-brand-900 mb-1">スペシャリスト型</h3>
+                            <p class="text-xs font-bold text-brand-500 tracking-wider">例：タイガー・ウッズ</p>
+                        </div>
+                    </div>
+
+                    <!-- SVG図解: 直線的な道（絶対座標のズレをなくすため、SVG内で全て完結） -->
+                    <div
+                        class="h-32 w-full bg-white border border-brand-200 rounded-xl mb-8 relative flex items-center justify-center overflow-hidden">
+                        <svg class="w-full h-full absolute inset-0" viewBox="0 0 400 120" preserveAspectRatio="none">
+                            <line x1="0" y1="60" x2="400" y2="60" stroke="#e5e5e5" stroke-width="2"
+                                stroke-dasharray="4 4" />
+                            <!-- メインの線 -->
+                            <line x1="0" y1="60" x2="400" y2="60" stroke="#171717" stroke-width="3"
+                                class="path-animated" />
+                            <!-- ゴール地点 -->
+                            <circle cx="380" cy="60" r="5" fill="#171717" />
+                        </svg>
+                        <div
+                            class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-white px-3 py-1 rounded shadow-sm border border-brand-100">
+                            <p class="text-[10px] text-brand-900 font-bold tracking-widest">一本道・早期特化</p>
+                        </div>
+                    </div>
+
+                    <ul class="space-y-4 text-sm font-medium text-brand-700">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-400 mt-0.5 shrink-0"></i>
+                            <span class="leading-relaxed">生後数ヶ月からゴルフ一本</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-400 mt-0.5 shrink-0"></i>
+                            <span class="leading-relaxed">猛烈な反復練習（1万時間の法則）</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-400 mt-0.5 shrink-0"></i>
+                            <span class="leading-relaxed">脇目を振らず専門性を高める</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- ロジャー・フェデラー型 -->
+                <div
+                    class="p-8 lg:p-10 border-2 border-brand-900 rounded-2xl bg-white relative shadow-[4px_4px_0_#171717]">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-brand-900 rounded-lg flex items-center justify-center">
+                            <i data-lucide="compass" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-brand-900 mb-1">ジェネラリスト型</h3>
+                            <p class="text-xs font-bold text-brand-500 tracking-wider">例：ロジャー・フェデラー</p>
+                        </div>
+                    </div>
+
+                    <!-- SVG図解: 蛇行する道（レスポンシブ崩れをなくす完全なSVG） -->
+                    <div
+                        class="h-32 w-full bg-brand-50 border border-brand-200 rounded-xl mb-8 relative flex items-center justify-center overflow-hidden">
+                        <svg class="w-full h-full absolute inset-0" viewBox="0 0 400 120" preserveAspectRatio="none">
+                            <!-- 薄いガイドライン -->
+                            <path d="M 0,90 C 100,90 150,30 200,60 C 250,90 300,30 400,45" fill="none" stroke="#e5e5e5"
+                                stroke-width="2" stroke-dasharray="4 4" />
+                            <!-- アニメーションするメインの線 -->
+                            <path d="M 0,90 C 100,90 150,30 200,60 C 250,90 300,30 400,45" fill="none" stroke="#171717"
+                                stroke-width="3" class="path-animated" stroke-linecap="round" />
+
+                            <!-- 寄り道のポイント（HTMLではなくSVGの円を使用） -->
+                            <circle cx="80" cy="85" r="4" fill="#a3a3a3" />
+                            <circle cx="180" cy="50" r="4" fill="#a3a3a3" />
+                            <circle cx="280" cy="75" r="4" fill="#a3a3a3" />
+
+                            <!-- ゴール -->
+                            <circle cx="380" cy="46" r="6" fill="#171717" />
+                        </svg>
+
+                        <div
+                            class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-white px-3 py-1 rounded shadow-sm border border-brand-100">
+                            <p class="text-[10px] text-brand-900 font-bold tracking-widest">寄り道・幅広い経験</p>
+                        </div>
+                    </div>
+
+                    <ul class="space-y-4 text-sm font-medium text-brand-700">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-400 mt-0.5 shrink-0"></i>
+                            <span class="leading-relaxed">スキー、レスリング、水泳など多様な経験</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-400 mt-0.5 shrink-0"></i>
+                            <span class="leading-relaxed">テニスに絞ったのは後になってから</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-brand-900 mt-0.5 shrink-0"></i>
+                            <span class="leading-relaxed font-bold text-brand-900">様々な運動経験が、後の適応力・創造性に繋がった</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション2: 親切な世界 vs 意地悪な世界 -->
+        <section class="fade-up">
+            <div class="mb-16">
+                <span class="text-brand-400 font-bold tracking-widest text-xs uppercase mb-2 block">Chapter 02</span>
+                <h2 class="text-3xl md:text-4xl font-black mb-4 tracking-tight">なぜ「1万時間の法則」は通用しないのか？</h2>
+                <p class="text-brand-500 font-medium">それは、世界が「2つの全く異なる環境」に分かれているからです。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-0 border border-brand-200 rounded-2xl overflow-hidden shadow-sm">
+                <!-- Kind World (親切な世界 - 白背景) -->
+                <div class="bg-white p-8 md:p-12 border-b md:border-b-0 md:border-r border-brand-200">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-brand-900 mb-1">親切な世界</h3>
+                        <p class="text-xs font-mono text-brand-400 tracking-tight">Kind Learning Environment</p>
+                    </div>
+
+                    <ul class="space-y-6 mb-12">
+                        <li class="flex items-start gap-4">
+                            <div class="w-1.5 h-1.5 rounded-full bg-brand-300 mt-2 shrink-0"></div>
+                            <p class="text-brand-700 font-medium">ルールが明確で変わらない</p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-1.5 h-1.5 rounded-full bg-brand-300 mt-2 shrink-0"></div>
+                            <p class="text-brand-700 font-medium">パターンが繰り返される</p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-1.5 h-1.5 rounded-full bg-brand-300 mt-2 shrink-0"></div>
+                            <p class="text-brand-700 font-medium">フィードバックが即座で正確</p>
+                        </li>
+                    </ul>
+
+                    <div class="pt-8 border-t border-brand-100">
+                        <p class="text-[10px] text-brand-400 font-bold uppercase tracking-widest mb-3">代表的な分野</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span
+                                class="px-3 py-1 bg-brand-50 border border-brand-200 text-brand-600 rounded text-xs font-bold">チェス</span>
+                            <span
+                                class="px-3 py-1 bg-brand-50 border border-brand-200 text-brand-600 rounded text-xs font-bold">ゴルフ</span>
+                            <span
+                                class="px-3 py-1 bg-brand-50 border border-brand-200 text-brand-600 rounded text-xs font-bold">クラシック音楽</span>
+                        </div>
+                        <div
+                            class="inline-flex items-center gap-2 text-brand-900 font-bold text-sm bg-brand-50 px-4 py-2 rounded-full border border-brand-200">
+                            <i data-lucide="target" class="w-4 h-4"></i>
+                            <span>「早期特化」が有効</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wicked World (意地悪な世界 - 黒背景) -->
+                <div class="bg-brand-950 p-8 md:p-12 text-white">
+                    <div class="mb-8 flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-1">意地悪な世界</h3>
+                            <p class="text-xs font-mono text-brand-500 tracking-tight">Wicked Learning Environment</p>
+                        </div>
+                        <i data-lucide="zap" class="w-6 h-6 text-white opacity-50"></i>
+                    </div>
+
+                    <ul class="space-y-6 mb-12">
+                        <li class="flex items-start gap-4">
+                            <div class="w-1.5 h-1.5 rounded-full bg-brand-600 mt-2 shrink-0"></div>
+                            <p class="text-brand-200 font-medium">ルールが不明確、または途中で変わる</p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-1.5 h-1.5 rounded-full bg-brand-600 mt-2 shrink-0"></div>
+                            <p class="text-brand-200 font-medium">過去のパターンが全く通用しない</p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-1.5 h-1.5 rounded-full bg-brand-600 mt-2 shrink-0"></div>
+                            <p class="text-brand-200 font-medium">フィードバックが遅く、不正確</p>
+                        </li>
+                    </ul>
+
+                    <div class="pt-8 border-t border-brand-800">
+                        <p class="text-[10px] text-brand-500 font-bold uppercase tracking-widest mb-3">代表的な分野</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span
+                                class="px-3 py-1 bg-brand-900 border border-brand-800 text-brand-200 rounded text-xs font-bold">現代のビジネス</span>
+                            <span
+                                class="px-3 py-1 bg-brand-900 border border-brand-800 text-brand-200 rounded text-xs font-bold">テクノロジー</span>
+                            <span
+                                class="px-3 py-1 bg-brand-900 border border-brand-800 text-brand-200 rounded text-xs font-bold">人間関係</span>
+                        </div>
+                        <div
+                            class="inline-flex items-center gap-2 text-brand-950 font-bold text-sm bg-white px-4 py-2 rounded-full">
+                            <i data-lucide="maximize" class="w-4 h-4"></i>
+                            <span>知識の「幅（レンジ）」が必要</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center max-w-2xl mx-auto">
+                <p class="text-brand-700 font-medium leading-relaxed">
+                    現代社会のほとんどは<strong
+                        class="text-brand-900 font-black px-1 border-b-2 border-brand-900">「意地悪な世界」</strong>です。<br>
+                    過去の成功パターンを盲信して特化しすぎると、環境の変化に適応できなくなります。
+                </p>
+            </div>
+        </section>
+
+        <!-- セクション3: サンプリング期間とマッチ・クオリティ -->
+        <section class="fade-up">
+            <div class="mb-16">
+                <span class="text-brand-400 font-bold tracking-widest text-xs uppercase mb-2 block">Chapter 03</span>
+                <h2 class="text-3xl md:text-4xl font-black mb-4 tracking-tight">「途中でやめること」は敗北ではない</h2>
+                <p class="text-brand-500 font-medium">自分に最適な場所を見つけるための「探索のサイクル」</p>
+            </div>
+
+            <div class="bg-brand-50 border border-brand-200 rounded-2xl p-8 md:p-12">
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+                    <!-- 左：解説テキスト -->
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2 text-brand-900">マッチ・クオリティ</h3>
+                        <p class="text-sm font-mono text-brand-500 mb-6">Match Quality</p>
+
+                        <p class="text-brand-700 mb-8 leading-relaxed font-medium">
+                            経済学の用語で、<strong
+                                class="text-brand-900 font-bold bg-white px-2 py-1 rounded border border-brand-200">「個人の能力・関心」と「仕事・環境」がどれだけ一致しているか</strong>の度合いを指します。
+                            これを高めるには、様々なことを試す「サンプリング期間」が不可欠です。
+                        </p>
+
+                        <div class="bg-white rounded-xl p-6 border border-brand-200 border-l-4 border-l-brand-900">
+                            <p class="font-bold text-brand-900 mb-2 flex items-center gap-2">
+                                <i data-lucide="alert-circle" class="w-4 h-4"></i> Grit（やり抜く力）の罠
+                            </p>
+                            <p class="text-sm text-brand-600 leading-relaxed font-medium">
+                                合わない場所で単に「やり抜く」ことは危険です。試してみて合わなければ「やめる（Quit）」。それは逃げではなく、最適なマッチ・クオリティを見つけるための立派な戦略です。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 右：図解ループ（シンプルで崩れないステップ構成） -->
+                    <div class="space-y-4 relative">
+                        <!-- 縦を貫くライン -->
+                        <div class="absolute left-[23px] top-6 bottom-6 w-0.5 bg-brand-200 z-0 hidden sm:block"></div>
+
+                        <!-- Step 1 -->
+                        <div
+                            class="relative z-10 flex flex-col sm:flex-row gap-4 sm:items-center bg-white p-4 rounded-xl border border-brand-200 shadow-sm">
+                            <div
+                                class="w-12 h-12 bg-brand-50 border border-brand-200 rounded-full flex items-center justify-center shrink-0">
+                                <span class="font-bold text-brand-400 text-sm">01</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-900">試す</h4>
+                                <p class="text-xs text-brand-500 mt-0.5">サンプリング期間を設ける</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div
+                            class="relative z-10 flex flex-col sm:flex-row gap-4 sm:items-center bg-white p-4 rounded-xl border border-brand-200 shadow-sm">
+                            <div
+                                class="w-12 h-12 bg-brand-50 border border-brand-200 rounded-full flex items-center justify-center shrink-0">
+                                <span class="font-bold text-brand-400 text-sm">02</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-900">見極める</h4>
+                                <p class="text-xs text-brand-500 mt-0.5">合わなければ躊躇なく辞める</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div
+                            class="relative z-10 flex flex-col sm:flex-row gap-4 sm:items-center bg-white p-4 rounded-xl border border-brand-200 shadow-sm">
+                            <div
+                                class="w-12 h-12 bg-brand-50 border border-brand-200 rounded-full flex items-center justify-center shrink-0">
+                                <span class="font-bold text-brand-400 text-sm">03</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-900">発見する</h4>
+                                <p class="text-xs text-brand-500 mt-0.5">高いマッチ・クオリティに出会う</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div
+                            class="relative z-10 flex flex-col sm:flex-row gap-4 sm:items-center bg-brand-900 p-4 rounded-xl shadow-[4px_4px_0_#d4d4d4]">
+                            <div class="w-12 h-12 bg-brand-800 rounded-full flex items-center justify-center shrink-0">
+                                <i data-lucide="trending-up" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">急成長する</h4>
+                                <p class="text-xs text-brand-300 mt-0.5">遅咲きからの逆転</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション4: 枯れた技術の水平思考 -->
+        <section class="fade-up">
+            <div class="mb-16">
+                <span class="text-brand-400 font-bold tracking-widest text-xs uppercase mb-2 block">Chapter 04</span>
+                <h2 class="text-3xl md:text-4xl font-black mb-4 tracking-tight">枯れた技術の水平思考</h2>
+                <p class="text-brand-500 font-medium">Lateral thinking with withered technology</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
+
+                <div>
+                    <p class="text-brand-700 leading-relaxed mb-8 font-medium">
+                        任天堂の伝説的な開発者・横井軍平氏の哲学です。<br><br>
+                        最先端の専門技術（深さ）を追求するのではなく、<strong
+                            class="text-brand-900 border-b border-brand-900">すでに広く知られ安価になった古い技術</strong>を、<strong
+                            class="text-brand-900 border-b border-brand-900">全く別の用途</strong>で組み合わせることで、ゲームボーイなどの大ヒット商品を生み出しました。
+                    </p>
+                    <div
+                        class="bg-brand-50 border border-brand-200 p-6 rounded-xl text-sm text-brand-600 leading-relaxed">
+                        専門家が「自分の領域の深い穴」を掘り続けている間、ジェネラリストは<strong
+                            class="text-brand-900 font-bold">「ある領域の知識を、別の領域の問題解決に応用する」</strong>ことで画期的な解決策を見つけ出します。
+                    </div>
+                </div>
+
+                <!-- 図解：方程式UI（Flexboxのgapで安全に配置） -->
+                <div class="bg-white border-2 border-brand-100 rounded-2xl p-6 md:p-10 flex flex-col justify-center">
+
+                    <div class="flex flex-col gap-6">
+                        <!-- 項1 -->
+                        <div class="flex items-center gap-4 bg-brand-50 p-4 rounded-xl border border-brand-200">
+                            <div
+                                class="w-10 h-10 bg-white border border-brand-200 rounded-lg flex items-center justify-center shrink-0">
+                                <i data-lucide="cpu" class="w-5 h-5 text-brand-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-brand-500 font-bold tracking-widest mb-0.5">枯れた技術</p>
+                                <p class="text-base font-bold text-brand-900">電卓の古い液晶技術</p>
+                            </div>
+                        </div>
+
+                        <!-- プラス記号 -->
+                        <div class="flex justify-center">
+                            <i data-lucide="plus" class="w-6 h-6 text-brand-300"></i>
+                        </div>
+
+                        <!-- 項2 -->
+                        <div class="flex items-center gap-4 bg-brand-50 p-4 rounded-xl border border-brand-200">
+                            <div
+                                class="w-10 h-10 bg-white border border-brand-200 rounded-lg flex items-center justify-center shrink-0">
+                                <i data-lucide="shuffle" class="w-5 h-5 text-brand-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-brand-500 font-bold tracking-widest mb-0.5">水平思考 (別の用途)</p>
+                                <p class="text-base font-bold text-brand-900">持ち運べる遊び道具へ</p>
+                            </div>
+                        </div>
+
+                        <!-- イコール記号 -->
+                        <div class="flex justify-center">
+                            <i data-lucide="arrow-down" class="w-6 h-6 text-brand-300"></i>
+                        </div>
+
+                        <!-- 結果 -->
+                        <div class="flex items-center gap-4 bg-brand-900 p-5 rounded-xl shadow-[4px_4px_0_#d4d4d4]">
+                            <div class="w-12 h-12 bg-brand-800 rounded-lg flex items-center justify-center shrink-0">
+                                <i data-lucide="gamepad-2" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-brand-400 font-bold tracking-widest mb-1">イノベーション</p>
+                                <p class="text-xl font-bold text-white tracking-tight">携帯ゲーム機の大ヒット</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- セクション5: メッセージ -->
+        <section class="fade-up">
+            <div class="bg-brand-950 rounded-2xl p-10 md:p-20 text-center text-white relative overflow-hidden">
+                <div class="relative z-10 max-w-3xl mx-auto">
+                    <i data-lucide="flag" class="w-8 h-8 text-brand-400 mx-auto mb-8"></i>
+
+                    <h2 class="text-3xl md:text-5xl font-black mb-12 leading-tight tracking-tight">
+                        あなたは、遅れてなどいない
+                    </h2>
+
+                    <div class="space-y-8 text-brand-200 text-base md:text-lg font-medium leading-relaxed">
+                        <p>
+                            周りの人が早くから専門分野を決め、一直線に進んでいるのを見て、焦る必要はありません。
+                        </p>
+                        <p>
+                            寄り道をして、色々な経験をつまみ食いし、失敗し、時には途中で投げ出した経験。一見すると非効率で無駄に見えるその時間は、複雑な現実世界を生き抜くための<strong
+                                class="text-white font-bold bg-brand-800 px-2 py-0.5 rounded">「知識の幅（レンジ）」</strong>という最強の武器を鍛え上げています。
+                        </p>
+
+                        <div class="pt-12 mt-12 border-t border-brand-800">
+                            <p class="text-white font-bold text-xl md:text-2xl tracking-tight leading-snug">
+                                比較すべきは「他人の現在」ではなく、<br>
+                                「昨日の自分」です。<br>
+                                <span class="block mt-4 text-brand-400 text-lg">探求を続けましょう。</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-white text-brand-400 py-12 text-center border-t border-brand-100 mt-20">
+        <div class="max-w-5xl mx-auto px-6">
+            <p class="mb-4 font-medium text-xs">この図解は書籍『RANGE（レンジ）知識の「幅」が最強の武器になる』（デイビッド・エプスタイン著）の要約に基づいて作成されました。</p>
+            <div
+                class="flex justify-center items-center gap-2 text-[10px] font-bold tracking-widest uppercase text-brand-300">
+                <span>Minimal UI Design</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- スクリプト -->
+    <script>
+        // Lucide Iconsの描画
+        lucide.createIcons();
+
+        // スクロール時のフェードインアニメーション
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // スムーズなパフォーマンスのために監視を解除
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const fadeUpElements = document.querySelectorAll('.fade-up');
+            fadeUpElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
