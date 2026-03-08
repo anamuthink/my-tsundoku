@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図解まとめ『ほどよく孤独に生きてみる』</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5E8B7E',    /* 落ち着いたグリーン（癒やし） */
+                        secondary: '#D2916C',  /* 温かみのあるテラコッタ（人間味） */
+                        accent: '#EFCB68',     /* マスタードイエロー（光・前向き） */
+                        bgLight: '#F7F6F2',    /* 優しいオフホワイト（背景） */
+                        textDark: '#3A3A3A',   /* 読みやすい濃いグレー */
+                        textMuted: '#6B7280',
+                    },
+                    fontFamily: {
+                        sans: ['"Zen Kaku Gothic New"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F7F6F2;
+            color: #3A3A3A;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* ふんわり表示させるためのアニメーションクラス */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 柔らかい影 */
+        .soft-shadow {
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+        }
+
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- ==========================================
+         HERO SECTION (ヘッダー)
+    =========================================== -->
+    <header class="bg-primary text-white py-24 px-4 relative overflow-hidden">
+        <!-- 背景の装飾図形 -->
+        <div class="absolute -top-20 -right-20 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-accent opacity-20 rounded-full blur-3xl"></div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10 fade-in">
+            <span
+                class="inline-block py-1.5 px-4 rounded-full bg-white/20 text-sm md:text-base font-bold mb-6 tracking-widest backdrop-blur-sm border border-white/30">
+                93歳の現役心療内科医が教える
+            </span>
+            <h1 class="text-4xl md:text-6xl font-black leading-tight mb-8 tracking-wide text-shadow">
+                <span class="text-2xl md:text-3xl block mb-2 font-medium opacity-90">図解まとめ</span>
+                ほどよく孤独に生きてみる
+            </h1>
+            <p class="text-lg md:text-2xl font-medium opacity-90 mb-10 leading-relaxed">
+                心を自由にする、<br class="md:hidden">「近づきすぎない」幸せの秘訣
+            </p>
+            <div class="inline-flex items-center gap-3 bg-black/20 px-6 py-3 rounded-xl backdrop-blur-sm">
+                <i class="fa-solid fa-book-open text-accent"></i>
+                <p class="text-sm md:text-base opacity-90 text-left">
+                    著：藤井 英子（サンマーク出版）<br>
+                    <span class="text-xs opacity-70">※本ページは書籍の要点を視覚的にまとめたものです</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- 下向き矢印 -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce opacity-70">
+            <i class="fa-solid fa-chevron-down text-2xl"></i>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==========================================
+             SECTION 1: 現代人の悩み
+        =========================================== -->
+        <section class="py-20 px-4 bg-bgLight">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">人間関係で、こんなモヤモヤありませんか？</h2>
+                    <p class="text-textMuted text-lg">SNS時代、多くの人が「人との距離感」に疲れています。</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 fade-in">
+                    <!-- 悩み1 -->
+                    <div class="bg-white p-8 rounded-2xl soft-shadow text-center relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-2 bg-gray-300"></div>
+                        <div class="text-gray-400 text-5xl mb-4"><i class="fa-solid fa-users-slash"></i></div>
+                        <h3 class="text-xl font-bold mb-3 text-textDark">なければ寂しい</h3>
+                        <p class="text-textMuted text-sm">「1日誰とも話さない日があってさびしい…」と孤独感に押しつぶされそうになる。</p>
+                    </div>
+                    <!-- 悩み2 -->
+                    <div class="bg-white p-8 rounded-2xl soft-shadow text-center relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-2 bg-gray-300"></div>
+                        <div class="text-gray-400 text-5xl mb-4"><i class="fa-solid fa-people-arrows"></i></div>
+                        <h3 class="text-xl font-bold mb-3 text-textDark">あったら煩わしい</h3>
+                        <p class="text-textMuted text-sm">人に気を使いすぎたり、意見を合わせたりして、人といるとどっと疲れてしまう。</p>
+                    </div>
+                    <!-- 悩み3 -->
+                    <div class="bg-white p-8 rounded-2xl soft-shadow text-center relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-2 bg-gray-300"></div>
+                        <div class="text-gray-400 text-5xl mb-4"><i class="fa-solid fa-mobile-screen"></i></div>
+                        <h3 class="text-xl font-bold mb-3 text-textDark">情報と人の目に疲弊</h3>
+                        <p class="text-textMuted text-sm">SNSを開けば他人の充実した姿ばかり。人と比べてしまい、心が休まらない。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 2: コアメッセージ（図解）
+        =========================================== -->
+        <section class="py-24 px-4 bg-white relative">
+            <!-- 装飾背景 -->
+            <div class="absolute top-0 right-0 w-1/3 h-full bg-primary/5 rounded-l-[100px]"></div>
+
+            <div class="max-w-5xl mx-auto relative z-10">
+                <div class="text-center mb-16 fade-in">
+                    <span class="text-secondary font-bold tracking-widest text-sm mb-2 block">THE ANSWER</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-textDark mb-6 leading-tight">
+                        解決策は<br class="md:hidden">
+                        <span class="text-primary border-b-4 border-accent pb-1">「ほどよい孤独」</span>を選ぶこと
+                    </h2>
+                    <p class="text-lg text-textMuted max-w-2xl mx-auto">
+                        「孤独」は決してネガティブなものではありません。<br>
+                        他人に振り回されず、自分の心を守るための<span class="font-bold text-secondary">「心地よいバリア」</span>なのです。
+                    </p>
+                </div>
+
+                <!-- 距離感の図解インフォグラフィック -->
+                <div class="fade-in bg-bgLight p-8 md:p-12 rounded-3xl soft-shadow border border-gray-100">
+                    <h3 class="text-center font-bold text-xl mb-10 text-gray-500">心の距離感のメーター</h3>
+
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-4 w-full">
+
+                        <!-- 左：孤立 -->
+                        <div class="flex flex-col items-center flex-1">
+                            <div
+                                class="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 mb-4 shadow-inner">
+                                <i class="fa-solid fa-snowflake text-3xl"></i>
+                            </div>
+                            <span class="font-bold text-gray-600">完全な孤立</span>
+                            <span class="text-xs text-gray-400 mt-1">（寂しい・不安）</span>
+                        </div>
+
+                        <!-- 矢印 -->
+                        <div class="text-gray-300 text-2xl rotate-90 md:rotate-0">
+                            <i class="fa-solid fa-minus"></i><i class="fa-solid fa-minus"></i>
+                        </div>
+
+                        <!-- 中央：ほどよい孤独 -->
+                        <div
+                            class="flex flex-col items-center flex-1 relative transform md:scale-110 z-10 my-8 md:my-0">
+                            <div class="absolute -inset-4 bg-primary/10 rounded-full animate-pulse"></div>
+                            <div
+                                class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-white border-4 border-primary flex items-center justify-center text-primary mb-4 soft-shadow relative z-10">
+                                <div class="text-center">
+                                    <i class="fa-solid fa-shield-heart text-4xl md:text-5xl mb-2"></i>
+                                    <div class="font-black text-sm md:text-base leading-tight">ほどよい<br>孤独</div>
+                                </div>
+                            </div>
+                            <span class="font-bold text-primary text-lg">心地よい距離感</span>
+                            <span
+                                class="text-xs text-primary mt-1 bg-primary/10 px-3 py-1 rounded-full">自分の心を守る場所</span>
+                        </div>
+
+                        <!-- 矢印 -->
+                        <div class="text-gray-300 text-2xl rotate-90 md:rotate-0">
+                            <i class="fa-solid fa-minus"></i><i class="fa-solid fa-minus"></i>
+                        </div>
+
+                        <!-- 右：過干渉 -->
+                        <div class="flex flex-col items-center flex-1">
+                            <div
+                                class="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 mb-4 shadow-inner">
+                                <i class="fa-solid fa-fire text-3xl"></i>
+                            </div>
+                            <span class="font-bold text-gray-600">過剰なつながり</span>
+                            <span class="text-xs text-gray-400 mt-1">（煩わしい・疲弊）</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 3: 相手別の距離感
+        =========================================== -->
+        <section class="py-20 px-4 bg-primary text-white relative">
+            <div class="absolute inset-0 opacity-10"
+                style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 32px 32px;">
+            </div>
+
+            <div class="max-w-5xl mx-auto relative z-10 fade-in">
+                <div class="text-center mb-14">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">相手別の「ちょうどいい」スタンス</h2>
+                    <p class="opacity-80">人間関係をすこし軽やかにするための心得</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 近い人 -->
+                    <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl">
+                        <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-house-user"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">近い人・家族</h3>
+                        <div class="text-accent font-bold text-lg mb-4">→「あっさり」と。</div>
+                        <p class="opacity-90 text-sm leading-relaxed">
+                            近い関係ほど期待してしまいがち。依存しすぎず、求めすぎず、適度な距離を保つ「あっさり」した関係が長続きの秘訣です。
+                        </p>
+                    </div>
+
+                    <!-- 友人 -->
+                    <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl">
+                        <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-mug-hot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">友人・知人</h3>
+                        <div class="text-accent font-bold text-lg mb-4">→「友だち」より「話し相手」</div>
+                        <p class="opacity-90 text-sm leading-relaxed">
+                            「本当の友だち」という重い枠組みに縛られなくて大丈夫。お茶を飲んで楽しく話せる「話し相手」がいれば十分です。
+                        </p>
+                    </div>
+
+                    <!-- 気が合わない人 -->
+                    <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl">
+                        <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-ban"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">気が合わない人</h3>
+                        <div class="text-accent font-bold text-lg mb-4">→ 合わないのは「あたりまえ」</div>
+                        <p class="opacity-90 text-sm leading-relaxed">
+                            全員と仲良くすることは不可能です。気が合わない人がいるのは自然なこと。無理に合わせず、そっと離れましょう。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 4: 心の守り方 5ヶ条
+        =========================================== -->
+        <section class="py-24 px-4 bg-bgLight">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <span class="text-primary font-bold tracking-widest text-sm mb-2 block">MINDSET</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-textDark">
+                        心を自由にする <span class="text-secondary">5つの習慣</span>
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Rule 1 -->
+                    <div
+                        class="fade-in bg-white p-8 rounded-2xl soft-shadow border-t-4 border-primary relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                        <div
+                            class="absolute -right-6 -top-6 text-[120px] text-primary opacity-5 font-black group-hover:scale-110 transition-transform leading-none">
+                            1</div>
+                        <div class="text-primary text-3xl mb-4"><i class="fa-solid fa-dove"></i></div>
+                        <h3 class="text-xl font-bold mb-3 text-textDark">「属さない」自由</h3>
+                        <p class="text-textMuted text-sm leading-relaxed">
+                            派閥やグループ、特定の肩書きに無理に縛られる必要はありません。何者でもない「個」としての自分を楽しむ余白を持ちましょう。
+                        </p>
+                    </div>
+
+                    <!-- Rule 2 -->
+                    <div class="fade-in bg-white p-8 rounded-2xl soft-shadow border-t-4 border-secondary relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300"
+                        style="transition-delay: 100ms;">
+                        <div
+                            class="absolute -right-6 -top-6 text-[120px] text-secondary opacity-5 font-black group-hover:scale-110 transition-transform leading-none">
+                            2</div>
+                        <div class="text-secondary text-3xl mb-4"><i class="fa-solid fa-eraser"></i></div>
+                        <h3 class="text-xl font-bold mb-3 text-textDark">恨みは「かき消す」</h3>
+                        <p class="text-textMuted text-sm leading-relaxed">
+                            人の噂は半日ももちません。嫌な記憶や恨みは引きずらずに、頭の中から「かき消す」練習を。過去はたまに開く「アルバム」にしまっておきましょう。
+                        </p>
+                    </div>
+
+                    <!-- Rule 3 -->
+                    <div class="fade-in bg-white p-8 rounded-2xl soft-shadow border-t-4 border-accent relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300"
+                        style="transition-delay: 200ms;">
+                        <div
+                            class="absolute -right-6 -top-6 text-[120px] text-accent opacity-10 font-black group-hover:scale-110 transition-transform leading-none">
+                            3</div>
+                        <div class="text-accent text-3xl mb-4"><i class="fa-solid fa-compass"></i></div>
+                        <h3 class="text-xl font-bold mb-3 text-textDark">いつだって「これから」</h3>
+                        <p class="text-textMuted text-sm leading-relaxed">
+                            「あの時は良かった」と過去を嘆くより、「明日は何を食べようか」「何をしようか」と、常に少し先の「これから」を話すようにしましょう。
+                        </p>
+                    </div>
+
+                    <!-- Rule 4 -->
+                    <div
+                        class="fade-in bg-white p-8 rounded-2xl soft-shadow border-t-4 border-primary relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300 lg:col-start-2 lg:transform lg:-translate-x-1/2">
+                        <div
+                            class="absolute -right-6 -top-6 text-[120px] text-primary opacity-5 font-black group-hover:scale-110 transition-transform leading-none">
+                            4</div>
+                        <div class="text-primary text-3xl mb-4"><i class="fa-solid fa-mug-saucer"></i></div>
+                        <h3 class="text-xl font-bold mb-3 text-textDark">「まあいいか」の魔法</h3>
+                        <p class="text-textMuted text-sm leading-relaxed">
+                            白黒はっきりつけようとすると疲れてしまいます。完璧を求めず、グレーな曖昧さを許容する「まあいいか」の精神で生きていくのがコツです。
+                        </p>
+                    </div>
+
+                    <!-- Rule 5 -->
+                    <div class="fade-in bg-white p-8 rounded-2xl soft-shadow border-t-4 border-secondary relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300 lg:col-start-3 lg:transform lg:-translate-x-1/2"
+                        style="transition-delay: 100ms;">
+                        <div
+                            class="absolute -right-6 -top-6 text-[120px] text-secondary opacity-5 font-black group-hover:scale-110 transition-transform leading-none">
+                            5</div>
+                        <div class="text-secondary text-3xl mb-4"><i class="fa-solid fa-award"></i></div>
+                        <h3 class="text-xl font-bold mb-3 text-textDark">自分に「よく頑張りました」</h3>
+                        <p class="text-textMuted text-sm leading-relaxed">
+                            自分の機嫌を左右するのは他の誰でもない自分自身。一日の終わりには、誰よりもまず自分自身に対して「よく頑張りました」と労いましょう。
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 5: 体と心のつながり
+        =========================================== -->
+        <section class="py-20 px-4 bg-white">
+            <div class="max-w-4xl mx-auto fade-in">
+                <div
+                    class="bg-gradient-to-br from-secondary/10 to-primary/10 rounded-3xl p-8 md:p-12 border border-gray-100">
+                    <h2 class="text-2xl md:text-3xl font-bold text-center mb-10 text-textDark">
+                        <i class="fa-solid fa-leaf text-primary mr-2"></i>心と体を整える習慣
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <!-- 運動 -->
+                        <div class="flex gap-4">
+                            <div
+                                class="w-16 h-16 shrink-0 bg-white rounded-full flex items-center justify-center text-secondary shadow-sm text-2xl">
+                                <i class="fa-solid fa-person-walking"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-2 text-textDark">心が曇る日は、からだを動かす</h3>
+                                <p class="text-textMuted text-sm leading-relaxed">
+                                    頭で考えすぎると悩みは深くなります。ウォーキングや軽い筋トレで体を動かすことで、心の風通しが良くなり、気分が晴れていきます。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- 漢方 -->
+                        <div class="flex gap-4">
+                            <div
+                                class="w-16 h-16 shrink-0 bg-white rounded-full flex items-center justify-center text-primary shadow-sm text-2xl">
+                                <i class="fa-solid fa-mortar-pestle"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-2 text-textDark">自分に合うものを選ぶ（漢方の知恵）</h3>
+                                <p class="text-textMuted text-sm leading-relaxed">
+                                    「同じ症状でも違う薬、違う症状でも同じ薬」。漢方の考え方と同じく、生き方や心の保ち方も「人と違っていい、自分に合うものを選ぶ」ことが大切です。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 6: 著者プロフィール
+        =========================================== -->
+        <section class="py-20 px-4 bg-bgLight border-t border-gray-200">
+            <div class="max-w-3xl mx-auto fade-in">
+                <h2 class="text-center font-bold text-gray-400 tracking-widest text-sm mb-8">AUTHOR PROFILE</h2>
+
+                <div
+                    class="bg-white p-8 md:p-10 rounded-3xl soft-shadow flex flex-col md:flex-row items-center md:items-start gap-8">
+                    <!-- アバター代わりのアイコン -->
+                    <div
+                        class="w-24 h-24 md:w-32 md:h-32 shrink-0 bg-primary/10 rounded-full flex items-center justify-center text-primary text-4xl md:text-5xl border-4 border-white shadow-md">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+
+                    <div class="text-center md:text-left">
+                        <h3 class="text-2xl font-bold text-textDark mb-1">藤井 英子 <span
+                                class="text-sm font-normal text-gray-500">（ふじい ひでこ）</span></h3>
+                        <p class="text-primary font-medium text-sm mb-4">漢方心療内科藤井医院院長 / 医学博士</p>
+
+                        <ul class="text-textMuted text-sm space-y-2 mb-4 list-disc list-inside">
+                            <li>1931年生まれ。週6で勤務する<span class="font-bold text-secondary">93歳の現役医師</span>。</li>
+                            <li>5人目の出産を機に専業主婦になり、計7人の子どもを育てる。</li>
+                            <li>育児の傍ら学び続け、<span class="font-bold text-secondary">51歳で一念発起し再び医師の道へ！</span></li>
+                            <li>「大丈夫ですよ」という自然体な声かけが、多くの患者を救っている。</li>
+                        </ul>
+
+                        <div class="bg-gray-50 p-4 rounded-xl text-sm border border-gray-100 italic text-gray-600">
+                            <i class="fa-solid fa-quote-left text-gray-300 mr-2"></i>
+                            前作『ほどよく忘れて生きていく』は16万部突破のベストセラー。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================
+         FOOTER
+    =========================================== -->
+    <footer class="bg-textDark text-white py-12 px-4 border-t-4 border-primary">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="text-3xl mb-6 text-primary"><i class="fa-solid fa-seedling"></i></div>
+            <h2 class="text-2xl font-bold mb-4">さあ、ほどよく孤独に生きてみませんか？</h2>
+            <p class="opacity-70 text-sm mb-8 max-w-lg mx-auto leading-relaxed">
+                人間関係も、人の目も、情報も、「すこし離れている」くらいでちょうどいい。<br>
+                日々、自分の心に目を配り、からだを動かして、軽やかに生きていきましょう。
+            </p>
+
+            <a href="#"
+                class="inline-block bg-accent hover:bg-yellow-500 text-textDark font-bold py-3 px-8 rounded-full transition-colors duration-300 soft-shadow">
+                書籍の詳細を見る（書店サイト等へ）
+            </a>
+
+            <p class="mt-12 text-xs opacity-50">
+                &copy; 2026 Infographic Summary based on "ほどよく孤独に生きてみる" (サンマーク出版)
+            </p>
+        </div>
+    </footer>
+
+    <!-- スクロールアニメーション用スクリプト -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const fadeElements = document.querySelectorAll('.fade-in');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // 15%見えたらアニメーション発火
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                        observer.unobserve(entry.target); // 一度発火したら監視を解除
+                    }
+                });
+            }, observerOptions);
+
+            fadeElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
