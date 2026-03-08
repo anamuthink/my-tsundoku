@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【図解】新聞記者がネット記事をバズらせるために考えたこと</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#1e40af',    // 濃い青 (新聞の知性)
+                        secondary: '#f59e0b',  // アンバー (ネットのバズ・共感)
+                        accent: '#ec4899',     // ピンク
+                        dark: '#1e293b',
+                        light: '#f8fafc',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Google Material Symbols (Icons) -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
+
+    <style>
+        body {
+            background-color: #f1f5f9;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* ふわっと浮かび上がるアニメーション */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 逆三角形の表現用 */
+        .clip-triangle {
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased">
+
+    <!-- Hero Section -->
+    <header
+        class="relative bg-gradient-to-br from-primary to-blue-900 text-white overflow-hidden pb-16 pt-20 px-4 sm:px-6 lg:px-8 fade-in-up">
+        <div
+            class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IiNmZmYiLz48L3N2Zz4=')]">
+        </div>
+        <div class="max-w-5xl mx-auto relative z-10 text-center">
+            <span
+                class="inline-block py-1 px-3 rounded-full bg-blue-800 text-blue-100 text-sm font-bold mb-4 border border-blue-400">
+                書籍図解・要約
+            </span>
+            <h1 class="text-3xl md:text-5xl font-black mb-6 leading-tight">
+                「新聞記者がネット記事を<br class="hidden md:block">バズらせるために考えたこと」<br>
+                <span class="text-secondary">完全図解</span>
+            </h1>
+            <p class="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl mx-auto font-medium">
+                プロの記者が書いた文章が、なぜネットで読まれないのか？<br>
+                紙の「常識」を捨て、スマホ時代の「共感」を生むライティング術。
+            </p>
+            <div class="flex justify-center gap-4 text-sm text-blue-200">
+                <div class="flex items-center"><span class="material-symbols-rounded mr-1 text-lg">menu_book</span>斉藤 友彦
+                    著</div>
+                <div class="flex items-center"><span class="material-symbols-rounded mr-1 text-lg">business</span>集英社新書
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 -mt-10 relative z-20 space-y-16">
+
+        <!-- Section 1: 衝撃の事実 -->
+        <section class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-t-4 border-secondary fade-in-up"
+            style="animation-delay: 0.2s;">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/3 flex justify-center">
+                    <div
+                        class="relative w-48 h-48 bg-red-50 rounded-full flex items-center justify-center border-4 border-red-100">
+                        <span
+                            class="material-symbols-rounded text-8xl text-red-400 icon-fill">sentiment_dissatisfied</span>
+                        <div
+                            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full transform rotate-12 shadow-md">
+                            PVが伸びない...
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-2/3">
+                    <h2 class="text-2xl font-bold text-dark mb-4 border-b-2 border-gray-100 pb-2">
+                        <span class="text-red-500 mr-2">Q.</span>プロの記者が書いたのに、なぜ読まれない？
+                    </h2>
+                    <p class="text-gray-600 mb-4 text-lg">
+                        著者は長年、新聞記者として「わかりやすく無駄のない文章」を鍛え上げられてきました。しかし、ネット部署に異動して記事を出したところ、<strong
+                            class="text-red-600">見事に誰も読んでくれませんでした。</strong>
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-primary">
+                        <p class="font-bold text-primary mb-1">最大の気づき：</p>
+                        <p class="text-gray-700">新聞の「最も優れた書き方」は、ネット読者にとっては<strong
+                                class="text-dark bg-yellow-200 px-1">「難しくてストレスがたまる書き方」</strong>だったのです。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: 新聞 vs ネット -->
+        <section class="fade-in-up" style="animation-delay: 0.3s;">
+            <h2 class="text-3xl font-black text-center text-dark mb-10">
+                決定的な違い：<span class="text-primary">新聞</span> vs <span class="text-secondary">ネット</span>
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- 新聞 -->
+                <div
+                    class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-200 transition hover:shadow-lg">
+                    <div class="bg-gray-100 p-4 text-center border-b border-gray-200">
+                        <span class="material-symbols-rounded text-4xl text-gray-500 mb-2">newspaper</span>
+                        <h3 class="text-xl font-bold text-gray-700">新聞の読者</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start"><span
+                                    class="material-symbols-rounded text-green-500 mr-2 shrink-0">check_circle</span><b>目的：</b>
+                                知識や教訓を得るため（勉強モード）</li>
+                            <li class="flex items-start"><span
+                                    class="material-symbols-rounded text-green-500 mr-2 shrink-0">check_circle</span><b>環境：</b>
+                                お金を払い、時間を取って読む</li>
+                            <li class="flex items-start"><span
+                                    class="material-symbols-rounded text-green-500 mr-2 shrink-0">check_circle</span><b>制約：</b>
+                                紙のスペースが限られている</li>
+                        </ul>
+                        <div
+                            class="mt-4 p-3 bg-gray-50 rounded text-center font-bold text-gray-700 border border-gray-200">
+                            求められるもの：<br><span class="text-primary text-lg">「効率」と「情報の圧縮」</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ネット -->
+                <div
+                    class="bg-white rounded-2xl shadow-md overflow-hidden border border-amber-100 transition hover:shadow-lg">
+                    <div class="bg-amber-50 p-4 text-center border-b border-amber-100">
+                        <span class="material-symbols-rounded text-4xl text-secondary mb-2">smartphone</span>
+                        <h3 class="text-xl font-bold text-amber-800">ネットの読者</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start"><span
+                                    class="material-symbols-rounded text-secondary mr-2 shrink-0">check_circle</span><b>目的：</b>
+                                暇つぶし、面白いものを探す（リラックスモード）</li>
+                            <li class="flex items-start"><span
+                                    class="material-symbols-rounded text-secondary mr-2 shrink-0">check_circle</span><b>環境：</b>
+                                無料で、スマホでパラパラと見る</li>
+                            <li class="flex items-start"><span
+                                    class="material-symbols-rounded text-secondary mr-2 shrink-0">check_circle</span><b>制約：</b>
+                                つまらないと1秒で離脱する</li>
+                        </ul>
+                        <div
+                            class="mt-4 p-3 bg-amber-100 rounded text-center font-bold text-amber-900 border border-amber-200">
+                            求められるもの：<br><span class="text-secondary text-lg">「共感」と「ストレスフリー」</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: 図解 逆三角形 vs ストーリー -->
+        <section class="bg-white rounded-2xl shadow-xl p-8 md:p-12 fade-in-up" style="animation-delay: 0.4s;">
+            <h2 class="text-2xl md:text-3xl font-black text-center text-dark mb-4">
+                文章構成のパラダイムシフト
+            </h2>
+            <p class="text-center text-gray-500 mb-12">新聞の「正解」は、スマホでは「読みにくい」原因になります。</p>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- 逆三角形 (新聞) -->
+                <div class="flex flex-col items-center">
+                    <h3 class="text-lg font-bold text-gray-500 mb-6 flex items-center">
+                        <span class="material-symbols-rounded mr-2">warning</span>
+                        新聞の「逆三角形」スタイル
+                    </h3>
+
+                    <div class="w-full max-w-xs flex flex-col items-center space-y-1">
+                        <!-- ブロック1 -->
+                        <div class="w-full bg-slate-400 text-white p-4 text-center rounded-t-lg shadow-sm">
+                            <div class="font-bold text-lg mb-1">① 結論・5W1H (リード)</div>
+                            <div class="text-xs opacity-90">一番重要な情報を最初に全て詰め込む</div>
+                        </div>
+                        <!-- ブロック2 -->
+                        <div class="w-[85%] bg-slate-300 text-slate-800 p-3 text-center shadow-sm">
+                            <div class="font-bold">② 重要な詳細</div>
+                        </div>
+                        <!-- ブロック3 -->
+                        <div class="w-[70%] bg-slate-200 text-slate-600 p-2 text-center shadow-sm rounded-b-lg">
+                            <div class="font-bold text-sm">③ 補足・背景</div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="mt-6 bg-red-50 p-4 rounded-lg text-sm text-red-700 w-full max-w-xs border border-red-100 relative">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                            <span
+                                class="material-symbols-rounded text-red-400 bg-white rounded-full">arrow_drop_down_circle</span>
+                        </div>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>最初から情報が重すぎて疲れる</li>
+                            <li>いきなり結論で「何の話か」わからない</li>
+                            <li>説明文になり退屈しやすい</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ストーリー (ネット) -->
+                <div class="flex flex-col items-center">
+                    <h3 class="text-lg font-bold text-secondary mb-6 flex items-center">
+                        <span class="material-symbols-rounded mr-2">magic_button</span>
+                        ネットの「ストーリー」形式
+                    </h3>
+
+                    <!-- タイムライン風UI -->
+                    <div class="relative border-l-4 border-amber-400 ml-4 py-2 space-y-6 w-full max-w-xs">
+
+                        <div class="relative pl-6">
+                            <div
+                                class="absolute -left-[14px] top-3 w-6 h-6 bg-amber-400 rounded-full border-4 border-white shadow">
+                            </div>
+                            <div class="bg-amber-50 p-3 rounded-lg shadow-sm border border-amber-100">
+                                <div class="font-bold text-amber-900 mb-1">① 場面描写・フック</div>
+                                <div class="text-xs text-amber-700">読者を引き込む。状況や感情から。</div>
+                            </div>
+                        </div>
+
+                        <div class="relative pl-6">
+                            <div
+                                class="absolute -left-[14px] top-3 w-6 h-6 bg-amber-400 rounded-full border-4 border-white shadow">
+                            </div>
+                            <div class="bg-amber-50 p-3 rounded-lg shadow-sm border border-amber-100">
+                                <div class="font-bold text-amber-900 mb-1">② 時系列の展開</div>
+                                <div class="text-xs text-amber-700">「次に何が起きたか」主人公と一緒に追体験。</div>
+                            </div>
+                        </div>
+
+                        <div class="relative pl-6">
+                            <div
+                                class="absolute -left-[14px] top-3 w-6 h-6 bg-amber-400 rounded-full border-4 border-white shadow">
+                            </div>
+                            <div class="bg-amber-50 p-3 rounded-lg shadow-sm border border-amber-100">
+                                <div class="font-bold text-amber-900 mb-1">③ 結論・解説 (説明文)</div>
+                                <div class="text-xs text-amber-700">興味を持った後なので、難しい解説も読める。</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="mt-6 bg-green-50 p-4 rounded-lg text-sm text-green-800 w-full max-w-xs border border-green-200 relative">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                            <span
+                                class="material-symbols-rounded text-green-500 bg-white rounded-full">check_circle</span>
+                        </div>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>「わかるわかる！」と共感できる</li>
+                            <li>先が気になって最後まで読める</li>
+                            <li>「自分事」として捉えられる</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: NGリスト -->
+        <section class="fade-in-up" style="animation-delay: 0.5s;">
+            <div class="text-center mb-10">
+                <span class="material-symbols-rounded text-5xl text-red-500 mb-2 icon-fill">cancel</span>
+                <h2 class="text-2xl md:text-3xl font-black text-dark">
+                    ネットで嫌われる！<br class="block md:hidden">「新聞の常識」NG行動 4選
+                </h2>
+                <p class="text-gray-500 mt-2">若者やネット読者が「イライラする」「離脱する」ポイント</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-6">
+                <!-- NG 1 -->
+                <div class="bg-white p-6 rounded-xl border-l-8 border-red-500 shadow-sm">
+                    <h3 class="font-bold text-lg mb-2 flex items-center">
+                        <span class="bg-red-100 text-red-600 px-2 py-1 rounded text-sm mr-2">NG 1</span>
+                        リードが重すぎる
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        最初の1段落に「いつ・どこで・誰が・どうした」をギュウギュウに詰め込むと、文字の壁に見えて読む気が失せます。
+                    </p>
+                </div>
+
+                <!-- NG 2 -->
+                <div class="bg-white p-6 rounded-xl border-l-8 border-red-500 shadow-sm">
+                    <h3 class="font-bold text-lg mb-2 flex items-center">
+                        <span class="bg-red-100 text-red-600 px-2 py-1 rounded text-sm mr-2">NG 2</span>
+                        カギカッコの「後出し」
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        「『〜〜〜』と〇〇さんは語った。」<br>
+                        新聞の基本ですが、長い発言だと最後まで読まないと誰の言葉かわからず、ネット読者はイライラします。
+                    </p>
+                </div>
+
+                <!-- NG 3 -->
+                <div class="bg-white p-6 rounded-xl border-l-8 border-red-500 shadow-sm">
+                    <h3 class="font-bold text-lg mb-2 flex items-center">
+                        <span class="bg-red-100 text-red-600 px-2 py-1 rounded text-sm mr-2">NG 3</span>
+                        「同県」などの略語
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        文字数を削るための「同県」「地裁」といった新聞特有の略語。普段新聞を読まない人には「意味不明な暗号」に見えてしまいます。
+                    </p>
+                </div>
+
+                <!-- NG 4 -->
+                <div class="bg-white p-6 rounded-xl border-l-8 border-red-500 shadow-sm">
+                    <h3 class="font-bold text-lg mb-2 flex items-center">
+                        <span class="bg-red-100 text-red-600 px-2 py-1 rounded text-sm mr-2">NG 4</span>
+                        接続詞を削る
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        「しかし」「だから」を削ってスマートにする新聞の美学。しかしネットでは話の流れが急に変わり、読者が迷子になります。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: バズるための5要素 -->
+        <section class="bg-dark text-white rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden fade-in-up"
+            style="animation-delay: 0.6s;">
+            <!-- 背景の装飾 -->
+            <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-blue-500 rounded-full opacity-20 blur-2xl">
+            </div>
+            <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-pink-500 rounded-full opacity-20 blur-2xl">
+            </div>
+
+            <div class="text-center relative z-10 mb-10">
+                <span
+                    class="material-symbols-rounded text-5xl text-yellow-400 mb-2 icon-fill">local_fire_department</span>
+                <h2 class="text-2xl md:text-3xl font-black">記事が「バズる」5つの黄金要素</h2>
+                <p class="text-blue-200 mt-2">数百万PVを叩き出した記事の分析から判明した共通点</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 relative z-10">
+                <!-- 要素1 -->
+                <div
+                    class="bg-slate-800/80 p-5 rounded-xl border border-slate-700 text-center hover:bg-slate-700 transition">
+                    <div
+                        class="w-12 h-12 mx-auto bg-pink-500/20 text-pink-400 rounded-full flex items-center justify-center mb-3">
+                        <span class="material-symbols-rounded icon-fill">favorite</span>
+                    </div>
+                    <div class="font-bold text-lg mb-1">1. 共感や感動</div>
+                    <div class="text-xs text-slate-400">「わかる！」「すごい！」と心が動くか</div>
+                </div>
+                <!-- 要素2 -->
+                <div
+                    class="bg-slate-800/80 p-5 rounded-xl border border-slate-700 text-center hover:bg-slate-700 transition">
+                    <div
+                        class="w-12 h-12 mx-auto bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center mb-3">
+                        <span class="material-symbols-rounded icon-fill">auto_stories</span>
+                    </div>
+                    <div class="font-bold text-lg mb-1">2. ストーリー</div>
+                    <div class="text-xs text-slate-400">説明文ではなく物語になっているか</div>
+                </div>
+                <!-- 要素3 -->
+                <div
+                    class="bg-slate-800/80 p-5 rounded-xl border border-slate-700 text-center hover:bg-slate-700 transition">
+                    <div
+                        class="w-12 h-12 mx-auto bg-green-500/20 text-green-400 rounded-full flex items-center justify-center mb-3">
+                        <span class="material-symbols-rounded">trending_up</span>
+                    </div>
+                    <div class="font-bold text-lg mb-1">3. 最新ニュース</div>
+                    <div class="text-xs text-slate-400">世間の関心事に関連しているか</div>
+                </div>
+                <!-- 要素4 -->
+                <div
+                    class="bg-slate-800/80 p-5 rounded-xl border border-slate-700 text-center hover:bg-slate-700 transition">
+                    <div
+                        class="w-12 h-12 mx-auto bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center mb-3">
+                        <span class="material-symbols-rounded">ads_click</span>
+                    </div>
+                    <div class="font-bold text-lg mb-1">4. 見出しの強さ</div>
+                    <div class="text-xs text-slate-400">嘘ではないが、クリックしたくなるか</div>
+                </div>
+                <!-- 要素5 -->
+                <div
+                    class="bg-slate-800/80 p-5 rounded-xl border border-slate-700 text-center hover:bg-slate-700 transition">
+                    <div
+                        class="w-12 h-12 mx-auto bg-purple-500/20 text-purple-400 rounded-full flex items-center justify-center mb-3">
+                        <span class="material-symbols-rounded icon-fill">forum</span>
+                    </div>
+                    <div class="font-bold text-lg mb-1">5. コメント欄</div>
+                    <div class="text-xs text-slate-400">意見を言いたくなる論点があるか</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: 実践テクニック -->
+        <section class="fade-in-up" style="animation-delay: 0.7s;">
+            <div class="text-center mb-10">
+                <span class="material-symbols-rounded text-5xl text-green-500 mb-2 icon-fill">edit_note</span>
+                <h2 class="text-2xl md:text-3xl font-black text-dark">明日から使える！<br class="block md:hidden">ライティングの魔法</h2>
+                <p class="text-gray-500 mt-2">読者を迷子にさせない「親切な案内役」になる方法</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Rule 1 -->
+                <div
+                    class="bg-white p-6 rounded-xl shadow-md border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+                    <div class="bg-green-100 text-green-700 font-bold px-4 py-2 rounded-lg whitespace-nowrap">
+                        魔法 1
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-dark mb-2">「主人公」を立てて、感情を書く</h3>
+                        <p class="text-gray-600 mb-4">
+                            単なる「出来事の報告」ではなく、現場にいた人を主人公にし、「その時どう思ったか」を書き込みます。読者は主人公を通じて出来事を「追体験」できます。</p>
+                        <div class="grid md:grid-cols-2 gap-4 text-sm">
+                            <div class="bg-gray-100 p-3 rounded text-gray-500">
+                                <div class="font-bold text-red-500 mb-1">△ 報告</div>
+                                「羽田空港で事故があり、JR東海が臨時列車を出しました。」
+                            </div>
+                            <div class="bg-green-50 p-3 rounded text-gray-800 border border-green-200">
+                                <div class="font-bold text-green-600 mb-1">◎ ストーリー</div>
+                                「事故のニュースを見て、指令所の古屋さんは『大変なことになる』と直感した。」
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rule 2 -->
+                <div
+                    class="bg-white p-6 rounded-xl shadow-md border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+                    <div class="bg-green-100 text-green-700 font-bold px-4 py-2 rounded-lg whitespace-nowrap">
+                        魔法 2
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-dark mb-2">あえて「接続詞」をたくさん使う</h3>
+                        <p class="text-gray-600 mb-4">
+                            「そして」「しかし」「だから」といった接続詞や指示語を丁寧に置くことで、読者が「次は何の話か」を予測でき、スムーズに読み進められます。</p>
+                    </div>
+                </div>
+
+                <!-- Rule 3 -->
+                <div
+                    class="bg-white p-6 rounded-xl shadow-md border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+                    <div class="bg-green-100 text-green-700 font-bold px-4 py-2 rounded-lg whitespace-nowrap">
+                        魔法 3
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-dark mb-2">「他人事」を「自分事」に変換する</h3>
+                        <p class="text-gray-600 mb-4">
+                            法律や制度の難しい解説も、「もし自分がアパートの鍵をなくしたら？」という身近なシチュエーションに落とし込むことで、興味を持って読まれます。</p>
+                    </div>
+                </div>
+
+                <!-- Rule 4 -->
+                <div
+                    class="bg-white p-6 rounded-xl shadow-md border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+                    <div class="bg-green-100 text-green-700 font-bold px-4 py-2 rounded-lg whitespace-nowrap">
+                        魔法 4
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-dark mb-2">発言者は「カギカッコの前」に置く</h3>
+                        <div class="grid md:grid-cols-2 gap-4 text-sm mt-2">
+                            <div class="bg-gray-100 p-3 rounded text-gray-500">
+                                <div class="font-bold text-red-500 mb-1">△ 迷子になる</div>
+                                「『〜長文〜』と、○○さんは語った。」
+                            </div>
+                            <div class="bg-green-50 p-3 rounded text-gray-800 border border-green-200">
+                                <div class="font-bold text-green-600 mb-1">◎ ストレスフリー</div>
+                                ○○さん「『〜長文〜』」
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: コラム（メディアの役割） -->
+        <section class="bg-blue-50 border-t-4 border-primary rounded-2xl p-8 shadow-sm fade-in-up"
+            style="animation-delay: 0.8s;">
+            <div class="flex items-center mb-4">
+                <span class="material-symbols-rounded text-3xl text-primary mr-3">verified</span>
+                <h2 class="text-xl md:text-2xl font-bold text-primary">なぜ「正しい情報（一次情報）」が必要なのか？</h2>
+            </div>
+            <p class="text-gray-700 mb-4">
+                「共感」は記事を読んでもらうための強力な武器です。しかし、著者はネットの<strong>「感情の世界の怖さ」</strong>にも警鐘を鳴らしています。怒りや共感が行き過ぎると、フェイクニュースが広まり、社会が分断されてしまいます。
+            </p>
+            <p class="text-gray-700">
+                だからこそ、誰かの感想やコピペ（二次情報）ではなく、<strong>記者が自らの足で現場に行き、裏付けを取った「一次情報」</strong>を、ネットの作法（ストーリー）にのせて届け続けることが、これからのメディアの重要な使命なのです。
+            </p>
+        </section>
+
+        <!-- Footer / Conclusion -->
+        <div class="text-center pb-20 fade-in-up" style="animation-delay: 0.9s;">
+            <p class="text-xl font-bold text-dark mb-2">「自分が言いたいこと」よりも「相手が知りたいこと」を。</p>
+            <p class="text-gray-500">時代が変われば伝え方も変わる。読者ファーストの視点を持とう。</p>
+        </div>
+
+    </main>
+
+</body>
+
+</html>
