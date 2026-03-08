@@ -1,0 +1,590 @@
+< !DOCTYPE html>
+  <html lang="ja">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>『CODE』からくり図解絵巻</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // 1. Reactの便利機能を使えるようにする
+      const { useState, useEffect } = React;
+
+      // 2. アイコンを直接描画するための部品（lucide-reactの代わり）
+      const SvgIcon = ({ children, className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+          {children}
+        </svg>
+      );
+      const Lightbulb = ({ className }) => <SvgIcon className={className}><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.2 1.5 1.5 2.5" /><path d="M9 18h6" /><path d="M10 22h4" /></SvgIcon>;
+      const LightbulbOff = ({ className }) => <SvgIcon className={className}><path d="M16.8 11.2c.8-.9 1.2-2 1.2-3.2a6 6 0 0 0-9.3-5" /><path d="m2.2 2.2 14 14" /><path d="M6 8c0 1 .2 2.2 1.5 3.5.7.9 1.2 1.5 1.5 2.5" /><path d="M9 18h6" /><path d="M10 22h4" /></SvgIcon>;
+      const Zap = ({ className }) => <SvgIcon className={className}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></SvgIcon>;
+      const Cpu = ({ className }) => <SvgIcon className={className}><rect x="4" y="4" width="16" height="16" rx="2" ry="2" /><rect x="9" y="9" width="6" height="6" /><line x1="9" y1="1" x2="9" y2="4" /><line x1="15" y1="1" x2="15" y2="4" /><line x1="9" y1="20" x2="9" y2="23" /><line x1="15" y1="20" x2="15" y2="23" /><line x1="20" y1="9" x2="23" y2="9" /><line x1="20" y1="14" x2="23" y2="14" /><line x1="1" y1="9" x2="4" y2="9" /><line x1="1" y1="14" x2="4" y2="14" /></SvgIcon>;
+      const MemoryStick = ({ className }) => <SvgIcon className={className}><rect x="2" y="4" width="20" height="16" rx="2" /><path d="M2 8h20" /><path d="M6 4v4" /><path d="M10 4v4" /><path d="M14 4v4" /><path d="M18 4v4" /></SvgIcon>;
+      const Activity = ({ className }) => <SvgIcon className={className}><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></SvgIcon>;
+      const ArrowRight = ({ className }) => <SvgIcon className={className}><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></SvgIcon>;
+      const ArrowDown = ({ className }) => <SvgIcon className={className}><line x1="12" y1="5" x2="12" y2="19" /><polyline points="19 12 12 19 5 12" /></SvgIcon>;
+
+
+      // 3. メインのアプリケーションコード
+      function App() {
+        return (
+          <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-200">
+            <Header />
+            <main className="max-w-4xl mx-auto px-4 py-8 space-y-16">
+              <IntroSection />
+              <BinarySection />
+              <LogicGateSection />
+              <AdderSection />
+              <MemorySection />
+              <CpuSection />
+            </main>
+            <Footer />
+          </div>
+        );
+      }
+
+      // --- Components ---
+
+      function Header() {
+        return (
+          <header className="bg-slate-900 text-white py-16 px-4 text-center shadow-lg">
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+              『CODE』からくり図解絵巻
+            </h1>
+            <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto">
+              懐中電灯の光から、現代のコンピュータへ。
+              <br />
+              ただの「スイッチ」が計算機になるまでの魔法を、触って理解しよう。
+            </p>
+          </header>
+        );
+      }
+
+      function Section({ title, subtitle, children }) {
+        return (
+          <section className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10">
+            <div className="mb-8 border-b border-slate-100 pb-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">{title}</h2>
+              {subtitle && <p className="text-slate-500 text-lg">{subtitle}</p>}
+            </div>
+            {children}
+          </section>
+        );
+      }
+
+      // 1. 情報とコード
+      function IntroSection() {
+        const [isOn, setIsOn] = useState(false);
+
+        return (
+          <Section
+            title="第1章：情報を伝える「コード」"
+            subtitle="暗闇の中で遠くの友達と話すにはどうすればいい？"
+          >
+            <div className="flex flex-col md:flex-row gap-8 items-center">
+              <div className="flex-1 space-y-4">
+                <p>
+                  コンピュータの歴史は、「情報をどうやって伝えるか」から始まります。
+                  たとえば、夜に隣の家の友達と話したいとき、声は届きません。でも、**懐中電灯の光のONとOFF（モールス信号など）**を使えば、情報を伝えることができます。
+                </p>
+                <p>
+                  このように、何か別の形（光や電気）に情報を変換するルールのことを**「コード（符号）」**と呼びます。コンピュータも、すべての情報を「電気のON/OFF」というコードで扱っています。
+                </p>
+              </div>
+              <div className="flex-1 bg-slate-100 p-8 rounded-xl flex flex-col items-center justify-center">
+                <div className="mb-6">
+                  {isOn ? (
+                    <Lightbulb className="w-24 h-24 text-yellow-400 fill-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.8)] transition-all duration-100" />
+                  ) : (
+                    <LightbulbOff className="w-24 h-24 text-slate-400 transition-all duration-100" />
+                  )}
+                </div>
+                <button
+                  onMouseDown={() => setIsOn(true)}
+                  onMouseUp={() => setIsOn(false)}
+                  onMouseLeave={() => setIsOn(false)}
+                  onTouchStart={() => setIsOn(true)}
+                  onTouchEnd={() => setIsOn(false)}
+                  className="px-6 py-3 bg-blue-600 text-white rounded-full font-bold shadow-md hover:bg-blue-700 active:scale-95 transition-transform"
+                >
+                  押している間だけ光る
+                </button>
+              </div>
+            </div>
+          </Section>
+        );
+      }
+
+      // 2. 2進数
+      function BinarySection() {
+        const [bits, setBits] = useState([false, false, false, false, false, false, false, false]);
+
+        const toggleBit = (index) => {
+          const newBits = [...bits];
+          newBits[index] = !newBits[index];
+          setBits(newBits);
+        };
+
+        const decimalValue = bits.reduce((acc, bit, index) => {
+          return acc + (bit ? Math.pow(2, 7 - index) : 0);
+        }, 0);
+
+        return (
+          <Section
+            title="第2章：2進数の世界"
+            subtitle="指が2本しかない宇宙人はどうやって数を数える？"
+          >
+            <div className="space-y-6">
+              <p>
+                人間は指が10本あるので「10進数（0〜9）」を使いますが、コンピュータの中には電気の「ON」と「OFF」という2つの状態しかありません。だから、**「0」と「1」だけで数を表す「2進数」**を使います。
+              </p>
+              <p className="text-sm text-slate-500 mb-4">
+                下の電球をクリックして、ON(1)/OFF(0)を切り替えてみましょう。8個の電球（8ビット = 1バイト）で、0から255までの数を表現できます。
+              </p>
+
+              <div className="bg-slate-800 p-6 md:p-8 rounded-xl text-white shadow-inner overflow-x-auto">
+                <div className="flex justify-center gap-2 md:gap-4 min-w-max mx-auto">
+                  {bits.map((bit, index) => {
+                    const weight = Math.pow(2, 7 - index);
+                    return (
+                      <div key={index} className="flex flex-col items-center">
+                        <span className="text-slate-400 text-xs mb-2">{weight}の位</span>
+                        <button
+                          onClick={() => toggleBit(index)}
+                          className={`w-10 h-14 md:w-16 md:h-20 rounded-lg flex items-center justify-center transition-all duration-200 ${bit ? 'bg-yellow-400 shadow-[0_0_15px_rgba(250,204,21,0.6)]' : 'bg-slate-700 shadow-inner'
+                            }`}
+                        >
+                          <span className={`text-xl font-bold ${bit ? 'text-yellow-900' : 'text-slate-500'}`}>
+                            {bit ? '1' : '0'}
+                          </span>
+                        </button>
+                        <span className={`text-xs mt-2 ${bit ? 'text-yellow-400' : 'text-slate-600'}`}>
+                          {bit ? `+${weight}` : '0'}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-slate-700 flex flex-col items-center">
+                  <span className="text-slate-400 mb-1">10進数での合計</span>
+                  <span className="text-5xl font-mono font-bold text-green-400">{decimalValue}</span>
+                </div>
+              </div>
+            </div>
+          </Section>
+        );
+      }
+
+      // 3. 論理ゲート
+      function LogicGateSection() {
+        const [andA, setAndA] = useState(false);
+        const [andB, setAndB] = useState(false);
+
+        const [orA, setOrA] = useState(false);
+        const [orB, setOrB] = useState(false);
+
+        const andResult = andA && andB;
+        const orResult = orA || orB;
+
+        return (
+          <Section
+            title="第3章：思考する回路（論理ゲート）"
+            subtitle="スイッチをつなぎ合わせると「条件」が生まれる"
+          >
+            <div className="space-y-6">
+              <p>
+                電気のON/OFFだけでどうやって計算をするのでしょうか？ その秘密はスイッチの「つなぎ方」にあります。<br />
+                直列につなぐと**「AND（両方ONならON）」**、並列につなぐと**「OR（どちらかONならON）」**という論理回路が作れます。これがコンピュータの思考の最小単位です。
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-8 mt-8">
+                {/* AND Circuit */}
+                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                  <h3 className="text-lg font-bold mb-4 text-center">AND回路 (直列)</h3>
+                  <p className="text-sm text-slate-500 text-center mb-6">AとB、<span className="font-bold text-blue-600">両方</span>がONの時だけ光る</p>
+
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="flex flex-col items-center">
+                      <Zap className="text-blue-500 w-6 h-6 mb-1" />
+                      <span className="text-xs">電源</span>
+                    </div>
+
+                    <div className={`h-1 w-8 ${andA ? 'bg-yellow-400' : 'bg-slate-300'}`}></div>
+                    <Switch label="A" isOn={andA} onToggle={() => setAndA(!andA)} />
+
+                    <div className={`h-1 w-8 ${andA ? 'bg-yellow-400' : 'bg-slate-300'}`}></div>
+                    <Switch label="B" isOn={andB} onToggle={() => setAndB(!andB)} />
+
+                    <div className={`h-1 w-8 ${andResult ? 'bg-yellow-400' : 'bg-slate-300'}`}></div>
+
+                    <div className="flex flex-col items-center ml-2">
+                      <Lightbulb className={`w-10 h-10 ${andResult ? 'text-yellow-400 fill-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)]' : 'text-slate-400'}`} />
+                    </div>
+                  </div>
+                </div>
+
+                {/* OR Circuit */}
+                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                  <h3 className="text-lg font-bold mb-4 text-center">OR回路 (並列)</h3>
+                  <p className="text-sm text-slate-500 text-center mb-6">AかB、<span className="font-bold text-blue-600">どちらか</span>がONなら光る</p>
+
+                  <div className="flex items-center justify-center">
+                    <div className="flex flex-col items-center mr-2">
+                      <Zap className="text-blue-500 w-6 h-6 mb-1" />
+                      <span className="text-xs">電源</span>
+                    </div>
+
+                    <div className="flex flex-col items-center justify-center">
+                      <div className={`w-4 border-t-4 border-l-4 border-b-4 h-24 rounded-l-md ${orA || orB ? 'border-yellow-400' : 'border-slate-300'}`}></div>
+                    </div>
+
+                    <div className="flex flex-col justify-between h-32 py-2 relative -ml-2">
+                      <Switch label="A" isOn={orA} onToggle={() => setOrA(!orA)} />
+                      <Switch label="B" isOn={orB} onToggle={() => setOrB(!orB)} />
+                    </div>
+
+                    <div className="flex flex-col items-center justify-center -ml-2">
+                      <div className="relative w-8 h-24">
+                        <div className={`absolute top-0 left-0 w-8 h-1/2 border-t-4 border-r-4 rounded-tr-md ${orA ? 'border-yellow-400' : 'border-slate-300'}`}></div>
+                        <div className={`absolute bottom-0 left-0 w-8 h-1/2 border-b-4 border-r-4 rounded-br-md ${orB ? 'border-yellow-400' : 'border-slate-300'}`}></div>
+                      </div>
+                    </div>
+
+                    <div className={`h-1 w-4 -ml-1 ${orResult ? 'bg-yellow-400' : 'bg-slate-300'}`}></div>
+
+                    <div className="flex flex-col items-center ml-2">
+                      <Lightbulb className={`w-10 h-10 ${orResult ? 'text-yellow-400 fill-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)]' : 'text-slate-400'}`} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Section>
+        );
+      }
+
+      // 共通スイッチコンポーネント
+      function Switch({ label, isOn, onToggle }) {
+        return (
+          <div className="flex flex-col items-center z-10 bg-slate-50 px-1">
+            <span className="text-xs font-bold mb-1 text-slate-500">{label}</span>
+            <button
+              onClick={onToggle}
+              className={`w-12 h-6 rounded-full p-1 transition-colors duration-200 ease-in-out shadow-inner flex items-center ${isOn ? 'bg-green-500 justify-end' : 'bg-slate-300 justify-start'
+                }`}
+            >
+              <div className="w-4 h-4 bg-white rounded-full shadow-md transition-transform duration-200"></div>
+            </button>
+          </div>
+        );
+      }
+
+      // 4. 加算器
+      function AdderSection() {
+        const [a, setA] = useState(0);
+        const [b, setB] = useState(0);
+
+        const sum = a ^ b;
+        const carry = a & b;
+
+        return (
+          <Section
+            title="第4章：足し算をする機械"
+            subtitle="「1 + 1 = 10」を回路で実現する（半加算器）"
+          >
+            <div className="space-y-6">
+              <p>
+                論理ゲート（ANDやOR、XORなど）を組み合わせると、ついに**「計算」**ができるようになります。
+                2進数の1桁の足し算を行う回路を「半加算器（Half Adder）」と呼びます。
+              </p>
+              <p className="bg-blue-50 p-4 rounded-lg text-sm text-blue-900 border border-blue-100">
+                **XORゲート**：AかB、どちらか一方だけが1の時だけ1になる（これが「和(Sum)」になる）<br />
+                **ANDゲート**：AとB、両方が1の時だけ1になる（これが「繰り上がり(Carry)」になる）
+              </p>
+
+              <div className="bg-slate-800 p-8 rounded-xl text-white mt-6 relative overflow-hidden shadow-xl">
+                <div className="flex flex-col md:flex-row items-center justify-between max-w-2xl mx-auto gap-8">
+
+                  {/* Inputs */}
+                  <div className="flex flex-row md:flex-col gap-6">
+                    <div className="flex items-center gap-4">
+                      <span className="text-xl font-bold w-16 text-right">入力 A</span>
+                      <button
+                        onClick={() => setA(a === 0 ? 1 : 0)}
+                        className={`w-16 h-16 rounded-xl text-2xl font-bold transition-colors ${a ? 'bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.5)]' : 'bg-slate-600'}`}
+                      >
+                        {a}
+                      </button>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <span className="text-xl font-bold w-16 text-right">入力 B</span>
+                      <button
+                        onClick={() => setB(b === 0 ? 1 : 0)}
+                        className={`w-16 h-16 rounded-xl text-2xl font-bold transition-colors ${b ? 'bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.5)]' : 'bg-slate-600'}`}
+                      >
+                        {b}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Circuit Box */}
+                  <div className="hidden md:flex flex-col items-center justify-center text-slate-400">
+                    <ArrowRight className="w-8 h-8 mb-4" />
+                    <ArrowRight className="w-8 h-8" />
+                  </div>
+
+                  <div className="w-full md:w-auto bg-slate-700 border-2 border-slate-500 p-6 rounded-xl text-center shadow-lg relative z-10">
+                    <div className="text-sm text-slate-300 mb-2 uppercase tracking-widest">Logic Circuit</div>
+                    <div className="text-2xl font-bold text-white">半加算器<br /><span className="text-sm font-normal text-slate-400">(Half Adder)</span></div>
+                  </div>
+
+                  <div className="hidden md:flex flex-col items-center justify-center text-slate-400">
+                    <ArrowRight className="w-8 h-8 mb-4" />
+                    <ArrowRight className="w-8 h-8" />
+                  </div>
+
+                  <div className="flex md:hidden flex-col items-center justify-center text-slate-400 my-4">
+                    <ArrowDown className="w-8 h-8" />
+                  </div>
+
+                  {/* Outputs */}
+                  <div className="flex flex-row md:flex-col gap-6 bg-slate-900 p-6 rounded-xl border border-slate-700">
+                    <div className="flex flex-col items-center gap-2">
+                      <span className="text-sm text-slate-400">繰り上がり (Carry)</span>
+                      <div className={`w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold border-4 transition-all duration-300 ${carry ? 'border-red-500 text-red-500 bg-red-500/20 drop-shadow-[0_0_10px_rgba(239,68,68,0.8)]' : 'border-slate-600 text-slate-500'}`}>
+                        {carry}
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-center gap-2">
+                      <span className="text-sm text-slate-400">和 (Sum)</span>
+                      <div className={`w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold border-4 transition-all duration-300 ${sum ? 'border-yellow-400 text-yellow-400 bg-yellow-400/20 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)]' : 'border-slate-600 text-slate-500'}`}>
+                        {sum}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-8 text-center text-xl bg-black/30 py-4 rounded-lg">
+                  計算結果：
+                  <span className="font-mono ml-2 text-2xl">
+                    {a} + {b} = <span className={carry ? 'text-red-400' : 'text-slate-500'}>{carry}</span>
+                    <span className={sum ? 'text-yellow-400' : 'text-slate-500'}>{sum}</span>
+                  </span>
+                  <span className="text-sm text-slate-400 ml-2">(2進数)</span>
+                </div>
+              </div>
+            </div>
+          </Section>
+        );
+      }
+
+      // 5. メモリ (フリップフロップ)
+      function MemorySection() {
+        const [state, setState] = useState(false);
+        const [isSetting, setIsSetting] = useState(false);
+
+        const handleSet = () => {
+          setIsSetting(true);
+          setState(true);
+          setTimeout(() => setIsSetting(false), 200);
+        };
+
+        const handleReset = () => {
+          setState(false);
+        };
+
+        return (
+          <Section
+            title="第5章：過去を記憶する回路"
+            subtitle="スイッチを離してもONのまま？（フリップフロップ）"
+          >
+            <div className="space-y-6">
+              <p>
+                計算ができても、その結果を「記憶」できなければコンピュータになりません。
+                出力された電気を、**自分自身の入力に戻す（フィードバック）**ことで、信号を閉じ込め、状態を保持する回路を作ることができます。これを「フリップフロップ」と呼びます。
+              </p>
+
+              <div className="flex flex-col md:flex-row items-center justify-center gap-8 bg-slate-100 p-8 rounded-xl border border-slate-200 mt-6">
+
+                <div className="flex flex-col gap-4">
+                  <button
+                    onMouseDown={handleSet}
+                    onTouchStart={handleSet}
+                    className="px-6 py-3 bg-red-500 text-white font-bold rounded-lg shadow-md hover:bg-red-600 active:bg-red-700 transition-colors"
+                  >
+                    Set (1を記憶)
+                  </button>
+                  <button
+                    onMouseDown={handleReset}
+                    onTouchStart={handleReset}
+                    className="px-6 py-3 bg-slate-400 text-white font-bold rounded-lg shadow-md hover:bg-slate-500 active:bg-slate-600 transition-colors"
+                  >
+                    Reset (0に戻す)
+                  </button>
+                </div>
+
+                <div className="relative">
+                  <div className="absolute inset-0 -m-6 border-4 border-dashed rounded-full border-slate-300 animate-[spin_10s_linear_infinite]" style={{ display: state ? 'block' : 'none' }}></div>
+
+                  <div className={`w-32 h-32 rounded-2xl flex flex-col items-center justify-center relative z-10 transition-all duration-500 ${state ? 'bg-yellow-100 border-4 border-yellow-400 shadow-[0_0_30px_rgba(250,204,21,0.4)]' : 'bg-white border-4 border-slate-300'}`}>
+                    <MemoryStick className={`w-10 h-10 mb-2 ${state ? 'text-yellow-500' : 'text-slate-400'}`} />
+                    <span className="text-sm font-bold text-slate-500">現在の記憶</span>
+                    <span className={`text-4xl font-mono font-bold ${state ? 'text-yellow-600' : 'text-slate-400'}`}>
+                      {state ? '1' : '0'}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="text-sm text-slate-600 max-w-xs">
+                  <p>☝️ <strong>Set</strong>ボタンを押して離してみてください。回路の中に電気が回り続け、「1」を記憶し続けます。</p>
+                  <p className="mt-2">この小さな回路が何百万個も集まったものが、パソコンの**RAM（メモリ）**です。</p>
+                </div>
+              </div>
+            </div>
+          </Section>
+        );
+      }
+
+      // 6. CPUとクロック
+      function CpuSection() {
+        const [cycle, setCycle] = useState(0);
+        const [isRunning, setIsRunning] = useState(false);
+
+        useEffect(() => {
+          let interval;
+          if (isRunning) {
+            interval = setInterval(() => {
+              setCycle((prev) => (prev + 1) % 3);
+            }, 1000);
+          } else {
+            setCycle(0);
+          }
+          return () => clearInterval(interval);
+        }, [isRunning]);
+
+        const steps = [
+          { name: 'Fetch (取出し)', desc: 'メモリから次にやるべき命令を取り出す' },
+          { name: 'Decode (解読)', desc: '命令の意味を理解し、回路の準備をする' },
+          { name: 'Execute (実行)', desc: 'ALU（計算機）で計算し、結果を保存する' },
+        ];
+
+        return (
+          <Section
+            title="第6章：そしてコンピュータへ"
+            subtitle="すべてを指揮する「クロック」と「CPU」"
+          >
+            <div className="space-y-6">
+              <p>
+                「計算機」と「記憶装置」ができたら、あとはそれらを自動で動かす仕組みが必要です。
+                一定のリズムを刻む**「クロック（発振器）」**に合わせて、メモリから命令を取り出し（Fetch）、解読し（Decode）、実行する（Execute）。
+                このサイクルを超高速で繰り返す装置が**CPU（中央演算処理装置）**です。
+              </p>
+
+              <div className="bg-slate-900 text-white p-6 md:p-8 rounded-xl border border-slate-700 shadow-2xl">
+                <div className="flex justify-between items-center mb-8 border-b border-slate-700 pb-4">
+                  <div className="flex items-center gap-3">
+                    <Cpu className="w-8 h-8 text-blue-400" />
+                    <span className="text-xl font-bold">CPU アーキテクチャ</span>
+                  </div>
+                  <button
+                    onClick={() => setIsRunning(!isRunning)}
+                    className={`px-6 py-2 rounded-full font-bold flex items-center gap-2 transition-colors ${isRunning ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'}`}
+                  >
+                    <Activity className={isRunning ? 'animate-pulse' : ''} />
+                    {isRunning ? 'クロック停止' : 'クロック起動'}
+                  </button>
+                </div>
+
+                <div className="relative flex flex-col md:flex-row gap-8 items-stretch justify-center h-64">
+
+                  {/* Memory Block */}
+                  <div className={`flex-1 rounded-xl border-2 flex flex-col items-center justify-center transition-all duration-300 z-10 bg-slate-800 ${isRunning && cycle === 0 ? 'border-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.3)]' : 'border-slate-600'}`}>
+                    <MemoryStick className="w-10 h-10 mb-2 text-slate-400" />
+                    <h3 className="font-bold text-lg mb-1">メモリ (RAM)</h3>
+                    <p className="text-xs text-slate-400 text-center px-4">プログラム（命令）とデータが並んでいる</p>
+                  </div>
+
+                  {/* Connecting Bus */}
+                  <div className="flex items-center justify-center flex-col relative w-12 hidden md:flex">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-full h-2 bg-slate-700"></div>
+                    </div>
+                    {isRunning && (
+                      <div className="absolute w-6 h-6 bg-yellow-400 rounded-full blur-sm"
+                        style={{
+                          transition: 'left 1s linear, opacity 0.2s',
+                          left: cycle === 0 ? '0%' : cycle === 2 ? '100%' : '50%',
+                          opacity: cycle === 1 ? 0 : 1
+                        }}
+                      ></div>
+                    )}
+                  </div>
+
+                  {/* CPU Block */}
+                  <div className={`flex-[2] rounded-xl border-2 flex flex-col items-center justify-center transition-all duration-300 z-10 bg-slate-800 ${isRunning && cycle !== 0 ? 'border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.3)]' : 'border-slate-600'}`}>
+                    <Cpu className="w-10 h-10 mb-2 text-slate-400" />
+                    <h3 className="font-bold text-lg mb-4">CPU</h3>
+
+                    <div className="flex w-full px-4 gap-4">
+                      <div className={`flex-1 rounded border p-2 text-center transition-colors ${isRunning && cycle === 1 ? 'border-yellow-400 bg-yellow-400/20 text-yellow-300' : 'border-slate-600 text-slate-500'}`}>
+                        <div className="text-xs font-bold mb-1">制御装置</div>
+                        <div className="text-[10px]">命令をDecode</div>
+                      </div>
+                      <div className={`flex-1 rounded border p-2 text-center transition-colors ${isRunning && cycle === 2 ? 'border-green-400 bg-green-400/20 text-green-300' : 'border-slate-600 text-slate-500'}`}>
+                        <div className="text-xs font-bold mb-1">ALU (演算装置)</div>
+                        <div className="text-[10px]">計算を実行</div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* Status Bar */}
+                <div className="mt-8 flex justify-between bg-slate-950 rounded-lg p-2 overflow-hidden relative">
+                  <div className="absolute inset-0 bg-blue-500/20 w-1/3 transition-all duration-1000 ease-in-out" style={{ transform: `translateX(${cycle * 100}%)`, opacity: isRunning ? 1 : 0 }}></div>
+                  {steps.map((step, idx) => (
+                    <div key={idx} className={`flex-1 text-center py-2 z-10 transition-colors ${isRunning && cycle === idx ? 'text-white font-bold' : 'text-slate-500'}`}>
+                      <div className="text-sm uppercase tracking-wider">{step.name}</div>
+                      <div className="text-xs hidden md:block mt-1 opacity-80">{step.desc}</div>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
+            </div>
+          </Section>
+        );
+      }
+
+      function Footer() {
+        return (
+          <footer className="bg-slate-900 text-slate-400 py-8 text-center mt-16">
+            <p className="mb-2">
+              この図解は Charles Petzold 著『CODE コードから見たコンピュータのからくり』にインスパイアされて作成されました。
+            </p>
+            <p className="text-sm">
+              「魔法」のように見えるコンピュータも、分解すれば単純なルールとスイッチの塊です。<br />
+              ぜひ書籍を手に取り、ソフトウェアまでの壮大な旅を楽しんでください。
+            </p>
+          </footer>
+        );
+      }
+
+      // 4. 作った画面をブラウザに表示する命令
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
+  </body>
+
+  </html>
