@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命科学的思考 - インフォグラフィック図解</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #f8fafc;
+        }
+
+        .dna-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        .float-anim {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .glow {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+        }
+
+        .accent-border {
+            border-left: 6px solid #f97316;
+        }
+    </style>
+</head>
+
+<body class="text-slate-800">
+
+    <!-- Hero Section -->
+    <header class="dna-gradient text-white overflow-hidden relative min-h-screen flex items-center">
+        <div class="absolute inset-0 opacity-10">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="dna-pattern" width="100" height="100" patternUnits="userSpaceOnUse">
+                        <path d="M10 10 Q 50 50 90 10" stroke="white" fill="transparent" stroke-width="1" />
+                        <path d="M10 90 Q 50 50 90 90" stroke="white" fill="transparent" stroke-width="1" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#dna-pattern)" />
+            </svg>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 py-20">
+            <div class="max-w-4xl">
+                <span
+                    class="bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-bold tracking-widest uppercase mb-6 inline-block">Book
+                    Guide</span>
+                <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
+                    ビジネスと人生の「見え方」が一変する<br>
+                    <span class="text-sky-400">生命科学的思考</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-300 mb-10 leading-relaxed max-w-2xl">
+                    私たちは「遺伝子の乗り物」でありながら、そのプログラムを書き換え、自由な未来を設計できる唯一の存在である。
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#core-concept"
+                        class="bg-white text-slate-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-slate-100 transition shadow-lg">本質を読み解く</a>
+                    <a href="#practical"
+                        class="bg-slate-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-slate-600 transition">実践ガイドへ</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="hidden lg:block absolute right-0 w-1/3 float-anim">
+            <!-- SVG DNA Helix -->
+            <svg viewBox="0 0 200 600" class="w-full h-auto opacity-40">
+                <path d="M100 0 C 200 150, 0 300, 100 450 C 200 600, 0 750, 100 900" stroke="#38bdf8" stroke-width="4"
+                    fill="none" />
+                <path d="M100 0 C 0 150, 200 300, 100 450 C 0 600, 200 750, 100 900" stroke="#f97316" stroke-width="4"
+                    fill="none" />
+                <circle cx="100" cy="150" r="8" fill="white" />
+                <circle cx="100" cy="450" r="8" fill="white" />
+            </svg>
+        </div>
+    </header>
+
+    <!-- Core Philosophy Section -->
+    <section id="core-concept" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl font-black mb-4">生命科学的思考の２本柱</h2>
+                <p class="text-slate-500 text-lg">「客観」で理解し、「主観」で抗う</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-stretch">
+                <!-- Objective View -->
+                <div class="bg-slate-50 p-10 rounded-3xl card-shadow border-t-8 border-sky-500">
+                    <div class="w-16 h-16 bg-sky-500 rounded-2xl flex items-center justify-center mb-8">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">1. 生命を客観的に見る</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed text-lg">
+                        人間を経済主体ではなく「生命体」として捉え直す視点。
+                        すべての行動は、<strong>「個体として生き残り、種が繁栄する」</strong>という生命原則に従っています。
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-sky-500 mr-3 text-xl font-bold">✓</span>
+                            <span>感情は脳の「バグ」ではなく、生存のための「機能」</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-sky-500 mr-3 text-xl font-bold">✓</span>
+                            <span>食欲・性欲・睡眠欲は、遺伝子を運ぶための仕様</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Subjective View -->
+                <div class="bg-slate-50 p-10 rounded-3xl card-shadow border-t-8 border-orange-500">
+                    <div class="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center mb-8">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">2. 主観を能動的に活かす</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed text-lg">
+                        生命原則（本能）を理解した上で、<strong>あえてそれに「抗う」</strong>知性の力。
+                        「腹八分目」にするのも、夢に向かって努力するのも、遺伝子の専制に対する反逆に他なりません。
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-orange-500 mr-3 text-xl font-bold">✓</span>
+                            <span>「何のために生きるか」という主観的な課題設定</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-orange-500 mr-3 text-xl font-bold">✓</span>
+                            <span>不確実な未来に対し「絶対に後悔しない」という覚悟</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emotions as Functions -->
+    <section class="py-24 bg-slate-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-black mb-6">負の感情は「生存アラート」である</h2>
+                <p class="text-slate-400 text-lg">
+                    イライラや不安を感じたとき、「自分が弱いからだ」と責める必要はありません。<br>
+                    それは遺伝子に搭載された<strong>機能が正常に働いている証拠</strong>です。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Anger -->
+                <div
+                    class="bg-slate-800 p-8 rounded-2xl border border-slate-700 hover:border-sky-400 transition cursor-default">
+                    <div class="text-orange-500 text-sm font-bold tracking-widest mb-2">FUNCTION: 01</div>
+                    <h4 class="text-2xl font-bold mb-4 flex items-center">
+                        <span class="mr-3">怒り</span>
+                        <span class="bg-orange-500/20 text-orange-400 text-xs px-2 py-1 rounded">Defense</span>
+                    </h4>
+                    <p class="text-slate-400 leading-relaxed">
+                        敵対者や領域侵犯に対する防衛反応。アドレナリンを出し、物理的な対抗準備を整えるための生理現象です。
+                    </p>
+                </div>
+                <!-- Anxiety -->
+                <div
+                    class="bg-slate-800 p-8 rounded-2xl border border-slate-700 hover:border-sky-400 transition cursor-default">
+                    <div class="text-sky-500 text-sm font-bold tracking-widest mb-2">FUNCTION: 02</div>
+                    <h4 class="text-2xl font-bold mb-4 flex items-center">
+                        <span class="mr-3">不安</span>
+                        <span class="bg-sky-500/20 text-sky-400 text-xs px-2 py-1 rounded">Alert</span>
+                    </h4>
+                    <p class="text-slate-400 leading-relaxed">
+                        未知の環境や将来のリスクに対する警告。情報の収集と備えを促し、生存率を高めるためのセンサーです。
+                    </p>
+                </div>
+                <!-- Loneliness -->
+                <div
+                    class="bg-slate-800 p-8 rounded-2xl border border-slate-700 hover:border-sky-400 transition cursor-default">
+                    <div class="text-purple-500 text-sm font-bold tracking-widest mb-2">FUNCTION: 03</div>
+                    <h4 class="text-2xl font-bold mb-4 flex items-center">
+                        <span class="mr-3">孤独感</span>
+                        <span class="bg-purple-500/20 text-purple-400 text-xs px-2 py-1 rounded">Social</span>
+                    </h4>
+                    <p class="text-slate-400 leading-relaxed">
+                        集団から離脱することによる生存率低下を回避するための信号。「仲間を作れ」という生存命令です。
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12 p-6 bg-sky-500/10 rounded-xl border border-sky-500/30 text-center">
+                <p class="text-sky-400 font-bold">思考の転換： 「ムカついた」 → 「お、防衛プログラムが正常に作動したな」</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Time Perception -->
+    <section class="py-24 bg-white overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2">
+                    <h2 class="text-4xl font-black mb-8 leading-tight">
+                        時間の感じ方は、<br>
+                        <span class="text-sky-500">何を基準にするか</span>で決まる
+                    </h2>
+                    <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                        現代人は「環境の変化（他人の活躍や経済）」を基準にしすぎるため、焦燥感に駆られます。
+                        真に意識すべきは、自分の<strong>「生命変化（老化、成長）」</strong>です。
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-xl border-l-4 border-slate-300">
+                            <span class="bg-slate-200 text-slate-600 px-3 py-1 rounded font-bold">自然変化</span>
+                            <span class="text-slate-500">地球の自転・公転（抗えないリズム）</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-xl border-l-4 border-slate-300">
+                            <span class="bg-slate-200 text-slate-600 px-3 py-1 rounded font-bold">環境変化</span>
+                            <span class="text-slate-500">経済・社会・他人の動き（予測不能）</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-sky-100 p-4 rounded-xl border-l-4 border-sky-500">
+                            <span class="bg-sky-500 text-white px-3 py-1 rounded font-bold">行動変化</span>
+                            <span class="text-slate-700 font-bold">自らの意志で生み出す変化</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-orange-100 p-4 rounded-xl border-l-4 border-orange-500">
+                            <span class="bg-orange-500 text-white px-3 py-1 rounded font-bold">生命変化</span>
+                            <span class="text-slate-700 font-bold">個体が死に向かう不可逆のリズム</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2 relative">
+                    <div
+                        class="w-80 h-80 md:w-96 md:h-96 bg-sky-100 rounded-full flex items-center justify-center card-shadow mx-auto">
+                        <div class="text-center">
+                            <div class="text-6xl font-black text-sky-500 mb-2 tracking-tighter">My Life</div>
+                            <div class="text-slate-500 uppercase font-bold tracking-widest">Only Standard</div>
+                        </div>
+                    </div>
+                    <!-- Decorative Elements -->
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-orange-200 rounded-full opacity-50 blur-xl"></div>
+                    <div class="absolute bottom-10 left-0 w-32 h-32 bg-sky-200 rounded-full opacity-50 blur-xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Organization Diversity -->
+    <section class="py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <div class="bg-white rounded-[3rem] p-12 card-shadow overflow-hidden relative">
+                <div class="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-black mb-6">多様性の本質は「同質性」である</h2>
+                        <p class="text-slate-600 text-lg leading-relaxed mb-8">
+                            組織における多様性は、単に「色々な人がいればいい」という道徳ではありません。
+                            それは不確実な未来に対して、<strong>「種全体としての全滅リスクを下げる」</strong>ための合理的な生存戦略です。
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 bg-slate-50 rounded-2xl border-t-4 border-sky-400">
+                                <div class="font-black text-xl mb-1">99.9%</div>
+                                <div class="text-xs text-slate-500 uppercase tracking-tighter">Homogeneity</div>
+                                <div class="text-sm mt-2">人間としての共通基盤。同じ未来を目指す力。</div>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-2xl border-t-4 border-orange-400">
+                                <div class="font-black text-xl mb-1">0.1%</div>
+                                <div class="text-xs text-slate-500 uppercase tracking-tighter">Diversity</div>
+                                <div class="text-sm mt-2">個性の違い。未知の環境への適応力。</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <!-- Diversity Visualization Tags -->
+                        <span class="bg-sky-100 text-sky-600 px-6 py-3 rounded-full font-bold shadow-sm">失敗許容主義</span>
+                        <span
+                            class="bg-orange-100 text-orange-600 px-6 py-3 rounded-full font-bold shadow-sm">突然変異の歓迎</span>
+                        <span class="bg-slate-100 text-slate-600 px-6 py-3 rounded-full font-bold shadow-sm">適材適所</span>
+                        <span
+                            class="bg-purple-100 text-purple-600 px-6 py-3 rounded-full font-bold shadow-sm">非効率の価値</span>
+                        <span class="bg-teal-100 text-teal-600 px-6 py-3 rounded-full font-bold shadow-sm">新陳代謝</span>
+                        <p class="text-center text-slate-400 text-sm mt-4 w-full">未来は予測できない。だからこそ「多種多様な試行」が必要。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practical: How to Live -->
+    <section id="practical" class="py-24 bg-white">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2
+                class="text-4xl font-black text-center mb-16 underline decoration-sky-500 decoration-8 underline-offset-8">
+                人生を迷いなく生きるための処方箋</h2>
+
+            <div class="space-y-8">
+                <!-- Action 1 -->
+                <div class="flex gap-8 group">
+                    <div
+                        class="flex-shrink-0 w-16 h-16 bg-slate-900 text-white rounded-full flex items-center justify-center font-black text-2xl group-hover:bg-sky-500 transition">
+                        01</div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3">「未経験リスト」を消化する</h3>
+                        <p class="text-slate-600 leading-relaxed text-lg">
+                            脳は経験からしか深く学習できません。20代・30代は選り好みせず「想像がつかないこと」「難しそうなこと」に挑戦し、脳へのインプットを多様化させることが、将来の自由度を高めます。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Action 2 -->
+                <div class="flex gap-8 group">
+                    <div
+                        class="flex-shrink-0 w-16 h-16 bg-slate-900 text-white rounded-full flex items-center justify-center font-black text-2xl group-hover:bg-sky-500 transition">
+                        02</div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3">「覚悟」を先に決める</h3>
+                        <p class="text-slate-600 leading-relaxed text-lg">
+                            「やって後悔しないかな？」と悩むのはエネルギーの無駄です。「この3年間は絶対に後悔しない」と自分自身と先に約束（覚悟）することで、脳内の葛藤が消え、パフォーマンスが最大化されます。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Action 3 -->
+                <div class="flex gap-8 group">
+                    <div
+                        class="flex-shrink-0 w-16 h-16 bg-slate-900 text-white rounded-full flex items-center justify-center font-black text-2xl group-hover:bg-sky-500 transition">
+                        03</div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3">辛苦は理性で、幸福は感性で</h3>
+                        <p class="text-slate-600 leading-relaxed text-lg">
+                            辛いときは「生命現象として何が起きているか」を理性で分析し、解決すべき「課題」へと変換します。逆に嬉しいときは分析を止め、感性のままにその幸福を全身で味わいましょう。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote / Message -->
+    <section class="py-24 dna-gradient text-white text-center">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <svg class="w-12 h-12 text-sky-500 mx-auto mb-8 opacity-50" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V5C14.017 3.89543 14.9124 3 16.017 3H21.017C22.1216 3 23.017 3.89543 23.017 5V15C23.017 18.3137 20.3307 21 17.017 21H14.017ZM1 15V5C1 3.89543 1.89543 3 3 3H8C9.10457 3 10 3.89543 10 5V6C10 7.10457 9.10457 8 8 8H5C4.44772 8 4 8.44772 4 9V15C4 15.5523 4.44772 16 5 16H8C9.10457 16 10 16.8954 10 18V21H7C3.68629 21 1 18.3137 1 15Z" />
+                </svg>
+                <p class="text-3xl md:text-5xl font-black mb-12 leading-tight italic">
+                    「私たちは利己的な遺伝子によって生まれたが、それを理解することで、利己性を超える行動を選べる。」
+                </p>
+                <p class="text-slate-400 text-lg uppercase tracking-widest font-bold">— Richard Dawkins / Shoko
+                    Takahashi</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-slate-100 border-t border-slate-200">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-slate-500 text-sm mb-4">
+                『ビジネスと人生の「見え方」が一変する 生命科学的思考』 (高橋祥子 著) 読解ガイド
+            </p>
+            <div class="flex justify-center gap-6 grayscale opacity-50">
+                <!-- Simple Logo Placeholders -->
+                <div class="h-6 w-20 bg-slate-400 rounded"></div>
+                <div class="h-6 w-20 bg-slate-400 rounded"></div>
+                <div class="h-6 w-20 bg-slate-400 rounded"></div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
