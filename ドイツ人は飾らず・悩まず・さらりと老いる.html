@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図解：ドイツ人は飾らず・悩まず・さらりと老いる</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#1f2937', // ドイツ国旗 黒のニュアンス
+                            red: '#b91c1c',   // ドイツ国旗 赤のニュアンス
+                            gold: '#f59e0b',  // ドイツ国旗 金のニュアンス
+                            bg: '#f8fafc',    // 背景色
+                            card: '#ffffff'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8fafc;
+            color: #1f2937;
+            overflow-x: hidden;
+        }
+
+        /* フェードインアニメーション用クラス */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* カスタムグラデーション背景 */
+        .bg-gradient-german {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+        }
+
+        .text-gradient-gold {
+            background: linear-gradient(to right, #f59e0b, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brand-gold selection:text-white">
+
+    <!-- Hero Section -->
+    <header class="bg-gradient-german text-white relative overflow-hidden py-20 px-6 sm:px-12 lg:px-24">
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-brand-black via-brand-red to-brand-gold">
+        </div>
+        <!-- 装飾用背景サークル -->
+        <div
+            class="absolute -top-24 -right-24 w-96 h-96 bg-brand-red rounded-full mix-blend-multiply filter blur-3xl opacity-20">
+        </div>
+        <div
+            class="absolute -bottom-24 -left-24 w-96 h-96 bg-brand-gold rounded-full mix-blend-multiply filter blur-3xl opacity-20">
+        </div>
+
+        <div class="relative max-w-5xl mx-auto flex flex-col items-center text-center fade-in-up">
+            <span
+                class="inline-block py-1 px-3 rounded-full bg-white/10 text-brand-gold text-sm font-bold tracking-wider mb-6 border border-brand-gold/30">
+                書籍内容・完全図解
+            </span>
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6">
+                ドイツ人は飾らず・<br class="sm:hidden" />悩まず・<br class="hidden sm:block" />さらりと老いる
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-300 font-medium mb-8">
+                著者：サンドラ・ヘフェリン
+            </p>
+            <p class="text-xl sm:text-2xl font-bold max-w-3xl leading-relaxed">
+                「老い支度」より大切なのは「<span class="text-brand-gold text-3xl">今</span>」。<br>
+                日本人がハッとする、合理主義とポジティブさが交差するドイツのシニアライフ。
+            </p>
+        </div>
+    </header>
+
+    <!-- Core Philosophy Section -->
+    <section class="py-16 px-6 sm:px-12 lg:px-24 max-w-6xl mx-auto -mt-10 relative z-10">
+        <div
+            class="bg-white rounded-3xl shadow-xl p-8 sm:p-12 border-t-4 border-brand-red flex flex-col md:flex-row items-center gap-10 fade-in-up">
+            <div class="w-full md:w-1/3 flex justify-center">
+                <div class="w-40 h-40 bg-brand-red/10 rounded-full flex items-center justify-center">
+                    <svg class="w-20 h-20 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="w-full md:w-2/3">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-brand-black">最大の哲学：「将来」より「今」を生きる</h2>
+                <p class="text-gray-600 leading-relaxed text-lg mb-6">
+                    ドイツの老後観の根底にあるのは徹底した実存主義です。<br>
+                    将来の不安に備えてリソースを温存するのではなく、自己の人生の主権を最後まで維持し、今この瞬間を最大限に楽しむことが最優先されます。
+                </p>
+                <blockquote
+                    class="border-l-4 border-brand-gold pl-4 italic text-gray-700 bg-brand-gold/5 p-4 rounded-r-lg">
+                    「認知症になった？ なら症状が軽いうちに、今すぐ世界旅行へ行こう！」<br>
+                    <span class="text-sm text-gray-500 not-italic mt-2 block">—
+                        病を「終わり」ではなく「今を楽しむ契機」と捉える究極のポジティブ思考</span>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5 Pillars Section -->
+    <section class="py-16 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto">
+        <div class="text-center mb-16 fade-in-up">
+            <h2 class="text-3xl sm:text-4xl font-bold text-brand-black mb-4">ドイツ式・老い支度 <span
+                    class="text-brand-red">5</span>つの柱</h2>
+            <p class="text-gray-600">書籍の章立てに基づく、合理的な考え方のエッセンス</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Chapter 1 -->
+            <div
+                class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 fade-in-up">
+                <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                        </path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">第1章：気取らず生きる<br><span
+                        class="text-sm font-normal text-gray-500">〜人間関係の厳選〜</span></h3>
+                <ul class="space-y-3 text-gray-600">
+                    <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-2 shrink-0 mt-0.5"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>「友達」の定義が厳格。頻繁に会い深く語り合う。</li>
+                    <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-2 shrink-0 mt-0.5"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>他人の目に合わせず、自分の着たい服を着る。</li>
+                    <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-2 shrink-0 mt-0.5"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>強いカップル文化。高齢でも出会い系で恋を探す。</li>
+                </ul>
+            </div>
+
+            <!-- Chapter 2 -->
+            <div
+                class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 fade-in-up">
+                <div class="w-14 h-14 bg-yellow-100 rounded-2xl flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                        </path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">第2章：飾らずケチる<br><span
+                        class="text-sm font-normal text-gray-500">〜節約はエンターテインメント〜</span></h3>
+                <ul class="space-y-3 text-gray-600">
+                    <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-2 shrink-0 mt-0.5"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>「ケチケチ活動」こそが元気の秘訣。</li>
+                    <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-2 shrink-0 mt-0.5"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>裕福でも無料クーポン券のために走る。</li>
+                    <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-2 shrink-0 mt-0.5"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>浪費を嫌う。プレゼントは形に残らない「消え物」。</li>
+                </ul>
+            </div>
+
+            <!-- Chapter 3 -->
+            <div
+                class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 fade-in-up">
+                <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4">
+                        </path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">第3章：悩まず片付ける<br><span
+                        class="text-sm font-normal text-gray-500">〜断捨離をしない美学〜</span></h3>
+                <ul class="space-y-3 text-gray-600">
+                    <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-2 shrink-0 mt-0.5"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>断捨離は不要。捨てる以前に「そもそも買わない」。</li>
+                    <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-2 shrink-0 mt-0.5"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>安物は買わず、良い家具を世代を超えて受け継ぐ。</li>
+                    <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-2 shrink-0 mt-0.5"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>紙が散乱する「Zettelwirtschaft（メモの散乱）」は容認。</li>
+                </ul>
+            </div>
+
+            <!-- Chapter 4 -->
+            <div
+                class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 fade-in-up">
+                <div class="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                        </path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">第4章：さらりと老いる<br><span
+                        class="text-sm font-normal text-gray-500">〜介護の合理性と葛藤〜</span></h3>
+                <ul class="space-y-3 text-gray-600">
+                    <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-2 shrink-0 mt-0.5"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>家族で抱え込まず、外部（移民人材等）に頼るシステム。</li>
+                    <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-2 shrink-0 mt-0.5"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>介護保険の「現金給付」で家族の負担を実質的対価へ。</li>
+                    <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-2 shrink-0 mt-0.5"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>車の運転への執着（男性のアイデンティティ問題）。</li>
+                </ul>
+            </div>
+
+            <!-- Chapter 5 -->
+            <div
+                class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 md:col-span-2 lg:col-span-1 fade-in-up">
+                <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">第5章：構えず旅立つ<br><span
+                        class="text-sm font-normal text-gray-500">〜終活をしない死生観〜</span></h3>
+                <ul class="space-y-3 text-gray-600">
+                    <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-2 shrink-0 mt-0.5"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>「死の準備」はせず、突然死（パタリと逝く）が理想。</li>
+                    <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-2 shrink-0 mt-0.5"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>遺体を土に還す「堆肥葬 (Reerdigung)」などエコ重視。</li>
+                    <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-2 shrink-0 mt-0.5"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>悲しみ方は自由。喪服はブラックデニムでOK。</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlight Episode -->
+    <section class="py-12 bg-white border-y border-gray-200">
+        <div class="max-w-5xl mx-auto px-6 sm:px-12 flex flex-col md:flex-row items-center gap-10 fade-in-up">
+            <div class="w-full md:w-1/2">
+                <img src="https://images.unsplash.com/photo-1555943265-d91ab2d5c317?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="バス停のイメージ"
+                    class="rounded-3xl shadow-xl object-cover h-64 w-full grayscale contrast-125 mix-blend-multiply"
+                    onerror="this.style.display='none'">
+            </div>
+            <div class="w-full md:w-1/2">
+                <h3 class="text-brand-gold font-bold tracking-wider text-sm mb-2 uppercase">Highlight Episode</h3>
+                <h2 class="text-3xl font-bold mb-4">認知症ケアの「優しい嘘」<br><span
+                        class="text-2xl text-gray-500">バスが来ないバス停</span></h2>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    介護施設の前に設置された「偽のバス停留所」。「家に帰りたい」という衝動で外に出た認知症患者は、バス停に座ることで「帰る手段を得た」と安心します。
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    職員は「ダメです」と否定するのではなく、「バスが遅れているので、お茶でも飲みませんか」と声をかけます。患者の自尊心を守りつつ安全を確保する、ドイツらしい合理的な配慮の象徴です。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="py-20 px-6 sm:px-12 lg:px-24 bg-slate-50">
+        <div class="max-w-5xl mx-auto fade-in-up">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center text-brand-black mb-12">日本とドイツの比較</h2>
+
+            <div class="overflow-hidden rounded-3xl shadow-xl border border-gray-200 bg-white">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100 text-gray-700">
+                            <th class="p-6 font-bold w-1/4 border-b">テーマ</th>
+                            <th class="p-6 font-bold w-3/8 border-b border-l text-center bg-blue-50/50">🇯🇵 日本の傾向</th>
+                            <th class="p-6 font-bold w-3/8 border-b border-l text-center bg-red-50/50">🇩🇪 ドイツの傾向</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-600">
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="p-6 font-semibold border-b bg-gray-50">老いへの向き合い方</td>
+                            <td class="p-6 border-b border-l">将来（老後）への不安や備えに比重を置く。</td>
+                            <td class="p-6 border-b border-l font-medium text-brand-black">「今」を最大限楽しむ実存主義。</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="p-6 font-semibold border-b bg-gray-50">社交文化</td>
+                            <td class="p-6 border-b border-l">女子会など同性グループでの集まりやおひとり様文化。</td>
+                            <td class="p-6 border-b border-l font-medium text-brand-black">強力な「カップル文化」。高齢でも新たなパートナー探し。
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="p-6 font-semibold border-b bg-gray-50">消費・モノ</td>
+                            <td class="p-6 border-b border-l">断捨離ブーム。モノを捨てる技術に関心。</td>
+                            <td class="p-6 border-b border-l font-medium text-brand-black">そもそも買わない。良いものを長く使い世代で継承。</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="p-6 font-semibold border-b bg-gray-50">死生観・終活</td>
+                            <td class="p-6 border-b border-l">残された人への配慮から、綿密な「死の準備」を行う。</td>
+                            <td class="p-6 border-b border-l font-medium text-brand-black">準備はせず突然死が理想。悲しみ方や葬儀も自由。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-8 text-center text-gray-500 text-sm">
+                <p>※書籍内で語られている傾向であり、すべての人に当てはまるわけではありません。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Book Info -->
+    <footer class="bg-brand-black text-white py-16 px-6 border-t-[12px] border-brand-red">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 fade-in-up">
+            <div class="text-center md:text-left">
+                <h2 class="text-2xl font-bold mb-2">ドイツ人は飾らず・悩まず・さらりと老いる</h2>
+                <p class="text-gray-400 mb-4">著者：サンドラ・ヘフェリン ／ 出版社：講談社 (2025年3月発売)</p>
+                <p class="text-sm text-gray-500 max-w-md">
+                    日本とドイツを知り尽くしたエッセイストによる、本音インタビューをもとに綴られた「ドイツ式・老い支度」の実用エッセイ。
+                </p>
+            </div>
+            <div
+                class="shrink-0 bg-white p-4 rounded-xl shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                <div
+                    class="w-32 h-44 bg-gray-200 border border-gray-300 flex items-center justify-center flex-col text-center p-2">
+                    <!-- 書影プレースホルダー -->
+                    <span class="text-brand-red font-bold text-xs mb-1">講談社</span>
+                    <span class="text-black font-black leading-tight text-sm">ドイツ人は<br>飾らず・悩まず・<br>さらりと老いる</span>
+                    <div class="mt-auto w-full h-1 bg-brand-gold"></div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-16 text-center text-gray-500 text-sm border-t border-gray-700 pt-8">
+            <p>※このページはアップロードされた書籍情報を基に作成された概念図解です。</p>
+        </div>
+    </footer>
+
+    <!-- スクロールアニメーション用スクリプト -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-in-up');
+            fadeElements.forEach(el => observer.observe(el));
+
+            // 最初の要素は即座に表示
+            setTimeout(() => {
+                const firstElements = document.querySelectorAll('header .fade-in-up');
+                firstElements.forEach(el => el.classList.add('is-visible'));
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>
