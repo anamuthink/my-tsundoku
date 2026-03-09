@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瞬時に言葉が出てくる！魔法のメモ図解</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        warm: {
+                            50: '#FAF8F5',  // ベース背景（オフホワイト）
+                            100: '#F2EBE3', // セクション背景（薄いベージュ）
+                            200: '#EADCD0', // ボーダー・ライン
+                            300: '#D5C4B3',
+                            400: '#C0A894',
+                            500: '#A4866F',
+                            600: '#8A6D56',
+                            700: '#67503F', // テキスト（サブ）
+                            800: '#4A392C', // テキスト（メイン）
+                            900: '#32251B',
+                        },
+                        accent: {
+                            rose: '#E8A598', // くすみピンク（強調・線）
+                            sand: '#E2C08D', // サンドイエロー（ハイライト）
+                            sage: '#9CB4A6', // セージグリーン（安心感・まとめ）
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Zen Maru Gothic"', '"Noto Sans JP"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(74, 57, 44, 0.08)',
+                        'inner-soft': 'inset 0 2px 4px 0 rgba(74, 57, 44, 0.06)',
+                    }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background-color: #FAF8F5;
+            color: #4A392C;
+            line-height: 1.8;
+            letter-spacing: 0.05em;
+        }
+
+        /* ノートの罫線風デザイン */
+        .notebook-lines {
+            background-image: repeating-linear-gradient(transparent,
+                    transparent 31px,
+                    #EADCD0 31px,
+                    #EADCD0 32px);
+            background-attachment: local;
+        }
+
+        /* 蛍光ペン風マーカー */
+        .marker-yellow {
+            background: linear-gradient(transparent 60%, rgba(226, 192, 141, 0.6) 60%);
+        }
+
+        .marker-pink {
+            background: linear-gradient(transparent 60%, rgba(232, 165, 152, 0.6) 60%);
+        }
+
+        /* カスタムスクロールバー */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #FAF8F5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #D5C4B3;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #A4866F;
+        }
+
+        /* 手書き風フォントの代替設定 */
+        .handwritten-feel {
+            font-family: 'Zen Maru Gothic', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Hero Section -->
+    <header
+        class="relative pt-24 pb-32 px-6 lg:px-8 flex flex-col items-center justify-center text-center min-h-[80vh]">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 opacity-30">
+            <!-- 背景のやわらかい図形 -->
+            <div
+                class="absolute -top-20 -left-20 w-96 h-96 bg-accent-sand rounded-full mix-blend-multiply filter blur-3xl opacity-50">
+            </div>
+            <div
+                class="absolute top-40 -right-20 w-80 h-80 bg-accent-rose rounded-full mix-blend-multiply filter blur-3xl opacity-30">
+            </div>
+        </div>
+
+        <div class="fade-in max-w-3xl mx-auto">
+            <span
+                class="inline-block py-1 px-4 rounded-full bg-white text-accent-rose font-bold text-sm tracking-widest border border-accent-rose/30 mb-6">
+                思考整理のためのノート術
+            </span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-warm-900 leading-tight mb-8">
+                頭の中のモヤモヤが<br class="hidden md:block" />
+                <span class="text-accent-rose">「瞬時に言葉になる」</span>魔法
+            </h1>
+            <p class="text-lg md:text-xl text-warm-700 mb-12 handwritten-feel">
+                「言いたいことはあるのに、うまく言葉にできない…」<br />
+                そんな悩みを解決する、誰でもできるシンプルなメモ術を図解しました。
+            </p>
+
+            <!-- スクロールダウンインジケーター -->
+            <div class="animate-bounce flex justify-center text-warm-400 mt-12">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Problem Section -->
+    <section class="py-20 bg-white px-6">
+        <div class="max-w-4xl mx-auto fade-in">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-warm-900 mb-4">なぜ、言葉が出てこないのか？</h2>
+                <div class="w-16 h-1 bg-accent-sand mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative bg-warm-50 p-8 rounded-3xl">
+                    <!-- モヤモヤ脳の図解 -->
+                    <svg class="w-full h-auto text-warm-300" viewBox="0 0 200 200" fill="currentColor">
+                        <path
+                            d="M 100 20 C 60 20 30 50 30 80 C 30 90 35 100 40 105 C 20 115 10 135 15 155 C 20 175 40 190 60 190 C 70 190 80 185 90 180 C 100 195 120 200 140 190 C 160 180 170 160 165 140 C 185 130 195 110 190 90 C 185 60 150 30 110 30 C 105 30 105 20 100 20 Z"
+                            opacity="0.5" />
+                    </svg>
+                    <div
+                        class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 font-bold text-warm-800 space-y-2 text-sm md:text-base">
+                        <span class="bg-white/80 px-3 py-1 rounded shadow-sm transform -rotate-2">部長が怒ってた事実</span>
+                        <span
+                            class="bg-white/80 px-3 py-1 rounded shadow-sm transform rotate-3 text-accent-rose">私の「悔しい」感情</span>
+                        <span class="bg-white/80 px-3 py-1 rounded shadow-sm transform -rotate-1">正解を言わなきゃ！</span>
+                        <span class="bg-white/80 px-3 py-1 rounded shadow-sm transform rotate-2">あれ、何が言いたいんだっけ？</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">頭の中で「事実」と「感情」が<br />ごちゃまぜになっているから。</h3>
+                    <p class="text-warm-700 mb-6">
+                        会議で意見を求められたとき、頭の中では様々な情報が渋滞を起こしています。起きた出来事（事実）と、自分がどう感じたか（感情）、そして「どう言うべきか」という焦りが絡み合っている状態です。
+                    </p>
+                    <div class="bg-warm-100 p-6 rounded-2xl border-l-4 border-accent-rose">
+                        <p class="font-bold mb-2 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-accent-rose" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            解決の鍵
+                        </p>
+                        <p class="text-warm-800">
+                            「どう言うか」を考える前に、まずは頭の中身を<span class="marker-pink">外に出して「分ける」</span>こと。それが言語化の第一歩です。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Method 1 Section -->
+    <section class="py-24 bg-warm-50 px-6">
+        <div class="max-w-5xl mx-auto fade-in">
+            <div class="text-center mb-16">
+                <span class="text-accent-rose font-bold tracking-widest text-sm mb-2 block">Method 01</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-warm-900 mb-4">「1本線」で事実と感情を切り離す</h2>
+                <p class="text-warm-600 max-w-2xl mx-auto">
+                    元裁判所書記官・佐野雅代氏が提唱する超シンプルなメソッド。ノートの真ん中に線を引くだけで、驚くほど思考がクリアになります。
+                </p>
+            </div>
+
+            <!-- 1本線メモのUI図解 -->
+            <div class="bg-white rounded-3xl shadow-soft border border-warm-200 overflow-hidden relative mb-12">
+                <!-- ノートのリング部分（左端） -->
+                <div
+                    class="absolute top-0 left-0 bottom-0 w-12 bg-warm-100 border-r border-warm-200 flex flex-col justify-evenly py-8 z-10">
+                    <div class="w-4 h-4 rounded-full bg-warm-200 shadow-inner-soft mx-auto"></div>
+                    <div class="w-4 h-4 rounded-full bg-warm-200 shadow-inner-soft mx-auto"></div>
+                    <div class="w-4 h-4 rounded-full bg-warm-200 shadow-inner-soft mx-auto"></div>
+                    <div class="w-4 h-4 rounded-full bg-warm-200 shadow-inner-soft mx-auto"></div>
+                    <div class="w-4 h-4 rounded-full bg-warm-200 shadow-inner-soft mx-auto"></div>
+                    <div class="w-4 h-4 rounded-full bg-warm-200 shadow-inner-soft mx-auto"></div>
+                </div>
+
+                <div
+                    class="pl-16 pr-6 py-10 flex flex-col md:flex-row relative min-h-[400px] notebook-lines handwritten-feel">
+                    <!-- 中央の赤い1本線 -->
+                    <div
+                        class="hidden md:block absolute left-1/2 top-4 bottom-4 w-0.5 bg-accent-rose rounded-full transform -translate-x-1/2 z-10 shadow-[0_0_8px_rgba(232,165,152,0.5)]">
+                    </div>
+                    <!-- スマホ用の中央線（横） -->
+                    <div class="md:hidden w-full h-0.5 bg-accent-rose rounded-full my-8"></div>
+
+                    <!-- 左側：事実 -->
+                    <div class="flex-1 md:pr-10 relative">
+                        <div
+                            class="inline-flex items-center gap-2 bg-warm-100 text-warm-800 px-4 py-2 rounded-lg font-bold mb-6">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                </path>
+                            </svg>
+                            左：事実（客観）
+                        </div>
+                        <p class="text-sm text-warm-500 mb-4 font-sans">誰が言ったか、起きた出来事だけを書く</p>
+                        <ul class="space-y-6 text-warm-900 text-lg">
+                            <li class="flex items-start">
+                                <span class="text-warm-400 mr-2 mt-1">・</span>
+                                <span>会議でA案の導入が見送りになった。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-warm-400 mr-2 mt-1">・</span>
+                                <span>理由は「初期コストが高すぎる」と部長が言ったから。</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 右側：感情と思考 -->
+                    <div class="flex-1 md:pl-10 relative mt-8 md:mt-0">
+                        <div
+                            class="inline-flex items-center gap-2 bg-accent-rose/10 text-accent-rose px-4 py-2 rounded-lg font-bold mb-6">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                </path>
+                            </svg>
+                            右：感情・思考（主観）
+                        </div>
+                        <p class="text-sm text-warm-500 mb-4 font-sans">自分がどう感じたか、疑問点やアイデアを書く</p>
+                        <ul class="space-y-6 text-warm-900 text-lg">
+                            <li class="flex items-start">
+                                <span class="text-accent-rose mr-2 mt-1">・</span>
+                                <span>長期的にはA案の方がコスト削減になるのに<span class="marker-pink">伝わっていない。悔しい！</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent-rose mr-2 mt-1">・</span>
+                                <span>どうすれば長期的なメリットが伝わるだろう？</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent-rose mr-2 mt-1">・</span>
+                                <span>次回、<span class="marker-yellow">5年間のROI（投資対効果）グラフ</span>を作って再提案してみよう。</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-warm-200 text-center text-warm-800">
+                <p>💡 <strong>効果：</strong>
+                    モヤモヤの正体が「悔しさ（感情）」と「伝わっていない（事実への気づき）」に分かれることで、次に発言すべき言葉（グラフを作って再提案します）が自然と見えてきます。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Method 2 Section -->
+    <section class="py-24 bg-white px-6">
+        <div class="max-w-5xl mx-auto fade-in">
+            <div class="text-center mb-16">
+                <span class="text-accent-sage font-bold tracking-widest text-sm mb-2 block">Method 02</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-warm-900 mb-4">「思考×理由」で言葉の解像度を上げる</h2>
+                <p class="text-warm-600 max-w-2xl mx-auto">
+                    コピーライター荒木俊哉氏のA4メモ術。自分の内面にある無意識の思いを「芋づる式」に引き出し、深掘りすることで、説得力のある言葉に変換します。
+                </p>
+            </div>
+
+            <!-- A4メモのUI図解 -->
+            <div
+                class="bg-[#FCFCFA] rounded-sm shadow-md border-t-8 border-accent-sage overflow-hidden p-8 md:p-12 mb-12 relative max-w-4xl mx-auto">
+                <!-- 用紙の質感 -->
+                <div class="absolute inset-0 opacity-[0.02] mix-blend-multiply"
+                    style="background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100\' height=\'100\' filter=\'url(%23noise)\'/%3E%3C/svg%3E');">
+                </div>
+
+                <div class="relative z-10 handwritten-feel">
+                    <!-- トップの問い -->
+                    <div class="border-b-2 border-warm-800 pb-4 mb-8">
+                        <span class="text-accent-sage font-bold text-xl mr-2">Q.</span>
+                        <span class="text-xl md:text-2xl font-bold text-warm-900">なぜ、私は「言語化」が苦手だと感じるのか？</span>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-8 relative">
+                        <!-- 中央の点線 -->
+                        <div
+                            class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px border-l-2 border-dashed border-warm-300 transform -translate-x-1/2">
+                        </div>
+
+                        <!-- 左側：思考 -->
+                        <div class="flex-1 relative">
+                            <h4 class="font-bold text-warm-600 mb-6 flex items-center gap-2 font-sans">
+                                <span
+                                    class="bg-warm-200 text-warm-800 w-6 h-6 rounded-full flex items-center justify-center text-sm">1</span>
+                                まずは「思考」を書き出す
+                            </h4>
+                            <ul class="space-y-4 text-warm-800 text-lg pl-2 border-l-2 border-warm-200">
+                                <li>・正しいことを言おうと焦ってしまう。</li>
+                                <li>・頭の中に複数の意見があってまとまらない。</li>
+                                <li class="relative">
+                                    <!-- 丸で囲む装飾 -->
+                                    <div
+                                        class="absolute -inset-2 border-2 border-accent-rose rounded-[255px_15px_225px_15px/15px_225px_15px_255px] opacity-80 z-[-1]">
+                                    </div>
+                                    <span class="font-bold">・「どう伝えるか」ばかり気にしているから。</span>
+                                </li>
+                                <li>・語彙力がないと思っている。</li>
+                            </ul>
+                            <div class="mt-6 text-sm text-warm-500 font-sans">
+                                📝 思いついたことを何でも書く。最後に一番ピンときたものに<span class="text-accent-rose font-bold">マル</span>をつける。
+                            </div>
+                        </div>
+
+                        <!-- 矢印 -->
+                        <div
+                            class="hidden md:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 bg-[#FCFCFA] p-2 rounded-full text-accent-rose">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </div>
+
+                        <!-- 右側：理由 -->
+                        <div class="flex-1 mt-8 md:mt-0 relative">
+                            <h4 class="font-bold text-warm-600 mb-6 flex items-center gap-2 font-sans">
+                                <span
+                                    class="bg-warm-200 text-warm-800 w-6 h-6 rounded-full flex items-center justify-center text-sm">2</span>
+                                マルの「理由」を深掘りする
+                            </h4>
+                            <ul class="space-y-4 text-warm-800 text-lg pl-2 border-l-2 border-accent-sage">
+                                <li>・気の利いたフレーズを探して頭のメモリを消費している。</li>
+                                <li>・言葉の「見せ方」より、そもそも<span class="marker-yellow">「何を言うか（中身）」が固まっていない</span>ことに気づいた。</li>
+                                <li class="font-bold text-accent-sage">→ 結論：まずは自分の意見（何を言うか）をノートで整理する習慣が必要だ。</li>
+                            </ul>
+                            <div class="mt-6 text-sm text-warm-500 font-sans">
+                                📝 「それはつまり？」「なぜそう思う？」と自分に問いかけ、言葉を深める。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 text-center">
+                <div class="bg-warm-50 p-6 rounded-xl">
+                    <div class="text-3xl mb-3">🧐</div>
+                    <h5 class="font-bold mb-2">1. 問いを立てる</h5>
+                    <p class="text-sm text-warm-600">自分に聞いてみたいことを一つ一番上に書く。</p>
+                </div>
+                <div class="bg-warm-50 p-6 rounded-xl">
+                    <div class="text-3xl mb-3">✍️</div>
+                    <h5 class="font-bold mb-2">2. 芋づる式に出す</h5>
+                    <p class="text-sm text-warm-600">左側に思いつくままに思考を書き出し、一つ選ぶ。</p>
+                </div>
+                <div class="bg-warm-50 p-6 rounded-xl">
+                    <div class="text-3xl mb-3">⛏️</div>
+                    <h5 class="font-bold mb-2">3. 理由を深掘り</h5>
+                    <p class="text-sm text-warm-600">右側で「なぜ？」を深掘りし、本当の意見に到達する。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Method 3 Section -->
+    <section class="py-20 bg-warm-800 text-warm-50 px-6">
+        <div class="max-w-4xl mx-auto text-center fade-in">
+            <svg class="w-12 h-12 text-accent-sand mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">大事なのは「スピード」</h2>
+            <p class="text-lg text-warm-200 mb-8 max-w-2xl mx-auto">
+                「きれいに書こう」「正解を書こう」とすると、脳にストッパーがかかり言葉が出てきません。赤羽雄二氏の『ゼロ秒思考』にもあるように、思考整理のコツは<strong>「時間をかけないこと」</strong>です。
+            </p>
+            <div class="inline-flex flex-wrap justify-center gap-4">
+                <span class="px-6 py-3 bg-warm-700 rounded-full font-bold border border-warm-600 shadow-inner">⏰ A4用紙
+                    1枚につき「1分以内」</span>
+                <span class="px-6 py-3 bg-warm-700 rounded-full font-bold border border-warm-600 shadow-inner">📝
+                    毎日「10分（または3分）」だけ</span>
+                <span class="px-6 py-3 bg-warm-700 rounded-full font-bold border border-warm-600 shadow-inner">🗑️
+                    誰にも見せないから汚くてOK</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Plan Section -->
+    <section class="py-24 bg-warm-50 px-6">
+        <div class="max-w-3xl mx-auto fade-in">
+            <div class="bg-white rounded-3xl p-8 md:p-12 shadow-soft border border-accent-sand/30">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-warm-900 mb-10">今日から始める３ステップ</h2>
+
+                <div
+                    class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-accent-rose before:via-accent-sand before:to-transparent">
+
+                    <!-- Step 1 -->
+                    <div
+                        class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div
+                            class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-accent-rose text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                            1</div>
+                        <div
+                            class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-warm-50 p-6 rounded-2xl border border-warm-200 shadow-sm ml-4 md:ml-0">
+                            <h3 class="font-bold text-lg mb-2 text-warm-900">お気に入りのノートとペンを用意する</h3>
+                            <p class="text-warm-700 text-sm">形から入るのも大切。A4の裏紙でも、書き心地の良いノートでもOK。常に手元に置いておきましょう。</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div
+                        class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div
+                            class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-accent-sand text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                            2</div>
+                        <div
+                            class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-warm-50 p-6 rounded-2xl border border-warm-200 shadow-sm ml-4 md:ml-0">
+                            <h3 class="font-bold text-lg mb-2 text-warm-900">ノートの真ん中に線を引く</h3>
+                            <p class="text-warm-700 text-sm">心がモヤモヤしたら、まずは1本線。「事実」と「感情」を分けるところから始めます。</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div
+                        class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div
+                            class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-accent-sage text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                            3</div>
+                        <div
+                            class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-warm-50 p-6 rounded-2xl border border-warm-200 shadow-sm ml-4 md:ml-0">
+                            <h3 class="font-bold text-lg mb-2 text-warm-900">1日3分、思考を書き出す習慣</h3>
+                            <p class="text-warm-700 text-sm">寝る前や朝イチに「問い」を立てて書き出します。これがあなただけの「言葉のストック」になります。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center">
+                    <p class="text-lg text-warm-800 font-bold mb-2">言葉は「センス」ではなく「トレーニング」です。</p>
+                    <p class="text-warm-600">頭のなかのモヤモヤを書き出して、あなたらしい言葉を見つけましょう。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-warm-900 text-warm-400 text-center text-sm">
+        <p>参考書籍：『その場で言語化できるメモ』（佐野雅代 著）、『瞬時に「言語化できる人」が、うまくいく。』（荒木俊哉 著）、『ゼロ秒思考』（赤羽雄二 著）等</p>
+    </footer>
+
+    <!-- スクロールアニメーション用スクリプト -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-8');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.classList.add('opacity-0', 'translate-y-8', 'transition-all', 'duration-1000', 'ease-out');
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
