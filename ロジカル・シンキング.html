@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>実践：ロジカル・シンキング図解ガイド（プレミアム実践版）</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-creme: #FDFBF7;
+            --primary-terracotta: #E67E66;
+            --secondary-clay: #D97757;
+            --text-main: #3D342F;
+            /* 温かいディープブラウン */
+            --text-muted: #6B5E56;
+            --border-soft: #F1ECE4;
+            --accent-light: #FAF7F2;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-creme);
+            color: var(--text-main);
+            line-height: 1.8;
+            font-size: 17px;
+            /* 読みやすさと情報密度のバランスを最適化 */
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 12px;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-terracotta);
+            border-radius: 3px;
+            opacity: 0.4;
+        }
+
+        .logic-card {
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 15px 40px -10px rgba(74, 62, 55, 0.07);
+            border: 1.5px solid var(--border-soft);
+            padding: 2.2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .logic-card:hover {
+            border-color: var(--primary-terracotta);
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px -12px rgba(230, 126, 102, 0.12);
+        }
+
+        .badge {
+            background: var(--primary-terracotta);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .highlight-box {
+            background-color: var(--accent-light);
+            border-left: 4px solid var(--primary-terracotta);
+            padding: 1.2rem;
+            border-radius: 0 16px 16px 0;
+        }
+
+        .diagram-node {
+            background: white;
+            border: 2px solid var(--border-soft);
+            border-radius: 14px;
+            padding: 1rem;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .active-node {
+            border-color: var(--primary-terracotta);
+            background: rgba(230, 126, 102, 0.03);
+            color: var(--primary-terracotta);
+        }
+
+        .framework-node {
+            background: var(--accent-light);
+            border: 1px solid var(--border-soft);
+            border-radius: 10px;
+            padding: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .connector-svg {
+            stroke: var(--primary-terracotta);
+            stroke-width: 2.5;
+            fill: none;
+            opacity: 0.3;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        nav a {
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-terracotta);
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Hero Section -->
+    <section class="max-w-4xl mx-auto px-6 pt-20 pb-12 text-center">
+        <div class="inline-block badge mb-6 shadow-sm">Logical Thinking Guide</div>
+        <h1 class="text-4xl md:text-6xl font-black mb-8 leading-tight">
+            ロジカル・シンキング <br>
+            <span class="text-xl md:text-3xl font-medium opacity-60">思考の「解像度」を極限まで高める</span>
+        </h1>
+        <p class="text-lg md:text-xl text-muted max-w-3xl mx-auto leading-relaxed">
+            本書が提唱する「論理構成の全技術」を網羅した実践ガイド。<br>
+            相手の疑問をゼロにし、確実な合意を生むための具体的な思考メソッド。
+        </p>
+    </section>
+
+    <!-- Navigation -->
+    <nav
+        class="sticky top-0 bg-white/95 backdrop-blur-xl z-50 border-y border-[#F3EFE9] py-4 mb-20 shadow-sm overflow-x-auto">
+        <div
+            class="max-w-6xl mx-auto px-6 flex justify-between gap-8 whitespace-nowrap text-sm font-black text-muted tracking-widest">
+            <a href="#message">01. 伝える技術</a>
+            <a href="#mece">02. 整理の技術</a>
+            <a href="#frameworks">03. 実践ヒント</a>
+            <a href="#vertical">04. 深掘る技術</a>
+            <a href="#structure">05. 構成の技術</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 space-y-48 pb-48">
+
+        <!-- 01: Message -->
+        <section id="message" class="scroll-mt-32">
+            <div class="section-header">
+                <span class="text-6xl font-black opacity-10 block mb-1">01</span>
+                <h2 class="section-title">相手に伝えるべき「メッセージ」の定義</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-10">
+                <div class="logic-card">
+                    <h3 class="text-xl font-black mb-6 flex items-center">
+                        <svg class="w-6 h-6 mr-3 text-[#E67E66]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+                            </path>
+                        </svg>
+                        メッセージの3要件
+                    </h3>
+                    <p class="mb-8 font-bold text-muted border-b border-[#F3EFE9] pb-3 text-sm italic">
+                        自分の考えを言う前に、この3点が揃っているか自問しましょう。</p>
+                    <ul class="space-y-6">
+                        <li class="flex gap-4">
+                            <span
+                                class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#FAF7F2] text-[#E67E66] flex items-center justify-center font-black text-sm border">A</span>
+                            <div>
+                                <span class="font-black text-lg block mb-1">課題 (Theme)</span>
+                                <p class="text-muted text-sm leading-relaxed">
+                                    相手から出された問い、あるいは双方が合意している「解くべき問題」です。ここがズレると全ての論理が崩壊します。</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span
+                                class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#FAF7F2] text-[#E67E66] flex items-center justify-center font-black text-sm border">B</span>
+                            <div>
+                                <span class="font-black text-lg block mb-1">答え (Answer)</span>
+                                <p class="text-muted text-sm leading-relaxed">
+                                    課題に対するあなたの「回答」です。結論・根拠・方法がセットになり、相手の疑問を解消するものである必要があります。</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span
+                                class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#FAF7F2] text-[#E67E66] flex items-center justify-center font-black text-sm border">C</span>
+                            <div>
+                                <span class="font-black text-lg block mb-1">反応 (Action)</span>
+                                <p class="text-muted text-sm leading-relaxed">
+                                    伝えた結果、相手に「理解してほしい」のか「承認してほしい」のか。期待するアクションを明確にして構成を練ります。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="logic-card border-t-8 border-[#E67E66]">
+                    <h3 class="text-xl font-black mb-6 flex items-center">
+                        <svg class="w-6 h-6 mr-3 text-[#4A3E37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
+                            </path>
+                        </svg>
+                        「答え」を支える3本柱
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="highlight-box">
+                            <h4 class="font-black text-base mb-1 text-[#E67E66]">結論 (Conclusion)</h4>
+                            <p class="text-muted text-[13px] leading-relaxed">
+                                課題に対する核心的な回答。結論が複数ある場合はMECEに整理し、優先順位をつけます。相手を迷わせない勇気が必要です。</p>
+                        </div>
+                        <div class="highlight-box">
+                            <h4 class="font-black text-base mb-1 text-[#E67E66]">根拠 (Rationale)</h4>
+                            <p class="text-muted text-[13px] leading-relaxed">
+                                「なぜその結論なのか」という理由。主観的な思い込みではなく、客観的な事実（ファクト）と明確な判断基準が必要です。</p>
+                        </div>
+                        <div class="highlight-box">
+                            <h4 class="font-black text-base mb-1 text-[#E67E66]">方法 (Method)</h4>
+                            <p class="text-muted text-[13px] leading-relaxed">
+                                結論を実現するための具体的ステップ。誰が、いつ、どのように動くのか。具体的なイメージを持たせることで説得力は完成します。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02: MECE -->
+        <section id="mece" class="scroll-mt-32">
+            <div class="section-header">
+                <span class="text-6xl font-black opacity-10 block mb-1">02</span>
+                <h2 class="section-title">MECE：思考の死角をなくす</h2>
+            </div>
+
+            <div class="logic-card relative overflow-hidden bg-gradient-to-br from-white to-[#FDFBF7]">
+                <div class="grid lg:grid-cols-5 gap-12 items-center">
+                    <div class="lg:col-span-3 space-y-6">
+                        <h3 class="text-3xl font-black accent-text italic">MECE (ミッシー)</h3>
+                        <p class="text-xl font-bold leading-relaxed">
+                            「ある事柄を、重なりなく(Mutually Exclusive)、<br>
+                            全体として漏れのない(Collectively Exhaustive)集まりとして捉える」
+                        </p>
+                        <p class="text-muted text-[15px] leading-relaxed border-l-4 border-[#E67E66]/20 pl-4">
+                            相手は「それだけなの？」という漏れへの不安と、「話が重複して混乱する」というストレスを感じると、論理を拒絶します。MECEはこの2つの障害を同時に排除します。
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-2 flex flex-col items-center relative">
+                        <!-- visual puzzle diagram -->
+                        <div
+                            class="w-full max-w-xs grid grid-cols-2 gap-2 p-4 bg-[#FAF7F2] rounded-3xl border-2 border-dashed border-[#E5E0D8]">
+                            <div
+                                class="aspect-square bg-[#E67E66] rounded-xl flex items-center justify-center text-white font-black text-lg shadow-sm">
+                                M</div>
+                            <div
+                                class="aspect-square bg-[#D97757] rounded-xl flex items-center justify-center text-white font-black text-lg shadow-sm">
+                                E</div>
+                            <div
+                                class="aspect-square bg-[#B08968] rounded-xl flex items-center justify-center text-white font-black text-lg shadow-sm">
+                                C</div>
+                            <div
+                                class="aspect-square bg-white border-2 border-dashed border-[#E5E0D8] rounded-xl flex items-center justify-center text-muted font-black text-lg">
+                                E</div>
+                        </div>
+                        <p class="mt-4 text-[10px] font-black opacity-40 uppercase tracking-[0.2em]">Perfect Logic
+                            Partitioning</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03: Practical Tips (Frameworks) -->
+        <section id="frameworks" class="scroll-mt-32">
+            <div class="section-header">
+                <span class="text-6xl font-black opacity-10 block mb-1">03</span>
+                <h2 class="section-title">実践のヒント：MECEの定番切り口</h2>
+            </div>
+
+            <p class="text-center text-[16px] mb-12 text-muted max-w-3xl mx-auto leading-relaxed">
+                ゼロからMECEを考えるのは大変です。先人たちが作った<span
+                    class="font-bold text-main underline decoration-[#E67E66]">「既存のフレームワーク」</span>を当てはめるのが最も確実で具体的な方法です。
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- 3C -->
+                <div class="logic-card border-l-8 border-[#E67E66]">
+                    <h4 class="text-lg font-black mb-3">① 3C分析（市場・競合・自社）</h4>
+                    <p class="text-[13px] text-muted mb-6 leading-relaxed">事業戦略を考える際、以下の3点に分けると「外部環境」と「内部環境」をモレなく把握できます。
+                    </p>
+                    <div class="flex gap-2">
+                        <div class="flex-1 framework-node">Customer<br><span class="opacity-60 text-[10px]">市場・顧客</span>
+                        </div>
+                        <div class="flex-1 framework-node">Competitor<br><span class="opacity-60 text-[10px]">競合</span>
+                        </div>
+                        <div class="flex-1 framework-node">Company<br><span class="opacity-60 text-[10px]">自社</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 4P -->
+                <div class="logic-card border-l-8 border-[#D97757]">
+                    <h4 class="text-lg font-black mb-3">② 4P（マーケティング）</h4>
+                    <p class="text-[13px] text-muted mb-6 leading-relaxed">商品を売る際、以下の4つの視点で整理すると、施策のダブり・漏れを防げます。</p>
+                    <div class="grid grid-cols-4 gap-2">
+                        <div class="framework-node">Product<br><span class="text-[9px]">製品</span></div>
+                        <div class="framework-node">Price<br><span class="text-[9px]">価格</span></div>
+                        <div class="framework-node">Place<br><span class="text-[9px]">流通</span></div>
+                        <div class="framework-node">Promotion<br><span class="text-[9px]">販促</span></div>
+                    </div>
+                </div>
+                <!-- Process -->
+                <div class="logic-card border-l-8 border-[#B08968]">
+                    <h4 class="text-lg font-black mb-3">③ プロセス（時間の流れ）</h4>
+                    <p class="text-[13px] text-muted mb-6 leading-relaxed">
+                        「過去・現在・未来」や「認知→検討→購入」のように、時の流れで区切ると確実にMECEになります。</p>
+                    <div class="flex items-center justify-between px-2">
+                        <div class="text-[11px] font-bold">認知</div>
+                        <div class="text-[#E67E66] text-xs">→</div>
+                        <div class="text-[11px] font-bold">検討</div>
+                        <div class="text-[#E67E66] text-xs">→</div>
+                        <div class="text-[11px] font-bold">購入</div>
+                        <div class="text-[#E67E66] text-xs">→</div>
+                        <div class="text-[11px] font-bold">継続</div>
+                    </div>
+                </div>
+                <!-- Opposite -->
+                <div class="logic-card border-l-8 border-gray-300">
+                    <h4 class="text-lg font-black mb-3">④ 対立概念（Aか、A以外か）</h4>
+                    <p class="text-[13px] text-muted mb-6 leading-relaxed">
+                        最もシンプルなMECE。「国内／海外」「メリット／デメリット」など、相反する2つに分ける手法です。</p>
+                    <div class="grid grid-cols-2 gap-3 text-[11px] font-bold">
+                        <div class="p-2 border rounded-lg bg-[#FAF7F2] text-center">既存顧客 ／ 新規顧客</div>
+                        <div class="p-2 border rounded-lg bg-[#FAF7F2] text-center">質的指標 ／ 量的指標</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04: So What / Why So -->
+        <section id="vertical" class="scroll-mt-32">
+            <div class="section-header">
+                <span class="text-6xl font-black opacity-10 block mb-1">04</span>
+                <h2 class="section-title">So What? / Why So?：論理の強度を高める</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="logic-card">
+                        <h3 class="text-xl font-black mb-6 accent-text flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                            So What? (結局どういうこと？)
+                        </h3>
+                        <p class="text-[15px] mb-6 font-bold leading-relaxed">バラバラな情報から「本質」を抽出する作業です。2つの深さがあります。</p>
+                        <div class="space-y-4">
+                            <div class="p-5 bg-[#FDFBF7] rounded-2xl border-l-6 border-[#E67E66] shadow-sm">
+                                <h4 class="font-bold text-base mb-1 text-[#E67E66]">1. 観察の So What?</h4>
+                                <p class="text-muted text-[13px] leading-relaxed">目の前の事実を要約し、過不足なく「何が起きているか」を抽出する力。</p>
+                            </div>
+                            <div class="p-5 bg-[#FDFBF7] rounded-2xl border-l-6 border-[#E67E66] shadow-sm">
+                                <h4 class="font-bold text-base mb-1 text-[#E67E66]">2. 洞察の So What?</h4>
+                                <p class="text-muted text-[13px] leading-relaxed">事実の背景にある共通項を見出し、独自のルールや「次の打ち手」を導き出す力。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="logic-card bg-[#FAF7F2] border-0">
+                        <h3 class="text-xl font-black mb-4 text-[#D97757] flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M19 13l-7 7-7-7m14-8l-7 7-7-7"></path>
+                            </svg>
+                            Why So? (なぜそう言えるのか？)
+                        </h3>
+                        <p class="text-[14px] leading-relaxed text-muted">
+                            抽出した結論を「事実」にまで遡って検証します。一つ一つの根拠が結論を100%支えているか、推論に跳躍がないかを厳しくチェックします。</p>
+                    </div>
+                </div>
+
+                <!-- Rich Logic Flow Diagram -->
+                <div class="logic-card flex flex-col items-center bg-white border-2">
+                    <div class="w-full max-w-xs space-y-12 py-6 relative">
+                        <!-- Connecting Line SVG -->
+                        <svg class="absolute top-0 left-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
+                            <path d="M160 100 V300" class="connector-svg" style="stroke-dasharray: 8 8;"></path>
+                        </svg>
+
+                        <div
+                            class="diagram-node active-node text-lg py-5 shadow-lg border-2 border-[#E67E66] relative z-10">
+                            要約・結論
+                        </div>
+
+                        <div class="flex justify-between items-center px-6 relative h-24">
+                            <div
+                                class="bg-white px-3 py-1 rounded-full border border-[#E67E66] text-[#E67E66] text-[10px] font-black shadow-sm z-10 transform -rotate-90">
+                                SO WHAT?</div>
+                            <div
+                                class="bg-white px-3 py-1 rounded-full border border-[#D97757] text-[#D97757] text-[10px] font-black shadow-sm z-10 transform rotate-90">
+                                WHY SO?</div>
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-2 relative z-10">
+                            <div class="diagram-node text-[12px] opacity-70">事実・根拠群 (MECE)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05: Structure Patterns -->
+        <section id="structure" class="scroll-mt-32">
+            <div class="section-header">
+                <span class="text-6xl font-black opacity-10 block mb-1">05</span>
+                <h2 class="section-title">論理構成の「2大基本パターン」</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- 並列型 -->
+                <div class="logic-card border-t-8 border-[#D97757] flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-5">
+                        <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"></path>
+                        </svg>
+                    </div>
+                    <div class="mb-8 flex justify-between items-center relative z-10">
+                        <h3 class="text-xl font-black text-[#D97757]">並列型</h3>
+                        <span class="badge bg-[#D97757] text-[10px]">全体俯瞰</span>
+                    </div>
+                    <div class="space-y-8 flex-grow relative z-10">
+                        <div class="flex flex-col items-center py-4 relative">
+                            <!-- SVG Connections -->
+                            <svg class="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none"
+                                viewBox="0 0 400 120">
+                                <path d="M200 45 L200 70 M200 70 L70 70 L70 95 M200 70 L330 70 L330 95" fill="none"
+                                    stroke="#D97757" stroke-width="3"></path>
+                            </svg>
+
+                            <div
+                                class="w-40 py-3 bg-white border-2 border-[#D97757] rounded-xl shadow-md text-center font-black text-sm mb-10 relative z-10">
+                                結論</div>
+                            <div class="grid grid-cols-3 gap-3 w-full px-2 relative z-10">
+                                <div
+                                    class="bg-[#FAF7F2] border border-[#D97757]/30 rounded-xl p-3 text-[10px] font-bold text-center shadow-sm">
+                                    根拠 A</div>
+                                <div
+                                    class="bg-[#FAF7F2] border border-[#D97757]/30 rounded-xl p-3 text-[10px] font-bold text-center shadow-sm">
+                                    根拠 B</div>
+                                <div
+                                    class="bg-[#FAF7F2] border border-[#D97757]/30 rounded-xl p-3 text-[10px] font-bold text-center shadow-sm">
+                                    根拠 C</div>
+                            </div>
+                        </div>
+                        <div class="space-y-4 text-[14px] leading-relaxed text-muted">
+                            <p><strong class="text-main">【特徴】</strong> 複数の独立した根拠が結論を多角的に支えます。各根拠は横並びで、互いにMECEである必要があります。
+                            </p>
+                            <p><strong class="text-main">【強み】</strong>
+                                全体を網羅的に示したい時や、多くの代替案から結論を導いた時に有効です。安定感があり、特定のリスクに強い構造です。</p>
+                            <div
+                                class="p-5 border-l-4 border-[#D97757] bg-[#FAF7F2] italic font-black text-[#D97757] text-base leading-relaxed">
+                                「理由は3点。コスト、品質、納期の観点からです」
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 解説型 -->
+                <div class="logic-card border-t-8 border-[#E67E66] flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-5">
+                        <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="mb-8 flex justify-between items-center relative z-10">
+                        <h3 class="text-xl font-black text-[#E67E66]">解説型</h3>
+                        <span class="badge bg-[#E67E66] text-[10px]">納得・誘導</span>
+                    </div>
+                    <div class="space-y-8 flex-grow relative z-10">
+                        <div class="flex items-center justify-center gap-4 py-10">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-16 h-16 rounded-full border-2 border-gray-100 bg-white flex items-center justify-center font-bold text-[10px] text-center p-2 shadow-sm">
+                                    事実</div>
+                                <span class="text-[8px] mt-1 opacity-40 uppercase">Fact</span>
+                            </div>
+                            <div class="text-gray-300 font-black">→</div>
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-16 h-16 rounded-full border-2 border-gray-100 bg-white flex items-center justify-center font-bold text-[10px] text-center p-2 shadow-sm">
+                                    判断基準</div>
+                                <span class="text-[8px] mt-1 opacity-40 uppercase">Criteria</span>
+                            </div>
+                            <div class="text-gray-300 font-black">→</div>
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-20 h-20 rounded-full border-4 border-[#E67E66] bg-white flex items-center justify-center font-black text-[12px] text-center p-2 shadow-xl scale-110">
+                                    結論</div>
+                                <span class="text-[8px] mt-2 accent-text font-black uppercase">Conclusion</span>
+                            </div>
+                        </div>
+                        <div class="space-y-4 text-[14px] leading-relaxed text-muted">
+                            <p><strong class="text-main">【特徴】</strong> 「事実 → 判断基準 →
+                                結論」という思考の流れをそのまま提示します。相手と同じ事実から出発し、納得へ誘導します。</p>
+                            <p><strong class="text-main">【強み】</strong>
+                                新しい提案や、相手が反対しそうな場合に有効です。「なぜその判断に至ったか」のプロセスが明確なため、深い納得感を生みます。</p>
+                            <div
+                                class="p-5 border-l-4 border-[#E67E66] bg-[#FAF7F2] italic font-black text-[#E67E66] text-base leading-relaxed">
+                                「現状はAです。戦略Bに照らすと、答えはCになります」
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#4A3E37] pt-24 pb-20 px-10 text-white text-center">
+        <div class="max-w-4xl mx-auto space-y-10">
+            <h2 class="text-3xl font-black italic opacity-30 tracking-[0.2em]">LOGIC IS COMPASSION.</h2>
+            <div class="h-1 w-20 bg-[#E67E66] mx-auto rounded-full"></div>
+            <div class="space-y-6">
+                <p class="text-xl opacity-90 leading-relaxed font-bold">
+                    ロジカル・シンキングの真の目的は、<br>
+                    相手に「最高の納得」という贈り物をすること。
+                </p>
+                <p class="text-[15px] opacity-60 leading-loose">
+                    自分の頭の中にある「曖昧さ」を、一つひとつ丁寧に解きほぐす習慣が、<br>
+                    あなたの言葉に揺るぎない信頼を宿します。
+                </p>
+            </div>
+            <div class="pt-20">
+                <p class="text-[10px] opacity-20 uppercase tracking-[0.5em]">
+                    Visualized Reference: Mastering Logical Thinking (Hanako Teruya & Keiko Okada)
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section, .logic-card').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
