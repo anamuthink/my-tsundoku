@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図解：コンサル一年目が学ぶこと</title>
+    <!-- Tailwind CSS (スタイリング用) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons (アイコン用) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts (温かみのあるフォント) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- カスタムカラーとフォントの設定 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bgMain: '#F9F6F0',      // 温かみのあるアイボリー背景
+                        textMain: '#4A423A',    // 柔らかいダークブラウンのテキスト
+                        textMuted: '#7A726A',   // 落ち着いたグレーブラウン
+                        accent1: '#D48A7A',     // テラコッタ（暖かさと強調）
+                        accent2: '#8DA399',     // セージグリーン（成長と安心感）
+                        accent3: '#E6BC67',     // マスタードイエロー（ひらめき）
+                        cardBg: '#FFFFFF',      // カード背景
+                        borderLight: '#EBE5DB'  // 境界線
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        rounded: ['"M PLUS Rounded 1c"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* スムーススクロールとベース設定 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #4A423A;
+            background-color: #F9F6F0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .font-rounded {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+        }
+
+        /* ふわっと浮き上がるアニメーション */
+        .hover-lift {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-accent1/30 selection:text-textMain">
+
+    <!-- ヘッダー / ヒーローセクション -->
+    <header class="pt-20 pb-16 px-4 text-center">
+        <div
+            class="inline-block bg-white px-4 py-1.5 rounded-full border border-borderLight text-accent1 font-bold text-sm tracking-wider mb-6 shadow-sm">
+            BUSINESS SKILLS GUIDE
+        </div>
+        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-4 text-textMain">
+            コンサル一年目が学ぶこと<br>
+            <span class="text-2xl md:text-3xl font-bold text-accent2 mt-2 block">究極の図解ガイド</span>
+        </h1>
+        <p class="mt-6 text-textMuted max-w-2xl mx-auto leading-relaxed md:text-lg">
+            業界や職種を問わず、15年後も色褪せない「プロフェッショナルの基本OS」。<br>
+            新社会人からベテランまで、明日から使える普遍的なビジネススキルを直感的な図解でまとめました。
+        </p>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="max-w-5xl mx-auto px-4 pb-24 space-y-20">
+
+        <!-- ==============================================
+             CHAPTER 1: 話す技術 (Communication)
+        =============================================== -->
+        <section id="communication" class="scroll-mt-10">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="bg-accent1/10 p-4 rounded-2xl text-accent1">
+                    <i data-lucide="message-circle" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h2 class="text-accent1 font-bold text-sm tracking-wider">CHAPTER 1</h2>
+                    <h3 class="text-2xl font-bold font-rounded">コンサル流 話す技術</h3>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- PREP法 -->
+                <div class="bg-cardBg p-6 md:p-8 rounded-3xl shadow-sm border border-borderLight hover-lift">
+                    <h4 class="font-bold text-lg mb-4 flex items-center gap-2">
+                        <i data-lucide="list-tree" class="text-accent1 w-5 h-5"></i>
+                        結論から話す「PREP法」
+                    </h4>
+                    <p class="text-sm text-textMuted mb-6">情緒的な前置きは不要。意思決定者の時間を奪わないよう、常に結論から伝える型を身につけます。</p>
+
+                    <div class="relative space-y-4">
+                        <!-- 縦の線 -->
+                        <div class="absolute left-[27px] top-6 bottom-6 w-0.5 bg-borderLight z-0"></div>
+
+                        <div
+                            class="relative z-10 flex items-start gap-4 bg-accent1/5 p-3 rounded-xl border border-accent1/20">
+                            <div
+                                class="font-bold text-white bg-accent1 w-8 h-8 rounded-full flex items-center justify-center shrink-0">
+                                P</div>
+                            <div class="pt-1">
+                                <div class="font-bold text-sm">Point (結論)</div>
+                                <div class="text-xs text-textMuted mt-1">「結論から申し上げますと、〇〇です」</div>
+                            </div>
+                        </div>
+                        <div
+                            class="relative z-10 flex items-start gap-4 bg-white p-3 rounded-xl border border-borderLight shadow-sm">
+                            <div
+                                class="font-bold text-accent2 bg-accent2/10 w-8 h-8 rounded-full flex items-center justify-center shrink-0">
+                                R</div>
+                            <div class="pt-1">
+                                <div class="font-bold text-sm">Reason (理由)</div>
+                                <div class="text-xs text-textMuted mt-1">「なぜなら、理由は3点あり…」</div>
+                            </div>
+                        </div>
+                        <div
+                            class="relative z-10 flex items-start gap-4 bg-white p-3 rounded-xl border border-borderLight shadow-sm">
+                            <div
+                                class="font-bold text-accent3 bg-accent3/10 w-8 h-8 rounded-full flex items-center justify-center shrink-0">
+                                E</div>
+                            <div class="pt-1">
+                                <div class="font-bold text-sm">Example (具体例)</div>
+                                <div class="text-xs text-textMuted mt-1">「具体的なデータや事例として…」</div>
+                            </div>
+                        </div>
+                        <div
+                            class="relative z-10 flex items-start gap-4 bg-accent1/5 p-3 rounded-xl border border-accent1/20">
+                            <div
+                                class="font-bold text-white bg-accent1 w-8 h-8 rounded-full flex items-center justify-center shrink-0">
+                                P</div>
+                            <div class="pt-1">
+                                <div class="font-bold text-sm">Point (再度結論)</div>
+                                <div class="text-xs text-textMuted mt-1">「したがって、結論は〇〇となります」</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Talk Straight & 数字 -->
+                <div class="space-y-6">
+                    <!-- 期待値マネジメント -->
+                    <div class="bg-cardBg p-6 rounded-3xl shadow-sm border border-borderLight hover-lift">
+                        <h4 class="font-bold text-lg mb-4 flex items-center gap-2">
+                            <i data-lucide="trending-up" class="text-accent2 w-5 h-5"></i>
+                            期待値をマネジメントする
+                        </h4>
+                        <p class="text-sm text-textMuted mb-5">ビジネスの基本は「相手の期待を超え続けること」。まずは相手が何を求めているかを正確に把握します。</p>
+
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs mb-1 font-bold text-textMuted">
+                                    <span>相手の期待値 (最低ライン)</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="w-full bg-gray-100 rounded-full h-3 relative">
+                                    <div class="bg-gray-300 h-3 rounded-full w-3/4"></div>
+                                    <div class="absolute right-1/4 top-0 bottom-0 w-0.5 bg-gray-400"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs mb-1 font-bold text-accent1">
+                                    <span>あなたの成果 (少しだけ超える！)</span>
+                                    <span>110%</span>
+                                </div>
+                                <div class="w-full bg-gray-100 rounded-full h-3 relative">
+                                    <div class="bg-accent1 h-3 rounded-full" style="width: 85%"></div>
+                                    <div class="absolute right-1/4 top-0 bottom-0 w-0.5 bg-gray-400 border-dashed">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-[10px] text-center mt-3 text-textMuted bg-gray-50 p-2 rounded-lg">
+                            ※大幅に超えすぎると次からの期待値がインフレするため、<strong class="text-accent1">「安定して少しだけ超える」</strong>のがプロの技術。
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-cardBg p-5 rounded-2xl shadow-sm border border-borderLight hover-lift">
+                            <div
+                                class="bg-accent3/10 w-10 h-10 rounded-full flex items-center justify-center text-accent3 mb-3">
+                                <i data-lucide="zap" class="w-5 h-5"></i>
+                            </div>
+                            <h5 class="font-bold text-sm mb-2">Talk Straight</h5>
+                            <p class="text-xs text-textMuted">言い訳をせず端的に答える。終わっていないなら「終わっていません」と事実を伝えることが信頼への最短距離。</p>
+                        </div>
+                        <div class="bg-cardBg p-5 rounded-2xl shadow-sm border border-borderLight hover-lift">
+                            <div
+                                class="bg-blue-50 w-10 h-10 rounded-full flex items-center justify-center text-blue-400 mb-3">
+                                <i data-lucide="bar-chart-2" class="w-5 h-5"></i>
+                            </div>
+                            <h5 class="font-bold text-sm mb-2">数字で語る</h5>
+                            <p class="text-xs text-textMuted">「問題がある」という意見ではなく、定量化された「数字（事実）」を提示する。事実は誰にも封殺できない。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==============================================
+             CHAPTER 2: 思考術 (Thinking)
+        =============================================== -->
+        <section id="thinking" class="scroll-mt-10">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="bg-accent2/10 p-4 rounded-2xl text-accent2">
+                    <i data-lucide="brain-circuit" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h2 class="text-accent2 font-bold text-sm tracking-wider">CHAPTER 2</h2>
+                    <h3 class="text-2xl font-bold font-rounded">コンサル流 思考術</h3>
+                </div>
+            </div>
+
+            <!-- 雲雨傘の論理 -->
+            <div class="bg-cardBg p-6 md:p-8 rounded-3xl shadow-sm border border-borderLight hover-lift mb-6">
+                <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
+                    <i data-lucide="cloud-lightning" class="text-accent2 w-5 h-5"></i>
+                    提案の基本「雲・雨・傘の論理」
+                </h4>
+                <p class="text-sm text-textMuted mb-8">事実、解釈、アクションを混同せずに明確に区別して伝えることで、圧倒的な説得力が生まれます。</p>
+
+                <div
+                    class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-2 bg-bgMain p-6 rounded-2xl border border-borderLight">
+                    <!-- 雲 -->
+                    <div class="flex flex-col items-center text-center flex-1 px-2 w-full">
+                        <div class="bg-white p-4 rounded-full text-blue-300 shadow-sm mb-4">
+                            <i data-lucide="cloud" class="w-8 h-8"></i>
+                        </div>
+                        <h5 class="font-bold text-base mb-1">事実 (雲)</h5>
+                        <p class="text-sm text-textMain/90 font-medium mb-2">空に黒い雲が出ている</p>
+                        <p class="text-xs text-textMuted">動かしようのない<br>客観的なデータ・観測結果</p>
+                    </div>
+
+                    <!-- 矢印 -->
+                    <div class="text-borderLight rotate-90 md:rotate-0 my-2 md:my-0 shrink-0">
+                        <i data-lucide="arrow-right" class="w-8 h-8"></i>
+                    </div>
+
+                    <!-- 雨 -->
+                    <div class="flex flex-col items-center text-center flex-1 px-2 w-full">
+                        <div class="bg-white p-4 rounded-full text-gray-400 shadow-sm mb-4">
+                            <i data-lucide="cloud-rain" class="w-8 h-8"></i>
+                        </div>
+                        <h5 class="font-bold text-base mb-1">解釈 (雨)</h5>
+                        <p class="text-sm text-textMain/90 font-medium mb-2">雨が降りそうだ</p>
+                        <p class="text-xs text-textMuted">事実に基づいた<br>独自の分析や見立て</p>
+                    </div>
+
+                    <!-- 矢印 -->
+                    <div class="text-borderLight rotate-90 md:rotate-0 my-2 md:my-0 shrink-0">
+                        <i data-lucide="arrow-right" class="w-8 h-8"></i>
+                    </div>
+
+                    <!-- 傘 -->
+                    <div class="flex flex-col items-center text-center flex-1 px-2 w-full">
+                        <div
+                            class="bg-accent2/10 border border-accent2/20 p-4 rounded-full text-accent2 shadow-sm mb-4">
+                            <i data-lucide="umbrella" class="w-8 h-8"></i>
+                        </div>
+                        <h5 class="font-bold text-base mb-1">アクション (傘)</h5>
+                        <p class="text-sm text-textMain/90 font-medium mb-2">傘を持っていこう</p>
+                        <p class="text-xs text-textMuted">解釈に基づく<br>具体的な行動提案</p>
+                    </div>
+                </div>
+                <div
+                    class="mt-4 text-xs text-center text-textMuted bg-red-50 text-red-600 p-3 rounded-xl border border-red-100">
+                    <strong>よくあるNG例：</strong> 「雲が出ているので（事実）、傘を持っていきましょう（アクション）」→ <strong>解釈が抜けているため説得力がない！</strong>
+                </div>
+            </div>
+
+            <!-- 仮説思考 -->
+            <div class="bg-cardBg p-6 md:p-8 rounded-3xl shadow-sm border border-borderLight hover-lift">
+                <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
+                    <i data-lucide="rotate-cw" class="text-accent3 w-5 h-5"></i>
+                    仮説思考で意思決定を高速化
+                </h4>
+                <p class="text-sm text-textMuted mb-6">情報を網羅的に集めるのではなく、最初から「仮の答え」を出し、それを検証する形で進めます。</p>
+
+                <div class="flex flex-col md:flex-row items-stretch justify-center gap-4">
+                    <!-- 1 -->
+                    <div
+                        class="bg-white border-2 border-accent3/30 text-center p-5 rounded-2xl flex-1 shadow-sm relative mt-3 md:mt-0">
+                        <div
+                            class="absolute -top-3 -left-3 bg-accent3 text-white w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center shadow-sm z-10">
+                            1</div>
+                        <i data-lucide="lightbulb" class="mx-auto mb-3 text-accent3"></i>
+                        <h5 class="font-bold text-sm mb-2">仮説を立てる</h5>
+                        <p class="text-[11px] text-textMuted leading-relaxed">「たぶんこれが原因だろう」とアタリをつける</p>
+                    </div>
+
+                    <div class="flex items-center justify-center text-gray-300 py-2 md:py-0 shrink-0">
+                        <i data-lucide="arrow-right" class="hidden md:block"></i>
+                        <i data-lucide="arrow-down" class="md:hidden"></i>
+                    </div>
+
+                    <!-- 2 -->
+                    <div
+                        class="bg-white border border-borderLight text-center p-5 rounded-2xl flex-1 shadow-sm relative mt-3 md:mt-0">
+                        <div
+                            class="absolute -top-3 -left-3 bg-gray-400 text-white w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center shadow-sm z-10">
+                            2</div>
+                        <i data-lucide="search" class="mx-auto mb-3 text-gray-400"></i>
+                        <h5 class="font-bold text-sm mb-2">リサーチ・検証</h5>
+                        <p class="text-[11px] text-textMuted leading-relaxed">仮説を裏付けるためのデータだけを効率よく調べる</p>
+                    </div>
+
+                    <div class="flex items-center justify-center text-gray-300 py-2 md:py-0 shrink-0">
+                        <i data-lucide="arrow-right" class="hidden md:block"></i>
+                        <i data-lucide="arrow-down" class="md:hidden"></i>
+                    </div>
+
+                    <!-- 3 -->
+                    <div
+                        class="bg-white border border-borderLight text-center p-5 rounded-2xl flex-1 shadow-sm relative mt-3 md:mt-0">
+                        <div
+                            class="absolute -top-3 -left-3 bg-gray-400 text-white w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center shadow-sm z-10">
+                            3</div>
+                        <i data-lucide="refresh-cw" class="mx-auto mb-3 text-gray-400"></i>
+                        <h5 class="font-bold text-sm mb-2">フィードバック</h5>
+                        <p class="text-[11px] text-textMuted leading-relaxed">間違っていれば素早く修正し、新たな仮説を立てる</p>
+                    </div>
+                </div>
+                <div class="mt-6 text-center">
+                    <span
+                        class="inline-block bg-accent3/10 text-accent3 px-4 py-2 rounded-full text-sm font-bold border border-accent3/20">
+                        「考え方を考える（全体の設計図を描く）」習慣が作業のムダをなくす
+                    </span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==============================================
+             CHAPTER 3: デスクワーク術 (Desk Work)
+        =============================================== -->
+        <section id="deskwork" class="scroll-mt-10">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="bg-accent3/10 p-4 rounded-2xl text-accent3">
+                    <i data-lucide="monitor" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h2 class="text-accent3 font-bold text-sm tracking-wider">CHAPTER 3</h2>
+                    <h3 class="text-2xl font-bold font-rounded">コンサル流 デスクワーク術</h3>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 議事録の極意 -->
+                <div class="bg-cardBg p-6 rounded-3xl shadow-sm border border-borderLight hover-lift flex flex-col">
+                    <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
+                        <i data-lucide="file-text" class="text-accent3 w-5 h-5"></i>
+                        議事録は「決定事項」の証拠
+                    </h4>
+                    <p class="text-sm text-textMuted mb-6">誰が何を言ったかの「発言録」は無価値です。会議を前に進めるためのツールとして作成します。</p>
+
+                    <div class="flex-1 bg-bgMain p-5 rounded-2xl border-2 border-accent3/30 relative mt-auto">
+                        <div
+                            class="absolute -top-3 right-4 bg-accent3 text-white text-xs font-bold px-3 py-1 rounded-full">
+                            GOOD</div>
+                        <ul class="text-sm space-y-4">
+                            <li class="flex items-start gap-3">
+                                <div class="bg-white p-1.5 rounded shadow-sm shrink-0"><i data-lucide="check"
+                                        class="w-4 h-4 text-accent2"></i></div>
+                                <div><strong class="text-textMain">決定事項</strong><br><span
+                                        class="text-textMuted text-xs">A案を採用し、来月リリースする</span></div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="bg-white p-1.5 rounded shadow-sm shrink-0"><i data-lucide="help-circle"
+                                        class="w-4 h-4 text-accent1"></i></div>
+                                <div><strong class="text-textMain">未決・確認事項</strong><br><span
+                                        class="text-textMuted text-xs">追加予算の承認が必要（次回までに）</span></div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="bg-white p-1.5 rounded shadow-sm shrink-0"><i data-lucide="list-todo"
+                                        class="w-4 h-4 text-blue-400"></i></div>
+                                <div><strong class="text-textMain">Next To Do</strong><br><span
+                                        class="text-textMuted text-xs">〇〇さんが金曜までに資料作成</span></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- スライド作成 -->
+                <div class="bg-cardBg p-6 rounded-3xl shadow-sm border border-borderLight hover-lift flex flex-col">
+                    <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
+                        <i data-lucide="presentation" class="text-accent3 w-5 h-5"></i>
+                        ワンスライド・ワンメッセージ
+                    </h4>
+                    <p class="text-sm text-textMuted mb-6">1枚のスライドに詰め込みすぎない。「主張→根拠→補足」のシンプルな構造を徹底します。</p>
+
+                    <div
+                        class="flex-1 border-2 border-gray-200 rounded-xl p-4 shadow-sm bg-gray-50 relative flex flex-col mt-auto">
+                        <div
+                            class="absolute -right-2 -top-2 bg-gray-700 text-white text-[10px] font-bold px-2 py-0.5 rounded">
+                            Slide 1</div>
+                        <div class="border-b-2 border-accent1/40 pb-2 mb-3">
+                            <h5 class="font-bold text-center text-sm">主張：売上低下の主因は新規層の離脱である</h5>
+                        </div>
+                        <div
+                            class="flex-1 border-2 border-dashed border-gray-300 rounded bg-white flex items-center justify-center p-4">
+                            <div class="text-center text-gray-400">
+                                <i data-lucide="bar-chart-3" class="w-10 h-10 mx-auto mb-1 opacity-50"></i>
+                                <p class="text-[11px]">根拠となる<br>シンプルで明確なグラフ</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-[10px] text-gray-500 text-right">
+                            （補足）※詳細データは別紙参照
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ツールとスピード -->
+            <div
+                class="mt-6 bg-accent1/5 p-6 rounded-3xl border border-accent1/20 flex flex-col md:flex-row items-center justify-between gap-6 hover-lift">
+                <div class="flex-1">
+                    <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
+                        <i data-lucide="keyboard" class="text-accent1 w-5 h-5"></i>
+                        PC操作の「神速」化（脱マウス）
+                    </h4>
+                    <p class="text-sm text-textMuted">
+                        エクセルやパワポのショートカットキー操作は、プロとしての「体作（基礎体力）」です。操作に思考を奪われないレベルまで指に覚え込ませることで、本来の目的である「考えること」に時間を割けます。
+                    </p>
+                </div>
+                <div class="w-full md:w-auto bg-white p-4 rounded-2xl shadow-sm border border-borderLight">
+                    <div class="text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide">必須ショートカット例</div>
+                    <div class="flex flex-wrap items-center gap-2 text-sm mb-3">
+                        <kbd class="bg-gray-100 border border-gray-300 rounded px-2 py-1 font-mono text-xs">Ctrl</kbd> +
+                        <kbd
+                            class="bg-gray-100 border border-gray-300 rounded px-2 py-1 font-mono text-xs">PgUp/PgDn</kbd>
+                        <span class="text-textMuted text-xs ml-1">シート高速移動</span>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2 text-sm">
+                        <kbd class="bg-gray-100 border border-gray-300 rounded px-2 py-1 font-mono text-xs">Alt</kbd> +
+                        <kbd class="bg-gray-100 border border-gray-300 rounded px-2 py-1 font-mono text-xs">E</kbd> +
+                        <kbd class="bg-gray-100 border border-gray-300 rounded px-2 py-1 font-mono text-xs">S</kbd> +
+                        <kbd class="bg-gray-100 border border-gray-300 rounded px-2 py-1 font-mono text-xs">V</kbd>
+                        <span class="text-textMuted text-xs ml-1">値のみ貼り付け</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==============================================
+             CHAPTER 4: ビジネスマインド (Mindset)
+        =============================================== -->
+        <section id="mindset" class="scroll-mt-10">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="bg-gray-800 p-4 rounded-2xl text-white">
+                    <i data-lucide="gem" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h2 class="text-gray-500 font-bold text-sm tracking-wider">CHAPTER 4</h2>
+                    <h3 class="text-2xl font-bold font-rounded">プロフェッショナル・ビジネスマインド</h3>
+                </div>
+            </div>
+
+            <!-- Quick & Dirty -->
+            <div class="bg-cardBg p-6 md:p-8 rounded-3xl shadow-sm border border-borderLight hover-lift mb-6">
+                <h4 class="font-bold text-lg mb-6 text-center">スピードと質の止揚：<span class="text-accent1">Quick & Dirty</span>
+                </h4>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- NG -->
+                    <div class="border border-red-100 bg-red-50/40 p-6 rounded-2xl relative overflow-hidden">
+                        <div class="absolute -right-4 -bottom-4 text-red-100/50">
+                            <i data-lucide="x-circle" class="w-32 h-32"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <h5 class="font-bold text-red-500 mb-2 flex items-center gap-2"><i data-lucide="snail"
+                                    class="w-4 h-4"></i> Slow & Beauty (NG)</h5>
+                            <p class="text-sm text-textMuted mb-4">自分一人で時間をかけて完璧な「100点」を目指す。</p>
+                            <div class="w-full bg-gray-200 h-2.5 rounded-full mb-1">
+                                <div class="bg-red-300 h-2.5 rounded-full w-full"></div>
+                            </div>
+                            <p class="text-[10px] text-red-500 font-bold text-right">時間切れ・方向性が違った時の手戻り大</p>
+                        </div>
+                    </div>
+
+                    <!-- OK -->
+                    <div class="border-2 border-accent2/40 bg-accent2/5 p-6 rounded-2xl relative overflow-hidden">
+                        <div class="absolute -right-4 -bottom-4 text-accent2/10">
+                            <i data-lucide="check-circle" class="w-32 h-32"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <h5 class="font-bold text-accent2 mb-2 flex items-center gap-2"><i data-lucide="rocket"
+                                    class="w-4 h-4"></i> Quick & Dirty (OK)</h5>
+                            <p class="text-sm text-textMuted mb-4">多少粗くても早く(60点)提出し、フィードバックで軌道修正する。</p>
+                            <div class="w-full bg-gray-200 h-2.5 rounded-full flex gap-1 mb-1">
+                                <div class="bg-accent2 h-2.5 rounded-full w-1/3"></div>
+                                <div class="bg-accent2/70 h-2.5 rounded-full w-1/3"></div>
+                                <div class="bg-accent2/40 h-2.5 rounded-full w-1/3"></div>
+                            </div>
+                            <p class="text-[10px] text-accent2 font-bold text-right">軌道修正を重ね、最短で正解へ辿り着く</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- ヴァリューの源泉 -->
+                <div
+                    class="bg-cardBg p-6 rounded-3xl shadow-sm border border-borderLight hover-lift flex flex-col items-center justify-center">
+                    <h4 class="font-bold text-lg w-full text-left mb-4 flex items-center gap-2">
+                        <i data-lucide="heart-handshake" class="text-accent1 w-5 h-5"></i>
+                        仕事の「ヴァリュー」とは何か
+                    </h4>
+
+                    <div
+                        class="relative w-full h-48 md:h-56 flex items-center justify-center my-4 overflow-hidden md:overflow-visible">
+                        <!-- 左の円（背景のみ） -->
+                        <div
+                            class="absolute w-40 h-40 md:w-52 md:h-52 rounded-full bg-blue-100/60 border-2 border-blue-200 -translate-x-10 md:-translate-x-14 mix-blend-multiply">
+                        </div>
+                        <!-- 右の円（背景のみ） -->
+                        <div
+                            class="absolute w-40 h-40 md:w-52 md:h-52 rounded-full bg-accent3/30 border-2 border-accent3/50 translate-x-10 md:translate-x-14 mix-blend-multiply">
+                        </div>
+
+                        <!-- 左のテキスト（円から独立させて配置） -->
+                        <div
+                            class="absolute z-10 -translate-x-20 md:-translate-x-28 text-center pointer-events-none w-24">
+                            <span
+                                class="text-[11px] md:text-sm font-bold text-blue-600 leading-tight block">自分が<br>やりたいこと<br><span
+                                    class="font-normal text-[9px] md:text-[10px]">(自己満足)</span></span>
+                        </div>
+
+                        <!-- 右のテキスト（円から独立させて配置） -->
+                        <div
+                            class="absolute z-10 translate-x-20 md:translate-x-28 text-center pointer-events-none w-24">
+                            <span
+                                class="text-[11px] md:text-sm font-bold text-amber-700 leading-tight block">相手が<br>求めていること<br><span
+                                    class="font-normal text-[9px] md:text-[10px]">(期待)</span></span>
+                        </div>
+
+                        <!-- 重なり部分のテキスト・アイコン（上に少しずらし、星を強調） -->
+                        <div
+                            class="z-20 absolute flex flex-col items-center justify-center pointer-events-none -translate-y-4 md:-translate-y-6">
+                            <div
+                                class="bg-white px-3 py-1.5 rounded-full shadow-sm text-accent1 font-bold text-[10px] md:text-xs mb-2 border border-accent1/20 whitespace-nowrap">
+                                価値（ヴァリュー）
+                            </div>
+                            <i data-lucide="star"
+                                class="text-accent1 fill-accent1 w-6 h-6 md:w-8 md:h-8 drop-shadow"></i>
+                        </div>
+                    </div>
+                    <p class="text-sm text-textMuted text-center mt-2">
+                        自分がどれだけ苦労したかではなく、<strong class="text-accent1">相手が価値を感じ、満足したか</strong>がすべて。「相手目線」の徹底がプロの条件です。
+                    </p>
+                </div>
+
+                <!-- マインドセット箇条書き -->
+                <div class="space-y-4">
+                    <div class="bg-cardBg p-5 rounded-2xl shadow-sm border border-borderLight hover-lift flex gap-4">
+                        <div class="bg-gray-100 w-10 h-10 rounded-full flex items-center justify-center shrink-0">
+                            <i data-lucide="users" class="w-5 h-5 text-gray-500"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-sm mb-1">喋らないなら会議に出るな</h5>
+                            <p class="text-xs text-textMuted leading-relaxed">
+                                会議はセレモニーではなく、チームで価値を生む場。発言しない参加者はコストを消費しているだけと見なされます。</p>
+                        </div>
+                    </div>
+                    <div class="bg-cardBg p-5 rounded-2xl shadow-sm border border-borderLight hover-lift flex gap-4">
+                        <div class="bg-gray-100 w-10 h-10 rounded-full flex items-center justify-center shrink-0">
+                            <i data-lucide="hourglass" class="w-5 h-5 text-gray-500"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-sm mb-1">「時間はお金」と認識する</h5>
+                            <p class="text-xs text-textMuted leading-relaxed">
+                                自分の時間も、相手の時間も「コスト」。この認識があれば、無駄な作業を省き、最短最速を目指す動機が生まれます。</p>
+                        </div>
+                    </div>
+                    <div class="bg-cardBg p-5 rounded-2xl shadow-sm border border-borderLight hover-lift flex gap-4">
+                        <div class="bg-gray-100 w-10 h-10 rounded-full flex items-center justify-center shrink-0">
+                            <i data-lucide="target" class="w-5 h-5 text-gray-500"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-sm mb-1">コミットメント力を学ぶ</h5>
+                            <p class="text-xs text-textMuted leading-relaxed">
+                                「頑張る」ことにコミットするのではなく、「相手」と「成果（仕事の完成）」に対して責任を持つ姿勢が重要です。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-white border-t border-borderLight py-10 mt-10">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <i data-lucide="book-open" class="w-8 h-8 text-borderLight mx-auto mb-4"></i>
+            <p class="text-sm text-textMuted mb-2">
+                本書のスキルは特定のツールに依存しない、<br class="md:hidden">人間が他者と協力して目的を達成するための「普遍的な思考のプロトコル」です。
+            </p>
+            <p class="text-xs text-gray-400 mt-6">
+                Based on 「コンサル一年目が学ぶこと」（大石哲之 著）
+            </p>
+        </div>
+    </footer>
+
+    <!-- アイコンの初期化 -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
