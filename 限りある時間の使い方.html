@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>限りある時間の使い方</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'spin-slow': 'spin 3s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* ドットマップのグリッドレイアウト */
+        .dot-grid {
+            display: grid;
+            grid-template-columns: repeat(50, minmax(0, 1fr));
+            gap: 2px;
+            padding: 1rem;
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+        }
+
+        @media (max-width: 640px) {
+            .dot-grid {
+                gap: 1px;
+            }
+        }
+
+        /* フェードインアニメーションの初期状態 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(3rem);
+            /* Tailwindの translate-y-12 相当 */
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            transition-duration: 1000ms;
+        }
+
+        /* 画面内に入った時の状態 */
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body
+    class="min-h-screen bg-stone-50 text-stone-800 font-sans selection:bg-orange-200 selection:text-orange-900 overflow-x-hidden">
+
+    <header class="relative pt-24 pb-16 md:pt-32 md:pb-24 px-6 max-w-4xl mx-auto text-center">
+        <div class="fade-in">
+            <div class="inline-flex items-center justify-center p-4 bg-orange-100 rounded-full mb-6 text-orange-600">
+                <i data-lucide="hourglass" width="40" height="40" class="animate-pulse"></i>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">
+                限りある時間の使い方
+                <span class="block text-2xl md:text-3xl font-medium text-stone-500 mt-4">
+                    人生は「4000週間」。あなたはどう使う？
+                </span>
+            </h1>
+            <p class="text-lg md:text-xl text-stone-600 max-w-2xl mx-auto leading-relaxed">
+                常に時間に追われ、「いつか」のために今を犠牲にしていませんか？<br />
+                タイムマネジメントの常識を覆す、新しい生き方の図解ガイド。
+            </p>
+        </div>
+    </header>
+
+    <section class="py-16 px-6 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <div class="fade-in text-center mb-12">
+                <h2 class="text-2xl md:text-4xl font-bold text-orange-700 mb-4 flex items-center justify-center gap-2">
+                    <i data-lucide="calendar-heart" width="32" height="32"></i>
+                    衝撃の事実：人生は驚くほど短い
+                </h2>
+                <p class="text-lg text-stone-600">
+                    80歳まで生きるとして、人生はたったの<strong class="text-orange-600 font-bold text-2xl mx-1">4000週間</strong>しかありません。
+                </p>
+            </div>
+
+            <div class="fade-in bg-stone-50 rounded-3xl p-6 md:p-10 shadow-sm border border-stone-100"
+                style="transition-delay: 200ms;">
+                <div class="flex flex-col md:flex-row items-center justify-between mb-8 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">あなたの残り時間は？</h3>
+                        <p class="text-stone-500 text-sm">現在の年齢をスライダーで設定してみましょう。</p>
+                    </div>
+                    <div class="flex-1 max-w-xs w-full">
+                        <div class="flex justify-between text-orange-700 font-bold mb-2">
+                            <span id="age-display">30 歳</span>
+                            <span id="remaining-display">残り: 2500 週間</span>
+                        </div>
+                        <input type="range" id="age-input" min="10" max="80" value="30"
+                            class="w-full h-3 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-orange-500" />
+                    </div>
+                </div>
+
+                <div id="dot-grid" class="dot-grid"></div>
+
+                <div class="flex justify-end gap-4 mt-4 text-sm font-medium text-stone-500">
+                    <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-stone-300"></span>
+                        過ぎ去った時間</span>
+                    <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-orange-400"></span>
+                        残された時間</span>
+                </div>
+            </div>
+
+            <p class="fade-in text-center mt-10 text-xl font-medium text-stone-700 bg-orange-50 p-6 rounded-2xl"
+                style="transition-delay: 400ms;">
+                「すべてをこなす」には、人生はあまりにも短すぎます。
+            </p>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-stone-100">
+        <div class="max-w-4xl mx-auto">
+            <div class="fade-in text-center mb-16">
+                <h2 class="text-2xl md:text-4xl font-bold text-stone-800 mb-4">
+                    私たちは「生産性の罠」にハマっている
+                </h2>
+                <p class="text-stone-600">従来のタイムマネジメントが抱える致命的な欠陥</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 relative">
+                <div
+                    class="hidden md:block absolute top-1/2 left-[20%] right-[20%] h-0.5 bg-stone-300 -translate-y-1/2 z-0">
+                </div>
+
+                <div class="fade-in relative z-10 h-full" style="transition-delay: 100ms;">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm text-center h-full border-t-4 border-stone-300">
+                        <div
+                            class="w-16 h-16 bg-stone-100 rounded-2xl flex items-center justify-center mx-auto mb-6 text-stone-500">
+                            <i data-lucide="clock" width="32" height="32"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">効率化する</h3>
+                        <p class="text-stone-500 text-sm leading-relaxed">
+                            ライフハックや時短術を駆使して、より短い時間で大量のタスクをこなせるようになる。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in relative z-10 h-full" style="transition-delay: 300ms;">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm text-center h-full border-t-4 border-orange-300">
+                        <div
+                            class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center mx-auto mb-6 text-orange-500">
+                            <i data-lucide="alert-circle" width="32" height="32"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">空き時間ができる…？</h3>
+                        <p class="text-stone-500 text-sm leading-relaxed">
+                            余裕ができるはずが、空いたスペースに「新たな仕事や要求」が即座に流れ込んでくる。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in relative z-10 h-full" style="transition-delay: 500ms;">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm text-center h-full border-t-4 border-rose-400">
+                        <div
+                            class="w-16 h-16 bg-rose-50 rounded-2xl flex items-center justify-center mx-auto mb-6 text-rose-500">
+                            <i data-lucide="refresh-cw" width="32" height="32" class="animate-spin-slow"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">さらに忙しくなる</h3>
+                        <p class="text-stone-500 text-sm leading-relaxed">
+                            「仕事が早い人」にはさらに仕事が集まり、タスクがゼロになる日は永遠にやってこない。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fade-in mt-12 bg-rose-50 p-6 md:p-8 rounded-3xl text-center border border-rose-100"
+                style="transition-delay: 700ms;">
+                <i data-lucide="ban" width="40" height="40" class="text-rose-400 mx-auto mb-4"></i>
+                <h4 class="text-xl font-bold text-rose-900 mb-2">「未来への先延ばし」をやめる</h4>
+                <p class="text-rose-800 leading-relaxed">
+                    「今は我慢してタスクをこなし、いつかすべてが落ち着いたら本当にやりたい事をしよう。」<br />
+                    そう思っていても、その「いつか」は絶対に来ません。未来のために今を犠牲にするのはやめましょう。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-emerald-800 text-emerald-50">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="fade-in">
+                <i data-lucide="sparkles" width="48" height="48" class="text-emerald-300 mx-auto mb-6"></i>
+                <h2 class="text-3xl md:text-5xl font-bold mb-8">
+                    「すべてはできない」と認める勇気
+                </h2>
+                <p class="text-xl md:text-2xl font-light leading-relaxed mb-12 text-emerald-100">
+                    限界を受け入れることで、本当に大切なことだけを選ぶ自由が生まれます。<br />
+                    人生の主導権を取り戻すための、10の実践ツールを見てみましょう。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-stone-50">
+        <div class="max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <div class="fade-in h-full" style="transition-delay: 100ms;">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow h-full">
+                        <div
+                            class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="list-todo" width="24" height="24"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">1. 開・閉 2つのToDoリスト</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            「開いたリスト」には思いつくタスクを全て書き、「閉じたリスト」には上限（例:10個）を設けます。閉じたリストのタスクが終わるまで、新しいタスクは追加しません。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in h-full" style="transition-delay: 200ms;">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow h-full">
+                        <div
+                            class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="arrow-right-circle" width="24" height="24"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">2. 同時進行しない（直列化）</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            大きなプロジェクトは同時に1つ（多くて2つ）しか進めない。それが完全に終わるまで、次には手を出さないことで、確実に前進します。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in h-full" style="transition-delay: 300ms;">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow h-full">
+                        <div
+                            class="w-12 h-12 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="target" width="24" height="24"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">3. 戦略的に「失敗」する</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            時間とエネルギーは有限です。あらかじめ「この分野は適当でいい」と決めておくことで、重要なことに集中できます。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in h-full" style="transition-delay: 400ms;">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow h-full">
+                        <div
+                            class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="check-square" width="24" height="24"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">4. 「できたこと」に目を向ける</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            朝は空っぽの状態からスタートし、その日終わらせたタスクを「できたことリスト」に書いていきます。自己肯定感と達成感が高まります。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in h-full" style="transition-delay: 500ms;">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow h-full">
+                        <div
+                            class="w-12 h-12 bg-pink-100 text-pink-600 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="filter" width="24" height="24"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">5. 関心を絞り込む</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            SNSは無限の情報を発信してきますが、あなたが関心を持てる事柄には限界があります。戦うべき場所を選びましょう。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in h-full" style="transition-delay: 600ms;">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow h-full">
+                        <div
+                            class="w-12 h-12 bg-stone-100 text-stone-600 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="smartphone" width="24" height="24"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">6. 退屈なテクノロジーを使う</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            スマホの画面を白黒にしたり、単一目的のデバイスを使うことで、無限のデジタルな気晴らしから逃れられます。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in h-full" style="transition-delay: 700ms;">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow h-full">
+                        <div
+                            class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="search" width="24" height="24"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">7. 日常に「新しさ」を見つける</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            いつもの散歩道や日常の家事の中に「これまで気づかなかった細部」を観察することで、時間の流れを豊かに感じられます。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in h-full" style="transition-delay: 800ms;">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow h-full">
+                        <div
+                            class="w-12 h-12 bg-teal-100 text-teal-600 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="users" width="24" height="24"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">8. 人間関係の「研究者」になる</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            退屈な会話やイライラする人に出会ったら、「この人はどんな世界を生きているのだろう？」と好奇心を持つ研究者モードに切り替えてみましょう。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in h-full" style="transition-delay: 900ms;">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow h-full">
+                        <div
+                            class="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="gift" width="24" height="24"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">9. 瞬発的な寛大さを発揮する</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            誰かに親切にしたい、寄付をしたいという衝動が生まれたら、「後でやろう」と思わず、その瞬間にすぐ実行しましょう。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in h-full lg:col-start-2" style="transition-delay: 1000ms;">
+                    <div
+                        class="bg-orange-50 border-2 border-orange-100 p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow h-full">
+                        <div
+                            class="w-12 h-12 bg-orange-200 text-orange-700 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="coffee" width="24" height="24"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3 text-orange-900">10. 「何もしない」練習をする</h3>
+                        <p class="text-orange-800 text-sm leading-relaxed">
+                            5分間タイマーをセットし、ただ座って何もしないでください。「行動しないことの不快感」に耐えられれば、間違った選択を減らせます。
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-24 px-6 bg-stone-900 text-stone-100 text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10"
+            style="background-image: radial-gradient(circle at center, #D97757 0%, transparent 70%);"></div>
+        <div class="max-w-3xl mx-auto relative z-10">
+            <div class="fade-in">
+                <i data-lucide="hourglass" width="48" height="48" class="mx-auto mb-8 text-orange-400 opacity-80"></i>
+                <h2 class="text-2xl md:text-4xl font-serif italic font-light mb-8 leading-relaxed">
+                    「人生のあらゆる瞬間は、<br />二度とない最後の瞬間である」
+                </h2>
+                <p class="text-stone-400 text-lg md:text-xl font-light leading-relaxed mb-12">
+                    いつかやってくる完璧な未来を待ちわびるのをやめて、<br />
+                    不完全で、短くて、どうなるかわからない<br />
+                    「今、ここにある人生」に腰を据えましょう。
+                </p>
+                <div class="h-px w-24 bg-stone-700 mx-auto mb-8"></div>
+                <p class="text-sm text-stone-500">
+                    Inspired by "Four Thousand Weeks: Time Management for Mortals"<br />
+                    by Oliver Burkeman
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Lucideアイコンの描画処理
+        lucide.createIcons();
+
+        // 2. フェードインアニメーションの実装 (Intersection Observer)
+        const observerOptions = {
+            threshold: 0.1, // 要素が10%見えたら発火
+        };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // 一度発火したら監視を解除
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 3. インタラクティブなドットマップの実装
+        const TOTAL_WEEKS = 4000;
+        let currentAge = 30;
+        let passedWeeks = currentAge * 50; // 1年を50週として計算
+
+        const ageInput = document.getElementById('age-input');
+        const ageDisplay = document.getElementById('age-display');
+        const remainingDisplay = document.getElementById('remaining-display');
+        const dotGrid = document.getElementById('dot-grid');
+        const dotsArray = [];
+
+        // 初期化：4000個のドット要素を生成してDOMに追加
+        const fragment = document.createDocumentFragment();
+        for (let i = 0; i < TOTAL_WEEKS; i++) {
+            const dot = document.createElement('div');
+            const isPassed = i < passedWeeks;
+            // 初期クラスとタイトルを設定
+            dot.className = `aspect-square rounded-full transition-colors duration-500 ${isPassed ? 'bg-stone-300' : 'bg-orange-400'}`;
+            dot.title = isPassed ? "過ぎ去った週" : "これからの週";
+
+            dotsArray.push(dot); // 後で色を変更しやすいように配列に保存
+            fragment.appendChild(dot);
+        }
+        dotGrid.appendChild(fragment);
+
+        // スライダーが動いた時の更新処理
+        function updateDots(newAge) {
+            const newPassedWeeks = newAge * 50;
+
+            // テキストの更新
+            ageDisplay.textContent = `${newAge} 歳`;
+            remainingDisplay.textContent = `残り: ${TOTAL_WEEKS - newPassedWeeks} 週間`;
+
+            // Reactのように全てを再描画せず、差分（色が変わる部分）のクラスだけを変更して動作を軽くする
+            if (newPassedWeeks > passedWeeks) {
+                // 年齢が上がった（オレンジ -> グレー）
+                for (let i = passedWeeks; i < newPassedWeeks; i++) {
+                    dotsArray[i].classList.replace('bg-orange-400', 'bg-stone-300');
+                    dotsArray[i].title = "過ぎ去った週";
+                }
+            } else if (newPassedWeeks < passedWeeks) {
+                // 年齢が下がった（グレー -> オレンジ）
+                for (let i = newPassedWeeks; i < passedWeeks; i++) {
+                    dotsArray[i].classList.replace('bg-stone-300', 'bg-orange-400');
+                    dotsArray[i].title = "これからの週";
+                }
+            }
+            passedWeeks = newPassedWeeks; // 状態を更新
+        }
+
+        // スライダーのイベントリスナーを設定
+        ageInput.addEventListener('input', (e) => {
+            updateDots(Number(e.target.value));
+        });
+    </script>
+</body>
+
+</html>
