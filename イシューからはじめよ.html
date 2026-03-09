@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図解でわかる『イシューからはじめよ』</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#FDFBF7',        // 温かみのあるオフホワイト
+                        text: '#4A4036',      // 柔らかいダークブラウン
+                        accent: '#E07A5F',    // テラコッタ（メインアクセント）
+                        accentLight: '#F4A261', // 優しいオレンジ
+                        sub: '#81B29A',       // セージグリーン（肯定やサポート）
+                        yellow: '#F2CC8F',    // マスタード（ハイライト用）
+                        border: '#E8E1D9'     // 馴染むボーダー色
+                    },
+                    fontFamily: {
+                        sans: ['"Zen Kaku Gothic New"', 'sans-serif'],
+                        serif: ['"Shippori Mincho"', 'serif'],
+                    },
+                    animation: {
+                        'spin-slow': 'spin 3s linear infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: theme('colors.bg');
+            color: theme('colors.text');
+        }
+
+        /* マーカー風ハイライト */
+        .marker-yellow {
+            background: linear-gradient(transparent 60%, theme('colors.yellow') 60%);
+            font-weight: 700;
+        }
+
+        .marker-accent {
+            background: linear-gradient(transparent 60%, theme('colors.accentLight') 60%);
+            font-weight: 700;
+        }
+
+        /* ふんわりとしたカード */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid theme('colors.border');
+            box-shadow: 0 10px 30px rgba(74, 64, 54, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(74, 64, 54, 0.08);
+        }
+
+        /* 背景のぼかし装飾 */
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+
+<body class="antialiased leading-relaxed tracking-wide relative overflow-x-hidden">
+
+    <!-- 背景のグラデーション装飾 -->
+    <div class="fixed inset-0 pointer-events-none">
+        <div class="bg-blob bg-accentLight/30 w-[60vw] h-[60vw] top-[-20%] left-[-10%]"></div>
+        <div class="bg-blob bg-sub/20 w-[50vw] h-[50vw] bottom-[-10%] right-[-10%]"></div>
+        <div class="bg-blob bg-yellow/20 w-[40vw] h-[40vw] top-[40%] left-[60%]"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-6 py-16 md:py-24 relative z-10">
+
+        <!-- Hero Section -->
+        <header class="text-center mb-24 animate-fade-in">
+            <div
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-border text-sm font-bold text-accent mb-6 shadow-sm">
+                <i data-lucide="book-open" class="w-4 h-4"></i>
+                <span>読了目安: 約5分</span>
+            </div>
+            <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                「がむしゃら」から卒業する。<br>
+                <span class="text-accent">知的生産</span>のシンプルな本質
+            </h1>
+            <p class="text-lg md:text-xl text-text/80 max-w-2xl mx-auto">
+                名著『イシューからはじめよ』が教える、<br class="md:hidden">本当に価値のある仕事の進め方を<br>
+                温かみのある図解で直感的に理解しよう。
+            </p>
+        </header>
+
+        <!-- Introduction: 悩む vs 考える -->
+        <section class="mb-24">
+            <div class="text-center mb-10">
+                <h2 class="font-serif text-2xl md:text-3xl font-bold">まずは、心構えから。</h2>
+                <p class="mt-4 text-text/80">仕事において「悩む」ことは、実は無駄な時間です。</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-6 justify-center items-stretch">
+                <!-- 悩む -->
+                <div
+                    class="flex-1 bg-white/50 p-8 rounded-3xl border border-border flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-6">
+                        <i data-lucide="loader" class="w-10 h-10 text-gray-400 animate-spin-slow"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3 text-gray-500">悩む</h3>
+                    <p class="text-gray-600 mb-6 flex-1">「答えが出ない」という前提で、<br>頭の中で堂々巡りしている状態。</p>
+                    <div class="px-4 py-2 bg-gray-100 text-gray-500 rounded-full text-sm font-bold w-full">仕事では NG ❌
+                    </div>
+                </div>
+
+                <!-- 考える -->
+                <div
+                    class="flex-1 bg-white p-8 rounded-3xl border-2 border-accent flex flex-col items-center text-center shadow-lg relative transform md:-translate-y-4">
+                    <div
+                        class="absolute -top-4 -right-4 bg-accent text-white w-12 h-12 rounded-full flex items-center justify-center font-bold shadow-md transform rotate-12">
+                        OK!
+                    </div>
+                    <div
+                        class="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mb-6 animate-float">
+                        <i data-lucide="lightbulb" class="w-10 h-10 text-accent"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3 text-accent">考える</h3>
+                    <p class="text-text mb-6 flex-1">「答えが出る」という前提で、<br>建設的に物事を組み立てる状態。</p>
+                    <div class="px-4 py-2 bg-accent text-white rounded-full text-sm font-bold w-full shadow-sm">プロの仕事 ✨
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 1: バリュー・マトリクス -->
+        <section class="mb-24">
+            <div class="mb-2 text-accent font-bold tracking-widest text-sm">CHAPTER 01</div>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6">「バリューのある仕事」とは何か？</h2>
+            <p class="mb-10 text-lg">
+                世の中の仕事の価値（バリュー）は、<span class="marker-accent">「イシュー度」</span>と<span
+                    class="marker-accent">「解の質」</span>の2つの軸で決まります。<br>
+                多くの人が陥りがちなのが、とにかく作業量をこなす<strong class="text-sub">「犬の道」</strong>です。
+            </p>
+
+            <div class="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-border">
+                <!-- SVG Matrix -->
+                <svg viewBox="0 0 600 550" class="w-full h-auto drop-shadow-sm font-sans">
+                    <defs>
+                        <marker id="arrow-axis" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6"
+                            orient="auto-start-reverse">
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#4A4036" />
+                        </marker>
+                        <marker id="arrow-dog" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5"
+                            orient="auto-start-reverse">
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#81B29A" />
+                        </marker>
+                        <marker id="arrow-correct" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5"
+                            markerHeight="5" orient="auto-start-reverse">
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#E07A5F" />
+                        </marker>
+                    </defs>
+
+                    <!-- 象限の背景 -->
+                    <!-- 左下 (低・低) -->
+                    <rect x="100" y="275" width="220" height="220" fill="#FDFBF7" />
+                    <!-- 右下 (高・低) -->
+                    <rect x="320" y="275" width="220" height="220" fill="#F4A261" fill-opacity="0.15" />
+                    <!-- 左上 (低・高) -->
+                    <rect x="100" y="55" width="220" height="220" fill="#81B29A" fill-opacity="0.1" />
+                    <!-- 右上 (高・高) = バリューのある仕事 -->
+                    <rect x="320" y="55" width="220" height="220" fill="#E07A5F" fill-opacity="0.15" rx="8" />
+                    <rect x="320" y="55" width="220" height="220" fill="none" stroke="#E07A5F" stroke-width="3"
+                        stroke-dasharray="8,4" rx="8" />
+
+                    <!-- 右上のテキスト -->
+                    <text x="430" y="150" fill="#E07A5F" font-size="22" font-weight="bold"
+                        text-anchor="middle">バリューのある仕事</text>
+                    <text x="430" y="180" fill="#E07A5F" font-size="14" text-anchor="middle">（本当に価値を生む領域）</text>
+
+                    <!-- 補助線 (十字) -->
+                    <line x1="100" y1="275" x2="540" y2="275" stroke="#4A4036" stroke-width="1" stroke-dasharray="4,4"
+                        opacity="0.3" />
+                    <line x1="320" y1="495" x2="320" y2="55" stroke="#4A4036" stroke-width="1" stroke-dasharray="4,4"
+                        opacity="0.3" />
+
+                    <!-- 軸 (左下原点) -->
+                    <!-- X軸 (イシュー度) -->
+                    <line x1="100" y1="495" x2="570" y2="495" stroke="#4A4036" stroke-width="2"
+                        marker-end="url(#arrow-axis)" />
+                    <!-- Y軸 (解の質) -->
+                    <line x1="100" y1="495" x2="100" y2="25" stroke="#4A4036" stroke-width="2"
+                        marker-end="url(#arrow-axis)" />
+
+                    <!-- 軸ラベル -->
+                    <text x="335" y="525" fill="#4A4036" font-size="18" font-weight="bold"
+                        text-anchor="middle">イシュー度</text>
+                    <text x="335" y="545" fill="#666" font-size="13" text-anchor="middle">（課題の重要性・答える必要性）</text>
+
+                    <text x="75" y="275" fill="#4A4036" font-size="18" font-weight="bold" text-anchor="middle"
+                        style="writing-mode: vertical-rl;">解の質</text>
+                    <text x="50" y="275" fill="#666" font-size="13" text-anchor="middle"
+                        style="writing-mode: vertical-rl;">（答えの明確さ）</text>
+
+                    <!-- 高低ラベル -->
+                    <text x="85" y="515" fill="#666" font-size="14" font-weight="bold" text-anchor="end">低</text>
+                    <text x="540" y="515" fill="#666" font-size="14" font-weight="bold" text-anchor="middle">高</text>
+                    <text x="85" y="65" fill="#666" font-size="14" font-weight="bold" text-anchor="end">高</text>
+
+                    <!-- 犬の道 (NGルート) -->
+                    <path d="M 120 475 C 120 150, 200 80, 290 80" fill="none" stroke="#81B29A" stroke-width="5"
+                        stroke-dasharray="8,6" marker-end="url(#arrow-dog)" />
+                    <text x="160" y="220" fill="#81B29A" font-size="18" font-weight="bold"
+                        transform="rotate(-40, 160, 220)">❌ 疲弊する「犬の道」</text>
+                    <text x="165" y="245" fill="#81B29A" font-size="13"
+                        transform="rotate(-40, 165, 245)">（とにかく作業量でカバーしようとする）</text>
+
+                    <!-- 正しい道 (OKルート) -->
+                    <!-- STEP 1 -->
+                    <path d="M 120 475 L 430 475 L 430 300" fill="none" stroke="#E07A5F" stroke-width="5"
+                        stroke-linejoin="round" marker-end="url(#arrow-correct)" />
+                    <circle cx="120" cy="475" r="8" fill="#4A4036" />
+                    <text x="140" y="460" fill="#E07A5F" font-size="16" font-weight="bold">① イシューを見極める</text>
+                    <!-- STEP 2 -->
+                    <text x="445" y="380" fill="#E07A5F" font-size="16" font-weight="bold">
+                        <tspan x="445" dy="22">② 解の質を上げる</tspan>
+                    </text>
+                </svg>
+
+                <div class="mt-8 bg-accent/5 p-6 rounded-2xl border border-accent/20 text-center">
+                    <p class="font-bold text-accent text-lg mb-2">💡 一番大切なルール</p>
+                    <p>
+                        問題にぶつかった時、いきなり手を動かして「解の質」を上げようとしてはいけません。<br>
+                        まずは<strong class="marker-yellow">「これは本当に今、答えを出すべき問題か？（＝イシュー度）」</strong>を見極めることからはじめます。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 2: 良いイシューの3条件 -->
+        <section class="mb-24">
+            <div class="mb-2 text-accent font-bold tracking-widest text-sm">CHAPTER 02</div>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6">良い「イシュー」を見極める</h2>
+            <p class="mb-10 text-lg">
+                世の中で「問題だ」と言われていることのほとんどは、実は解く必要のない問題です。<br>
+                本当に取り組むべき「良いイシュー」には、以下の**3つの条件**が揃っています。
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 条件1 -->
+                <div class="glass-card p-8 rounded-3xl relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 right-0 w-24 h-24 bg-accentLight/20 rounded-bl-full transition-transform group-hover:scale-110">
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 border border-border">
+                        <i data-lucide="compass" class="w-7 h-7 text-accent"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">1. 本質的である</h3>
+                    <p class="text-text/80 text-sm">
+                        その問題に答えが出たとき、そこから先の方向性や行動が**大きく変わる**かどうか。影響力のない問題は後回しです。
+                    </p>
+                </div>
+
+                <!-- 条件2 -->
+                <div class="glass-card p-8 rounded-3xl relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 right-0 w-24 h-24 bg-sub/20 rounded-bl-full transition-transform group-hover:scale-110">
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 border border-border">
+                        <i data-lucide="search" class="w-7 h-7 text-sub"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">2. 深い仮説がある</h3>
+                    <p class="text-text/80 text-sm">
+                        「えっ、本当にそうなの？」と誰もが驚くような、**常識を覆す洞察**や、新しい構造での説明が含まれているか。
+                    </p>
+                </div>
+
+                <!-- 条件3 -->
+                <div class="glass-card p-8 rounded-3xl relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 right-0 w-24 h-24 bg-yellow/30 rounded-bl-full transition-transform group-hover:scale-110">
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 border border-border">
+                        <i data-lucide="check-circle" class="w-7 h-7 text-yellow-600"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">3. 答えを出せる</h3>
+                    <p class="text-text/80 text-sm">
+                        どんなに重要でも、今の自分たちの知識や技術、リソースで**明確な答えが出せない**問題は、良いイシューとは呼べません。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 3: 仮説ドリブン（分解と絵コンテ） -->
+        <section class="mb-24">
+            <div class="mb-2 text-accent font-bold tracking-widest text-sm">CHAPTER 03</div>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6">イシューを分解し、物語を作る</h2>
+            <p class="mb-10 text-lg">
+                大きな問題は、そのままでは解けません。<br>
+                答えを出せるサイズ（サブイシュー）に<strong class="marker-yellow">「分解」</strong>し、人に伝えるための<strong
+                    class="marker-yellow">「ストーリー」</strong>を組み立てます。
+            </p>
+
+            <div class="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-border mb-12">
+                <h3 class="font-bold text-xl mb-8 text-center flex items-center justify-center gap-2">
+                    <i data-lucide="git-merge" class="w-6 h-6 text-sub transform -rotate-90"></i>
+                    イシューの分解ツリー
+                </h3>
+
+                <!-- ツリー構造の図解 (HTML/CSS) -->
+                <div class="relative flex flex-col items-center">
+                    <!-- メイン -->
+                    <div
+                        class="bg-accent text-white px-8 py-4 rounded-2xl font-bold shadow-md z-10 text-center w-full md:w-auto">
+                        <div class="text-lg">メインイシュー</div>
+                        <div class="text-sm font-normal opacity-90 mt-1">例：なぜ最近、店舗の売上が落ちているのか？</div>
+                    </div>
+
+                    <!-- 線（縦） -->
+                    <div class="w-1 h-8 md:h-12 bg-border"></div>
+                    <!-- 線（横） -->
+                    <div class="w-[85%] md:w-[60%] h-1 bg-border"></div>
+                    <!-- 線（縦分岐） -->
+                    <div class="flex justify-between w-[85%] md:w-[60%]">
+                        <div class="w-1 h-6 md:h-8 bg-border"></div>
+                        <div class="w-1 h-6 md:h-8 bg-border"></div>
+                    </div>
+
+                    <!-- サブ -->
+                    <div class="flex flex-col md:flex-row justify-between w-full md:w-[80%] gap-4 md:gap-8">
+                        <div
+                            class="flex-1 bg-bg border-2 border-border p-5 rounded-2xl text-center shadow-sm relative hover:border-sub transition-colors">
+                            <div class="text-sub font-bold mb-2">サブイシュー A</div>
+                            <div class="text-sm font-medium">客数が減っているからか？</div>
+                        </div>
+                        <div
+                            class="flex-1 bg-bg border-2 border-border p-5 rounded-2xl text-center shadow-sm relative hover:border-sub transition-colors">
+                            <div class="text-sub font-bold mb-2">サブイシュー B</div>
+                            <div class="text-sm font-medium">客単価が下がっているからか？</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 絵コンテ -->
+            <div class="flex flex-col md:flex-row items-center gap-8 glass-card p-8 rounded-3xl">
+                <div class="w-24 h-24 flex-shrink-0 bg-yellow/20 rounded-full flex items-center justify-center">
+                    <i data-lucide="layout-template" class="w-12 h-12 text-yellow-600"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-xl mb-2">「絵コンテ」でストーリーを視覚化する</h3>
+                    <p class="text-text/80">
+                        分解したイシューに沿って、「どんな分析結果があれば、相手が納得するか」を**前倒しで**考えます。<br>
+                        映画の絵コンテを作るように、プレゼン資料の空枠（ダミーのグラフや見出し）を先に作ってしまうのがコツです。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 4: アウトプット＆メッセージ -->
+        <section class="mb-24">
+            <div class="mb-2 text-accent font-bold tracking-widest text-sm">CHAPTER 04</div>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6">分析し、シンプルに伝える</h2>
+            <p class="mb-10 text-lg">
+                イシューとストーリーが決まったら、いよいよ実際のデータを集めて分析します。<br>
+                ここで重要なのは、最終的に伝えるメッセージは<strong class="marker-accent">「1チャート・1メッセージ」</strong>を徹底することです。
+            </p>
+
+            <!-- 1チャート1メッセージの図解 -->
+            <div class="bg-gray-50 p-6 md:p-10 rounded-3xl border border-gray-200">
+                <div class="flex flex-col md:flex-row gap-8 items-center justify-center">
+
+                    <!-- NG例 -->
+                    <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm w-full md:w-64 opacity-70">
+                        <div class="text-center font-bold text-gray-400 mb-3 border-b border-gray-100 pb-2">最近の売上動向（NG）
+                        </div>
+                        <!-- ダミーグラフ -->
+                        <div class="h-32 bg-gray-50 rounded flex items-end justify-around p-3 gap-2">
+                            <div class="w-full bg-gray-300 h-[30%] rounded-t-sm"></div>
+                            <div class="w-full bg-gray-300 h-[50%] rounded-t-sm"></div>
+                            <div class="w-full bg-gray-300 h-[70%] rounded-t-sm"></div>
+                            <div class="w-full bg-gray-300 h-[100%] rounded-t-sm"></div>
+                        </div>
+                        <div class="text-center text-xs mt-3 text-gray-400 font-medium">
+                            グラフがあるだけで、<br>何を言いたいか分からない…
+                        </div>
+                    </div>
+
+                    <i data-lucide="arrow-right" class="w-8 h-8 text-gray-300 hidden md:block"></i>
+                    <i data-lucide="arrow-down" class="w-8 h-8 text-gray-300 md:hidden"></i>
+
+                    <!-- OK例 -->
+                    <div
+                        class="bg-white p-5 rounded-2xl border-2 border-accent shadow-lg w-full md:w-64 relative transform md:scale-105">
+                        <div
+                            class="absolute -top-3 -right-3 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                            理想形
+                        </div>
+                        <div class="text-center font-bold text-text mb-3 border-b border-gray-100 pb-2">
+                            新商品の投入で<br>売上が<span class="text-accent">急増</span>している！
+                        </div>
+                        <!-- ダミーグラフ -->
+                        <div class="h-32 bg-orange-50/50 rounded flex items-end justify-around p-3 gap-2">
+                            <div class="w-full bg-accentLight/50 h-[30%] rounded-t-sm"></div>
+                            <div class="w-full bg-accentLight/50 h-[50%] rounded-t-sm"></div>
+                            <div class="w-full bg-accentLight/50 h-[70%] rounded-t-sm"></div>
+                            <div class="w-full bg-accent h-[100%] rounded-t-sm relative">
+                                <div
+                                    class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-accent whitespace-nowrap bg-white px-1 rounded">
+                                    新商品</div>
+                            </div>
+                        </div>
+                        <div class="text-center text-xs mt-3 text-text font-medium">
+                            一番伝えたいメッセージが<br>パッと見て一瞬で伝わる！
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion: まとめ -->
+        <section class="bg-accent text-white p-8 md:p-12 rounded-[2rem] shadow-xl relative overflow-hidden">
+            <!-- 背景の装飾 -->
+            <div
+                class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full transform translate-x-1/3 -translate-y-1/3">
+            </div>
+            <div
+                class="absolute bottom-0 left-0 w-40 h-40 bg-black opacity-5 rounded-full transform -translate-x-1/3 translate-y-1/3">
+            </div>
+
+            <div class="relative z-10">
+                <h2 class="font-serif text-3xl font-bold mb-8 text-center">今日からできる 3つのアクション</h2>
+
+                <ul class="space-y-4 max-w-2xl mx-auto">
+                    <li
+                        class="flex items-start gap-4 bg-white/10 p-5 rounded-2xl backdrop-blur-sm border border-white/20">
+                        <div
+                            class="w-8 h-8 bg-white text-accent rounded-full flex items-center justify-center font-bold flex-shrink-0 mt-0.5">
+                            1</div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">作業を始める前に立ち止まる</h4>
+                            <p class="text-white/80 text-sm">いきなり手を動かさず、「これは本当に今、答えを出すべき問題か？」と自分に問いかけましょう。</p>
+                        </div>
+                    </li>
+                    <li
+                        class="flex items-start gap-4 bg-white/10 p-5 rounded-2xl backdrop-blur-sm border border-white/20">
+                        <div
+                            class="w-8 h-8 bg-white text-accent rounded-full flex items-center justify-center font-bold flex-shrink-0 mt-0.5">
+                            2</div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">「仮説」を立ててから調べる</h4>
+                            <p class="text-white/80 text-sm">情報収集から始めるのではなく、「おそらくこうだろう」というスタンス（仮説）を持ってから必要な情報だけを集めます。
+                            </p>
+                        </div>
+                    </li>
+                    <li
+                        class="flex items-start gap-4 bg-white/10 p-5 rounded-2xl backdrop-blur-sm border border-white/20">
+                        <div
+                            class="w-8 h-8 bg-white text-accent rounded-full flex items-center justify-center font-bold flex-shrink-0 mt-0.5">
+                            3</div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">「悩む」のではなく「考える」</h4>
+                            <p class="text-white/80 text-sm">答えが出ないことでぐるぐる迷う時間はゼロに。答えを出すために建設的にプロセスを組み立てましょう。</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <footer class="text-center mt-20 text-sm text-text/50">
+            <p>※本ページは書籍『イシューからはじめよ（安宅和人 著）』の概念を図解化したものです。</p>
+        </footer>
+
+    </div>
+
+    <!-- Lucide Iconsの初期化 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+
+</html>
