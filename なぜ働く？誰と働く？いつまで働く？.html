@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図解：なぜ働く？誰と働く？いつまで働く？</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Zen Kaku Gothic New"', 'sans-serif'],
+                    },
+                    colors: {
+                        bgbase: '#FDFBF7',
+                        paper: '#F5EFE6',
+                        ink: '#4A3B32',
+                        inklight: '#7A6B62',
+                        terracotta: '#DE7C5A',
+                        terracottalight: '#F4B9A7',
+                        sun: '#E9C46A',
+                        leaf: '#2A9D8F',
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(74, 59, 50, 0.08)',
+                        'inner-soft': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-feature-settings: "palt";
+        }
+
+        .bg-warm-gradient {
+            background: linear-gradient(135deg, #FDFBF7 0%, #F5EFE6 100%);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* メーターの目盛り用 */
+        .gauge-ticks {
+            background-image: linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, 0.1) 95%);
+            background-size: 10% 100%;
+        }
+
+        /* 日本語の縦書き表示用（ジョハリの窓レイアウト崩れ対策） */
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+
+<body class="bg-bgbase text-ink leading-relaxed tracking-wide antialiased">
+
+    <!-- ==========================================
+         ヒーローセクション（トップ）
+    =========================================== -->
+    <header class="bg-warm-gradient pt-24 pb-20 px-6 relative overflow-hidden">
+        <div class="absolute top-[-10%] right-[-5%] w-64 h-64 bg-terracottalight rounded-full opacity-30 blur-3xl">
+        </div>
+        <div class="absolute bottom-[-10%] left-[-10%] w-80 h-80 bg-sun rounded-full opacity-20 blur-3xl"></div>
+
+        <div class="max-w-3xl mx-auto text-center relative z-10">
+            <span
+                class="inline-block py-2 px-5 rounded-full bg-white text-terracotta text-sm md:text-base font-bold tracking-widest mb-6 shadow-sm border border-terracottalight border-opacity-30">
+                限られた人生で後悔ない仕事をするための20の心得
+            </span>
+            <h1 class="text-4xl md:text-5xl font-black mb-6 leading-tight">
+                なぜ働く？<br class="md:hidden"> 誰と働く？<br class="md:hidden"> いつまで働く？
+            </h1>
+            <p class="text-inklight text-base md:text-lg mb-10 max-w-xl mx-auto font-medium">
+                「今の仕事に大きな不満はないけれど、心の底から満足もしていない…」<br>
+                そんなモヤモヤを抱えるあなたへ贈る、自分らしいキャリアを見つけるための図解ガイド。
+            </p>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         導入：モヤモヤの正体（二要因理論）
+    =========================================== -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-ink mb-4">なぜ「モヤモヤ」するの？</h2>
+                <p class="text-inklight text-base md:text-lg">「不満がない」ことと「満足している」ことは全くの別物です。</p>
+            </div>
+
+            <div
+                class="bg-white rounded-3xl p-6 md:p-10 shadow-soft relative pt-12 md:pt-14 mt-8 border border-gray-100">
+                <div
+                    class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-terracotta text-white font-bold py-2 px-8 rounded-full text-base shadow-md whitespace-nowrap">
+                    ハーズバーグの二要因理論
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mt-4">
+                    <!-- 衛生要因 -->
+                    <div class="bg-paper p-8 rounded-2xl flex flex-col border border-gray-200">
+                        <div class="flex items-center justify-center gap-2 mb-2">
+                            <span class="text-3xl">📉</span>
+                            <h3 class="font-bold text-xl text-ink">衛生要因<span class="text-base font-normal">（不満の種）</span>
+                            </h3>
+                        </div>
+                        <p class="text-base text-inklight mb-8 text-center">給与、福利厚生、働く環境など</p>
+
+                        <!-- 直感的な図解：マイナスからゼロへのゲージ -->
+                        <div class="mb-4 bg-white p-4 rounded-xl shadow-sm">
+                            <div class="flex justify-between text-xs md:text-sm font-bold text-inklight mb-2">
+                                <span class="text-red-500">マイナス（大不満）</span>
+                                <span class="text-ink">ゼロ（普通）</span>
+                            </div>
+                            <!-- メーター本体 -->
+                            <div class="flex h-8 rounded-full overflow-hidden bg-gray-100 shadow-inner-soft relative">
+                                <div class="absolute inset-0 gauge-ticks opacity-30"></div>
+                                <div class="w-full bg-gray-200 relative border-r-4 border-ink">
+                                    <div
+                                        class="absolute right-0 top-0 h-full w-3/4 bg-leaf bg-opacity-80 rounded-l-full flex items-center justify-end pr-3 text-white text-xs font-bold shadow-md">
+                                        改善！➔
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-auto pt-4 text-center">
+                            <p
+                                class="font-bold text-leaf text-base md:text-lg mb-3 bg-white inline-block px-4 py-2 rounded-lg border border-leaf border-opacity-30">
+                                満たされても「不満がゼロ」になるだけ
+                            </p>
+                            <div class="text-5xl mt-2">😐</div>
+                        </div>
+                    </div>
+
+                    <!-- 動機付け要因 -->
+                    <div
+                        class="bg-terracottalight bg-opacity-10 p-8 rounded-2xl flex flex-col border-2 border-terracotta border-dashed relative overflow-hidden">
+                        <div
+                            class="absolute -right-4 -top-4 w-24 h-24 bg-terracottalight rounded-full opacity-20 blur-xl">
+                        </div>
+
+                        <div class="flex items-center justify-center gap-2 mb-2 relative z-10">
+                            <span class="text-3xl text-terracotta">🔥</span>
+                            <h3 class="font-bold text-xl text-terracotta">動機付け要因<span
+                                    class="text-base font-normal">（やる気の源）</span></h3>
+                        </div>
+                        <p class="text-base text-inklight mb-8 text-center relative z-10">達成感、承認、自己成長など</p>
+
+                        <!-- 直感的な図解：ゼロからプラスへのゲージ -->
+                        <div class="mb-4 bg-white p-4 rounded-xl shadow-sm relative z-10">
+                            <div class="flex justify-between text-xs md:text-sm font-bold text-inklight mb-2">
+                                <span class="text-ink">ゼロ（普通）</span>
+                                <span class="text-terracotta">プラス（大満足！）</span>
+                            </div>
+                            <!-- メーター本体 -->
+                            <div class="flex h-8 rounded-full overflow-hidden bg-gray-100 shadow-inner-soft relative">
+                                <div class="absolute inset-0 gauge-ticks opacity-30"></div>
+                                <div class="w-full bg-gray-100 relative border-l-4 border-ink">
+                                    <div
+                                        class="absolute left-0 top-0 h-full w-1/4 bg-terracotta rounded-r-full flex items-center justify-start pl-3 text-white text-xs font-bold shadow-md">
+                                        不足…
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-auto pt-4 text-center relative z-10">
+                            <p
+                                class="font-bold text-terracotta text-base md:text-lg mb-3 bg-white inline-block px-4 py-2 rounded-lg border border-terracotta border-opacity-30 shadow-sm">
+                                ここが空っぽだと「満足」できない！
+                            </p>
+                            <div class="text-5xl animate-bounce mt-2">🤔</div>
+                        </div>
+                    </div>
+                </div>
+
+                <p
+                    class="mt-10 text-center text-ink text-base md:text-lg bg-paper p-6 rounded-2xl font-medium leading-loose">
+                    条件（何を・どこで）ばかりを追う「やりたいこと探し」は迷走の元。<br>
+                    あなただけの<strong
+                        class="text-terracotta text-xl bg-yellow-100 px-2 rounded border border-yellow-300">「やる気の源」</strong>を見つける必要があります。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         パラダイムシフト：プロティアン・キャリア
+    =========================================== -->
+    <section class="py-20 px-6 bg-paper">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-14">
+                <h2 class="text-2xl md:text-3xl font-bold text-ink mb-4">キャリアの「軸」を変えよう</h2>
+                <p class="text-inklight text-base md:text-lg">変幻自在に生きる「プロティアン・キャリア」へのシフト</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-stretch justify-center gap-6">
+                <!-- 古い軸（固い、会社依存のイメージ） -->
+                <div
+                    class="bg-bgbase p-8 md:p-10 rounded-3xl shadow-sm text-center w-full md:w-5/12 border border-gray-300 flex flex-col justify-center opacity-80">
+                    <div class="inline-block bg-gray-500 text-white text-sm font-bold py-1 px-4 rounded mb-6 mx-auto">
+                        これまでの軸（固定）
+                    </div>
+
+                    <div class="text-4xl mb-4 text-gray-400">🏢</div>
+
+                    <div class="text-xl md:text-2xl font-bold mb-6 text-gray-500 space-y-4">
+                        <p class="bg-gray-100 py-2 rounded">「<span class="text-ink">何を</span>」する？</p>
+                        <p class="bg-gray-100 py-2 rounded">「<span class="text-ink">どこで</span>」働く？</p>
+                    </div>
+                    <div class="mt-auto">
+                        <p class="text-sm md:text-base text-gray-500 font-medium leading-relaxed">
+                            職種や会社名など<br>
+                            <span class="text-xs">（外的要因に依存・変化に弱い）</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 矢印 -->
+                <div class="flex items-center justify-center py-4">
+                    <div
+                        class="bg-terracotta text-white p-4 rounded-full shadow-md transform rotate-90 md:rotate-0 animate-pulse">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14" />
+                            <path d="m12 5 7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- 新しい軸（柔軟、自分起点のイメージ） -->
+                <div
+                    class="bg-white p-8 md:p-10 rounded-3xl shadow-soft text-center w-full md:w-7/12 border-4 border-terracotta relative overflow-hidden flex flex-col justify-center">
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-sun rounded-full opacity-20"></div>
+                    <div class="absolute -left-10 -bottom-10 w-24 h-24 bg-terracottalight rounded-full opacity-20">
+                    </div>
+
+                    <div
+                        class="inline-block bg-terracotta text-white text-sm md:text-base font-black py-1 px-6 rounded-full mb-6 mx-auto relative z-10 shadow-sm">
+                        これからの軸（変幻自在）
+                    </div>
+
+                    <div class="text-4xl mb-4 relative z-10">🧭</div>
+
+                    <div class="text-2xl md:text-3xl font-black mb-6 text-ink space-y-4 relative z-10">
+                        <p class="border-b-2 border-terracottalight pb-1">「なぜ」働く？</p>
+                        <p class="border-b-2 border-terracottalight pb-1">「誰と」働く？</p>
+                        <p class="border-b-2 border-terracottalight pb-1">「いつまで」働く？</p>
+                    </div>
+                    <div class="bg-sun bg-opacity-20 p-4 rounded-xl mt-auto relative z-10 border border-sun">
+                        <p class="text-sm md:text-base text-ink font-bold leading-relaxed">
+                            自分自身の納得感<br>
+                            <span class="text-xs text-inklight font-normal">（内なる動機・変化に強く変幻自在）</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         STEP1: 言語化（なぜ働く？）
+    =========================================== -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-4 mb-8">
+                <div
+                    class="w-14 h-14 shrink-0 rounded-full bg-terracotta text-white flex items-center justify-center text-2xl font-black shadow-md">
+                    1</div>
+                <div>
+                    <h2 class="text-2xl md:text-4xl font-bold text-ink mb-1">言語化<span
+                            class="text-lg md:text-2xl font-normal text-inklight ml-2">（自分のストーリーを語る）</span></h2>
+                    <p
+                        class="text-terracotta font-bold text-lg bg-terracottalight bg-opacity-20 inline-block px-3 py-1 rounded mt-2">
+                        【問い】何のために働くのか？</p>
+                </div>
+            </div>
+
+            <p
+                class="text-base md:text-lg text-inklight mb-10 leading-relaxed bg-paper p-6 rounded-2xl border-l-4 border-terracotta">
+                「稼ぐため」の奥にある、深い動機（誰の役に立ちたいかなど）を言葉にしましょう。自己理解を深め、新しいチャンスを呼ぶには<strong
+                    class="text-ink text-xl border-b-2 border-ink">「自己開示」</strong>が鍵です。
+            </p>
+
+            <!-- 図解：ジョハリの窓（レイアウト崩れ対策済みの強固なCSS Grid設計） -->
+            <div class="bg-white shadow-soft rounded-3xl p-6 md:p-12 border border-gray-100 relative mt-16">
+                <div
+                    class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-ink text-white font-bold py-2 px-6 md:px-8 rounded-full text-sm md:text-base shadow-md whitespace-nowrap z-10">
+                    ジョハリの窓を使って「未知の自分」に出会う
+                </div>
+
+                <div class="max-w-2xl mx-auto mt-8 relative">
+                    <!-- 強固なグリッドレイアウト：左ラベルと上ラベルが各セルと確実に揃う -->
+                    <div class="grid grid-cols-[auto_1fr_1fr] gap-x-2 gap-y-2 md:gap-x-4 md:gap-y-4">
+
+                        <!-- 1行目：上部ラベル -->
+                        <div></div> <!-- 左上の空白セル -->
+                        <div class="text-center text-xs md:text-sm font-bold text-inklight self-end pb-1 md:pb-2">
+                            他人は<br class="md:hidden"><span class="text-ink">知っている</span>
+                        </div>
+                        <div class="text-center text-xs md:text-sm font-bold text-inklight self-end pb-1 md:pb-2">
+                            他人は<br class="md:hidden"><span class="text-gray-400">知らない</span>
+                        </div>
+
+                        <!-- 2行目：左ラベル「知っている」 ＋ 開放の窓 ＋ 秘密の窓 -->
+                        <div
+                            class="vertical-text flex items-center justify-center text-xs md:text-sm font-bold text-inklight bg-gray-50 rounded px-1 md:px-2">
+                            自分は<span class="text-ink mt-2">知っている</span>
+                        </div>
+
+                        <!-- 開放の窓 -->
+                        <div
+                            class="bg-terracottalight bg-opacity-40 p-4 md:p-6 rounded-tl-2xl flex flex-col items-center justify-center text-center shadow-inner-soft relative group overflow-hidden border-2 border-terracotta h-full">
+                            <span class="text-2xl md:text-3xl mb-1">🔓</span>
+                            <span class="font-black text-lg md:text-xl text-ink mb-2 relative z-10">開放の窓</span>
+                            <div class="bg-white bg-opacity-90 p-2 rounded w-full shadow-sm mb-4">
+                                <span
+                                    class="text-xs md:text-sm text-ink font-bold leading-tight">自分も知っている<br>他人も知っている</span>
+                            </div>
+                            <div
+                                class="absolute -bottom-3 -right-3 text-terracotta text-5xl animate-pulse transform rotate-45 opacity-50">
+                                ➔</div>
+                            <div
+                                class="absolute top-1 left-1 bg-white text-terracotta text-[10px] md:text-xs font-bold py-1 px-2 rounded-full shadow-md border border-terracotta z-20 whitespace-nowrap">
+                                自己開示で広げる！
+                            </div>
+                        </div>
+
+                        <!-- 秘密の窓 -->
+                        <div
+                            class="bg-paper p-4 md:p-6 rounded-tr-2xl flex flex-col items-center justify-center text-center border border-gray-300 relative h-full">
+                            <span class="text-2xl md:text-3xl mb-1 opacity-80">🤫</span>
+                            <span class="font-bold text-lg md:text-xl text-ink mb-2">秘密の窓</span>
+                            <div class="bg-white p-2 rounded w-full mb-3 shadow-sm">
+                                <span class="text-xs md:text-sm text-inklight leading-tight"><strong
+                                        class="text-ink">自分は知っている</strong><br>他人は知らない</span>
+                            </div>
+                            <span
+                                class="text-[10px] md:text-xs font-bold text-white bg-terracotta px-2 py-1 rounded shadow-sm relative z-20 w-full">自己開示する
+                                ←</span>
+                        </div>
+
+                        <!-- 3行目：左ラベル「知らない」 ＋ 盲点の窓 ＋ 未知の窓 -->
+                        <div
+                            class="vertical-text flex items-center justify-center text-xs md:text-sm font-bold text-inklight bg-gray-50 rounded px-1 md:px-2">
+                            自分は<span class="text-gray-400 mt-2">知らない</span>
+                        </div>
+
+                        <!-- 盲点の窓 -->
+                        <div
+                            class="bg-paper p-4 md:p-6 rounded-bl-2xl flex flex-col items-center justify-center text-center border border-gray-300 relative h-full">
+                            <span class="text-2xl md:text-3xl mb-1 opacity-80">👀</span>
+                            <span class="font-bold text-lg md:text-xl text-ink mb-2">盲点の窓</span>
+                            <div class="bg-white p-2 rounded w-full mb-3 shadow-sm">
+                                <span class="text-xs md:text-sm text-inklight leading-tight">自分は知らない<br><strong
+                                        class="text-ink">他人は知っている</strong></span>
+                            </div>
+                            <span
+                                class="text-[10px] md:text-xs font-bold text-white bg-terracotta px-2 py-1 rounded shadow-sm relative z-20 w-full">↑
+                                フィードバックをもらう</span>
+                        </div>
+
+                        <!-- 未知の窓 -->
+                        <div
+                            class="bg-ink p-4 md:p-6 rounded-br-2xl flex flex-col items-center justify-center text-center text-white relative overflow-hidden h-full">
+                            <div
+                                class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-ink to-ink opacity-50">
+                            </div>
+                            <span class="text-2xl md:text-3xl mb-1 relative z-10">🌌</span>
+                            <span class="font-bold text-lg md:text-xl mb-2 relative z-10">未知の窓</span>
+                            <div class="bg-black bg-opacity-40 p-2 rounded w-full relative z-10 mt-auto">
+                                <span class="text-xs md:text-sm opacity-90 leading-tight">自分も知らない<br>他人も知らない</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         STEP2: 価値化（誰と働く？）
+    =========================================== -->
+    <section class="py-20 px-6 bg-paper relative">
+        <div
+            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-sun to-transparent opacity-50">
+        </div>
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-4 mb-8">
+                <div
+                    class="w-14 h-14 shrink-0 rounded-full bg-sun text-ink flex items-center justify-center text-2xl font-black shadow-md">
+                    2</div>
+                <div>
+                    <h2 class="text-2xl md:text-4xl font-bold text-ink mb-1">価値化<span
+                            class="text-lg md:text-2xl font-normal text-inklight ml-2">（自分の武器を見つける）</span></h2>
+                    <p class="text-ink font-bold text-lg bg-sun bg-opacity-30 inline-block px-3 py-1 rounded mt-2">
+                        【問い】誰と一緒に働くか？</p>
+                </div>
+            </div>
+
+            <p
+                class="text-base md:text-lg text-inklight mb-10 leading-relaxed bg-white p-6 rounded-2xl shadow-sm border-l-4 border-sun">
+                スキル単体で勝負しようとすると自信をなくしがちです。長所も短所もただの「特徴」。<br>
+                他人と<strong class="text-ink">「比べる」</strong>のではなく<strong
+                    class="text-ink text-xl bg-yellow-100 px-1 border-b border-yellow-400">「並べてみる」</strong>ことで、あなただけの価値が見えてきます。
+            </p>
+
+            <!-- 図解：比べる vs 並べる（レイアウト崩れ対策済） -->
+            <div class="flex flex-col lg:flex-row gap-8 justify-center items-stretch mt-12">
+
+                <!-- ✕ 比べる（縦のヒエラルキー／重ならない階段状） -->
+                <div
+                    class="flex-1 bg-bgbase p-8 md:p-10 rounded-3xl opacity-90 flex flex-col items-center border border-gray-300">
+                    <div
+                        class="text-inklight font-bold text-xl mb-10 flex items-center gap-3 bg-white px-6 py-2 rounded-full shadow-card">
+                        <span
+                            class="text-xl bg-gray-200 text-gray-500 rounded-full w-8 h-8 flex items-center justify-center">✕</span>
+                        他人と「比べる」
+                    </div>
+
+                    <!-- 階段状のヒエラルキー図解（シンプルに縦に並べて重なり・潰れを防止） -->
+                    <div class="w-full max-w-[240px] flex flex-col items-center gap-1 mt-4">
+                        <!-- 1位 -->
+                        <div
+                            class="w-2/3 bg-gray-300 py-4 rounded-t-lg text-center shadow-sm flex flex-col items-center justify-center">
+                            <span class="text-xl md:text-2xl mb-1">🥇</span>
+                            <span class="font-bold text-white text-sm md:text-base leading-tight">優秀なAさん</span>
+                        </div>
+                        <!-- 2位 -->
+                        <div
+                            class="w-full bg-gray-400 py-5 rounded text-center shadow-md flex flex-col items-center justify-center relative z-10">
+                            <span class="text-lg md:text-xl mb-1">😢</span>
+                            <span class="font-bold text-white text-sm md:text-base leading-tight">自分</span>
+                        </div>
+                        <!-- 3位 -->
+                        <div
+                            class="w-5/6 bg-gray-200 py-4 rounded-b-lg text-center shadow-inner-soft flex flex-col items-center justify-center">
+                            <span class="font-bold text-gray-500 text-sm md:text-base">Bさん</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-auto pt-10 w-full">
+                        <p
+                            class="text-base md:text-lg text-inklight text-center bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                            上か下かで優劣をつけると、<br>疲弊し自信を失ってしまう…
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ○ 並べる（横の連結／中身に合わせて伸びるブロック） -->
+                <div
+                    class="flex-1 bg-white p-6 md:p-10 rounded-3xl shadow-soft flex flex-col items-center border-4 border-sun relative overflow-hidden">
+                    <div class="absolute -right-16 -top-16 w-40 h-40 bg-sun rounded-full opacity-10 blur-2xl"></div>
+
+                    <div
+                        class="text-ink font-bold text-xl mb-10 flex items-center gap-3 bg-sun bg-opacity-20 px-6 py-2 rounded-full shadow-sm">
+                        <span
+                            class="text-xl bg-sun text-white rounded-full w-8 h-8 flex items-center justify-center font-black">○</span>
+                        並べてみる（横の関係）
+                    </div>
+
+                    <!-- ブロックの連結図解（高さ固定を廃止し、フレックスで柔軟に拡張） -->
+                    <div class="flex flex-row items-stretch justify-center w-full mt-4 relative">
+
+                        <!-- Aさんブロック -->
+                        <div
+                            class="bg-gray-100 w-1/3 py-4 rounded-l-xl flex flex-col items-center justify-center text-center shadow-sm border-2 border-white relative z-10">
+                            <span class="text-xl md:text-2xl mb-1">💻</span>
+                            <span class="text-xs md:text-sm font-bold text-gray-600 leading-tight">技術力<br><span
+                                    class="text-[10px] md:text-xs font-normal">Aさん</span></span>
+                        </div>
+
+                        <!-- 自分ブロック（横のマージンで重ねて連結感を見せる） -->
+                        <div
+                            class="bg-sun w-2/5 py-6 -mx-3 rounded-lg flex flex-col items-center justify-center text-center shadow-card border-4 border-white relative z-30 transform scale-105">
+                            <span class="text-2xl md:text-3xl mb-1">🤝</span>
+                            <span class="text-sm md:text-base font-black text-ink leading-tight">寄り添う力<br><span
+                                    class="text-xs md:text-sm font-bold">自分</span></span>
+                            <div
+                                class="absolute -top-3 -right-2 bg-white text-terracotta text-[10px] md:text-xs font-bold px-2 py-1 rounded-full shadow-md border border-sun whitespace-nowrap">
+                                価値!</div>
+                        </div>
+
+                        <!-- Bさんブロック -->
+                        <div
+                            class="bg-paper w-1/3 py-4 rounded-r-xl flex flex-col items-center justify-center text-center shadow-sm border-2 border-white relative z-10 pl-3">
+                            <span class="text-xl md:text-2xl mb-1">🏃‍♂️</span>
+                            <span class="text-xs md:text-sm font-bold text-inklight leading-tight">行動力<br><span
+                                    class="text-[10px] md:text-xs font-normal">Bさん</span></span>
+                        </div>
+
+                    </div>
+
+                    <!-- チームの土台（フラットな関係性） -->
+                    <div class="w-full bg-inklight h-2 rounded-full mt-8 opacity-20"></div>
+
+                    <div class="mt-auto pt-8 w-full relative z-10">
+                        <p
+                            class="text-base md:text-lg text-ink text-center bg-sun bg-opacity-10 p-5 rounded-xl border border-sun border-opacity-30 font-bold leading-relaxed shadow-sm">
+                            それぞれ違う「特徴」として捉え、<br>
+                            <span class="text-terracotta text-xl border-b-2 border-terracotta">補完し合える相手</span>を探す！
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         STEP3: 行動（いつまで働く？）
+    =========================================== -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-4 mb-8">
+                <div
+                    class="w-14 h-14 shrink-0 rounded-full bg-leaf text-white flex items-center justify-center text-2xl font-black shadow-md">
+                    3</div>
+                <div>
+                    <h2 class="text-2xl md:text-4xl font-bold text-ink mb-1">行動<span
+                            class="text-lg md:text-2xl font-normal text-inklight ml-2">（自分の可能性を広げる）</span></h2>
+                    <p class="text-leaf font-bold text-lg bg-leaf bg-opacity-10 inline-block px-3 py-1 rounded mt-2">
+                        【問い】いつまで働くか？</p>
+                </div>
+            </div>
+
+            <p
+                class="text-base md:text-lg text-inklight mb-10 leading-relaxed bg-paper p-6 rounded-2xl border-l-4 border-leaf">
+                会社の定年ではなく「自分定年」を意識し、残り時間から逆算してみましょう。<br>
+                そして、失敗を恐れて立ち止まるのではなく、<strong
+                    class="text-ink text-xl border-b-2 border-ink">「川下り型」</strong>で柔軟に動くことが重要です。
+            </p>
+
+            <!-- 図解：山登り vs 川下り -->
+            <div class="bg-white rounded-3xl p-6 md:p-12 shadow-soft border border-gray-100">
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+
+                    <!-- 山登り型 -->
+                    <div class="flex flex-col h-full">
+                        <div class="bg-gray-100 py-3 rounded-t-xl text-center border-b-2 border-gray-300 mb-4">
+                            <h3 class="font-bold text-ink text-lg">これまでの「山登り型」</h3>
+                        </div>
+
+                        <!-- 視覚化：険しい山と一直線（固定高さを廃止し、min-hで柔軟に対応） -->
+                        <div
+                            class="min-h-[14rem] bg-gray-50 rounded-xl relative overflow-hidden flex flex-col p-4 border border-gray-200 shadow-inner-soft mb-6">
+                            <!-- 険しい山（背景SVG） -->
+                            <div class="absolute inset-0 z-0 opacity-80 flex items-end justify-center pb-0">
+                                <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="w-full h-[85%]">
+                                    <polygon points="0,100 50,0 100,100" fill="#D1D5DB" />
+                                </svg>
+                            </div>
+                            <!-- 直線ルート（背景SVG） -->
+                            <div class="absolute inset-0 z-0">
+                                <svg viewBox="0 0 200 100" class="w-full h-full pointer-events-none"
+                                    preserveAspectRatio="none">
+                                    <path d="M40,90 L100,20" stroke="#7A6B62" stroke-width="2" stroke-dasharray="5,5"
+                                        fill="none" />
+                                    <text x="70" y="55" fill="red" font-size="20" font-weight="bold">×</text>
+                                </svg>
+                            </div>
+
+                            <!-- コンテンツをフロー配置（絶対配置を減らす） -->
+                            <div class="relative z-10 flex justify-center mt-2">
+                                <span class="text-3xl">🚩</span>
+                            </div>
+                            <div class="relative z-10 flex justify-start pl-8 mt-12 mb-4">
+                                <span class="text-2xl">🧗</span>
+                            </div>
+
+                            <div
+                                class="relative z-20 self-start bg-white bg-opacity-95 px-3 py-2 rounded-lg shadow-sm text-ink font-bold text-sm mt-auto border border-gray-200">
+                                頂上（明確なゴール）へ<br>一直線に進む
+                            </div>
+                        </div>
+
+                        <ul
+                            class="text-base text-inklight list-none space-y-3 bg-gray-50 p-5 rounded-xl flex-grow border border-gray-100">
+                            <li class="flex items-start gap-2"><span class="text-gray-400 mt-1">▶</span> 明確な目標（役職など）が必要
+                            </li>
+                            <li class="flex items-start gap-2"><span class="text-gray-400 mt-1">▶</span> 目標がないと動けない</li>
+                            <li class="flex items-start gap-2"><span class="text-gray-400 mt-1">▶</span> <span
+                                    class="text-ink font-bold">変化が起きると挫折しやすい</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- 川下り型 -->
+                    <div class="flex flex-col h-full">
+                        <div
+                            class="bg-green-50 py-3 rounded-t-xl text-center border-b-2 border-leaf mb-4 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-leaf opacity-10"></div>
+                            <h3 class="font-bold text-leaf text-lg relative z-10">これからの「川下り型」</h3>
+                        </div>
+
+                        <!-- 視覚化：S字の川とボート（固定高さを廃止し、min-hで柔軟に対応） -->
+                        <div
+                            class="min-h-[14rem] bg-blue-50 rounded-xl relative overflow-hidden flex flex-col p-4 border border-blue-200 shadow-inner-soft mb-6">
+                            <!-- S字の川とルート（背景SVG） -->
+                            <div class="absolute inset-0 z-0">
+                                <svg viewBox="0 0 200 100" class="w-full h-full stroke-blue-200 fill-none"
+                                    preserveAspectRatio="none">
+                                    <path d="M-10,20 Q50,0 100,50 T210,80" stroke-width="40" class="opacity-60" />
+                                </svg>
+                                <svg viewBox="0 0 200 100"
+                                    class="absolute top-0 left-0 w-full h-full stroke-leaf fill-none pointer-events-none"
+                                    preserveAspectRatio="none">
+                                    <path d="M10,20 Q60,5 100,50 T190,80" stroke-width="3" stroke-dasharray="6,4" />
+                                </svg>
+                            </div>
+
+                            <!-- コンテンツをフロー配置（絶対配置を減らす） -->
+                            <div class="relative z-10 flex justify-start pl-10 mt-6">
+                                <span class="text-2xl animate-float">🛶</span>
+                            </div>
+                            <div class="relative z-10 flex justify-end pr-10 mt-6 mb-4">
+                                <span class="text-xl opacity-50">🌊</span>
+                            </div>
+
+                            <div
+                                class="relative z-20 self-end bg-white bg-opacity-95 px-3 py-2 rounded-lg shadow-md text-leaf font-bold text-sm mt-auto border border-leaf border-opacity-30">
+                                方向性だけ決めて<br>流れに乗りながら進む
+                            </div>
+                        </div>
+
+                        <ul
+                            class="text-base text-ink list-none space-y-3 bg-green-50 bg-opacity-50 p-5 rounded-xl flex-grow border border-green-100">
+                            <li class="flex items-start gap-2"><span class="text-leaf font-bold mt-1">✓</span>
+                                ざっくりとした方向性だけでOK</li>
+                            <li class="flex items-start gap-2"><span class="text-leaf font-bold mt-1">✓</span> <strong
+                                    class="text-terracotta text-lg bg-yellow-100 px-1">「何もしないこと」が一番の失敗</strong></li>
+                            <li class="flex items-start gap-2"><span class="text-leaf font-bold mt-1">✓</span>
+                                変化に合わせて柔軟に道を選ぶ</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div
+                    class="mt-10 bg-sun bg-opacity-20 p-6 rounded-2xl text-center border border-sun border-opacity-40 shadow-sm relative overflow-hidden">
+                    <div class="absolute -right-4 -top-4 w-16 h-16 bg-white rounded-full opacity-50"></div>
+                    <p
+                        class="font-bold text-ink text-lg md:text-xl mb-3 flex items-center justify-center gap-2 relative z-10">
+                        <span class="text-3xl">💡</span> 小さな行動から始めよう
+                    </p>
+                    <p class="text-base md:text-lg text-inklight font-medium relative z-10">
+                        「今日アイスを買う」といった小さな欲求を無視しないことが、<br class="hidden md:block">行動力を育てる第一歩です。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         まとめ
+    =========================================== -->
+    <section class="py-24 px-6 bg-ink text-white text-center rounded-t-[3rem] relative overflow-hidden">
+        <div
+            class="absolute top-0 left-1/2 transform -translate-x-1/2 w-full max-w-4xl h-1 bg-gradient-to-r from-ink via-sun to-ink opacity-50">
+        </div>
+
+        <div class="max-w-2xl mx-auto relative z-10">
+            <h2 class="text-3xl md:text-4xl font-black mb-8 leading-tight">キャリアは<br class="md:hidden"><span
+                    class="text-sun">「永遠のβ（ベータ）版」</span></h2>
+
+            <div class="flex justify-center mb-10">
+                <div class="bg-white bg-opacity-10 p-4 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="text-sun animate-spin" style="animation-duration: 6s;">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                        <path d="M3 3v5h5" />
+                    </svg>
+                </div>
+            </div>
+
+            <p class="text-paper text-base md:text-lg leading-loose mb-10 font-medium opacity-90">
+                完成形なんてありません。時代も自分も変わり続けるのだから、<br>
+                常にアップデートし続ける未完成な状態を楽しんでください。<br><br>
+                <strong class="text-white text-xl border-b border-gray-400 pb-1">あなたが出した答えは、<br
+                        class="md:hidden">誰が何と言おうと「正解」です。</strong>
+            </p>
+
+            <div
+                class="inline-block bg-white text-ink font-bold text-lg py-4 px-10 rounded-full shadow-lg transform transition hover:scale-105 hover:shadow-xl cursor-default border-2 border-sun">
+                さあ、あなただけの<br class="md:hidden">「なぜ・誰と・いつまで」を探す旅へ。
+            </div>
+
+            <div class="mt-20 pt-8 border-t border-gray-600 opacity-60">
+                <p class="text-sm text-paper">
+                    参考書籍：『なぜ働く？ 誰と働く？ いつまで働く？ 限られた人生で後悔ない仕事をするための20の心得』<br>(有山 徹 著)
+                </p>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
